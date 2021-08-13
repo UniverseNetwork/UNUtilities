@@ -28,4 +28,3 @@ permissions:
 
   unutilities.command:
     default: op
-    description: Permission to use reload plugin command

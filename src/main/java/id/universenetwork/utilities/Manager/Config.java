@@ -81,10 +81,9 @@ public class Config {
         return Color.Translator(get().getString(s.getConfigPath()));
     }
 
-    
+
     // Anti Zero Tick Farm Features Category
     public static Boolean AZTFSettings(AntiZeroTickFarm s) {
         return get().getBoolean(s.getConfigPath());
     }
-
 }
