@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <h3 align="center">UniverseNetwork Bot</h3>
+  <h3 align="center">UNUtilities</h3>
   <p align="center">
     <a href="https://github.com/Universe-Development-Department/UNUtilities/graphs/contributors"><img src="https://img.shields.io/github/contributors/Universe-Development-Department/UNUtilities?style=for-the-badge"/></a>
     <a href="https://github.com/Universe-Development-Department/UNUtilities/network/members"><img src="https://img.shields.io/github/forks/Universe-Development-Department/UNUtilities?style=for-the-badge"/></a>
