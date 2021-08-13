@@ -20,7 +20,7 @@ public final class UNUtilities extends JavaPlugin {
     }
 
     @Override
-    // Plugin 
+    // Plugin shutdown logic
     public void onDisable() {
         System.out.println(Config.Settings(Settings.PREFIX) + " §cDisabling §bU§eN§9Utilities");
     }
