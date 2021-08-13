@@ -7,6 +7,7 @@ description: Utilities Features for UniverseNetwork
 website: https://universenetwork.id
 provides:
   - PreventPortBypass
+  - ZeroTickFarmBlocker
 commands:
   universeutilities:
     description: Main command for UNUtilities

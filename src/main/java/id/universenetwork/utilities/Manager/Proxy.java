@@ -6,7 +6,7 @@ public class Proxy {
     private static String bungeeAddress;
 
     public static void setup() {
-        setBungeeAddress(Config.AddressWhitelisterMessage(AddressWhitelister.ADDRESS));
+        setBungeeAddress(Config.AWMessage(AddressWhitelister.ADDRESS));
     }
 
     public static void setBungeeAddress(String bungeeAddress) {

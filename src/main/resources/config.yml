@@ -45,10 +45,10 @@ Features:
     # Default: true
     log: true
 
-  ## AddressWhitelister Features
+  ## Address Whitelister Features
   AddressWhitelister:
 
-    # Enable AddressWhitelister Features?
+    # Enable Address Whitelister Features?
     # !!! -> You need BungeeCord to use this features
     # Default: false
     enabled: false
@@ -63,3 +63,10 @@ Features:
     # The message if a player doesn't join over the whitelisted address
     kickMessage: '&cHarap menggunakan ip &aplay.&buniverse&enetwork&6.id &cuntuk bergabung'
     # You can use %enter% to go to a new line
+
+  ## Anti Zero Tick Farm Features
+  AntiZeroTickFarm:
+
+    # Enable Anti Zero Tick Farm Features?
+    # Default: true
+    enabled: true
