@@ -1,0 +1,45 @@
+Settings:
+# Plugin prefix
+  prefix: "&bU&eN&9Utilities &8> "
+
+# Message if player don't have permission to use command
+  denyMessage: 'Unkonwn command. Type "/help" for help.'
+
+# Message if configuration is reloaded
+  reloadMessage: "&aKonfigurasi berhasil dimuat ulang!"
+
+Features:
+## Anti Redstone Features
+   AntiRedstone:
+
+   # Enable Anti Redstone Features?
+   # Default: true
+     enabled: true
+
+   # Message if player don't have permission to use redstone
+     denyMessage: "&bUniv&eerse &cSecurity &8&l> &cKamu tidak bisa menggunakan &4Redstone &cdisini!"
+
+   # All redstone components you want to turn on or off
+     redstone: true
+     repeater: true
+     comparator: true
+     redstone_torch:
+     # Redstone torch has 2 categories, namely land and wall
+     # You can disable any or all of them
+       wall: true
+       land: true
+
+     observer: false
+     redstone_block: false
+     redstone_lamp: false
+
+## Armor Stand Arms Adder Features
+   ArmorStandArmsAdder:
+
+   # Enable Armor Stand Arms Adder Features?
+   # Default: true
+     enabled: true
+
+   # Enable log to console?
+   # Default: true
+     log: true

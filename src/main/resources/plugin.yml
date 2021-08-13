@@ -1,0 +1,28 @@
+name: UNUtilities
+version: ${project.version}
+main: id.universenetwork.utilities.UNUtilities
+api-version: 1.16
+author: ARVIN3108 ID
+description: Utilities Future for UniverseNetwork
+website: https://universenetwork.id
+commands:
+  universeutilities:
+    description: Main command for UNUtilities
+    aliases:
+      - unu
+      - uu
+permissions:
+  unutilities.*:
+    default: op
+    description: Grant all permissions of this plugin
+    children:
+      - unutilities.redstone
+      - unutilities.command
+
+  unutilities.redstone:
+    default: op
+    description: Permission to bypass Anti Redstone Features
+
+  unutilities.command:
+    default: op
+    description: Permission to use reload plugin command
