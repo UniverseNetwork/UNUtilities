@@ -1,13 +1,8 @@
 package id.universenetwork.utilities;
 
 import id.universenetwork.utilities.Enums.Settings;
-import id.universenetwork.utilities.Manager.Commands;
-import id.universenetwork.utilities.Manager.Config;
-import id.universenetwork.utilities.Manager.Proxy;
-import id.universenetwork.utilities.Manager.TabCompleter;
+import id.universenetwork.utilities.Manager.*;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import static id.universenetwork.utilities.Manager.Event.register;
 
 public final class UNUtilities extends JavaPlugin {
     private static UNUtilities plugin;
@@ -18,13 +13,14 @@ public final class UNUtilities extends JavaPlugin {
         plugin = this;
         Config.setup();
         Proxy.setup();
-        register();
-        getCommand("universeutilities").setExecutor(new Commands());
-        getCommand("universeutilities").setTabCompleter(new TabCompleter());
+        Event.register();
+        Commands.register();
+        TabCompleter.register();
         System.out.println(Config.Settings(Settings.PREFIX) + " §dEnabling §bU§eN§9Utilities");
     }
 
     @Override
+    // Plugin 
     public void onDisable() {
         System.out.println(Config.Settings(Settings.PREFIX) + " §cDisabling §bU§eN§9Utilities");
     }

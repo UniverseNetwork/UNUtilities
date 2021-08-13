@@ -17,9 +17,9 @@ public class ArmorStandArmsAdderListener implements Listener {
     public void onArmorStandPlace(EntityPlaceEvent e) {
         if (e.getEntityType() == EntityType.ARMOR_STAND) {
             Location l = e.getEntity().getLocation();
-            if (Config.ArmorStandArmsAdderSettings(ArmorStandArmsAdder.ENABLED)) {
+            if (Config.ASAASettings(ArmorStandArmsAdder.ENABLED)) {
                 ((ArmorStand) e.getEntity()).setArms(true);
-                if (Config.ArmorStandArmsAdderSettings(ArmorStandArmsAdder.LOG))
+                if (Config.ASAASettings(ArmorStandArmsAdder.LOG))
                     System.out.println(Config.Settings(Settings.PREFIX) + Color.Translator(" &bBerhasil menambahkan tangan ke Armor Stand dikoordinat ") + ChatColor.GREEN + l.getX() + " " + l.getY() + " " + l.getZ());
             }
         }

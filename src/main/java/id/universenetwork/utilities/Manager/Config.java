@@ -56,26 +56,27 @@ public class Config {
 
 
     // Anti Redstone Features Category
-    public static Boolean AntiRedstoneSettings(AntiRedstone s) {
+    public static Boolean ARSettings(AntiRedstone s) {
         return get().getBoolean(s.getConfigPath());
     }
 
-    public static String AntiRedstoneMessage(AntiRedstone s) {
+    public static String ARMessage(AntiRedstone s) {
         return Color.Translator(get().getString(s.getConfigPath()));
     }
 
 
     // Armor Stand Arms Adder Features Category
-    public static Boolean ArmorStandArmsAdderSettings(ArmorStandArmsAdder s) {
+    public static Boolean ASAASettings(ArmorStandArmsAdder s) {
         return get().getBoolean(s.getConfigPath());
     }
+
 
     // Address Whitelister Features Category
-    public static Boolean AddressWhitelisterSettings(AddressWhitelister s) {
+    public static Boolean AWSettings(AddressWhitelister s) {
         return get().getBoolean(s.getConfigPath());
     }
 
-    public static String AddressWhitelisterMessage(AddressWhitelister s) {
+    public static String AWMessage(AddressWhitelister s) {
         return Color.Translator(get().getString(s.getConfigPath()));
     }
 

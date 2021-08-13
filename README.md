@@ -12,6 +12,6 @@
 
 ## Features
 
-- AntiRedstone
+- Anti Redstone
 - Armor Stand Arms Adder
-- AddressWhitelister (Fork of [PreventPortBypass](http://spigotmc.org/resources/54934))
+- Address Whitelister (Fork of [PreventPortBypass](http://spigotmc.org/resources/54934))
