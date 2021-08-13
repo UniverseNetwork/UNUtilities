@@ -15,12 +15,13 @@ import org.bukkit.event.entity.EntityPlaceEvent;
 public class ArmorStandArmsAdderListener implements Listener {
     @EventHandler
     public void onArmorStandPlace(EntityPlaceEvent e) {
-        Location l = e.getEntity().getLocation();
-        if(Config.ArmorStandArmsAdderSettings(ArmorStandArmsAdder.ENABLED)) {
-            if (e.getEntityType() != EntityType.ARMOR_STAND) return;
-            ((ArmorStand) e.getEntity()).setArms(true);
-            if (Config.ArmorStandArmsAdderSettings(ArmorStandArmsAdder.LOG))
-                System.out.println(Config.Settings(Settings.PREFIX) + Color.Translator("&bBerhasil menambahkan tangan ke Armor Stand dikoordinat ") + ChatColor.GREEN + l.getX() + " " + l.getY() + " " + l.getZ());
+        if (e.getEntityType() == EntityType.ARMOR_STAND) {
+            Location l = e.getEntity().getLocation();
+            if (Config.ArmorStandArmsAdderSettings(ArmorStandArmsAdder.ENABLED)) {
+                ((ArmorStand) e.getEntity()).setArms(true);
+                if (Config.ArmorStandArmsAdderSettings(ArmorStandArmsAdder.LOG))
+                    System.out.println(Config.Settings(Settings.PREFIX) + Color.Translator(" &bBerhasil menambahkan tangan ke Armor Stand dikoordinat ") + ChatColor.GREEN + l.getX() + " " + l.getY() + " " + l.getZ());
+            }
         }
     }
 }

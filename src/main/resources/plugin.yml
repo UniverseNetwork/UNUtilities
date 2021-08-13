@@ -3,8 +3,10 @@ version: ${project.version}
 main: id.universenetwork.utilities.UNUtilities
 api-version: 1.16
 author: ARVIN3108 ID
-description: Utilities Future for UniverseNetwork
+description: Utilities Features for UniverseNetwork
 website: https://universenetwork.id
+provides:
+  - PreventPortBypass
 commands:
   universeutilities:
     description: Main command for UNUtilities

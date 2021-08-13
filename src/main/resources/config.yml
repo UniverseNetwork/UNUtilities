@@ -1,45 +1,65 @@
 Settings:
-# Plugin prefix
-  prefix: "&bU&eN&9Utilities &8> "
+  # Plugin prefix
+  prefix: "&bU&eN&9Utilities &8&l>"
 
-# Message if player don't have permission to use command
+  # Message if player don't have permission to use command
   denyMessage: 'Unkonwn command. Type "/help" for help.'
 
-# Message if configuration is reloaded
-  reloadMessage: "&aKonfigurasi berhasil dimuat ulang!"
+  # Message if configuration is reloaded
+  reloadMessage: "%p% &aKonfigurasi berhasil dimuat ulang!"
+  # You can use %p% to use plugin prefix
 
 Features:
-## Anti Redstone Features
-   AntiRedstone:
+  ## Anti Redstone Features
+  AntiRedstone:
 
-   # Enable Anti Redstone Features?
-   # Default: true
-     enabled: true
+    # Enable Anti Redstone Features?
+    # Default: true
+    enabled: true
 
-   # Message if player don't have permission to use redstone
-     denyMessage: "&bUniv&eerse &cSecurity &8&l> &cKamu tidak bisa menggunakan &4Redstone &cdisini!"
+    # The message if player don't have permission to use redstone
+    denyMessage: "&bUniv&eerse &cSecurity &8&l> &cKamu tidak bisa menggunakan &4Redstone &cdisini!"
 
-   # All redstone components you want to turn on or off
-     redstone: true
-     repeater: true
-     comparator: true
-     redstone_torch:
-     # Redstone torch has 2 categories, namely land and wall
-     # You can disable any or all of them
-       wall: true
-       land: true
+    # All redstone components you want to turn on or off
+    redstone: true
+    repeater: true
+    comparator: true
+    redstone_torch:
+      # Redstone torch has 2 categories, namely land and wall
+      # You can disable any or all of them
+      wall: true
+      land: true
 
-     observer: false
-     redstone_block: false
-     redstone_lamp: false
+    observer: true
+    redstone_block: false
+    redstone_lamp: false
 
-## Armor Stand Arms Adder Features
-   ArmorStandArmsAdder:
+  ## Armor Stand Arms Adder Features
+  ArmorStandArmsAdder:
 
-   # Enable Armor Stand Arms Adder Features?
-   # Default: true
-     enabled: true
+    # Enable Armor Stand Arms Adder Features?
+    # Default: true
+    enabled: true
 
-   # Enable log to console?
-   # Default: true
-     log: true
+    # Enable log to console?
+    # Default: true
+    log: true
+
+  ## AddressWhitelister Features
+  AddressWhitelister:
+
+    # Enable AddressWhitelister Features?
+    # !!! -> You need BungeeCord to use this features
+    # Default: false
+    enabled: false
+
+    # !!! -> IT MUST BE THE SAME AS IN THE BUNGEECORD config.yml UNDER 'host: '
+    # !!! -> Please change your BungeeCord Address to your origin server address (e.g from your v- or rootserver). Example: 12.34.56.78
+    # Default: 0.0.0.0
+    address: 0.0.0.0
+    # You can whitelist multiple bungeecord servers by splitting them with a ";"
+    # Example: 33.44.55.66;1.23.45.56;5.6.77.88
+
+    # The message if a player doesn't join over the whitelisted address
+    kickMessage: '&cHarap menggunakan ip &aplay.&buniverse&enetwork&6.id &cuntuk bergabung'
+    # You can use %enter% to go to a new line
