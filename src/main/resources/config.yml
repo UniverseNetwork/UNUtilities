@@ -70,3 +70,19 @@ Features:
     # Enable Anti Zero Tick Farm Features?
     # Default: true
     enabled: true
+
+  ## Hat Command Features
+  HatCommand:
+
+    # Enable Hat Command Features?
+    # Default: true
+    enabled: true
+
+    # Message if this feature is disabled
+    disabledMessage: '&bUniv&eerse &aHat &8&l> &cFitur ini dinonaktifkan'
+
+    # Message if the player uses the /hat command
+    message: '&bUniv&eerse &aHat &8&l> &eBerhasil menggunakan item di tanganmu sebagai topi'
+
+    # Message if console trying to execute /hat command
+    denyConsole: '&bUniv&eerse &aHat &8&l> &cKamu tidak bisa menggunakan command ini di console'

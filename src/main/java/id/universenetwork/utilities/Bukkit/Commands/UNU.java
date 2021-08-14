@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender;
 public class UNU implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender.hasPermission("unutilities.command")) {
+        if (sender.hasPermission("unutilities.command.reload")) {
             if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("reload") || args[0].equalsIgnoreCase("rl")) {
                     Config.reload();

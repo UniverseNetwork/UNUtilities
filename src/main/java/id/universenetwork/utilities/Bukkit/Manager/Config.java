@@ -1,9 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Manager;
 
-import id.universenetwork.utilities.Bukkit.Enums.Features.AddressWhitelister;
-import id.universenetwork.utilities.Bukkit.Enums.Features.AntiRedstone;
-import id.universenetwork.utilities.Bukkit.Enums.Features.AntiZeroTickFarm;
-import id.universenetwork.utilities.Bukkit.Enums.Features.ArmorStandArmsAdder;
+import id.universenetwork.utilities.Bukkit.Enums.Features.*;
 import id.universenetwork.utilities.Bukkit.Enums.Settings;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -50,6 +47,7 @@ public class Config {
         get().set(key, value);
     }
 
+
     // Settings Category
     public static String Settings(Settings s) {
         return Color.Translator(get().getString(s.getConfigPath()));
@@ -85,5 +83,15 @@ public class Config {
     // Anti Zero Tick Farm Features Category
     public static Boolean AZTFSettings(AntiZeroTickFarm s) {
         return get().getBoolean(s.getConfigPath());
+    }
+
+
+    // Hat Command Features Category
+    public static Boolean HCSettings(HatCommand s) {
+        return get().getBoolean(s.getConfigPath());
+    }
+
+    public static String HCMessage(HatCommand s) {
+        return Color.Translator(get().getString(s.getConfigPath()));
     }
 }

@@ -8,6 +8,7 @@ website: https://universenetwork.id
 provides:
   - PreventPortBypass
   - ZeroTickFarmBlocker
+  - Hat
 commands:
   universeutilities:
     description: Main command for UNUtilities
@@ -20,11 +21,23 @@ permissions:
     description: Grant all permissions of this plugin
     children:
       - unutilities.redstone
-      - unutilities.command
+      - unutilities.command.*
+
+  unutilities.command.*:
+    default: op
+    description: Grant all permissions of plugin commands
+    children:
+      - unutilities.command.reload
+      - unutilities.command.hat
 
   unutilities.redstone:
     default: op
     description: Permission to bypass Anti Redstone Features
 
-  unutilities.command:
+  unutilities.command.reload:
     default: op
+    description: Permission to use reload command
+
+  unutilities.command.hat:
+    default: op
+    description: Permission to use Hat Command Features
