@@ -15,6 +15,9 @@ commands:
     aliases:
       - unu
       - uu
+
+  hat:
+    description: Hat Command Features
 permissions:
   unutilities.*:
     default: op
