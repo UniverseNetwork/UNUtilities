@@ -1,6 +1,6 @@
 name: UNUtilities
 version: ${project.version}
-main: id.universenetwork.utilities.UNUtilities
+main: id.universenetwork.utilities.Bukkit.UNUtilities
 api-version: 1.16
 author: ARVIN3108 ID
 description: Utilities Features for UniverseNetwork
