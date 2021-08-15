@@ -12,22 +12,22 @@ public class Config {
 
     //Finds and Generates the config file
     public static void setup() {
-        if (!plugin().getDataFolder().exists()) plugin().getDataFolder().mkdir();
+        if (!plugin.getDataFolder().exists()) plugin.getDataFolder().mkdir();
         get().options().copyDefaults(true);
         get().options().copyHeader(true);
         save();
     }
 
     public static FileConfiguration get() {
-        return plugin().getConfig();
+        return plugin.getConfig();
     }
 
     public static void save() {
-        plugin().saveDefaultConfig();
+        plugin.saveDefaultConfig();
     }
 
     public static void reload() {
-        plugin().reloadConfig();
+        plugin.reloadConfig();
     }
 
     // Config Value Changer
@@ -92,6 +92,16 @@ public class Config {
     }
 
     public static String HCMessage(HatCommand s) {
+        return Color.Translator(get().getString(s.getConfigPath()));
+    }
+
+
+    // Max Player Changer Command Features Category
+    public static Boolean MPCCSettings(MaxPlayerChangerCommand s) {
+        return get().getBoolean(s.getConfigPath());
+    }
+
+    public static String MPCCMessage(MaxPlayerChangerCommand s) {
         return Color.Translator(get().getString(s.getConfigPath()));
     }
 }

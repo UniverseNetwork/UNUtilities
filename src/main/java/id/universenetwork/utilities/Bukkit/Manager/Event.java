@@ -9,9 +9,9 @@ import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 
 public class Event {
     public static void register() {
-        plugin().getServer().getPluginManager().registerEvents(new AntiRedstoneListener(), plugin());
-        plugin().getServer().getPluginManager().registerEvents(new ArmorStandArmsAdderListener(), plugin());
-        plugin().getServer().getPluginManager().registerEvents(new AddressWhitelisterListener(), plugin());
-        plugin().getServer().getPluginManager().registerEvents(new AntiZeroTickFarmListener(), plugin());
+        plugin.getServer().getPluginManager().registerEvents(new AntiRedstoneListener(), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new ArmorStandArmsAdderListener(), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new AddressWhitelisterListener(), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new AntiZeroTickFarmListener(), plugin);
     }
 }

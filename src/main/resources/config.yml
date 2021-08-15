@@ -1,13 +1,13 @@
 Settings:
   # Plugin prefix
   prefix: "&bU&eN&9Utilities &8&l>"
+  # You can use %p% to use this prefix
 
   # Message if player don't have permission to use command
   denyMessage: 'Unkonwn command. Type "/help" for help.'
 
   # Message if configuration is reloaded
   reloadMessage: "%p% &aKonfigurasi berhasil dimuat ulang!"
-  # You can use %p% to use plugin prefix
 
 Features:
   ## Anti Redstone Features
@@ -86,3 +86,30 @@ Features:
 
     # Message if console trying to execute /hat command
     denyConsole: '&bUniv&eerse &aHat &8&l> &cKamu tidak bisa menggunakan command ini di console'
+
+  ## Max Player Changer Command Features
+  MaxPlayerChangerCommand:
+
+    # Enable Max Player Changer Command Features?
+    # Default: true
+    enabled: true
+
+    # If true, the server.properties (on Bukkit/Spigot) will be update and the new slots will be keep after the restart
+    # Default: true
+    SaveOnRestart: true
+
+    # Message if this feature is disabled
+    disabledMessage: '%p% &cFitur ini dinonaktifkan'
+
+    # Message if the command successfully run without error
+    # %n% = Number of max player you want to change
+    successMessage: '%p% &aBerhasil mengubah jumlah maksimal player ke %n%'
+
+    # Message if no number is given
+    noArgumentMessage: '%p% &cHarap cantumkan nomor yang valid'
+
+    # Message if argument is not a number
+    invalidNumberMessage: '%p% &cHarap cantumkan nomor yang valid'
+
+    # Message if an error has occurred
+    errorMessage: '%p% &cTerjadi kesalahan, silakan periksa console!'

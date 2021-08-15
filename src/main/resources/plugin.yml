@@ -9,15 +9,26 @@ provides:
   - PreventPortBypass
   - ZeroTickFarmBlocker
   - Hat
+  - ChangeSlots
+
+
 commands:
   universeutilities:
     description: Main command for UNUtilities
-    aliases:
-      - unu
-      - uu
+    aliases: [ unu, uu ]
 
   hat:
     description: Hat Command Features
+    usage: /<command>
+    permission: unutilities.command.hat
+
+  changeslots:
+    description: Max Player Changer Command Features
+    usage: /<command> <slots>
+    aliases: [ setslots ]
+    permission: unutilities.command.changeslots
+
+
 permissions:
   unutilities.*:
     default: op
@@ -32,6 +43,7 @@ permissions:
     children:
       - unutilities.command.reload
       - unutilities.command.hat
+      - unutilities.command.changeslots
 
   unutilities.redstone:
     default: op
@@ -44,3 +56,7 @@ permissions:
   unutilities.command.hat:
     default: op
     description: Permission to use Hat Command Features
+
+  unutilities.command.changeslots:
+    default: op
+    description: Permission to use Max Player Changer Command Features
