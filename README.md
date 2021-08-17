@@ -18,4 +18,4 @@
 - Anti Zero Tick Farm (Fork of [ZeroTickFarmBlocker](http://spigotmc.org/resources/72737))
 - Hat Command (Fork of [Hat](http://spigotmc.org/resources/33980))
 - Max Player Changer Command (Fork of [ChangeSlots](http://spigotmc.org/resources/49648))
-- AsyncWorldEdit BossBar Display (Fork of [AsyncWorldEditBossBar](http://spigotmc.org/resources/76600))
+- AsyncWorldEdit BossBar Display (Fork of [AsyncWorldEdit - Boss Bar](http://spigotmc.org/resources/76600))
