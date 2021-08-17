@@ -2,16 +2,13 @@ package id.universenetwork.utilities.Bukkit.Manager;
 
 import id.universenetwork.utilities.Bukkit.Enums.Features.*;
 import id.universenetwork.utilities.Bukkit.Enums.Settings;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.primesoft.asyncworldedit.api.IAsyncWorldEdit;
 
-import java.lang.reflect.Array;
-
-import static id.universenetwork.utilities.Bukkit.UNUtilities.*;
+import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 
 public class Config {
-    //Finds and Generates the config file
+    // Finds and Generates the config file
     public static void setup() {
         plugin.getLogger().info("§ePreparing Config Manager...");
         if (!plugin.getDataFolder().exists()) plugin.getDataFolder().mkdir();
@@ -35,43 +32,11 @@ public class Config {
     public static void reload() {
         plugin.reloadConfig();
         Proxy.reload();
-        if (AWEBDSettings(AsyncWorldEditBossBarDisplay.ENABLED) && !aweHook) {
-            System.out.println(prefix + " §6AsyncWorldEdit BossBar Display Features is enabled on config.yml. Searching AsyncWorldEdit...");
-            if (Bukkit.getPluginManager().getPlugin("AsyncWorldEdit").isEnabled()) {
-                System.out.println(prefix + " §6Found AsyncWorldEdit. Hooking...");
-                IAsyncWorldEdit awe = (IAsyncWorldEdit) Bukkit.getPluginManager().getPlugin("AsyncWorldEdit");
-                awe.getProgressDisplayManager().registerProgressDisplay(plugin);
-                aweHook = true;
-                System.out.println(prefix + " §aSuccessfully hooked with AsyncWorldEdit");
-            } else {
-                System.out.println(prefix + " §cAsyncWorldEdit not found. You need AsyncWorldEdit to use AsyncWorldEdit BossBar Display Features");
-                setBoolean("Features.AsyncWorldEditBossBarDisplay.enabled", false);
-            }
-        }
-
-        if (!AWEBDSettings(AsyncWorldEditBossBarDisplay.ENABLED) && aweHook) {
-            System.out.println(prefix + " §cAsyncWorldEdit BossBar Display Features is disabled on config.yml. Unhooking with AsyncWorldEdit...");
-            IAsyncWorldEdit awe = (IAsyncWorldEdit) Bukkit.getPluginManager().getPlugin("AsyncWorldEdit");
-            awe.getProgressDisplayManager().unregisterProgressDisplay(plugin);
-            aweHook = false;
-            System.out.println(prefix + " §cSuccessfully unhooked with AsyncWorldEdit");
-        }
+        Hooks.AsyncWorldEdit("reloading");
     }
 
     // Config Value Changer
-    public static void setString(String key, String value) {
-        get().set(key, value);
-    }
-
-    public static void setNumber(String key, Number value) {
-        get().set(key, value);
-    }
-
-    public static void setBoolean(String key, Boolean value) {
-        get().set(key, value);
-    }
-
-    public static void setArray(String key, Array value) {
+    public static void set(String key, Object value) {
         get().set(key, value);
     }
 
