@@ -2,7 +2,6 @@ package id.universenetwork.utilities.Bukkit.Commands;
 
 import id.universenetwork.utilities.Bukkit.Enums.Settings;
 import id.universenetwork.utilities.Bukkit.Manager.Config;
-import id.universenetwork.utilities.Bukkit.Manager.Proxy;
 import id.universenetwork.utilities.Bukkit.Manager.Sender;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,8 +14,6 @@ public class UNU implements CommandExecutor {
             if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("reload") || args[0].equalsIgnoreCase("rl")) {
                     Config.reload();
-                    Config.setup();
-                    Proxy.setup();
                     Sender.send(sender, Config.Settings(Settings.RELOAD).replaceAll("%p%", Config.Settings(Settings.PREFIX)));
                 } else sendHelp(sender, command);
             } else sendHelp(sender, command);

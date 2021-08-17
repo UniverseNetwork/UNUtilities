@@ -6,7 +6,7 @@
 
     <groupId>id.universenetwork</groupId>
     <artifactId>UNUtilities</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
     <packaging>jar</packaging>
 
     <name>UNUtilities</name>
@@ -62,6 +62,10 @@
             <id>bungeecord-repo</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -84,6 +88,18 @@
             <version>1.16-R0.5-SNAPSHOT</version>
             <type>javadoc</type>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.primesoft</groupId>
+            <artifactId>AsyncWorldEdit</artifactId>
+            <version>3.9.1</version>
+            <scope>system</scope>
+            <systemPath>G:/IdeaProjects/UNUtilities/lib/AsyncWorldEdit 3.9.1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.github.UniverseNetwork</groupId>
+            <artifactId>UNUtilities</artifactId>
+            <version>master</version>
         </dependency>
     </dependencies>
 </project>

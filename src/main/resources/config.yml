@@ -113,3 +113,18 @@ Features:
 
     # Message if an error has occurred
     errorMessage: '%p% &cTerjadi kesalahan, silakan periksa console!'
+
+  ## AsyncWorldEdit BossBar Display Features
+  AsyncWorldEditBossBarDisplay:
+
+    # Enable AsyncWorldEdit BossBar Display?
+    # !!! -> You need AsyncWorldEdit to use this features
+    # Default: false
+    enabled: false
+
+    # Available variables are $jobsCount, $queuedBlocks, $maxQueuedBlocks, $timeLeft, $placingSpeed, $percentage
+    titleFormat: "ETA: $timeLeft seconds, Speed: $placingSpeed block/sec, $percentage %"
+
+    # Color that the progress bar should be
+    # Color options are PINK,BLUE,RED,GREEN,YELLOW,PURPLE,WHITE
+    barColor: "BLUE"

@@ -5,11 +5,14 @@ api-version: 1.16
 author: ARVIN3108 ID
 description: Utilities Features for UniverseNetwork
 website: https://universenetwork.id
+softdepend:
+  - AsyncWorldEdit
 provides:
   - PreventPortBypass
   - ZeroTickFarmBlocker
   - Hat
   - ChangeSlots
+  - AsyncWorldEditBossBar
 
 
 commands:

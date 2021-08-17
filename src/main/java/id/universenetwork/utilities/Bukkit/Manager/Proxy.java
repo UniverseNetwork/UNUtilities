@@ -2,11 +2,21 @@ package id.universenetwork.utilities.Bukkit.Manager;
 
 import id.universenetwork.utilities.Bukkit.Enums.Features.AddressWhitelister;
 
+import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+
 public class Proxy {
     private static String bungeeAddress;
 
     public static void setup() {
+        System.out.println(prefix + " §ePreparing Proxy Manager...");
         setBungeeAddress(Config.AWMessage(AddressWhitelister.ADDRESS));
+        System.out.println(prefix + " §aProxy Manager have been prepared");
+    }
+
+    public static void reload() {
+        System.out.println(prefix + " §eReloading Proxy Manager...");
+        setBungeeAddress(Config.AWMessage(AddressWhitelister.ADDRESS));
+        System.out.println(prefix + " §aProxy Manager has been reloaded");
     }
 
     public static void setBungeeAddress(String bungeeAddress) {
