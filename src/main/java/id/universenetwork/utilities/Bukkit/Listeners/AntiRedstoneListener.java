@@ -14,29 +14,47 @@ public class AntiRedstoneListener implements Listener {
         if (!e.getPlayer().hasPermission("unutilities.redstone")) {
             if (Config.ARSettings(AntiRedstone.ENABLED)) {
                 if (m == Material.REDSTONE_WIRE) {
-                    e.setCancelled(Config.ARSettings(AntiRedstone.REDSTONE));
-                    if (e.isCancelled()) e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
+                    if (Config.ARSettings(AntiRedstone.REDSTONE)) {
+                        e.setCancelled(true);
+                        e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
+                    }
                 } else if (m == Material.REPEATER) {
-                    e.setCancelled(Config.ARSettings(AntiRedstone.REPEATER));
-                    if (e.isCancelled()) e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
+                    if (Config.ARSettings(AntiRedstone.REPEATER)) {
+                        e.setCancelled(true);
+                        e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
+                    }
                 } else if (m == Material.COMPARATOR) {
-                    e.setCancelled(Config.ARSettings(AntiRedstone.COMPARATOR));
-                    if (e.isCancelled()) e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
+                    if (Config.ARSettings(AntiRedstone.COMPARATOR)) {
+                        e.setCancelled(true);
+                        e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
+                    }
                 } else if (m == Material.REDSTONE_TORCH) {
-                    e.setCancelled(Config.ARSettings(AntiRedstone.REDSTONE_TORCH));
-                    if (e.isCancelled()) e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
+                    if (Config.ARSettings(AntiRedstone.REDSTONE_TORCH)) {
+                        e.setCancelled(true);
+                        e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
+                    }
                 } else if (m == Material.REDSTONE_WALL_TORCH) {
-                    e.setCancelled(Config.ARSettings(AntiRedstone.WALL_REDSTONE_TORCH));
-                    if (e.isCancelled()) e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
+                    if (Config.ARSettings(AntiRedstone.WALL_REDSTONE_TORCH)) {
+                        e.setCancelled(true);
+                        e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
+                    }
                 } else if (m == Material.OBSERVER) {
-                    e.setCancelled(Config.ARSettings(AntiRedstone.OBSERVER));
-                    if (e.isCancelled()) e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
+                    if (Config.ARSettings(AntiRedstone.OBSERVER)) {
+                        if (Config.ARSettings(AntiRedstone.OBSERVER)) {
+                            e.setCancelled(true);
+                            e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
+                        }
+                    }
                 } else if (m == Material.REDSTONE_BLOCK) {
-                    e.setCancelled(Config.ARSettings(AntiRedstone.REDSTONE_BLOCK));
-                    if (e.isCancelled()) e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
+                    if (Config.ARSettings(AntiRedstone.REDSTONE_BLOCK)) {
+                        e.setCancelled(true);
+                        e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
+                    }
                 } else if (m == Material.REDSTONE_LAMP) {
-                    e.setCancelled(Config.ARSettings(AntiRedstone.REDSTONE_LAMP));
-                    if (e.isCancelled()) e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
+                    if (Config.ARSettings(AntiRedstone.REDSTONE_LAMP)) {
+                        e.setCancelled(true);
+                        e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
+                    }
                 }
             }
         }
