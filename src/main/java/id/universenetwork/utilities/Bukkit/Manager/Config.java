@@ -48,7 +48,7 @@ public class Config {
 
 
     // Anti Redstone Features Category
-    public static Boolean ARSettings(AntiRedstone s) {
+    public static boolean ARSettings(AntiRedstone s) {
         return get().getBoolean(s.getConfigPath());
     }
 
@@ -58,13 +58,13 @@ public class Config {
 
 
     // Armor Stand Arms Adder Features Category
-    public static Boolean ASAASettings(ArmorStandArmsAdder s) {
+    public static boolean ASAASettings(ArmorStandArmsAdder s) {
         return get().getBoolean(s.getConfigPath());
     }
 
 
     // Address Whitelister Features Category
-    public static Boolean AWSettings(AddressWhitelister s) {
+    public static boolean AWSettings(AddressWhitelister s) {
         return get().getBoolean(s.getConfigPath());
     }
 
@@ -74,13 +74,13 @@ public class Config {
 
 
     // Anti Zero Tick Farm Features Category
-    public static Boolean AZTFSettings(AntiZeroTickFarm s) {
+    public static boolean AZTFSettings(AntiZeroTickFarm s) {
         return get().getBoolean(s.getConfigPath());
     }
 
 
     // Hat Command Features Category
-    public static Boolean HCSettings(HatCommand s) {
+    public static boolean HCSettings(HatCommand s) {
         return get().getBoolean(s.getConfigPath());
     }
 
@@ -90,7 +90,7 @@ public class Config {
 
 
     // Max Player Changer Command Features Category
-    public static Boolean MPCCSettings(MaxPlayerChangerCommand s) {
+    public static boolean MPCCSettings(MaxPlayerChangerCommand s) {
         return get().getBoolean(s.getConfigPath());
     }
 
@@ -100,7 +100,7 @@ public class Config {
 
 
     // AsyncWorldEdit BossBar Display Features Category
-    public static Boolean AWEBDSettings(AsyncWorldEditBossBarDisplay s) {
+    public static boolean AWEBDSettings(AsyncWorldEditBossBarDisplay s) {
         return get().getBoolean(s.getConfigPath());
     }
 

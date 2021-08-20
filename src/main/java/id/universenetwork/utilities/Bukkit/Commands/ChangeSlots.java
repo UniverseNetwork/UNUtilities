@@ -1,51 +1,50 @@
 package id.universenetwork.utilities.Bukkit.Commands;
 
 import id.universenetwork.utilities.Bukkit.Enums.Features.MaxPlayerChangerCommand;
-import id.universenetwork.utilities.Bukkit.Enums.Settings;
+import id.universenetwork.utilities.Bukkit.Manager.Commands;
 import id.universenetwork.utilities.Bukkit.Manager.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Collections;
+import java.util.List;
 
 import static id.universenetwork.utilities.Bukkit.Manager.Config.MPCCMessage;
-import static id.universenetwork.utilities.Bukkit.Manager.Sender.send;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 
-public class ChangeSlots implements CommandExecutor {
+public class ChangeSlots extends Commands {
     private Field maxPlayersField;
 
+    public ChangeSlots() {
+        super("changeslots", "unutilities.command.changeslots", false);
+    }
+
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender.hasPermission("unutilities.command.changeslots")) {
-            if (Config.MPCCSettings(MaxPlayerChangerCommand.ENABLED)) {
-                if (args.length == 1) {
-                    try {
-                        changeSlots(Integer.parseInt(args[0]));
-                        send(sender, MPCCMessage(MaxPlayerChangerCommand.SUCCESSMSG).replaceAll("%n%", args[0]));
-                    } catch (NumberFormatException v6) {
-                        send(sender, MPCCMessage(MaxPlayerChangerCommand.NONUMMSG));
-                        return false;
-                    } catch (ReflectiveOperationException v7) {
-                        send(sender, MPCCMessage(MaxPlayerChangerCommand.ERRMSG));
-                        return false;
-                    }
-                } else {
-                    send(sender, MPCCMessage(MaxPlayerChangerCommand.NOARGMSG));
-                    return false;
+    public void Execute(CommandSender sender, Command command, String[] args) {
+        if (Config.MPCCSettings(MaxPlayerChangerCommand.ENABLED)) {
+            if (args.length == 1) {
+                try {
+                    changeSlots(Integer.parseInt(args[0]));
+                    sender.sendMessage(MPCCMessage(MaxPlayerChangerCommand.SUCCESSMSG).replaceAll("%n%", args[0]));
+                } catch (NumberFormatException v6) {
+                    sender.sendMessage(MPCCMessage(MaxPlayerChangerCommand.NONUMMSG));
+                } catch (ReflectiveOperationException v7) {
+                    sender.sendMessage(MPCCMessage(MaxPlayerChangerCommand.ERRMSG));
                 }
             } else {
-                send(sender, MPCCMessage(MaxPlayerChangerCommand.DISABLEDMSG));
-                return false;
+                sender.sendMessage(MPCCMessage(MaxPlayerChangerCommand.NOARGMSG));
             }
         } else {
-            send(sender, Config.Settings(Settings.NOPERMISSION));
-            return false;
+            sender.sendMessage(MPCCMessage(MaxPlayerChangerCommand.DISABLEDMSG));
         }
-        return true;
+    }
+
+    @Override
+    public List<String> TabComplete(CommandSender sender, Command command, String str, String[] args) {
+        return Collections.emptyList();
     }
 
     private void changeSlots(int slots) throws ReflectiveOperationException {

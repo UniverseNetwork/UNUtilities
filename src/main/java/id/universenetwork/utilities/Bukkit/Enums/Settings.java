@@ -4,7 +4,8 @@ public enum Settings {
     // Plugin Settings Variable
     PREFIX("Settings.prefix"),
     NOPERMISSION("Settings.denyMessage"),
-    RELOAD("Settings.reloadMessage");
+    RELOAD("Settings.reloadMessage"),
+    DENYCONSOLE("Settings.denyConsoleMessage");
 
     private final String configPath;
 

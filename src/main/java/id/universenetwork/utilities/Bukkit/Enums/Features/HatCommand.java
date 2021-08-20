@@ -4,8 +4,7 @@ public enum HatCommand {
     // Hat Command Variable Settings
     ENABLED("Features.HatCommand.enabled"),
     DISABLEDMSG("Features.HatCommand.disabledMessage"),
-    MESSAGE("Features.HatCommand.message"),
-    CONSOLE("Features.HatCommand.denyConsole");
+    MESSAGE("Features.HatCommand.message");
 
     private final String configPath;
 

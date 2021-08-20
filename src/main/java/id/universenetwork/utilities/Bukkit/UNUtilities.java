@@ -1,7 +1,11 @@
 package id.universenetwork.utilities.Bukkit;
 
 import id.universenetwork.utilities.Bukkit.Enums.Features.MaxPlayerChangerCommand;
-import id.universenetwork.utilities.Bukkit.Manager.*;
+import id.universenetwork.utilities.Bukkit.Manager.Commands;
+import id.universenetwork.utilities.Bukkit.Manager.Config;
+import id.universenetwork.utilities.Bukkit.Manager.Event;
+import id.universenetwork.utilities.Bukkit.Manager.Hooks;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -10,6 +14,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
+
+import static id.universenetwork.utilities.Bukkit.Manager.API.ActionBarAPISetup;
 
 public final class UNUtilities extends JavaPlugin {
     public static UNUtilities plugin;
@@ -21,20 +27,36 @@ public final class UNUtilities extends JavaPlugin {
         // Plugin startup logic
         plugin = this;
         Config.setup();
+        ActionBarAPISetup();
         Event.register();
         Commands.register();
-        TabCompleter.register();
         Hooks.AsyncWorldEdit("enabling");
-        System.out.println(prefix + " §bU§eN§9Utilities §dhas been enabled");
+        Bukkit.getLogger().info("\n\n\n" +
+                "§b██╗░░░██╗§e███╗░░██╗§9██╗░░░██╗████████╗██╗██╗░░░░░██╗████████╗██╗███████╗░██████╗\n" +
+                "§b██║░░░██║§e████╗░██║§9██║░░░██║╚══██╔══╝██║██║░░░░░██║╚══██╔══╝██║██╔════╝██╔════╝\n" +
+                "§b██║░░░██║§e██╔██╗██║§9██║░░░██║░░░██║░░░██║██║░░░░░██║░░░██║░░░██║█████╗░░╚█████╗░\n" +
+                "§b██║░░░██║§e██║╚████║§9██║░░░██║░░░██║░░░██║██║░░░░░██║░░░██║░░░██║██╔══╝░░░╚═══██╗\n" +
+                "§b╚██████╔╝§e██║░╚███║§9╚██████╔╝░░░██║░░░██║███████╗██║░░░██║░░░██║███████╗██████╔╝\n" +
+                "§b░╚═════╝░§e╚═╝░░╚══╝§9░╚═════╝░░░░╚═╝░░░╚═╝╚══════╝╚═╝░░░╚═╝░░░╚═╝╚══════╝╚═════╝░\n\n" +
+                "§d         █░█ ▄▀█ █▀   █▄▄ █▀▀ █▀▀ █▄░█   █▀▀ █▄░█ ▄▀█ █▄▄ █░░ █▀▀ █▀▄\n" +
+                "§d         █▀█ █▀█ ▄█   █▄█ ██▄ ██▄ █░▀█   ██▄ █░▀█ █▀█ █▄█ █▄▄ ██▄ █▄▀\n\n\n");
     }
 
     @Override
-    // Plugin shutdown logic
     public void onDisable() {
+        // Plugin shutdown logic
         if (Config.MPCCSettings(MaxPlayerChangerCommand.SOR) && Config.MPCCSettings(MaxPlayerChangerCommand.ENABLED))
             updateServerProperties();
         Hooks.AsyncWorldEdit("disabling");
-        System.out.println(prefix + " §bU§eN§9Utilities §chas been disabled");
+        Bukkit.getLogger().info("\n\n\n" +
+                "§b██╗░░░██╗§e███╗░░██╗§9██╗░░░██╗████████╗██╗██╗░░░░░██╗████████╗██╗███████╗░██████╗\n" +
+                "§b██║░░░██║§e████╗░██║§9██║░░░██║╚══██╔══╝██║██║░░░░░██║╚══██╔══╝██║██╔════╝██╔════╝\n" +
+                "§b██║░░░██║§e██╔██╗██║§9██║░░░██║░░░██║░░░██║██║░░░░░██║░░░██║░░░██║█████╗░░╚█████╗░\n" +
+                "§b██║░░░██║§e██║╚████║§9██║░░░██║░░░██║░░░██║██║░░░░░██║░░░██║░░░██║██╔══╝░░░╚═══██╗\n" +
+                "§b╚██████╔╝§e██║░╚███║§9╚██████╔╝░░░██║░░░██║███████╗██║░░░██║░░░██║███████╗██████╔╝\n" +
+                "§b░╚═════╝░§e╚═╝░░╚══╝§9░╚═════╝░░░░╚═╝░░░╚═╝╚══════╝╚═╝░░░╚═╝░░░╚═╝╚══════╝╚═════╝░\n\n" +
+                "§c        █░█ ▄▀█ █▀   █▄▄ █▀▀ █▀▀ █▄░█   █▀▄ █ █▀ ▄▀█ █▄▄ █░░ █▀▀ █▀▄\n" +
+                "§c        █▀█ █▀█ ▄█   █▄█ ██▄ ██▄ █░▀█   █▄▀ █ ▄█ █▀█ █▄█ █▄▄ ██▄ █▄▀\n\n\n");
     }
 
     private void updateServerProperties() {

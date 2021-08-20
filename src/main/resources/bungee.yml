@@ -1,0 +1,5 @@
+name: UNUtilities
+version: ${project.version}
+main: id.universenetwork.utilities.Bungee.UNUtilities
+author: ARVIN3108 ID
+description: Utilities Features for UniverseNetwork

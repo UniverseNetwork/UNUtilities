@@ -13,6 +13,7 @@ provides:
   - Hat
   - ChangeSlots
   - AsyncWorldEditBossBar
+  - ActionBarAPI
 
 
 commands:
@@ -22,7 +23,6 @@ commands:
 
   hat:
     description: Hat Command Features
-    usage: /<command>
     permission: unutilities.command.hat
 
   changeslots:

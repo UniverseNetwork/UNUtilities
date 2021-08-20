@@ -9,6 +9,9 @@ Settings:
   # Message if configuration is reloaded
   reloadMessage: "%p% &aKonfigurasi berhasil dimuat ulang!"
 
+  # Message if command cannot be executed in console
+  denyConsoleMessage: "%p% &cCommand ini hanya dapat dijalankan oleh player"
+
 Features:
   ## Anti Redstone Features
   AntiRedstone:
@@ -83,9 +86,6 @@ Features:
 
     # Message if the player uses the /hat command
     message: '&bUniv&eerse &aHat &8&l> &eBerhasil menggunakan item di tanganmu sebagai topi'
-
-    # Message if console trying to execute /hat command
-    denyConsole: '&bUniv&eerse &aHat &8&l> &cKamu tidak bisa menggunakan command ini di console'
 
   ## Max Player Changer Command Features
   MaxPlayerChangerCommand:
