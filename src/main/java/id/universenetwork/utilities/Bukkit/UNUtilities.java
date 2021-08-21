@@ -30,7 +30,8 @@ public final class UNUtilities extends JavaPlugin {
         ActionBarAPISetup();
         Event.register();
         Commands.register();
-        Hooks.AsyncWorldEdit("enabling");
+        Hooks.AsyncWorldEditBossBarDisplay("enabling");
+        Hooks.ShopGUIPlusSilkSpawnersConnector();
         Bukkit.getLogger().info("\n\n\n" +
                 "§b██╗░░░██╗§e███╗░░██╗§9██╗░░░██╗████████╗██╗██╗░░░░░██╗████████╗██╗███████╗░██████╗\n" +
                 "§b██║░░░██║§e████╗░██║§9██║░░░██║╚══██╔══╝██║██║░░░░░██║╚══██╔══╝██║██╔════╝██╔════╝\n" +
@@ -47,7 +48,7 @@ public final class UNUtilities extends JavaPlugin {
         // Plugin shutdown logic
         if (Config.MPCCSettings(MaxPlayerChangerCommand.SOR) && Config.MPCCSettings(MaxPlayerChangerCommand.ENABLED))
             updateServerProperties();
-        Hooks.AsyncWorldEdit("disabling");
+        Hooks.AsyncWorldEditBossBarDisplay("disabling");
         Bukkit.getLogger().info("\n\n\n" +
                 "§b██╗░░░██╗§e███╗░░██╗§9██╗░░░██╗████████╗██╗██╗░░░░░██╗████████╗██╗███████╗░██████╗\n" +
                 "§b██║░░░██║§e████╗░██║§9██║░░░██║╚══██╔══╝██║██║░░░░░██║╚══██╔══╝██║██╔════╝██╔════╝\n" +

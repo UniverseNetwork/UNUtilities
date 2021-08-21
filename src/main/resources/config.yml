@@ -117,7 +117,7 @@ Features:
   ## AsyncWorldEdit BossBar Display Features
   AsyncWorldEditBossBarDisplay:
 
-    # Enable AsyncWorldEdit BossBar Display?
+    # Enable AsyncWorldEdit BossBar Display Features?
     # !!! -> You need AsyncWorldEdit to use this features
     # Default: false
     enabled: false
@@ -128,3 +128,11 @@ Features:
     # Color that the progress bar should be
     # Color options are PINK,BLUE,RED,GREEN,YELLOW,PURPLE,WHITE
     barColor: "BLUE"
+
+  ## ShopGUI+ SilkSpawners Connector Features
+  ShopGUI+SilkSpawnersConnector:
+    # Enable ShopGUI+ SilkSpawners Connector Features?
+    # !!! -> You need ShopGUI+ and SilkSpawners to use this features
+    # Default: false
+    enabled: false
+    # !!! -> You must restart the server to change this settings

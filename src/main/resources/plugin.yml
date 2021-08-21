@@ -5,8 +5,14 @@ api-version: 1.16
 author: ARVIN3108 ID
 description: Utilities Features for UniverseNetwork
 website: https://universenetwork.id
+
+
 softdepend:
   - AsyncWorldEdit
+  - ShopGUIPlus
+  - SilkSpawners
+
+
 provides:
   - PreventPortBypass
   - ZeroTickFarmBlocker
@@ -14,6 +20,7 @@ provides:
   - ChangeSlots
   - AsyncWorldEditBossBar
   - ActionBarAPI
+  - ShopGUIPlusSilkSpawnersBridge
 
 
 commands:

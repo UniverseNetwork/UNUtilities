@@ -15,10 +15,11 @@
 - Anti Redstone
 - Armor Stand Arms Adder
 - Address Whitelister (Fork of [PreventPortBypass](http://spigotmc.org/resources/54934))
-- Anti Zero Tick Farm (Fork of [ZeroTickFarmBlocker](http://spigotmc.org/resources/72737))
+- Anti Zero Tick Farm (Fork of [Zero Tick Farm Blocker](http://spigotmc.org/resources/72737))
 - Hat Command (Fork of [Hat](http://spigotmc.org/resources/33980))
 - Max Player Changer Command (Fork of [ChangeSlots](http://spigotmc.org/resources/49648))
 - AsyncWorldEdit BossBar Display (Fork of [AsyncWorldEdit - Boss Bar](http://spigotmc.org/resources/76600))
+- ShopGUI+ SilkSpawners Connector (Fork of [ShopGUI+ bridge for SilkSpawners](http://spigotmc.org/resources/73949))
 
 ## API Included
 

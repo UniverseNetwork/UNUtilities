@@ -32,7 +32,7 @@ public class Config {
     public static void reload() {
         plugin.reloadConfig();
         Proxy.reload();
-        Hooks.AsyncWorldEdit("reloading");
+        Hooks.AsyncWorldEditBossBarDisplay("reloading");
     }
 
     // Config Value Changer
@@ -106,5 +106,10 @@ public class Config {
 
     public static String AWEBDMessage(AsyncWorldEditBossBarDisplay s) {
         return Color.Translator(get().getString(s.getConfigPath()));
+    }
+
+    // Hat Command Features Category
+    public static boolean SGPSSCSettings(ShopGUIPlusSilkSpawnersConnector s) {
+        return get().getBoolean(s.getConfigPath());
     }
 }
