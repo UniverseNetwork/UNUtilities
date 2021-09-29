@@ -5,14 +5,13 @@ public enum AsyncWorldEditBossBarDisplay {
     ENABLED("Features.AsyncWorldEditBossBarDisplay.enabled"),
     TITLE("Features.AsyncWorldEditBossBarDisplay.titleFormat"),
     COLOR("Features.AsyncWorldEditBossBarDisplay.barColor");
-
-    private final String configPath;
+    final String configPath;
 
     AsyncWorldEditBossBarDisplay(String configPath) {
         this.configPath = configPath;
     }
 
     public String getConfigPath() {
-        return this.configPath;
+        return configPath;
     }
 }

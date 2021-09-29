@@ -5,8 +5,9 @@ import id.universenetwork.utilities.Bukkit.Manager.Commands;
 import id.universenetwork.utilities.Bukkit.Manager.Config;
 import id.universenetwork.utilities.Bukkit.Manager.Event;
 import id.universenetwork.utilities.Bukkit.Manager.Hooks;
-import org.bukkit.Bukkit;
+import id.universenetwork.utilities.Bukkit.Tasks.MainTask;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,11 +17,15 @@ import java.util.Properties;
 import java.util.logging.Level;
 
 import static id.universenetwork.utilities.Bukkit.Manager.API.ActionBarAPISetup;
+import static id.universenetwork.utilities.Bukkit.Manager.Config.VOEnabled;
+import static id.universenetwork.utilities.Bukkit.Manager.Config.VOTPAS;
+import static org.bukkit.Bukkit.getScheduler;
 
 public final class UNUtilities extends JavaPlugin {
     public static UNUtilities plugin;
     public static String prefix;
     public static Boolean aweHook = false;
+    BukkitTask task;
 
     @Override
     public void onEnable() {
@@ -32,7 +37,13 @@ public final class UNUtilities extends JavaPlugin {
         Commands.register();
         Hooks.AsyncWorldEditBossBarDisplay("enabling");
         Hooks.ShopGUIPlusSilkSpawnersConnector();
-        Bukkit.getLogger().info("\n\n\n" +
+        Hooks.SlimeFunAddons();
+        Hooks.SkriptAddons();
+        if (VOEnabled()) {
+            if (task != null) task.cancel();
+            task = getScheduler().runTaskTimer(this, new MainTask(), 0L, VOTPAS() <= 0 ? 600 : VOTPAS());
+        }
+        System.out.println("\n\n\n" +
                 "§b██╗░░░██╗§e███╗░░██╗§9██╗░░░██╗████████╗██╗██╗░░░░░██╗████████╗██╗███████╗░██████╗\n" +
                 "§b██║░░░██║§e████╗░██║§9██║░░░██║╚══██╔══╝██║██║░░░░░██║╚══██╔══╝██║██╔════╝██╔════╝\n" +
                 "§b██║░░░██║§e██╔██╗██║§9██║░░░██║░░░██║░░░██║██║░░░░░██║░░░██║░░░██║█████╗░░╚█████╗░\n" +
@@ -49,7 +60,7 @@ public final class UNUtilities extends JavaPlugin {
         if (Config.MPCCSettings(MaxPlayerChangerCommand.SOR) && Config.MPCCSettings(MaxPlayerChangerCommand.ENABLED))
             updateServerProperties();
         Hooks.AsyncWorldEditBossBarDisplay("disabling");
-        Bukkit.getLogger().info("\n\n\n" +
+        System.out.println("\n\n\n" +
                 "§b██╗░░░██╗§e███╗░░██╗§9██╗░░░██╗████████╗██╗██╗░░░░░██╗████████╗██╗███████╗░██████╗\n" +
                 "§b██║░░░██║§e████╗░██║§9██║░░░██║╚══██╔══╝██║██║░░░░░██║╚══██╔══╝██║██╔════╝██╔════╝\n" +
                 "§b██║░░░██║§e██╔██╗██║§9██║░░░██║░░░██║░░░██║██║░░░░░██║░░░██║░░░██║█████╗░░╚█████╗░\n" +
@@ -60,7 +71,7 @@ public final class UNUtilities extends JavaPlugin {
                 "§c        █▀█ █▀█ ▄█   █▄█ ██▄ ██▄ █░▀█   █▄▀ █ ▄█ █▀█ █▄█ █▄▄ ██▄ █▄▀\n\n\n");
     }
 
-    private void updateServerProperties() {
+    void updateServerProperties() {
         Properties properties = new Properties();
         File propertiesFile = new File("server.properties");
         try {

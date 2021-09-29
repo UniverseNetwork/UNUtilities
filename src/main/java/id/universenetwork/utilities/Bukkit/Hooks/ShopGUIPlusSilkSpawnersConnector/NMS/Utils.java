@@ -34,8 +34,7 @@ public class Utils {
 
     private static Version parseShortNmsVersion(String version) {
         try {
-            Version nmsVersion = Version.valueOf(version);
-            return nmsVersion;
+            return Version.valueOf(version);
         } catch (IllegalArgumentException var3) {
             throw new UnsupportedMinecraftVersionException();
         }

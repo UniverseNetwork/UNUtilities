@@ -9,8 +9,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
-import java.util.Collections;
 import java.util.List;
+
+import static java.util.Collections.emptyList;
 
 public class Hat extends Commands {
     public Hat() {
@@ -24,6 +25,9 @@ public class Hat extends Commands {
             PlayerInventory inv = p.getInventory();
             ItemStack held = inv.getItemInMainHand();
             ItemStack helm = inv.getHelmet();
+            if (inv.getItemInMainHand().getType().isEmpty()) {
+                sender.sendMessage(Config.HCMessage(HatCommand.EMPTY));
+            }
             inv.setHelmet(held);
             inv.setItemInMainHand(helm);
             p.updateInventory();
@@ -33,6 +37,6 @@ public class Hat extends Commands {
 
     @Override
     public List<String> TabComplete(CommandSender sender, Command command, String str, String[] args) {
-        return Collections.emptyList();
+        return emptyList();
     }
 }

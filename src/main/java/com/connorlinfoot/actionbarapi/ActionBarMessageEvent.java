@@ -5,10 +5,10 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 public class ActionBarMessageEvent extends Event {
-    private static final HandlerList handlers = new HandlerList();
-    private final Player player;
-    private String message;
-    private boolean cancelled = false;
+    static final HandlerList handlers = new HandlerList();
+    final Player player;
+    String message;
+    boolean cancelled = false;
 
     public ActionBarMessageEvent(Player player, String message) {
         this.player = player;

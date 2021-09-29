@@ -2,10 +2,15 @@ package id.universenetwork.utilities.Bukkit.Manager;
 
 import id.universenetwork.utilities.Bukkit.Enums.Features.*;
 import id.universenetwork.utilities.Bukkit.Enums.Settings;
+import id.universenetwork.utilities.Bukkit.Events.UNUtilitiesReloadConfigEvent;
+import id.universenetwork.utilities.Bukkit.Handlers.BookExploitHandler;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import static id.universenetwork.utilities.Bukkit.Manager.Color.Translator;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+import static org.bukkit.Bukkit.getLogger;
+import static org.bukkit.Bukkit.getPluginManager;
 
 public class Config {
     // Finds and Generates the config file
@@ -16,8 +21,10 @@ public class Config {
         get().options().copyHeader(true);
         save();
         prefix = Config.Settings(Settings.PREFIX);
-        System.out.println(prefix + " §aConfig Manager have been prepared");
+        getLogger().info(prefix + " §aConfig Manager have been prepared");
         Proxy.setup();
+        Data.setup();
+        new BookExploitHandler();
     }
 
     public static FileConfiguration get() {
@@ -26,13 +33,14 @@ public class Config {
 
     public static void save() {
         plugin.saveDefaultConfig();
-
     }
 
     public static void reload() {
         plugin.reloadConfig();
         Proxy.reload();
         Hooks.AsyncWorldEditBossBarDisplay("reloading");
+        getPluginManager().callEvent(new UNUtilitiesReloadConfigEvent());
+        BookExploitHandler.setup();
     }
 
     // Config Value Changer
@@ -43,7 +51,7 @@ public class Config {
 
     // Settings Category
     public static String Settings(Settings s) {
-        return Color.Translator(get().getString(s.getConfigPath()));
+        return Translator(get().getString(s.getConfigPath()));
     }
 
 
@@ -53,7 +61,7 @@ public class Config {
     }
 
     public static String ARMessage(AntiRedstone s) {
-        return Color.Translator(get().getString(s.getConfigPath()));
+        return Translator(get().getString(s.getConfigPath()));
     }
 
 
@@ -69,7 +77,7 @@ public class Config {
     }
 
     public static String AWMessage(AddressWhitelister s) {
-        return Color.Translator(get().getString(s.getConfigPath()));
+        return Translator(get().getString(s.getConfigPath()));
     }
 
 
@@ -85,7 +93,7 @@ public class Config {
     }
 
     public static String HCMessage(HatCommand s) {
-        return Color.Translator(get().getString(s.getConfigPath()));
+        return Translator(get().getString(s.getConfigPath()));
     }
 
 
@@ -95,7 +103,7 @@ public class Config {
     }
 
     public static String MPCCMessage(MaxPlayerChangerCommand s) {
-        return Color.Translator(get().getString(s.getConfigPath()));
+        return Translator(get().getString(s.getConfigPath()));
     }
 
 
@@ -105,11 +113,50 @@ public class Config {
     }
 
     public static String AWEBDMessage(AsyncWorldEditBossBarDisplay s) {
-        return Color.Translator(get().getString(s.getConfigPath()));
+        return Translator(get().getString(s.getConfigPath()));
     }
 
-    // Hat Command Features Category
+
+    // ShopGUI+ SilkSpawners Connector Features Category
     public static boolean SGPSSCSettings(ShopGUIPlusSilkSpawnersConnector s) {
         return get().getBoolean(s.getConfigPath());
+    }
+
+
+    // SlimeFun Addons Features Category
+    public static boolean SFASettings() {
+        return get().getBoolean(SlimeFunAddons.ENABLED.getConfigPath());
+    }
+
+
+    // Fly Fixer Features Category
+    public static boolean FFSettings(FlyFixer s) {
+        return get().getBoolean(s.getConfigPath());
+    }
+
+
+    // Villager Optimization Features Category
+    public static boolean VOEnabled() {
+        return get().getBoolean(VillagerOptimization.ENABLED.getConfigPath());
+    }
+
+    public static long VOTPAS() {
+        return get().getLong(VillagerOptimization.TPAS.getConfigPath(), 600L /* Default value, if config does not contain the entry */);
+    }
+
+
+    // SlimeFun Addons Features Category
+    public static boolean SASettings() {
+        return get().getBoolean(SkriptAddons.ENABLED.getConfigPath());
+    }
+
+
+    // Anti Book Exploit Features Category
+    public static boolean ABEEnabled() {
+        return get().getBoolean(AntiBookExploit.ENABLED.getConfigPath());
+    }
+
+    public static String ABEMessage(AntiBookExploit s) {
+        return Translator(get().getString(s.getConfigPath()));
     }
 }

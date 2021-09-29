@@ -26,7 +26,7 @@ public enum Version {
         if (matcher.groupCount() < 1) {
             throw new UnsupportedMinecraftVersionException();
         } else {
-            return Integer.valueOf(matcher.group(1));
+            return Integer.parseInt(matcher.group(1));
         }
     }
 }

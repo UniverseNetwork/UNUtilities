@@ -30,10 +30,10 @@ public class UNU extends Commands {
     @Override
     public List<String> TabComplete(CommandSender sender, Command command, String str, String[] args) {
         if (args.length == 1) {
-            List<String> arguments = new ArrayList<>();
-            arguments.add("reload");
-            arguments.add("rl");
-            return arguments;
+            List<String> arg = new ArrayList<>();
+            arg.add("reload");
+            arg.add("rl");
+            return arg;
         }
         return Collections.emptyList();
     }

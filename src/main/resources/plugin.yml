@@ -1,16 +1,23 @@
-name: UNUtilities
+name: ${project.name}
 version: ${project.version}
 main: id.universenetwork.utilities.Bukkit.UNUtilities
 api-version: 1.16
 author: ARVIN3108 ID
-description: Utilities Features for UniverseNetwork
-website: https://universenetwork.id
+description: ${project.description}
+website: ${project.url}
 
 
 softdepend:
   - AsyncWorldEdit
   - ShopGUIPlus
   - SilkSpawners
+  - Slimefun
+  - ProtocolLib
+  - Skript
+  - PlaceholderAPI
+  - MVdWPlaceholderAPI
+  - mcMMO
+  - NoCheatPlus
 
 
 provides:
@@ -21,6 +28,31 @@ provides:
   - AsyncWorldEditBossBar
   - ActionBarAPI
   - ShopGUIPlusSilkSpawnersBridge
+  - ExtraGear
+  - PrivateStorage
+  - DyedBackpacks
+  - SlimefunOreChunks
+  - ExtraHeads
+  - MobCapturer
+  - ExtraTools
+  - SimpleMaterialGenerators
+  - PotionExpansion
+  - SoulJars
+  - ColoredEnderChests
+  - EcoPower
+  - SlimyTreeTaps
+  - MoreTools
+  - ChestTerminal
+  - HeadLimiter
+  - SoundMuffler
+  - SFMobDrops
+  - VillagerOptimiser
+  - skript-placeholders
+  - FluffyMachines
+  - HotbarPets
+  - ElectricSpawners
+  - BookExploitFix
+  - InfinityExpansion
 
 
 commands:
@@ -38,6 +70,22 @@ commands:
     aliases: [ setslots ]
     permission: unutilities.command.changeslots
 
+  potionexpansion:
+    description: PotionExpansion SlimeFun Addons Command
+    aliases: [ pe ]
+
+  mobdrops:
+    description: SFMobDrops SlimeFun Addons Command
+    aliases: [ sfmobdrops, mobdrop, sfmd ]
+
+  filter:
+    description: Anti Book Exploit Command Features
+
+  infinityexpansion:
+    description: Do /infinityexpansion help for a list of commands
+    usage: /infinityexpansion <subcommand>
+    aliases: [ ie, ix, infinity ]
+
 
 permissions:
   unutilities.*:
@@ -54,6 +102,7 @@ permissions:
       - unutilities.command.reload
       - unutilities.command.hat
       - unutilities.command.changeslots
+      - unutilities.command.filter
 
   unutilities.redstone:
     default: op
@@ -70,3 +119,7 @@ permissions:
   unutilities.command.changeslots:
     default: op
     description: Permission to use Max Player Changer Command Features
+
+  unutilities.command.filter:
+    default: op
+    description: Permission tu use Anti Book Exploit Filter Command

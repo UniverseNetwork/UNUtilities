@@ -1,0 +1,22 @@
+package id.universenetwork.utilities.Bukkit.Tasks;
+
+import id.universenetwork.utilities.Bukkit.Utils.ActivityUtils;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Villager;
+
+public class NormalActivityTask implements Runnable {
+    @Override
+    public void run() {
+        for (World world : Bukkit.getWorlds())
+            for (LivingEntity entity : world.getLivingEntities())
+                if (entity instanceof Villager) {
+                    if (!ActivityUtils.wouldBeBadActivity((Villager) entity) && !ActivityUtils.isScheduleNormal((Villager) entity)) {
+                        ActivityUtils.setScheduleNormal((Villager) entity);
+                        ActivityUtils.setActivitiesNormal((Villager) entity);
+                    }
+                    ActivityUtils.clearPlaceholderMemories((Villager) entity);
+                }
+    }
+}

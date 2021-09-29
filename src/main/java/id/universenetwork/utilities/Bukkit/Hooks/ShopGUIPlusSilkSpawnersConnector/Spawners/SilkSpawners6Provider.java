@@ -15,8 +15,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class SilkSpawners6Provider implements SilkSpawnersProvider {
-    private SilkUtil silkUtil;
-    private BiMap<EntityType, String> entityTypesMap;
+    SilkUtil silkUtil;
+    BiMap<EntityType, String> entityTypesMap;
 
     @Override
     public void hookIntoSilkSpawners(Plugin silkSpawnersPlugin) {
@@ -32,7 +32,7 @@ public class SilkSpawners6Provider implements SilkSpawnersProvider {
     @Override
     public ItemStack getSpawnerItem(EntityType entityType) {
         ItemStack itemStack = null;
-        String entityTypeName = entityTypesMap.containsKey(entityType) ? (String) entityTypesMap.get(entityType) : entityType.name().toLowerCase();
+        String entityTypeName = entityTypesMap.containsKey(entityType) ? entityTypesMap.get(entityType) : entityType.name().toLowerCase();
 
         try {
             Method method = SilkUtil.class.getMethod("newSpawnerItem", String.class, String.class, Integer.TYPE, Boolean.TYPE);
@@ -52,7 +52,7 @@ public class SilkSpawners6Provider implements SilkSpawnersProvider {
             Method method = NMSProvider.class.getMethod("getSilkSpawnersNBTEntityID", ItemStack.class);
             String entityTypeName = ((String) method.invoke(silkUtil.nmsProvider, itemStack)).toUpperCase();
             if (entityTypesMap.containsValue(entityTypeName.toLowerCase())) {
-                entityType = (EntityType) entityTypesMap.inverse().get(entityTypeName.toLowerCase());
+                entityType = entityTypesMap.inverse().get(entityTypeName.toLowerCase());
             } else {
                 try {
                     entityType = EntityType.valueOf(entityTypeName);
@@ -71,8 +71,7 @@ public class SilkSpawners6Provider implements SilkSpawnersProvider {
         EntityType[] v2 = EntityType.values();
         int v3 = v2.length;
 
-        for (int v4 = 0; v4 < v3; ++v4) {
-            EntityType entityType = v2[v4];
+        for (EntityType entityType : v2) {
             if (entityType.name().replace("_", "").equalsIgnoreCase(entityTypeName)) {
                 return entityType;
             }

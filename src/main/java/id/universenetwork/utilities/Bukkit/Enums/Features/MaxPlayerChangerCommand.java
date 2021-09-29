@@ -9,14 +9,13 @@ public enum MaxPlayerChangerCommand {
     NOARGMSG("Features.MaxPlayerChangerCommand.noArgumentMessage"),
     NONUMMSG("Features.MaxPlayerChangerCommand.invalidNumberMessage"),
     ERRMSG("Features.MaxPlayerChangerCommand.errorMessage");
-
-    private final String configPath;
+    final String configPath;
 
     MaxPlayerChangerCommand(String configPath) {
         this.configPath = configPath;
     }
 
     public String getConfigPath() {
-        return this.configPath;
+        return configPath;
     }
 }
