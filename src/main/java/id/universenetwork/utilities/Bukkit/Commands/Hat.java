@@ -20,7 +20,7 @@ public class Hat extends Commands {
 
     @Override
     public void Execute(CommandSender sender, Command command, String[] args) {
-        if (Config.HCSettings(HatCommand.ENABLED)) {
+        if (Config.HCBoolean(HatCommand.ENABLED)) {
             Player p = (Player) sender;
             PlayerInventory inv = p.getInventory();
             ItemStack held = inv.getItemInMainHand();

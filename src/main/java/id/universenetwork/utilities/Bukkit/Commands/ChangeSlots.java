@@ -24,7 +24,7 @@ public class ChangeSlots extends Commands {
 
     @Override
     public void Execute(CommandSender sender, Command command, String[] args) {
-        if (Config.MPCCSettings(MaxPlayerChangerCommand.ENABLED)) {
+        if (Config.MPCCBoolean(MaxPlayerChangerCommand.ENABLED)) {
             if (args.length == 1) {
                 try {
                     changeSlots(Integer.parseInt(args[0]));

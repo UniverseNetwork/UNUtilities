@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 
 public abstract class Commands implements TabExecutor {
     final String Name;
@@ -52,8 +53,12 @@ public abstract class Commands implements TabExecutor {
     }
 
     public static void register() {
+        System.out.println(prefix + " §eRegistering Commands...");
         new UNU();
         new Hat();
         new ChangeSlots();
+        // new Keep();
+
+        System.out.println(prefix + " §aAll Commands Successfully Registered");
     }
 }

@@ -1,6 +1,7 @@
 package id.universenetwork.utilities.Bukkit;
 
 import id.universenetwork.utilities.Bukkit.Enums.Features.MaxPlayerChangerCommand;
+import id.universenetwork.utilities.Bukkit.Events.UNUtilitiesDisableEvent;
 import id.universenetwork.utilities.Bukkit.Manager.Commands;
 import id.universenetwork.utilities.Bukkit.Manager.Config;
 import id.universenetwork.utilities.Bukkit.Manager.Event;
@@ -19,6 +20,7 @@ import java.util.logging.Level;
 import static id.universenetwork.utilities.Bukkit.Manager.API.ActionBarAPISetup;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.VOEnabled;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.VOTPAS;
+import static org.bukkit.Bukkit.getPluginManager;
 import static org.bukkit.Bukkit.getScheduler;
 
 public final class UNUtilities extends JavaPlugin {
@@ -57,7 +59,8 @@ public final class UNUtilities extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        if (Config.MPCCSettings(MaxPlayerChangerCommand.SOR) && Config.MPCCSettings(MaxPlayerChangerCommand.ENABLED))
+        getPluginManager().callEvent(new UNUtilitiesDisableEvent());
+        if (Config.MPCCBoolean(MaxPlayerChangerCommand.SOR) && Config.MPCCBoolean(MaxPlayerChangerCommand.ENABLED))
             updateServerProperties();
         Hooks.AsyncWorldEditBossBarDisplay("disabling");
         System.out.println("\n\n\n" +

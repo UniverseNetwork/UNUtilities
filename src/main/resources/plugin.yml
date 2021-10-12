@@ -53,6 +53,8 @@ provides:
   - ElectricSpawners
   - BookExploitFix
   - InfinityExpansion
+  - ShulkerPacks
+  - SkQuery
 
 
 commands:

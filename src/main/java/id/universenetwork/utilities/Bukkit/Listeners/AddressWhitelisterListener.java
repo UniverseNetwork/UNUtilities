@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerLoginEvent.Result;
 public class AddressWhitelisterListener implements Listener {
     @EventHandler
     public void onPlayerLogin(PlayerLoginEvent e) {
-        if (Config.AWSettings(AddressWhitelister.ENABLED)) {
+        if (Config.AWBoolean(AddressWhitelister.ENABLED)) {
             String kickMSG = Config.AWMessage(AddressWhitelister.KICKMSG);
             String joinedAddress = e.getRealAddress().getHostAddress();
             String bungeeAddress = Proxy.getBungeeAddress();

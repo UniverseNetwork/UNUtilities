@@ -12,46 +12,46 @@ public class AntiRedstoneListener implements Listener {
     public void onRedstoneComponentsPlace(BlockPlaceEvent e) {
         Material m = e.getBlock().getType();
         if (!e.getPlayer().hasPermission("unutilities.redstone")) {
-            if (Config.ARSettings(AntiRedstone.ENABLED)) {
+            if (Config.ARBoolean(AntiRedstone.ENABLED)) {
                 if (m == Material.REDSTONE_WIRE) {
-                    if (Config.ARSettings(AntiRedstone.REDSTONE)) {
+                    if (Config.ARBoolean(AntiRedstone.REDSTONE)) {
                         e.setCancelled(true);
                         e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
                     }
                 } else if (m == Material.REPEATER) {
-                    if (Config.ARSettings(AntiRedstone.REPEATER)) {
+                    if (Config.ARBoolean(AntiRedstone.REPEATER)) {
                         e.setCancelled(true);
                         e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
                     }
                 } else if (m == Material.COMPARATOR) {
-                    if (Config.ARSettings(AntiRedstone.COMPARATOR)) {
+                    if (Config.ARBoolean(AntiRedstone.COMPARATOR)) {
                         e.setCancelled(true);
                         e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
                     }
                 } else if (m == Material.REDSTONE_TORCH) {
-                    if (Config.ARSettings(AntiRedstone.REDSTONE_TORCH)) {
+                    if (Config.ARBoolean(AntiRedstone.REDSTONE_TORCH)) {
                         e.setCancelled(true);
                         e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
                     }
                 } else if (m == Material.REDSTONE_WALL_TORCH) {
-                    if (Config.ARSettings(AntiRedstone.WALL_REDSTONE_TORCH)) {
+                    if (Config.ARBoolean(AntiRedstone.WALL_REDSTONE_TORCH)) {
                         e.setCancelled(true);
                         e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
                     }
                 } else if (m == Material.OBSERVER) {
-                    if (Config.ARSettings(AntiRedstone.OBSERVER)) {
-                        if (Config.ARSettings(AntiRedstone.OBSERVER)) {
+                    if (Config.ARBoolean(AntiRedstone.OBSERVER)) {
+                        if (Config.ARBoolean(AntiRedstone.OBSERVER)) {
                             e.setCancelled(true);
                             e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
                         }
                     }
                 } else if (m == Material.REDSTONE_BLOCK) {
-                    if (Config.ARSettings(AntiRedstone.REDSTONE_BLOCK)) {
+                    if (Config.ARBoolean(AntiRedstone.REDSTONE_BLOCK)) {
                         e.setCancelled(true);
                         e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
                     }
                 } else if (m == Material.REDSTONE_LAMP) {
-                    if (Config.ARSettings(AntiRedstone.REDSTONE_LAMP)) {
+                    if (Config.ARBoolean(AntiRedstone.REDSTONE_LAMP)) {
                         e.setCancelled(true);
                         e.getPlayer().sendMessage(Config.ARMessage(AntiRedstone.NOPERMISSION));
                     }

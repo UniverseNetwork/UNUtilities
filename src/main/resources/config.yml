@@ -1,7 +1,7 @@
 Settings:
   # Plugin prefix
-  prefix: "&bU&eN&9Utilities &8&l>"
   # You can use %p% to use this prefix
+  prefix: "&bU&eN&9Utilities &8&l>"
 
   # Message if player don't have permission to use command
   denyMessage: 'Unknown command. Type "/help" for help.'
@@ -165,15 +165,21 @@ Features:
       ColoredEnderChests: true
       EcoPower: true
       SlimyTreeTaps: true
-      MoreTools: false # !!! -> This addon contains some bugs and is not recommended being activated
       ChestTerminal: true
-      HeadLimiter: false # !!! -> This addon can only be used on paper or all forks of paper
-      SoundMuffler: true # !!! -> You need ProtocolLib to use this addon
       SFMobDrops: true
       FluffyMachines: true
       HotbarPets: true
       ElectricSpawners: true
       InfinityExpansion: true
+
+      # !!! -> This addon contains some bugs and is not recommended being activated
+      MoreTools: false
+
+      # !!! -> This addon can only be used on paper or all forks of paper
+      HeadLimiter: false
+
+      # !!! -> You need ProtocolLib to use this addon
+      SoundMuffler: true
 
     ## Addons Settings
     # Some addons may have settings that can be changed.
@@ -502,16 +508,16 @@ Features:
 
         # Message if this addon is disabled
         disabledMessage: '%p% &cFitur ini dinonaktifkan'
-        
+
         balance-options:
-  
+
           # Increases or decreases the cost of infinity singularities
           singularity-cost-multiplier: 1.0
-  
+
           # Will allow the gear transformer to change slimefun gear's material. Diamond tools can already be upgraded to netherite, 
           # but some addon developers do not want there gear to be transformable so change this at your own risk.
           allow-sf-item-transform: false
-        
+
           # Enables/Disables Researches which requires players to spend xp to unlock items
           enable-researches: false
 
@@ -519,7 +525,7 @@ Features:
 
           # The number of slimefun ticks it takes to output xp and drops. 1 slimefun tick = .5 seconds by default
           ticks-per-output: 20
-        
+
           # Multiplies amount of xp gained from mob simulation
           xp-multiplier: 1.0
 
@@ -527,18 +533,18 @@ Features:
 
           # The number of slimefun ticks it takes to mine 1 block. 1 slimefun ticks = .6 seconds by default
           ticks-per-output: 10
-        
+
           # Allow quarries to mine quartz, netherite, netherrack in any world
           output-nether-materials-in-overworld: false
-        
+
           # Enable/Disable resources from being produced
           resources:
-        
+
             coal: true
             iron: true
             gold: true
             lapis: true
-        
+
             # Vanilla Copper (1.17+)
             copper: true
             quartz: true
@@ -613,13 +619,6 @@ Features:
             protection: 20
             thorns: 10
 
-  ## Fly Fixer Features
-  FlyFixer:
-
-    # Enable Fly Fixer Features?
-    # Default: true
-    enabled: true
-
   ## Villager Optimization Features
   VillagerOptimization:
 
@@ -643,7 +642,11 @@ Features:
     ## Addons List
     # !!! -> You have to restart the server after enabling or disabling addons
     Addons:
-      SkriptPlaceholders: true # !!! -> You need PlaceholderAPI or MVdWPlaceholderAPI to use this addon
+
+      # !!! -> You need PlaceholderAPI or  to use this addon
+      SkriptPlaceholders: true
+
+      SkQuery: true
 
   ## Anti Book Exploit Features
   AntiBookExploit:
@@ -713,3 +716,67 @@ Features:
 
       # Message if the written book is filtered successfully
       success: '%p% &aVersi yang difilter dari buku ini telah ditambahkan ke inventory kamu'
+
+  # Per-Player Keeper Features
+  Per-PlayerKeeper:
+
+    # Enable Per-Player Keeper Features?
+    # Default: false
+    enabled: false
+
+    # Message if this feature is disabled
+    disabledMessage: '%p% &cFitur ini dinonaktifkan'
+
+    # Message if /keep experience is executed
+    xpMessage: '%p% &eMode Keep Experience: %mode%'
+
+    # Message if /keep inventory is executed
+    invMessage: '%p% &eMode Keep Inventory: %mode%'
+
+  # Fly Fixer Features
+  FlyFixer:
+
+    # Enable Fly Fixer Features?
+    # Default: false
+    enabled: false
+
+  # Pocket Shulker Features
+  PocketShulker:
+
+    # Enable Pocket Shulker Features?
+    # Default: true
+    enabled: false
+
+    blacklistedinventories: [ "&4&lMineXChange", "test inventory" ]
+
+    # False will prevent users from opening shulkerboxes by clicking the air
+    canopeninair: true
+
+    # False will prevent users from opening shulkerboxes in their inventory
+    canopenininventory: true
+
+    # False will prevent users from opening shulkerboxes in chests
+    canopeninchests: true
+
+    # False will prevent users from opening shulkerboxes in enderchests
+    canopeninenderchest: true
+
+    # False will prevent users from opening shulkerboxes in barrels
+    canopeninbarrels: true
+
+    # False will prevent users from placing shulkerboxes by accident
+    canplaceshulker: true
+
+    # True will prevent users from opening shulkerboxes within 7 seconds of being hit by a player
+    disable-in-combat: false
+
+    # This message will be send to player when "disable-in-combat" is true
+    disable-in-combat-message: '%p% &cKamu tidak dapat membuka Shulker Box dalam pertempuran!'
+
+    defaultname: "&5Shulker Box"
+
+    # Shift click to open applies to both ingame and in inventory
+    shiftclicktoopen: false
+
+    # 0.1 is quiet, 1 is loud
+    shulkervolume: 1

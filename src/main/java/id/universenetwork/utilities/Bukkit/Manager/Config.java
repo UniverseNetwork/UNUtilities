@@ -4,7 +4,9 @@ import id.universenetwork.utilities.Bukkit.Enums.Features.*;
 import id.universenetwork.utilities.Bukkit.Enums.Settings;
 import id.universenetwork.utilities.Bukkit.Events.UNUtilitiesReloadConfigEvent;
 import id.universenetwork.utilities.Bukkit.Handlers.BookExploitHandler;
-import org.bukkit.configuration.file.FileConfiguration;
+import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Core.ConfigBuilder;
+
+import java.util.List;
 
 import static id.universenetwork.utilities.Bukkit.Manager.Color.Translator;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
@@ -13,30 +15,34 @@ import static org.bukkit.Bukkit.getLogger;
 import static org.bukkit.Bukkit.getPluginManager;
 
 public class Config {
+    static ConfigBuilder config;
+
     // Finds and Generates the config file
     public static void setup() {
         plugin.getLogger().info("§ePreparing Config Manager...");
-        if (!plugin.getDataFolder().exists()) plugin.getDataFolder().mkdir();
-        get().options().copyDefaults(true);
-        get().options().copyHeader(true);
-        save();
+        try {
+            config = new ConfigBuilder("config.yml");
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
         prefix = Config.Settings(Settings.PREFIX);
         getLogger().info(prefix + " §aConfig Manager have been prepared");
-        Proxy.setup();
         Data.setup();
+        Proxy.setup();
         new BookExploitHandler();
     }
 
-    public static FileConfiguration get() {
-        return plugin.getConfig();
+    public static ConfigBuilder get() {
+        return config;
     }
 
     public static void save() {
-        plugin.saveDefaultConfig();
+        get().save();
     }
 
     public static void reload() {
-        plugin.reloadConfig();
+        config.reload();
+        Data.reload();
         Proxy.reload();
         Hooks.AsyncWorldEditBossBarDisplay("reloading");
         getPluginManager().callEvent(new UNUtilitiesReloadConfigEvent());
@@ -44,8 +50,8 @@ public class Config {
     }
 
     // Config Value Changer
-    public static void set(String key, Object value) {
-        get().set(key, value);
+    public static void set(String path, Object value) {
+        get().set(path, value);
     }
 
 
@@ -56,7 +62,7 @@ public class Config {
 
 
     // Anti Redstone Features Category
-    public static boolean ARSettings(AntiRedstone s) {
+    public static boolean ARBoolean(AntiRedstone s) {
         return get().getBoolean(s.getConfigPath());
     }
 
@@ -66,13 +72,13 @@ public class Config {
 
 
     // Armor Stand Arms Adder Features Category
-    public static boolean ASAASettings(ArmorStandArmsAdder s) {
+    public static boolean ASAABoolean(ArmorStandArmsAdder s) {
         return get().getBoolean(s.getConfigPath());
     }
 
 
     // Address Whitelister Features Category
-    public static boolean AWSettings(AddressWhitelister s) {
+    public static boolean AWBoolean(AddressWhitelister s) {
         return get().getBoolean(s.getConfigPath());
     }
 
@@ -82,13 +88,13 @@ public class Config {
 
 
     // Anti Zero Tick Farm Features Category
-    public static boolean AZTFSettings(AntiZeroTickFarm s) {
+    public static boolean AZTFBoolean(AntiZeroTickFarm s) {
         return get().getBoolean(s.getConfigPath());
     }
 
 
     // Hat Command Features Category
-    public static boolean HCSettings(HatCommand s) {
+    public static boolean HCBoolean(HatCommand s) {
         return get().getBoolean(s.getConfigPath());
     }
 
@@ -98,7 +104,7 @@ public class Config {
 
 
     // Max Player Changer Command Features Category
-    public static boolean MPCCSettings(MaxPlayerChangerCommand s) {
+    public static boolean MPCCBoolean(MaxPlayerChangerCommand s) {
         return get().getBoolean(s.getConfigPath());
     }
 
@@ -108,7 +114,7 @@ public class Config {
 
 
     // AsyncWorldEdit BossBar Display Features Category
-    public static boolean AWEBDSettings(AsyncWorldEditBossBarDisplay s) {
+    public static boolean AWEBDBoolean(AsyncWorldEditBossBarDisplay s) {
         return get().getBoolean(s.getConfigPath());
     }
 
@@ -118,20 +124,14 @@ public class Config {
 
 
     // ShopGUI+ SilkSpawners Connector Features Category
-    public static boolean SGPSSCSettings(ShopGUIPlusSilkSpawnersConnector s) {
+    public static boolean SGPSSCBoolean(ShopGUIPlusSilkSpawnersConnector s) {
         return get().getBoolean(s.getConfigPath());
     }
 
 
     // SlimeFun Addons Features Category
-    public static boolean SFASettings() {
+    public static boolean SFABoolean() {
         return get().getBoolean(SlimeFunAddons.ENABLED.getConfigPath());
-    }
-
-
-    // Fly Fixer Features Category
-    public static boolean FFSettings(FlyFixer s) {
-        return get().getBoolean(s.getConfigPath());
     }
 
 
@@ -146,7 +146,7 @@ public class Config {
 
 
     // SlimeFun Addons Features Category
-    public static boolean SASettings() {
+    public static boolean SABoolean() {
         return get().getBoolean(SkriptAddons.ENABLED.getConfigPath());
     }
 
@@ -158,5 +158,38 @@ public class Config {
 
     public static String ABEMessage(AntiBookExploit s) {
         return Translator(get().getString(s.getConfigPath()));
+    }
+
+
+    // Per-Player Keeper Features Category
+    public static boolean PPKBoolean() {
+        return get().getBoolean(PerPlayerKeeper.ENABLED.getConfigPath());
+    }
+
+    public static String PPKMessage(PerPlayerKeeper s) {
+        return get().getString(s.getConfigPath());
+    }
+
+
+    // Fly Fixer Features Category
+    public static boolean FFEnabled() {
+        return get().getBoolean(FlyFixer.ENABLED.getConfigPath());
+    }
+
+    // Pocket Shulker Features Category
+    public static boolean PSBoolean(PocketShulker s) {
+        return get().getBoolean(s.getConfigPath());
+    }
+
+    public static String PSString(PocketShulker s) {
+        return get().getString(s.getConfigPath());
+    }
+
+    public static List<String> PSStringList(PocketShulker s) {
+        return get().getStringList(s.getConfigPath());
+    }
+
+    public static float PSFloat(PocketShulker s) {
+        return (float) get().getDouble(s.getConfigPath());
     }
 }

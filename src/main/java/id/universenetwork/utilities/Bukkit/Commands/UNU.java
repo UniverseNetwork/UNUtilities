@@ -38,7 +38,7 @@ public class UNU extends Commands {
         return Collections.emptyList();
     }
 
-    private void sendHelp(CommandSender sender, Command cmd) {
+    void sendHelp(CommandSender sender, Command cmd) {
         sendTranslate(sender, "&b&lU&e&lN&9&lUtilities");
         sendTranslate(sender, "");
         sendTranslate(sender, "&d/" + cmd.getName() + " reload");

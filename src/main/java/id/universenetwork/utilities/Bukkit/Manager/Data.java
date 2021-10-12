@@ -1,44 +1,30 @@
 package id.universenetwork.utilities.Bukkit.Manager;
 
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
+import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Core.ConfigBuilder;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 
 public class Data {
-    static File file;
-    static FileConfiguration data;
+    static ConfigBuilder data;
 
     public static void setup() {
-        try {
-            file = new File(plugin.getDataFolder(), "data.yml");
-            if (!file.exists()) file.createNewFile();
-            data = YamlConfiguration.loadConfiguration(file);
-            data.addDefault("FlyingPlayer", new ArrayList<>());
-            data.options().copyDefaults(true);
-            data.save(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        System.out.println(prefix + " §ePreparing Data Manager...");
+        data = new ConfigBuilder("data.yml");
+        System.out.println(prefix + " §aData Manager have been prepared");
     }
 
-    public static FileConfiguration get() {
+    public static ConfigBuilder get() {
         return data;
     }
 
-    public static void save() {
-        try {
-            data.save(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static void reload() {
+        System.out.println(prefix + " §eReloading Data Manager...");
+        data.reload();
+        System.out.println(prefix + " §aData Manager has been reloaded");
     }
 
-    public static void reload() {
-        YamlConfiguration.loadConfiguration(file);
+    public static void set(String path, Object value) {
+        get().set(path, value);
+        data.save();
     }
 }

@@ -4,7 +4,6 @@ import id.universenetwork.utilities.Bukkit.Manager.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
@@ -58,7 +57,7 @@ public class AsyncWorldEditBossBarDisplay implements IProgressDisplay {
             bossBar = bossBars.get(player.getUUID());
         } else {
             BarColor color = BarColor.valueOf(Config.AWEBDMessage(id.universenetwork.utilities.Bukkit.Enums.Features.AsyncWorldEditBossBarDisplay.COLOR));
-            bossBar = Bukkit.createBossBar("", color, BarStyle.SOLID, new BarFlag[0]);
+            bossBar = Bukkit.createBossBar("", color, BarStyle.SOLID);
             bossBar.addPlayer(p);
         }
 

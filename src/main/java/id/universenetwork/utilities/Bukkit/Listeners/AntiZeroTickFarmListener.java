@@ -15,12 +15,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.Manager.Config.AZTFSettings;
+import static id.universenetwork.utilities.Bukkit.Manager.Config.AZTFBoolean;
 
 public class AntiZeroTickFarmListener implements Listener {
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
     public void onPistonOut(BlockPistonExtendEvent e) {
-        if (AZTFSettings(AntiZeroTickFarm.ENABLED)) {
+        if (AZTFBoolean(AntiZeroTickFarm.ENABLED)) {
             breakPlantsBeside(e.getBlock(), e.getDirection());
             breakPlantsAbove(e.getBlocks());
         }
@@ -28,7 +28,7 @@ public class AntiZeroTickFarmListener implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
     public void onPistonIn(BlockPistonRetractEvent e) {
-        if (AZTFSettings(AntiZeroTickFarm.ENABLED)) breakPlantsAbove(e.getBlocks());
+        if (AZTFBoolean(AntiZeroTickFarm.ENABLED)) breakPlantsAbove(e.getBlocks());
     }
 
     private void breakPlantsBeside(Block block, BlockFace direction) {

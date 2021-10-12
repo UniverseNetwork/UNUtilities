@@ -15,7 +15,7 @@ import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 public class Hooks {
     public static void AsyncWorldEditBossBarDisplay(String Mode) {
         if (Mode.equalsIgnoreCase("enabling")) {
-            if (AWEBDSettings(id.universenetwork.utilities.Bukkit.Enums.Features.AsyncWorldEditBossBarDisplay.ENABLED)) {
+            if (AWEBDBoolean(id.universenetwork.utilities.Bukkit.Enums.Features.AsyncWorldEditBossBarDisplay.ENABLED)) {
                 System.out.println(prefix + " §6AsyncWorldEdit BossBar Display Features is enabled on config.yml. Searching AsyncWorldEdit...");
                 if (Bukkit.getPluginManager().isPluginEnabled("AsyncWorldEdit")) {
                     hooks();
@@ -26,7 +26,7 @@ public class Hooks {
         } else if (Mode.equalsIgnoreCase("disabling") && aweHook) {
             unhooks();
         } else if (Mode.equalsIgnoreCase("reloading")) {
-            if (AWEBDSettings(AsyncWorldEditBossBarDisplay.ENABLED) && !aweHook) {
+            if (AWEBDBoolean(AsyncWorldEditBossBarDisplay.ENABLED) && !aweHook) {
                 System.out.println(prefix + " §6AsyncWorldEdit BossBar Display Features is enabled on config.yml. Searching AsyncWorldEdit...");
                 if (Bukkit.getPluginManager().isPluginEnabled("AsyncWorldEdit")) {
                     System.out.println(prefix + " §6Found AsyncWorldEdit. Hooking...");
@@ -35,7 +35,7 @@ public class Hooks {
                     System.out.println(prefix + " §aSuccessfully hooked with AsyncWorldEdit");
                 } else
                     Bukkit.getLogger().warning(prefix + " §cAsyncWorldEdit not found. You need AsyncWorldEdit to use AsyncWorldEdit BossBar Display Features");
-            } else if (!AWEBDSettings(AsyncWorldEditBossBarDisplay.ENABLED) && aweHook) {
+            } else if (!AWEBDBoolean(AsyncWorldEditBossBarDisplay.ENABLED) && aweHook) {
                 System.out.println(prefix + " §cAsyncWorldEdit BossBar Display Features is disabled on config.yml. Unhooking with AsyncWorldEdit...");
                 unhooks();
                 aweHook = false;
@@ -44,7 +44,7 @@ public class Hooks {
     }
 
     public static void ShopGUIPlusSilkSpawnersConnector() {
-        if (SGPSSCSettings(ShopGUIPlusSilkSpawnersConnector.ENABLED)) {
+        if (SGPSSCBoolean(ShopGUIPlusSilkSpawnersConnector.ENABLED)) {
             System.out.println(prefix + " §6ShopGUI+ SilkSpawners Connector Features is enabled on config.yml. Searching ShopGUI+ and SilkSpawners...");
             boolean SilkSpawners = Bukkit.getPluginManager().isPluginEnabled("SilkSpawners");
             boolean ShopGUIPlus = Bukkit.getPluginManager().isPluginEnabled("ShopGUIPlus");
@@ -59,7 +59,7 @@ public class Hooks {
     }
 
     public static void SlimeFunAddons() {
-        if (SFASettings()) {
+        if (SFABoolean()) {
             System.out.println(prefix + " §6SlimeFun Addons Features is enabled on config.yml. Searching SlimeFun...");
             if (Bukkit.getPluginManager().isPluginEnabled("Slimefun")) Addons.setup();
             else
@@ -68,7 +68,7 @@ public class Hooks {
     }
 
     public static void SkriptAddons() {
-        if (SASettings()) {
+        if (SABoolean()) {
             System.out.println(prefix + " §6Skript Addons Features is enabled on config.yml. Searching Skript...");
             if (Bukkit.getPluginManager().getPlugin("Skript") != null)
                 id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Addons.setup();
