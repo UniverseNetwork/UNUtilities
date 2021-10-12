@@ -32,7 +32,7 @@
 - [ActionBarAPI](http://spigotmc.org/resources/1315)
 
 ## Third Party Addons Included
-### Slimefun
+### [Slimefun](http://thebusybiscuit.github.io/builds)
 - ExtraGear
 - PrivateStorage
 - DyedBackpacks
@@ -55,6 +55,6 @@
 - MoreTools `NOT Recommended to use`
 - HeadLimiter (Require [Paper](http://papermc.io/downloads) or All Forks of Paper)
 - SoundMuffler (Require [ProtocolLib](http://spigotmc.org/resources/1997))
-### Skript
+### [Skript](http://skunity.com/downloads)
 - SkriptPlaceholders (Require [PlaceholderAPI](http://spigotmc.org/resources/6245) or [MVdWPlaceholderAPI](http://spigotmc.org/resources/11182))
 - SkQuery `May conflict with SkBee`
