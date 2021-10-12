@@ -19,9 +19,9 @@
 - Max Player Changer Command (Fork of [ChangeSlots](http://spigotmc.org/resources/49648))
 - AsyncWorldEdit BossBar Display (Fork of [AsyncWorldEdit - Boss Bar](http://spigotmc.org/resources/76600))
 - ShopGUI+ SilkSpawners Connector (Fork of [ShopGUI+ bridge for SilkSpawners](http://spigotmc.org/resources/73949))
-- Slimefun Addons (See below for more info)
+- Slimefun Addons ([See below for more info](http://github.com/UniverseNetwork/UNUtilities#slimefun))
 - Villager Optimization (Fork of [Villager Optimiser](http://spigotmc.org/resources/68517))
-- Skript Addons (See below for more info)
+- Skript Addons ([See below for more info](http://github.com/UniverseNetwork/UNUtilities#skript))
 - Anti Book Exploit (Fork of [BookExploitFix](http://spigotmc.org/resources/5897))
 - Per-Player Keeper **[Experimental]**
 - Fly Fixer **[Experimental]**
@@ -55,6 +55,6 @@
 - MoreTools `NOT Recommended to use`
 - HeadLimiter (Require Paper or All Forks of Paper)
 - SoundMuffler (Require [ProtocolLib](http://spigotmc.org/resources/1997))
-## Skript
+### Skript
 - SkriptPlaceholders (Require [PlaceholderAPI](http://spigotmc.org/resources/6245) or [MVdWPlaceholderAPI](http://spigotmc.org/resources/11182))
 - SkQuery `May conflict with SkBee`
