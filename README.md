@@ -1,14 +1,18 @@
 <!-- PROJECT LOGO -->
 <br />
-<p align="center">
-  <h3 align="center">UNUtilities</h3>
+<div align="center">
+  <a href="https://github.com/UniverseNetwork/UNUtilities">
+    <img src="src/main/resources/icon.png" alt="Logo" width="663" height="95">
+  </a>
+  <h3 align="center">Utilities Features For UniverseNetwork</h3>
   <p align="center">
-    <a href="https://github.com/Universe-Development-Department/UNUtilities/graphs/contributors"><img src="https://img.shields.io/github/contributors/Universe-Development-Department/UNUtilities?style=for-the-badge"/></a>
-    <a href="https://github.com/Universe-Development-Department/UNUtilities/network/members"><img src="https://img.shields.io/github/forks/Universe-Development-Department/UNUtilities?style=for-the-badge"/></a>
-    <a href="https://github.com/Universe-Development-Department/UNUtilities/stargazers"><img src="https://img.shields.io/github/stars/Universe-Development-Department/UNUtilities?style=for-the-badge"/></a>
-    <a href="https://github.com/Universe-Development-Department/UNUtilities/issues"><img src="https://img.shields.io/github/issues/Universe-Development-Department/UNUtilities?style=for-the-badge"/></a>
-    <a href="https://github.com/Universe-Development-Department/UNUtilities"><img src="https://img.shields.io/github/languages/code-size/Universe-Development-Department/UNUtilities?style=for-the-badge"/></a>
+    <a href="https://github.com/UniverseNetwork/UNUtilities/graphs/contributors"><img src="https://img.shields.io/github/contributors/UniverseNetwork/UNUtilities?style=for-the-badge"/></a>
+    <a href="https://github.com/UniverseNetwork/UNUtilities/network/members"><img src="https://img.shields.io/github/forks/UniverseNetwork/UNUtilities?style=for-the-badge"/></a>
+    <a href="https://github.com/UniverseNetwork/UNUtilities/stargazers"><img src="https://img.shields.io/github/stars/UniverseNetwork/UNUtilities?style=for-the-badge"/></a>
+    <a href="https://github.com/UniverseNetwork/UNUtilities/issues"><img src="https://img.shields.io/github/issues/UniverseNetwork/UNUtilities?style=for-the-badge"/></a>
+    <a href="https://github.com/UniverseNetwork/UNUtilities"><img src="https://img.shields.io/github/languages/code-size/UniverseNetwork/UNUtilities?style=for-the-badge"/></a>
   </p>
+</div>
 
 ## Features
 - Anti Redstone
