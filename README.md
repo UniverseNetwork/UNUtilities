@@ -53,7 +53,7 @@
 - ElectricSpawners
 - InfinityExpansion
 - MoreTools `NOT Recommended to use`
-- HeadLimiter (Require Paper or All Forks of Paper)
+- HeadLimiter (Require [Paper](http://papermc.io/downloads) or All Forks of Paper)
 - SoundMuffler (Require [ProtocolLib](http://spigotmc.org/resources/1997))
 ### Skript
 - SkriptPlaceholders (Require [PlaceholderAPI](http://spigotmc.org/resources/6245) or [MVdWPlaceholderAPI](http://spigotmc.org/resources/11182))
