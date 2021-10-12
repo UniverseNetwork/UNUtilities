@@ -21,7 +21,7 @@
 - ShopGUI+ SilkSpawners Connector (Fork of [ShopGUI+ bridge for SilkSpawners](http://spigotmc.org/resources/73949))
 - Slimefun Addons ([See below for more info](#slimefun))
 - Villager Optimization (Fork of [Villager Optimiser](http://spigotmc.org/resources/68517))
-- Skript Addons ([See below for more info](http://github.com/UniverseNetwork/UNUtilities#skript))
+- Skript Addons ([See below for more info](#skript))
 - Anti Book Exploit (Fork of [BookExploitFix](http://spigotmc.org/resources/5897))
 - Per-Player Keeper **[Experimental]**
 - Fly Fixer **[Experimental]**
