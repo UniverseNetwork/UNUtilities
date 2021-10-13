@@ -1,5 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Manager;
 
+import id.universenetwork.utilities.Bukkit.Enums.Features.PocketShulker;
 import id.universenetwork.utilities.Bukkit.Listeners.*;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
@@ -13,8 +14,9 @@ public class Event {
         getPluginManager().registerEvents(new ArmorStandArmsAdderListener(), plugin);
         getPluginManager().registerEvents(new AddressWhitelisterListener(), plugin);
         getPluginManager().registerEvents(new AntiZeroTickFarmListener(), plugin);
-        getPluginManager().registerEvents(new FlyFixerListener(), plugin);
-        getPluginManager().registerEvents(new PocketShulkerListener(), plugin);
+        // getPluginManager().registerEvents(new FlyFixerListener(), plugin);
+        if (Config.PSBoolean(PocketShulker.ENABLED))
+            getPluginManager().registerEvents(new PocketShulkerListener(), plugin);
         //  getPluginManager().registerEvents(new PerPlayerKeeperListener(), plugin);
         System.out.println(prefix + " §aAll Events Successfully Registered");
     }

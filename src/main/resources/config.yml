@@ -635,9 +635,9 @@ Features:
 
     # Enable Skript Addons Features?
     # !!! -> You need Skript to use this features
+    # !!! -> You must restart the server after change this settings
     # Default: false
     enabled: false
-    # !!! -> You must restart the server after change this settings
 
     ## Addons List
     # !!! -> You have to restart the server after enabling or disabling addons
@@ -744,6 +744,7 @@ Features:
   PocketShulker:
 
     # Enable Pocket Shulker Features?
+    # !!! -> You must restart the server after change this settings
     # Default: true
     enabled: false
 

@@ -1,6 +1,5 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery;
 
-import ch.njol.skript.Skript;
 import ch.njol.skript.conditions.base.PropertyCondition;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Effect;
@@ -23,8 +22,9 @@ import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-import static ch.njol.skript.Skript.registerExpression;
+import static ch.njol.skript.Skript.*;
 import static ch.njol.skript.lang.ExpressionType.PROPERTY;
+import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Documentation.*;
 import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Util.Reflection.getCaller;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
@@ -48,7 +48,7 @@ public class Registration {
                 Set<Class<?>> classes = new HashSet<>();
                 @SuppressWarnings("resource")
                 JarFile jar = new JarFile(src);
-                for (JarEntry e : new IterableEnumeration<>(jar.entries())) {
+                for (JarEntry e : new IterableEnumeration<>(jar.entries()))
                     if (e.getName().endsWith(".class")) {
                         String className = e.getName().replace('/', '.').substring(0, e.getName().length() - 6);
                         try {
@@ -61,7 +61,6 @@ public class Registration {
                         } catch (NoClassDefFoundError | ExceptionInInitializerError | IllegalAccessError ignored) {
                         }
                     }
-                }
                 register(desc, classes.toArray(new Class[0]));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -87,15 +86,15 @@ public class Registration {
             }
             if (Effect.class.isAssignableFrom(c)) {
                 if (c.isAnnotationPresent(Patterns.class)) {
-                    Skript.registerEffect(c, ((Patterns) c.getAnnotation(Patterns.class)).value());
-                    Documentation.addEffect(c);
+                    registerEffect(c, ((Patterns) c.getAnnotation(Patterns.class)).value());
+                    addEffect(c);
                     success++;
                 } else
                     getLogger().severe(prefix + " §c" + c.getCanonicalName() + " is patternless and failed to register. This is most likely a code error.");
             } else if (Condition.class.isAssignableFrom(c)) {
                 if (c.isAnnotationPresent(Patterns.class)) {
-                    Skript.registerCondition(c, ((Patterns) c.getAnnotation(Patterns.class)).value());
-                    Documentation.addCondition(c);
+                    registerCondition(c, ((Patterns) c.getAnnotation(Patterns.class)).value());
+                    addCondition(c);
                     success++;
                 } else if (!PropertyCondition.class.isAssignableFrom(c))
                     getLogger().severe(prefix + " §c" + c.getCanonicalName() + " is patternless and failed to register. This is most likely a code error.");
@@ -103,7 +102,7 @@ public class Registration {
                 if (c.isAnnotationPresent(Patterns.class)) try {
                     Expression ex = (Expression) c.newInstance();
                     registerExpression(c, ex.getReturnType(), PROPERTY, ((Patterns) c.getAnnotation(Patterns.class)).value());
-                    Documentation.addExpression(c);
+                    addExpression(c);
                     success++;
                 } catch (InstantiationException e) {
                     getLogger().severe(prefix + " §c" + c.getCanonicalName() + " could not be instantiated by SkQuery!");
@@ -115,7 +114,7 @@ public class Registration {
                     try {
                         Expression ex = (Expression) c.newInstance();
                         registerExpression(c, ex.getReturnType(), PROPERTY, "[the] " + Arrays.toString(((PropertyTo) c.getAnnotation(PropertyTo.class)).value()) + " o%" + Arrays.toString(((PropertyFrom) c.getAnnotation(PropertyFrom.class)).value()) + "%", "%" + Arrays.toString(((PropertyFrom) c.getAnnotation(PropertyFrom.class)).value()) + "%'[s] " + Arrays.toString(((PropertyTo) c.getAnnotation(PropertyTo.class)).value()));
-                        Documentation.addExpression(c);
+                        addExpression(c);
                         success++;
                     } catch (InstantiationException e) {
                         getLogger().severe(prefix + " §c" + c.getCanonicalName() + " could not be instantiated by SkQuery!");

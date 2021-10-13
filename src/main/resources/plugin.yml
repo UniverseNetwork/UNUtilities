@@ -81,7 +81,10 @@ commands:
     aliases: [ sfmobdrops, mobdrop, sfmd ]
 
   filter:
+    aliases: [ bookfilter, filterbook ]
+    usage: /<command>
     description: Anti Book Exploit Command Features
+    permission: unutilities.command.filter
 
   infinityexpansion:
     description: Do /infinityexpansion help for a list of commands
@@ -124,4 +127,4 @@ permissions:
 
   unutilities.command.filter:
     default: op
-    description: Permission tu use Anti Book Exploit Filter Command
+    description: Permission to use Anti Book Exploit Filter Command

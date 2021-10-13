@@ -35,14 +35,12 @@ public class PocketShulkerListener implements Listener {
     Map<UUID, Inventory> openinventories = new HashMap<>();
     Map<Player, Inventory> opencontainer = new HashMap<>();
     Map<Player, Long> pvp_timer = new HashMap<>();
-    String defaultname = DARK_PURPLE + "&5Shulker Box";
-    boolean enabled;
+    String defaultname = DARK_PURPLE + "Shulker Box";
 
     public PocketShulkerListener() {
-        enabled = PSBoolean(ENABLED);
-        if (PSString(DEFNAME) != null) defaultname = PSString(DEFNAME);
+        if (PSString(DEFNAME) != null) defaultname = Translator(PSString(DEFNAME));
         getScheduler().scheduleSyncRepeatingTask(plugin, () -> {
-            if (enabled) for (Player p : openshulkers.keySet()) {
+            for (Player p : openshulkers.keySet()) {
                 if (openshulkers.get(p).getType() == AIR) p.closeInventory();
                 if (opencontainer.containsKey(p)) if (opencontainer.get(p).getLocation() != null)
                     if (opencontainer.get(p).getLocation() != null && opencontainer.get(p).getLocation().getWorld() == p.getWorld())
@@ -60,20 +58,18 @@ public class PocketShulkerListener implements Listener {
         if (e.getWhoClicked() instanceof Player) {
             Player p = (Player) e.getWhoClicked();
             getScheduler().scheduleSyncDelayedTask(plugin, () -> {
-                if (!saveShulker(p, e.getView().getTitle()) && enabled) e.setCancelled(true);
+                if (!saveShulker(p, e.getView().getTitle())) e.setCancelled(true);
             }, 1);
         }
     }
 
     @EventHandler
     public void onInventoryMoveItem(InventoryMoveItemEvent e) {
-        if (enabled) {
-            List<Player> closeInventories = new ArrayList<>();
-            for (Player p : openshulkers.keySet()) if (openshulkers.get(p).equals(e.getItem())) closeInventories.add(p);
-            for (Player p : closeInventories)
-                if (e.getInitiator().getLocation() != null && e.getInitiator().getLocation().getWorld() == p.getWorld())
-                    if (e.getInitiator().getLocation().distance(p.getLocation()) < 6) p.closeInventory();
-        }
+        List<Player> closeInventories = new ArrayList<>();
+        for (Player p : openshulkers.keySet()) if (openshulkers.get(p).equals(e.getItem())) closeInventories.add(p);
+        for (Player p : closeInventories)
+            if (e.getInitiator().getLocation() != null && e.getInitiator().getLocation().getWorld() == p.getWorld())
+                if (e.getInitiator().getLocation().distance(p.getLocation()) < 6) p.closeInventory();
     }
 
     /*
@@ -81,7 +77,7 @@ public class PocketShulkerListener implements Listener {
      */
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) {
-        if (e.isCancelled() || !enabled) return;
+        if (e.isCancelled()) return;
         Player p = (Player) e.getWhoClicked();
 
         if (openshulkers.containsKey(p)) if (openshulkers.get(p).getType() == AIR) {
@@ -137,7 +133,7 @@ public class PocketShulkerListener implements Listener {
             }
 
             getScheduler().scheduleSyncDelayedTask(plugin, () -> {
-                if (!saveShulker(p, e.getView().getTitle()) && enabled) e.setCancelled(true);
+                if (!saveShulker(p, e.getView().getTitle())) e.setCancelled(true);
             }, 1);
         }
     }
@@ -153,7 +149,7 @@ public class PocketShulkerListener implements Listener {
      */
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent e) {
-        if (e.getPlayer() instanceof Player && enabled) {
+        if (e.getPlayer() instanceof Player) {
             Player p = (Player) e.getPlayer();
             if (saveShulker(p, p.getOpenInventory().getTitle()))
                 p.playSound(p.getLocation(), BLOCK_SHULKER_BOX_CLOSE, PSFloat(SHULKERVOL), 1);
@@ -167,7 +163,7 @@ public class PocketShulkerListener implements Listener {
     @EventHandler
     public void onClickAir(PlayerInteractEvent e) {
         Player player = e.getPlayer();
-        if (enabled) if (PSBoolean(AIROPEN) && (e.getClickedBlock() == null || e.getClickedBlock().getType() == AIR))
+        if (PSBoolean(AIROPEN) && (e.getClickedBlock() == null || e.getClickedBlock().getType() == AIR))
             if ((!PSBoolean(SHIFTOPEN) || player.isSneaking())) if (e.getAction() == RIGHT_CLICK_AIR)
                 if (PSBoolean(AIROPEN) && player.hasPermission("shulkerpacks.open_in_air")) {
                     ItemStack item = e.getItem();
@@ -178,13 +174,13 @@ public class PocketShulkerListener implements Listener {
 
     @EventHandler
     public void onShulkerPlace(BlockPlaceEvent e) {
-        if (e.getBlockPlaced().getType().toString().contains("SHULKER_BOX") && enabled)
+        if (e.getBlockPlaced().getType().toString().contains("SHULKER_BOX"))
             if (!PSBoolean(SHULKERPLACE)) e.setCancelled(true);
     }
 
     @EventHandler
     public void onPlayerHit(EntityDamageByEntityEvent e) {
-        if (e.getDamager() instanceof Player && e.getEntity() instanceof Player && enabled) {
+        if (e.getDamager() instanceof Player && e.getEntity() instanceof Player) {
             setPvpTimer((Player) e.getDamager());
             setPvpTimer((Player) e.getEntity());
         }
@@ -192,7 +188,7 @@ public class PocketShulkerListener implements Listener {
 
     @EventHandler
     public void onPlayerShoot(ProjectileHitEvent e) {
-        if (e.getHitEntity() instanceof Player && e.getEntity().getShooter() instanceof Player && enabled) {
+        if (e.getHitEntity() instanceof Player && e.getEntity().getShooter() instanceof Player) {
             setPvpTimer((Player) e.getEntity().getShooter());
             setPvpTimer((Player) e.getHitEntity());
         }
@@ -237,7 +233,7 @@ public class PocketShulkerListener implements Listener {
     }
 
     /*
-    Opens the shulker inventory with the contents of the shulker
+     * Opens the shulker inventory with the contents of the shulker
      */
     boolean openInventoryIfShulker(ItemStack i, Player p) {
         if (p.hasPermission("shulkerpacks.use")) {

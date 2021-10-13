@@ -1,16 +1,16 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/UniverseNetwork/UNUtilities">
+  <a href="http://github.com/UniverseNetwork/UNUtilities">
     <img src="src/main/resources/icon.png" alt="Logo" width="663" height="95">
   </a>
   <h3 align="center">Utilities Features For UniverseNetwork</h3>
   <p align="center">
-    <a href="https://github.com/UniverseNetwork/UNUtilities/graphs/contributors"><img src="https://img.shields.io/github/contributors/UniverseNetwork/UNUtilities?style=for-the-badge"/></a>
-    <a href="https://github.com/UniverseNetwork/UNUtilities/network/members"><img src="https://img.shields.io/github/forks/UniverseNetwork/UNUtilities?style=for-the-badge"/></a>
-    <a href="https://github.com/UniverseNetwork/UNUtilities/stargazers"><img src="https://img.shields.io/github/stars/UniverseNetwork/UNUtilities?style=for-the-badge"/></a>
-    <a href="https://github.com/UniverseNetwork/UNUtilities/issues"><img src="https://img.shields.io/github/issues/UniverseNetwork/UNUtilities?style=for-the-badge"/></a>
-    <a href="https://github.com/UniverseNetwork/UNUtilities"><img src="https://img.shields.io/github/languages/code-size/UniverseNetwork/UNUtilities?style=for-the-badge"/></a>
+    <a href="http://github.com/UniverseNetwork/UNUtilities/graphs/contributors"><img src="http://img.shields.io/github/contributors/UniverseNetwork/UNUtilities?style=for-the-badge"/></a>
+    <a href="http://github.com/UniverseNetwork/UNUtilities/network/members"><img src="http://img.shields.io/github/forks/UniverseNetwork/UNUtilities?style=for-the-badge"/></a>
+    <a href="http://github.com/UniverseNetwork/UNUtilities/stargazers"><img src="http://img.shields.io/github/stars/UniverseNetwork/UNUtilities?style=for-the-badge"/></a>
+    <a href="http://github.com/UniverseNetwork/UNUtilities/issues"><img src="http://img.shields.io/github/issues/UniverseNetwork/UNUtilities?style=for-the-badge"/></a>
+    <a href="http://github.com/UniverseNetwork/UNUtilities"><img src="http://img.shields.io/github/languages/code-size/UniverseNetwork/UNUtilities?style=for-the-badge"/></a>
   </p>
 </div>
 
@@ -29,7 +29,7 @@
 - Anti Book Exploit (Fork of [BookExploitFix](http://spigotmc.org/resources/5897))
 - Per-Player Keeper **[Experimental]**
 - Fly Fixer **[Experimental]**
-- Pocket Shulker **[Under Construction]** (Fork of [Shulker Backpacks](http://spigotmc.org/resources/67466))
+- Pocket Shulker (Fork of [Shulker Backpacks](http://spigotmc.org/resources/67466))
 
 
 ## API Included
@@ -37,28 +37,28 @@
 
 ## Third Party Addons Included
 ### [Slimefun](http://thebusybiscuit.github.io/builds)
-- ExtraGear
-- PrivateStorage
-- DyedBackpacks
-- SlimefunOreChunks
-- ExtraHeads
-- MobCapturer
-- ExtraTools
-- SMG
-- PotionExpansion
-- SoulJars
-- ColoredEnderChests
-- EcoPower
-- SlimyTreeTaps
-- ChestTerminal
-- SFMobDrops
-- FluffyMachines
-- HotbarPets
-- ElectricSpawners
-- InfinityExpansion
-- MoreTools `NOT Recommended to use`
-- HeadLimiter (Require [Paper](http://papermc.io/downloads) or All Forks of Paper)
-- SoundMuffler (Require [ProtocolLib](http://spigotmc.org/resources/1997))
+- [ExtraGear](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/ExtraGear/master)
+- [PrivateStorage](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/PrivateStorage/master)
+- [DyedBackpacks](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/DyedBackpacks/master)
+- [SlimefunOreChunks](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/SlimefunOreChunks/master)
+- [ExtraHeads](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/ExtraHeads/master)
+- [MobCapturer](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/MobCapturer/master)
+- [ExtraTools](http://thebusybiscuit.github.io/builds/Sfiguz7/ExtraTools/master)
+- [SMG](http://thebusybiscuit.github.io/builds/Sefiraat/SMG/master)
+- [PotionExpansion](http://thebusybiscuit.github.io/builds/EpicPlayerA10/PotionExpansion/master)
+- [SoulJars](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/SoulJars/master)
+- [ColoredEnderChests](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/ColoredEnderChests/master)
+- [EcoPower](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/EcoPower/master)
+- [SlimyTreeTaps](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/SlimyTreeTaps/master)
+- [ChestTerminal](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/ChestTerminal/master)
+- [SFMobDrops](http://thebusybiscuit.github.io/builds/WalshyDev/SFMobDrops/main)
+- [FluffyMachines](http://thebusybiscuit.github.io/builds/NCBPFluffyBear/FluffyMachines/master)
+- [HotbarPets](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/HotbarPets/master)
+- [ElectricSpawners](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/ElectricSpawners/master)
+- [InfinityExpansion](http://thebusybiscuit.github.io/builds/Mooy1/InfinityExpansion/master)
+- [MoreTools](http://thebusybiscuit.github.io/builds/LinoxGH/MoreTools/build) `NOT Recommended to use`
+- [HeadLimiter](http://thebusybiscuit.github.io/builds/J3fftw1/HeadLimiter/master) (Require [Paper](http://papermc.io/downloads) or All Forks of Paper)
+- [SoundMuffler](http://thebusybiscuit.github.io/builds/J3fftw1/SoundMuffler/master) (Require [ProtocolLib](http://spigotmc.org/resources/1997))
 ### [Skript](http://skunity.com/downloads)
-- SkriptPlaceholders (Require [PlaceholderAPI](http://spigotmc.org/resources/6245) or [MVdWPlaceholderAPI](http://spigotmc.org/resources/11182))
-- SkQuery `May conflict with SkBee`
+- [SkriptPlaceholders](http://github.com/APickledWalrus/skript-placeholders) (Require [PlaceholderAPI](http://spigotmc.org/resources/6245) or [MVdWPlaceholderAPI](http://spigotmc.org/resources/11182))
+- [SkQuery](http://github.com/SkQuery/SkQuery/releases) `May conflict with SkBee`

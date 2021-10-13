@@ -35,11 +35,11 @@ public abstract class Commands implements TabExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String str, String[] args) {
         if (!sender.hasPermission(Permission)) {
             sender.sendMessage(Config.Settings(Settings.NOPERMISSION));
-            return false;
+            return true;
         }
         if (PlayerOnly && !(sender instanceof Player)) {
             sender.sendMessage(Config.Settings(Settings.DENYCONSOLE));
-            return false;
+            return true;
         }
         Execute(sender, cmd, args);
         return true;
