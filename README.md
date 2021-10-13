@@ -24,7 +24,7 @@
 - AsyncWorldEdit BossBar Display (Fork of [AsyncWorldEdit - Boss Bar](http://spigotmc.org/resources/76600))
 - ShopGUI+ SilkSpawners Connector (Fork of [ShopGUI+ bridge for SilkSpawners](http://spigotmc.org/resources/73949))
 - Slimefun Addons ([See below for more info](#slimefun))
-- Villager Optimization (Fork of [Villager Optimiser](http://spigotmc.org/resources/68517))
+- Villager Optimization **[Experimental]** (Fork of [Villager Optimiser](http://spigotmc.org/resources/68517))
 - Skript Addons ([See below for more info](#skript))
 - Anti Book Exploit (Fork of [BookExploitFix](http://spigotmc.org/resources/5897))
 - Per-Player Keeper **[Experimental]**
