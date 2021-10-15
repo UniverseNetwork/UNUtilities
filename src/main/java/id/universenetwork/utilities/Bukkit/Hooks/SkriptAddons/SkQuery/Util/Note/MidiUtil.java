@@ -106,12 +106,12 @@ public class MidiUtil {
     static byte bytePercussion(int patch) {
         int i = patch - 33;
         if (i < 0 || i >= percussion.length) return 1;
-        return (byte) percussion[i];
+        return percussion[i];
     }
 
     static byte byteInstrument(int patch) {
         if (patch < 0 || patch >= instruments.length) return 0;
-        return (byte) instruments[patch];
+        return instruments[patch];
     }
 
     public static Sound patchToPercussion(int patch) {

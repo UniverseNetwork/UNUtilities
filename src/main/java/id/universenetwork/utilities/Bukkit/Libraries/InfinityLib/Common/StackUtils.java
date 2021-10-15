@@ -9,9 +9,8 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @UtilityClass
@@ -32,7 +31,7 @@ public final class StackUtils {
         return meta.getPersistentDataContainer().get(ID_KEY, PersistentDataType.STRING);
     }
 
-    @Nonnull
+    @NotNull
     public static String getIdOrType(ItemStack item) {
         if (item instanceof SlimefunItemStack) return ((SlimefunItemStack) item).getItemId();
         else if (item.hasItemMeta()) {
@@ -47,7 +46,7 @@ public final class StackUtils {
         return item == null ? null : item.getItem().clone();
     }
 
-    @Nonnull
+    @NotNull
     public static ItemStack itemByIdOrType(String idOrType) {
         SlimefunItem item = SlimefunItem.getById(idOrType);
         return item == null ? new ItemStack(Material.valueOf(idOrType)) : item.getItem().clone();

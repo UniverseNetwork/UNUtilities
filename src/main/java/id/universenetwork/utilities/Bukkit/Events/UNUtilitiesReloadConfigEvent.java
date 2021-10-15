@@ -2,13 +2,12 @@ package id.universenetwork.utilities.Bukkit.Events;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 public class UNUtilitiesReloadConfigEvent extends Event {
     static final HandlerList handler = new HandlerList();
 
-    @Nonnull
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handler;

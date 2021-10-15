@@ -4,9 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import org.checkerframework.checker.nullness.qual.NonNull;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class PlaceholderEvent extends Event {
     static final HandlerList handlerList = new HandlerList();
@@ -62,7 +61,7 @@ public class PlaceholderEvent extends Event {
     }
 
     @Override
-    @NonNull
+    @NotNull
     public HandlerList getHandlers() {
         return handlerList;
     }

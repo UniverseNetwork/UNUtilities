@@ -11,7 +11,6 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @Setter
@@ -40,14 +39,14 @@ public abstract class AbstractMachineBlock extends TickingMenuBlock implements E
         return energyCapacity;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public final EnergyNetComponentType getEnergyComponentType() {
         return EnergyNetComponentType.CONSUMER;
     }
 
     @Override
-    public final void register(@Nonnull SlimefunAddon addon) {
+    public final void register(@NotNull SlimefunAddon addon) {
         if (energyPerTick == -1) throw new IllegalStateException("You must call .energyPerTick() before registering!");
         if (energyCapacity == -1) energyCapacity = energyPerTick * 2;
         super.register(addon);

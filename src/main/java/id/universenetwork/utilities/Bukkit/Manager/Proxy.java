@@ -29,7 +29,7 @@ public class Proxy {
     public static Boolean isValidAddress(String s) {
         if (!s.contains(".")) return false;
         else {
-            String[] v1 = s.split(".");
+            String[] v1 = s.split("\\.");
             int v2 = v1.length;
             for (String n : v1) {
                 try {

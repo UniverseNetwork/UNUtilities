@@ -5,11 +5,12 @@ import org.bukkit.Bukkit;
 import java.lang.reflect.InvocationTargetException;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+import static org.bukkit.Bukkit.getLogger;
 
 public class CompatibilityCheckTask implements Runnable {
     final static String NAME = Bukkit.getServer().getClass().getPackage().getName();
     final static String VERSION = NAME.substring(NAME.lastIndexOf('.') + 1);
-    final String[] supportedVersions = new String[]{"v1_14_R1", "v1_15_R1", "v1_16_R1", "v1_16_R2", "v1_16_R3"};
+    final String[] supportedVersions = new String[]{"v1_14_R1", "v1_15_R1", "v1_16_R1", "v1_16_R2", "v1_16_R3", "v1_17_R1"};
     boolean pass;
 
     public CompatibilityCheckTask() {
@@ -40,8 +41,8 @@ public class CompatibilityCheckTask implements Runnable {
             warn("Villager Optimization Features is not compatible with the version of Minecraft you are using.");
     }
 
-    private void warn(String message) {
-        Bukkit.getLogger().warning(prefix + " §6" + message);
+    void warn(String message) {
+        getLogger().warning(prefix + " §6" + message);
     }
 
     public boolean passedCheck() {

@@ -3,7 +3,7 @@ package id.universenetwork.utilities.Bukkit.Manager;
 import id.universenetwork.utilities.Bukkit.Enums.Features.AsyncWorldEditBossBarDisplay;
 import id.universenetwork.utilities.Bukkit.Enums.Features.ShopGUIPlusSilkSpawnersConnector;
 import id.universenetwork.utilities.Bukkit.Hooks.ShopGUIPlusSilkSpawnersConnector.Connector;
-import id.universenetwork.utilities.Bukkit.Hooks.SlimeFunAddons.Addons;
+import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons;
 import org.bukkit.Bukkit;
 
 import static id.universenetwork.utilities.Bukkit.Hooks.AsyncWorldEditBossBarDisplay.hooks;

@@ -11,7 +11,10 @@ import org.bukkit.event.Event;
 
 import java.io.File;
 import java.lang.reflect.Method;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static org.bukkit.Bukkit.getScheduler;
@@ -55,12 +58,9 @@ public class EffOptionThread extends Pragma {
     }
 
     public Future<TriggerItem> walkNext(final TriggerItem next, final Event e) {
-        return staticThreadPool.submit(new Callable<TriggerItem>() {
-            @Override
-            public TriggerItem call() throws Exception {
-                walkMethod.invoke(next, e);
-                return next.getNext();
-            }
+        return staticThreadPool.submit(() -> {
+            walkMethod.invoke(next, e);
+            return next.getNext();
         });
     }
 

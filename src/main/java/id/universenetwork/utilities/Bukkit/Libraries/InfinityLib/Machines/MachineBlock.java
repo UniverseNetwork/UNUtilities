@@ -10,16 +10,15 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static id.universenetwork.utilities.Bukkit.Hooks.SlimeFunAddons.Addons.slimefunTickCount;
+import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.slimefunTickCount;
 
 @ParametersAreNonnullByDefault
 public final class MachineBlock extends AbstractMachineBlock {
@@ -33,7 +32,7 @@ public final class MachineBlock extends AbstractMachineBlock {
         super(category, item, recipeType, recipe);
     }
 
-    @Nonnull
+    @NotNull
     public MachineBlock addRecipe(ItemStack output, ItemStack... inputs) {
         if (inputs.length == 0) throw new IllegalArgumentException("Cannot add recipe with no input!");
         MachineBlockRecipe recipe = new MachineBlockRecipe(output, inputs);
@@ -41,13 +40,13 @@ public final class MachineBlock extends AbstractMachineBlock {
         return this;
     }
 
-    @Nonnull
+    @NotNull
     public MachineBlock addRecipesFrom(MachineRecipeType recipeType) {
         recipeType.sendRecipesTo((in, out) -> addRecipe(out, in));
         return this;
     }
 
-    @Nonnull
+    @NotNull
     public MachineBlock ticksPerOutput(int ticks) {
         if (ticks < 1) throw new IllegalArgumentException("Ticks Per Output must be at least 1!");
         ticksPerOutput = ticks;

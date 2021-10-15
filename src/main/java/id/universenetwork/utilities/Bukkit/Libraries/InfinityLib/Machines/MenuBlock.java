@@ -20,7 +20,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
@@ -57,7 +56,7 @@ public abstract class MenuBlock extends SlimefunItem {
 
     protected abstract void setup(BlockMenuPreset preset);
 
-    @Nonnull
+    @NotNull
     protected final int[] getTransportSlots(DirtyChestMenu menu, ItemTransportFlow flow, ItemStack item) {
         switch (flow) {
             case INSERT:

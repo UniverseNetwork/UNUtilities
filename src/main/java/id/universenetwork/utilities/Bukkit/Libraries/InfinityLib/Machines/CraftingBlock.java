@@ -16,9 +16,8 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +81,7 @@ public class CraftingBlock extends MenuBlock {
         });
     }
 
-    @Nonnull
+    @NotNull
     public final CraftingBlock addRecipe(ItemStack output, ItemStack... inputs) {
         if (inputs.length == 0) throw new IllegalArgumentException("Cannot add recipe with no input!");
         CraftingBlockRecipe recipe = new CraftingBlockRecipe(output, inputs);
@@ -90,7 +89,7 @@ public class CraftingBlock extends MenuBlock {
         return this;
     }
 
-    @Nonnull
+    @NotNull
     public final CraftingBlock addRecipesFrom(MachineRecipeType recipeType) {
         recipeType.sendRecipesTo((in, out) -> addRecipe(out, in));
         return this;

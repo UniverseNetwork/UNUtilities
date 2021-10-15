@@ -87,7 +87,7 @@ public class Types extends AbstractTask {
                     @Override
                     public LambdaCondition parse(String s, ParseContext parseContext) {
                         if (s.length() > 2 && s.charAt(0) == '[' && s.charAt(s.length() - 1) == ']') {
-                            Condition e = (Condition) Condition.parse(s.substring(1, s.length() - 1), null);
+                            Condition e = Condition.parse(s.substring(1, s.length() - 1), null);
                             if (e == null) Skript.error(s + " is not a valid lambda statement.", SEMANTIC_ERROR);
                             else return new LambdaCondition(e);
                         }

@@ -2,9 +2,9 @@ package id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Core;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -57,7 +57,7 @@ public class ConfigBuilder extends YamlConfiguration {
     }
 
     @Override
-    public void save(@Nonnull File file) throws IOException {
+    public void save(@NotNull File file) throws IOException {
         super.save(file);
     }
 
@@ -70,7 +70,7 @@ public class ConfigBuilder extends YamlConfiguration {
         save();
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public YamlConfiguration getDefaults() {
         return defaults;
@@ -81,13 +81,13 @@ public class ConfigBuilder extends YamlConfiguration {
         return comments.get(key);
     }
 
-    @Nonnull
+    @NotNull
     @Override
     protected String buildHeader() {
         return "";
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public String saveToString() {
         options().copyDefaults(true).copyHeader(false).indent(2);
@@ -121,7 +121,7 @@ public class ConfigBuilder extends YamlConfiguration {
         reload();
     }
 
-    String readDefaults(@Nonnull InputStream inputStream) throws IOException {
+    String readDefaults(@NotNull InputStream inputStream) throws IOException {
         BufferedReader input = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
         StringBuilder yamlBuilder = new StringBuilder();
         StringBuilder commentBuilder = new StringBuilder("\n");
@@ -150,5 +150,15 @@ public class ConfigBuilder extends YamlConfiguration {
         }
         input.close();
         return yamlBuilder.toString();
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T getOrSetDefault(@NotNull String path, T value) {
+        Object val = get(path);
+        if (value.getClass().isInstance(val)) return (T) val;
+        else {
+            set(path, value);
+            return value;
+        }
     }
 }

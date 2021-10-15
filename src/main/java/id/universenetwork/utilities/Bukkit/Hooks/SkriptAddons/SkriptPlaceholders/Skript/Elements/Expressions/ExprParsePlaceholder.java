@@ -9,8 +9,8 @@ import ch.njol.util.Kleenean;
 import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.Skript.Util.PlaceholderUtils;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Event;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 

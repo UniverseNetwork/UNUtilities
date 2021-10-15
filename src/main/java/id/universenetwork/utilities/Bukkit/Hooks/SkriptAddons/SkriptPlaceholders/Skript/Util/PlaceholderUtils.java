@@ -3,8 +3,7 @@ package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholder
 import id.universenetwork.utilities.Bukkit.Manager.Color;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.OfflinePlayer;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders.hasMVdW;
 import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders.hasPapi;

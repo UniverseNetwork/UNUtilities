@@ -7,8 +7,6 @@ import ch.njol.util.Kleenean;
 import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Annotations.Patterns;
 import org.bukkit.event.Event;
 
-import javax.annotation.Nonnull;
-
 import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Util.Collect.asArray;
 
 @Patterns("%number% mod %number%")
@@ -40,7 +38,7 @@ public class ExprModulus extends SimpleExpression<Number> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public boolean init(@Nonnull Expression<?>[] expressions, int i, Kleenean kleenean, ParseResult parseResult) {
+    public boolean init(@NotNull Expression<?>[] expressions, int i, Kleenean kleenean, ParseResult parseResult) {
         first = (Expression<Number>) expressions[0];
         second = (Expression<Number>) expressions[1];
         return true;

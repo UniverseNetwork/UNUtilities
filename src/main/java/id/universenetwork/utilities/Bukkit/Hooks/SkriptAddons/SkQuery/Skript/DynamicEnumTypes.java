@@ -43,7 +43,7 @@ public class DynamicEnumTypes {
         Classes.registerClass(new ClassInfo<>(c, typeName).user(typeName + "s?").parser(new Parser<T>() {
             @Override
             public T parse(String s, ParseContext parseContext) {
-                if (s.startsWith(typeName + ":")) s = s.substring(typeName.length() + 1, s.length());
+                if (s.startsWith(typeName + ":")) s = s.substring(typeName.length() + 1);
                 if (!patterns.contains(s.toLowerCase())) return null;
                 try {
                     T instance = c.newInstance();

@@ -14,8 +14,8 @@ import org.apache.commons.lang.StringUtils;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,8 +30,7 @@ public class EvtPlaceholderRequest extends SkriptEvent {
             @Override
             @Nullable
             public Player get(PlaceholderEvent e) {
-                if (e.getPlayer() != null && e.getPlayer().isOnline())
-                    return (Player) e.getPlayer();
+                if (e.getPlayer() != null && e.getPlayer().isOnline()) return (Player) e.getPlayer();
                 return null;
             }
         }, 0);

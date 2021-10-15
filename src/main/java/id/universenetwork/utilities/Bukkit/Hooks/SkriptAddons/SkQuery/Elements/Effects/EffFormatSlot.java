@@ -44,7 +44,7 @@ public class EffFormatSlot extends Effect {
         Number s = slot.getSingle(event);
         if (s == null) return;
         Object c;
-        ItemStack i = null;
+        ItemStack i;
         SlotRule toClone;
         switch (action) {
             case 0:

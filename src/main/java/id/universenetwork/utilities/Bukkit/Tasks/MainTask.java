@@ -1,8 +1,7 @@
 package id.universenetwork.utilities.Bukkit.Tasks;
 
-import org.bukkit.Bukkit;
-
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static org.bukkit.Bukkit.getScheduler;
 
 public class MainTask implements Runnable {
     final NormalActivityTask activityTask;
@@ -17,6 +16,6 @@ public class MainTask implements Runnable {
     @Override
     public void run() {
         activityTask.run();
-        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, removeTask, 1);
+        getScheduler().scheduleSyncDelayedTask(plugin, removeTask, 1);
     }
 }

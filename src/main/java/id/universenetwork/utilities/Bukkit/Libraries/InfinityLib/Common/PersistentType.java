@@ -12,7 +12,6 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.util.io.BukkitObjectInputStream;
 import org.bukkit.util.io.BukkitObjectOutputStream;
 
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -125,25 +124,25 @@ public final class PersistentType<T, Z> implements PersistentDataType<T, Z> {
     final Function<Z, T> toPrimitive;
     final Function<T, Z> toComplex;
 
-    @Nonnull
+    @NotNull
     @Override
     public Class<T> getPrimitiveType() {
         return primitive;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public Class<Z> getComplexType() {
         return complex;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public T toPrimitive(Z complex, PersistentDataAdapterContext context) {
         return toPrimitive.apply(complex);
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public Z fromPrimitive(T primitive, PersistentDataAdapterContext context) {
         return toComplex.apply(primitive);

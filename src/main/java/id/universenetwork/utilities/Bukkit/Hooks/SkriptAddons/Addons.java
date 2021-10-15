@@ -3,9 +3,11 @@ package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons;
 import ch.njol.skript.SkriptAddon;
 import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.SkQuery;
 import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders;
+import org.bukkit.configuration.ConfigurationSection;
 
 import static ch.njol.skript.Skript.registerAddon;
 import static id.universenetwork.utilities.Bukkit.Enums.Features.SkriptAddons.ADDONS;
+import static id.universenetwork.utilities.Bukkit.Enums.Features.SkriptAddons.ADDONSSETTINGS;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.get;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
@@ -19,6 +21,10 @@ public class Addons {
         new SkriptPlaceholders();
         new SkQuery();
         System.out.println(prefix + " §aSuccessfully Registered All Enabled Addons to Skript");
+    }
+
+    public static ConfigurationSection Settings(String AddonName) {
+        return get().getConfigurationSection(ADDONSSETTINGS.getConfigPath() + AddonName);
     }
 
     public static boolean Enabled(String AddonName) {

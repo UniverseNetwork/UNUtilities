@@ -34,7 +34,7 @@ public class CondFileExistance extends Condition {
     public boolean check(Event event) {
         if (files == null)
             return !isNegated();
-        Boolean negated = (check != null) ? check.getSingle(event) : isNegated();
+        boolean negated = (check != null) ? check.getSingle(event) : isNegated();
         File file = new File(files.getSingle(event));
         return file.exists() == negated;
     }

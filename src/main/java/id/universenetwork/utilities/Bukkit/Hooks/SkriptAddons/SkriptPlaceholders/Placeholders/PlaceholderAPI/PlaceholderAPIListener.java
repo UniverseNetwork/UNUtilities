@@ -4,9 +4,7 @@ import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.checkerframework.checker.nullness.qual.NonNull;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 
@@ -18,19 +16,19 @@ public class PlaceholderAPIListener extends PlaceholderExpansion {
     }
 
     @Override
-    @NonNull
+    @NotNull
     public String getIdentifier() {
         return prefix;
     }
 
     @Override
-    @NonNull
+    @NotNull
     public String getAuthor() {
         return plugin.getDescription().getAuthors().toString();
     }
 
     @Override
-    @NonNull
+    @NotNull
     public String getVersion() {
         return plugin.getDescription().getVersion();
     }
@@ -41,7 +39,7 @@ public class PlaceholderAPIListener extends PlaceholderExpansion {
     }
 
     @Override
-    public String onRequest(@Nullable OfflinePlayer player, @NonNull String identifier) {
+    public String onRequest(@Nullable OfflinePlayer player, @NotNull String identifier) {
         PlaceholderEvent event = new PlaceholderEvent(this.prefix + "_" + identifier, player);
         Bukkit.getPluginManager().callEvent(event);
         return event.getResult();
