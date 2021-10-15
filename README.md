@@ -60,15 +60,11 @@
 - [ElectricSpawners](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/ElectricSpawners/master)
 - [InfinityExpansion](http://thebusybiscuit.github.io/builds/Mooy1/InfinityExpansion/master)
 - [MoreTools](http://thebusybiscuit.github.io/builds/LinoxGH/MoreTools/build) `NOT Recommended to use`
-- [HeadLimiter](http://thebusybiscuit.github.io/builds/J3fftw1/HeadLimiter/master) (
-  Require [Paper](http://papermc.io/downloads) or All Forks of Paper)
-- [SoundMuffler](http://thebusybiscuit.github.io/builds/J3fftw1/SoundMuffler/master) (
-  Require [ProtocolLib](http://spigotmc.org/resources/1997))
+- [HeadLimiter](http://thebusybiscuit.github.io/builds/J3fftw1/HeadLimiter/master) (Require [Paper](http://papermc.io/downloads) or All Forks of Paper)
+- [SoundMuffler](http://thebusybiscuit.github.io/builds/J3fftw1/SoundMuffler/master) (Require [ProtocolLib](http://spigotmc.org/resources/1997))
 
 ### [Skript](http://skunity.com/downloads)
 
-- [SkriptPlaceholders](http://github.com/APickledWalrus/skript-placeholders/releases) (
-  Require [PlaceholderAPI](http://spigotmc.org/resources/6245)
-  or [MVdWPlaceholderAPI](http://spigotmc.org/resources/11182))
+- [SkriptPlaceholders](http://github.com/APickledWalrus/skript-placeholders/releases) (Require [PlaceholderAPI](http://spigotmc.org/resources/6245) or [MVdWPlaceholderAPI](http://spigotmc.org/resources/11182))
 - [SkQuery](http://github.com/SkQuery/SkQuery/releases) `May conflict with SkBee`
 - [SkBee](http://github.com/ShaneBeee/SkBee/releases) **[Under Construction]**
