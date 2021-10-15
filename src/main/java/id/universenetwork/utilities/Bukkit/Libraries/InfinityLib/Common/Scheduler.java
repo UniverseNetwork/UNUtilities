@@ -2,13 +2,10 @@ package id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common;
 
 import lombok.experimental.UtilityClass;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static org.bukkit.Bukkit.getScheduler;
 
 @UtilityClass
-@ParametersAreNonnullByDefault
 public class Scheduler {
     public static void run(Runnable runnable) {
         getScheduler().runTask(plugin, runnable);

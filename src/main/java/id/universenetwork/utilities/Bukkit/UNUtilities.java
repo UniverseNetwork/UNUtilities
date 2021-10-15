@@ -18,6 +18,7 @@ import java.util.Properties;
 import java.util.logging.Level;
 
 import static id.universenetwork.utilities.Bukkit.Manager.API.ActionBarAPISetup;
+import static id.universenetwork.utilities.Bukkit.Manager.API.NoteBlockAPISetup;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.VOEnabled;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.VOTPAS;
 import static org.bukkit.Bukkit.getPluginManager;
@@ -35,6 +36,7 @@ public final class UNUtilities extends JavaPlugin {
         plugin = this;
         Config.setup();
         ActionBarAPISetup();
+        NoteBlockAPISetup("enabling");
         Event.register();
         Commands.register();
         Hooks.AsyncWorldEditBossBarDisplay("enabling");
@@ -60,6 +62,7 @@ public final class UNUtilities extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
         getPluginManager().callEvent(new UNUtilitiesDisableEvent());
+        NoteBlockAPISetup("disabling");
         if (Config.MPCCBoolean(MaxPlayerChangerCommand.SOR) && Config.MPCCBoolean(MaxPlayerChangerCommand.ENABLED))
             updateServerProperties();
         Hooks.AsyncWorldEditBossBarDisplay("disabling");

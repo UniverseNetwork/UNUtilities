@@ -15,7 +15,6 @@
 </div>
 
 ## Features
-
 - Anti Redstone
 - Armor Stand Arms Adder
 - Address Whitelister (Fork of [PreventPortBypass](http://spigotmc.org/resources/54934))
@@ -33,13 +32,11 @@
 - Pocket Shulker (Fork of [Shulker Backpacks](http://spigotmc.org/resources/67466))
 
 ## API Included
-
 - [ActionBarAPI](http://spigotmc.org/resources/1315)
+- [NoteBlockAPI](http://ci.haprosgames.com/job/NoteBlockAPI-2.0/lastSuccessfulBuild)
 
 ## Third Party Addons Included
-
 ### [Slimefun](http://thebusybiscuit.github.io/builds)
-
 - [ExtraGear](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/ExtraGear/master)
 - [PrivateStorage](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/PrivateStorage/master)
 - [DyedBackpacks](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/DyedBackpacks/master)
@@ -64,7 +61,6 @@
 - [SoundMuffler](http://thebusybiscuit.github.io/builds/J3fftw1/SoundMuffler/master) (Require [ProtocolLib](http://spigotmc.org/resources/1997))
 
 ### [Skript](http://skunity.com/downloads)
-
 - [SkriptPlaceholders](http://github.com/APickledWalrus/skript-placeholders/releases) (Require [PlaceholderAPI](http://spigotmc.org/resources/6245) or [MVdWPlaceholderAPI](http://spigotmc.org/resources/11182))
 - [SkQuery](http://github.com/SkQuery/SkQuery/releases) `May conflict with SkBee`
 - [SkBee](http://github.com/ShaneBeee/SkBee/releases) **[Under Construction]**
