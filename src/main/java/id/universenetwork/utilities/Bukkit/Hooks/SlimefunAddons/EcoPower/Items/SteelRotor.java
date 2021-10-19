@@ -8,6 +8,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class SteelRotor extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
     public SteelRotor(ItemGroup itemGroup, SlimefunItemStack item, ItemStack[] recipe, ItemStack recipeOutput) {

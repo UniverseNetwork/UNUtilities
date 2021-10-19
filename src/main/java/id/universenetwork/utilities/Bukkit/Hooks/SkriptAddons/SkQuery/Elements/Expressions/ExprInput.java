@@ -17,7 +17,7 @@ import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Uti
 
 @Patterns("%*classinfo% input")
 public class ExprInput extends SimpleExpression<Object> {
-    static HashMap<Event, Object> in = new HashMap<>();
+    static final HashMap<Event, Object> in = new HashMap<>();
     Class<?> returnType = Object.class;
 
     @Override

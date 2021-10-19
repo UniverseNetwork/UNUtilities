@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class PathBuilder {
-    List<String> path = new ArrayList<>();
+    final List<String> path = new ArrayList<>();
 
     public PathBuilder append(String line) {
         // count indent

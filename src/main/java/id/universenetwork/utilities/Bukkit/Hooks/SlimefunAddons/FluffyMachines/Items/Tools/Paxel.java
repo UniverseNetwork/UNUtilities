@@ -7,7 +7,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.block.Block;
@@ -26,13 +25,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static org.bukkit.Bukkit.getPluginManager;
 
 public class Paxel extends SlimefunItem implements Listener, NotPlaceable {
-    public final Set<Material> axeBlocks = Stream.of(Tag.LOGS.getValues(), Tag.PLANKS.getValues(), Tag.WOODEN_STAIRS.getValues(), Tag.SIGNS.getValues(), Tag.WOODEN_FENCES.getValues(), Tag.FENCE_GATES.getValues(), Tag.WOODEN_TRAPDOORS.getValues(), Tag.WOODEN_PRESSURE_PLATES.getValues(), Tag.WOODEN_DOORS.getValues(), Tag.WOODEN_SLABS.getValues(), Tag.WOODEN_BUTTONS.getValues(), Tag.BANNERS.getValues(), Tag.LEAVES.getValues(), new HashSet<>(Arrays.asList(Material.CHEST, Material.TRAPPED_CHEST, Material.CRAFTING_TABLE, Material.SMITHING_TABLE, Material.LOOM, Material.CARTOGRAPHY_TABLE, Material.FLETCHING_TABLE, Material.BARREL, Material.JUKEBOX, Material.CAMPFIRE, Material.BOOKSHELF, Material.JACK_O_LANTERN, Material.CARVED_PUMPKIN, Material.PUMPKIN, Material.MELON, Material.COMPOSTER, Material.BEEHIVE, Material.BEE_NEST, Material.NOTE_BLOCK, Material.LADDER, Material.COCOA_BEANS, Material.DAYLIGHT_DETECTOR, Material.MUSHROOM_STEM, Material.RED_MUSHROOM_BLOCK, Material.RED_MUSHROOM_BLOCK, Material.BAMBOO, Material.VINE))).flatMap(Set::stream).collect(Collectors.toSet());
+    public final Set<Material> axeBlocks = Stream.of(Tag.LOGS.getValues(), Tag.PLANKS.getValues(), Tag.WOODEN_STAIRS.getValues(), Tag.SIGNS.getValues(), Tag.WOODEN_FENCES.getValues(), Tag.FENCE_GATES.getValues(), Tag.WOODEN_TRAPDOORS.getValues(), Tag.WOODEN_PRESSURE_PLATES.getValues(), Tag.WOODEN_DOORS.getValues(), Tag.WOODEN_SLABS.getValues(), Tag.WOODEN_BUTTONS.getValues(), Tag.BANNERS.getValues(), Tag.LEAVES.getValues(), new HashSet<>(Arrays.asList(Material.CHEST, Material.TRAPPED_CHEST, Material.CRAFTING_TABLE, Material.SMITHING_TABLE, Material.LOOM, Material.CARTOGRAPHY_TABLE, Material.FLETCHING_TABLE, Material.BARREL, Material.JUKEBOX, Material.CAMPFIRE, Material.BOOKSHELF, Material.JACK_O_LANTERN, Material.CARVED_PUMPKIN, Material.PUMPKIN, Material.MELON, Material.COMPOSTER, Material.BEEHIVE, Material.BEE_NEST, Material.NOTE_BLOCK, Material.LADDER, Material.COCOA_BEANS, Material.DAYLIGHT_DETECTOR, Material.MUSHROOM_STEM, Material.RED_MUSHROOM_BLOCK, Material.RED_MUSHROOM_BLOCK, Material.BAMBOO, Material.VINE, Material.LECTERN))).flatMap(Set::stream).collect(Collectors.toSet());
 
     public Paxel(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
-        Bukkit.getPluginManager().registerEvents(this, plugin);
+        getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler(ignoreCancelled = true)

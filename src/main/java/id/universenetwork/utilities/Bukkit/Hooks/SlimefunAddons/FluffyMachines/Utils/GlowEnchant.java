@@ -9,6 +9,7 @@ import org.bukkit.entity.EntityCategory;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -105,6 +106,11 @@ public class GlowEnchant extends Enchantment {
     @NotNull
     @Override
     public Set<EquipmentSlot> getActiveSlots() {
+        return null;
+    }
+
+    @Override
+    public @NotNull String translationKey() {
         return null;
     }
 }

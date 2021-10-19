@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionType;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
@@ -20,7 +21,7 @@ public class AlchemicRecipe {
         this.output = output;
     }
 
-    private PotionType getPotionType(@NotNull ItemStack potion) {
+    PotionType getPotionType(@NotNull ItemStack potion) {
         if (potion.getType() == Material.POTION && potion.hasItemMeta()) {
             PotionMeta meta = (PotionMeta) potion.getItemMeta();
             return meta.getBasePotionData().getType();

@@ -11,6 +11,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.EnumMap;
 import java.util.concurrent.ThreadLocalRandom;

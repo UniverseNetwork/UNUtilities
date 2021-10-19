@@ -4,7 +4,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 public class ScriptOptionsEvent extends Event {
-    static HandlerList handlers = new HandlerList();
+    static final HandlerList handlers = new HandlerList();
 
     @Override
     public HandlerList getHandlers() {

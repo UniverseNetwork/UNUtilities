@@ -66,8 +66,7 @@ public class ChangeSlots extends Commands {
             Field[] v4 = playerListClass.getDeclaredFields();
             int v5 = v4.length;
 
-            for (int v6 = 0; v6 < v5; ++v6) {
-                Field field = v4[v6];
+            for (Field field : v4) {
                 if (field.getType() == Integer.TYPE) {
                     field.setAccessible(true);
                     if (field.getInt(playerList) == Bukkit.getMaxPlayers()) {

@@ -14,7 +14,6 @@ import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Skript.Lam
 import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Skript.LambdaEffect;
 import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Skript.Markup;
 
-import java.io.NotSerializableException;
 import java.io.StreamCorruptedException;
 
 import static ch.njol.skript.log.ErrorQuality.SEMANTIC_ERROR;
@@ -22,7 +21,7 @@ import static ch.njol.skript.log.ErrorQuality.SEMANTIC_ERROR;
 public class Types extends AbstractTask {
     @Override
     public void run() {
-        Classes.registerClass(new ClassInfo<>(Markup.class, "markup").parser(new Parser<Markup>() {
+        Classes.registerClass(new ClassInfo<>(Markup.class, "markup").parser(new Parser<>() {
             @Override
             public Markup parse(String s, ParseContext parseContext) {
                 if (s.charAt(0) == '`' && s.charAt(s.length() - 1) == '`')
@@ -49,21 +48,21 @@ public class Types extends AbstractTask {
             public String getVariableNamePattern() {
                 return ".+";
             }
-        }).serializer(new Serializer<Markup>() {
+        }).serializer(new Serializer<>() {
             @Override
-            public Fields serialize(Markup markup) throws NotSerializableException {
+            public Fields serialize(Markup markup) {
                 Fields f = new Fields();
                 f.putObject("src", markup.toString());
                 return f;
             }
 
             @Override
-            public void deserialize(Markup markup, Fields fieldContexts) throws StreamCorruptedException, NotSerializableException {
+            public void deserialize(Markup markup, Fields fieldContexts) {
                 assert false;
             }
 
             @Override
-            protected Markup deserialize(Fields fields) throws StreamCorruptedException, NotSerializableException {
+            protected Markup deserialize(Fields fields) throws StreamCorruptedException {
                 return new Markup((String) fields.getObject("src"));
             }
 
@@ -83,7 +82,7 @@ public class Types extends AbstractTask {
             }
         }));
         Classes.registerClass(new ClassInfo<>(LambdaCondition.class, "predicate")
-                .parser(new Parser<LambdaCondition>() {
+                .parser(new Parser<>() {
                     @Override
                     public LambdaCondition parse(String s, ParseContext parseContext) {
                         if (s.length() > 2 && s.charAt(0) == '[' && s.charAt(s.length() - 1) == ']') {
@@ -114,7 +113,7 @@ public class Types extends AbstractTask {
                         return ".+";
                     }
                 }));
-        Classes.registerClass(new ClassInfo<>(LambdaEffect.class, "lambda").parser(new Parser<LambdaEffect>() {
+        Classes.registerClass(new ClassInfo<>(LambdaEffect.class, "lambda").parser(new Parser<>() {
             @Override
             public LambdaEffect parse(String s, ParseContext parseContext) {
                 if (s.length() > 3 && s.charAt(0) == '[' && s.charAt(s.length() - 1) == ']') {

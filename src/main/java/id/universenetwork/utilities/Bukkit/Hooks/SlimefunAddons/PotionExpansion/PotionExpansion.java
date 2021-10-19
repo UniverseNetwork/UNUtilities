@@ -8,6 +8,7 @@ import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.scheduler.BukkitTask;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled;
@@ -40,8 +41,7 @@ public class PotionExpansion {
     }
 
 
-    public static @Nullable
-    BukkitTask runSync(@NotNull Runnable runnable, long delay) {
+    public static @Nullable BukkitTask runSync(@NotNull Runnable runnable, long delay) {
         Validate.notNull(runnable, "Cannot run null");
         Validate.isTrue(delay >= 0, "The delay cannot be negative");
         if (plugin == null || !plugin.isEnabled()) return null;

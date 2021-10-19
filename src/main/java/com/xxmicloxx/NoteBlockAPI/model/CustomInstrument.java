@@ -4,9 +4,9 @@ package com.xxmicloxx.NoteBlockAPI.model;
  * Create custom instruments from a sound file
  */
 public class CustomInstrument {
-    byte index;
-    String name;
-    String soundFileName;
+    final byte index;
+    final String name;
+    final String soundFileName;
     org.bukkit.Sound sound;
 
     /**

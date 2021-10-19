@@ -233,7 +233,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.20</version>
+            <version>1.18.22</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -261,6 +261,48 @@
             <artifactId>ErrorReporter-Java</artifactId>
             <version>master</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-1.14.4</artifactId>
+            <version>1.14.4</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/spigot-1.14.4.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-1.15.2</artifactId>
+            <version>1.15.2</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/spigot-1.15.2.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-1.16.1</artifactId>
+            <version>1.16.1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/spigot-1.16.1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-1.16.2</artifactId>
+            <version>1.16.2</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/spigot-1.16.2.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-1.16.5</artifactId>
+            <version>1.16.5</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/spigot-1.16.5.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-1.17.1</artifactId>
+            <version>1.17.1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/spigot-1.17.1.jar</systemPath>
         </dependency>
     </dependencies>
 </project>

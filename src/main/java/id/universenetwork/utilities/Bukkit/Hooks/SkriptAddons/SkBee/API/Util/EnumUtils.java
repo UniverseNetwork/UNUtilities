@@ -2,7 +2,7 @@ package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkBee.API.Util;
 
 import ch.njol.skript.localization.Language;
 import ch.njol.util.StringUtils;
-import lombok.NonNull;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;

@@ -15,6 +15,7 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
@@ -75,10 +76,6 @@ public final class Quarry extends AbstractMachineBlock implements RecipeDisplayI
     @Override
     protected int[] getOutputSlots() {
         return OUTPUT_SLOTS;
-    }
-
-    @Override
-    public void onNewInstance(@NotNull BlockMenu menu, @NotNull Block b) {
     }
 
     @Override

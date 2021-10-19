@@ -1,6 +1,7 @@
 package id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Machines;
 
 import lombok.experimental.UtilityClass;
+import org.jetbrains.annotations.NotNull;
 
 import java.text.DecimalFormat;
 

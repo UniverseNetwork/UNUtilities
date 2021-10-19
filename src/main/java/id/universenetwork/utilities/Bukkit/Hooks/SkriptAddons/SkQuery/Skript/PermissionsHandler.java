@@ -17,7 +17,7 @@ import static org.bukkit.Bukkit.getPluginManager;
 
 public class PermissionsHandler implements Listener {
     static boolean enabled = false;
-    static HashMap<UUID, PermissionAttachment> permissions = new HashMap<>();
+    static final HashMap<UUID, PermissionAttachment> permissions = new HashMap<>();
 
     public static void enable() {
         if (!enabled) getPluginManager().registerEvents(new PermissionsHandler(), plugin);

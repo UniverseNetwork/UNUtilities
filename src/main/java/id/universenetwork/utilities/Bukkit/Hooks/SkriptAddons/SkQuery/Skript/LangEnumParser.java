@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class LangEnumParser<T extends Enum<T>> extends SkQueryParser<T> {
-    EnumUtils<T> enumUtil;
+    final EnumUtils<T> enumUtil;
     final Class<T> clazz;
     final String codeName;
 

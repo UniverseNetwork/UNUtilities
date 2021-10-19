@@ -18,8 +18,7 @@ public class AddressWhitelisterListener implements Listener {
             if (bungeeAddress.contains(";")) {
                 String[] v5 = bungeeAddress.split(";");
                 int v6 = v5.length;
-                for (int v7 = 0; v7 < v6; ++v7) {
-                    String address = v5[v7];
+                for (String address : v5) {
                     if (joinedAddress.equalsIgnoreCase(address)) return;
                 }
             }

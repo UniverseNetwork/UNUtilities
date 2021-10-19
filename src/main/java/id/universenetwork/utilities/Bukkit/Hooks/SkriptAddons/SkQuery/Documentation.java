@@ -18,10 +18,10 @@ import java.util.Set;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 
 public class Documentation {
-    static HashMap<Class<?>, String[]> events = new HashMap<>();
-    static Set<Class<?>> expressions = new HashSet<>();
-    static Set<Class<?>> conditions = new HashSet<>();
-    static Set<Class<? extends Effect>> effects = new HashSet<>();
+    static final HashMap<Class<?>, String[]> events = new HashMap<>();
+    static final Set<Class<?>> expressions = new HashSet<>();
+    static final Set<Class<?>> conditions = new HashSet<>();
+    static final Set<Class<? extends Effect>> effects = new HashSet<>();
 
     public Documentation() {
         if (!Reflection.getCaller().getProtectionDomain().getCodeSource().getLocation().sameFile(Documentation.class.getProtectionDomain().getCodeSource().getLocation()))

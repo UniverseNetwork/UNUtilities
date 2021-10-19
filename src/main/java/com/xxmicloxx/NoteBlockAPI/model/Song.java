@@ -7,19 +7,19 @@ import java.util.HashMap;
  * Represents a Note Block Studio project
  */
 public class Song implements Cloneable {
-    HashMap<Integer, Layer> layerHashMap;
-    short songHeight;
-    short length;
-    String title;
-    File path;
-    String author;
-    String originalAuthor;
-    String description;
-    float speed;
-    float delay;
-    CustomInstrument[] customInstruments;
-    int firstCustomInstrumentIndex;
-    boolean isStereo;
+    final HashMap<Integer, Layer> layerHashMap;
+    final short songHeight;
+    final short length;
+    final String title;
+    final File path;
+    final String author;
+    final String originalAuthor;
+    final String description;
+    final float speed;
+    final float delay;
+    final CustomInstrument[] customInstruments;
+    final int firstCustomInstrumentIndex;
+    final boolean isStereo;
 
     /**
      * Create Song instance by copying other Song parameters

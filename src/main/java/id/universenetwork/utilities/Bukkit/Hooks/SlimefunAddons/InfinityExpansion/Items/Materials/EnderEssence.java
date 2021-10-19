@@ -10,6 +10,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public final class EnderEssence extends SlimefunItem implements NotPlaceable, GEOResource {
     final NamespacedKey key;

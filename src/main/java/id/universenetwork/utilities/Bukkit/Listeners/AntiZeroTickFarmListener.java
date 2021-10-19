@@ -12,7 +12,6 @@ import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPistonRetractEvent;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import static id.universenetwork.utilities.Bukkit.Manager.Config.AZTFBoolean;
@@ -32,10 +31,8 @@ public class AntiZeroTickFarmListener implements Listener {
     }
 
     private void breakPlantsBeside(Block block, BlockFace direction) {
-        Iterator v3 = getNearbyBlocks(block, direction).iterator();
 
-        while (v3.hasNext()) {
-            Block b = (Block) v3.next();
+        for (Block b : getNearbyBlocks(block, direction)) {
             if (b.getType() == Material.CACTUS) {
                 b.breakNaturally();
             }
@@ -44,9 +41,7 @@ public class AntiZeroTickFarmListener implements Listener {
     }
 
     private void breakPlantsAbove(List<Block> blockList) {
-        Iterator v2 = blockList.iterator();
-        while (v2.hasNext()) {
-            Block block = (Block) v2.next();
+        for (Block block : blockList) {
             Block target = block.getRelative(BlockFace.UP);
             if (target.getBlockData() instanceof Ageable) {
                 target.breakNaturally();

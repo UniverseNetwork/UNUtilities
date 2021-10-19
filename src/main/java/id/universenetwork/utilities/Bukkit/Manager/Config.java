@@ -5,6 +5,7 @@ import id.universenetwork.utilities.Bukkit.Enums.Settings;
 import id.universenetwork.utilities.Bukkit.Events.UNUtilitiesReloadConfigEvent;
 import id.universenetwork.utilities.Bukkit.Handlers.BookExploitHandler;
 import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Core.ConfigBuilder;
+import id.universenetwork.utilities.Bukkit.NMS.ETF;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class Config {
         Data.setup();
         Proxy.setup();
         new BookExploitHandler();
+        ETF.setup();
     }
 
     public static ConfigBuilder get() {
@@ -47,6 +49,7 @@ public class Config {
         Hooks.AsyncWorldEditBossBarDisplay("reloading");
         getPluginManager().callEvent(new UNUtilitiesReloadConfigEvent());
         BookExploitHandler.setup();
+        ETF.reload();
     }
 
     // Config Value Changer
@@ -176,6 +179,7 @@ public class Config {
         return get().getBoolean(FlyFixer.ENABLED.getConfigPath());
     }
 
+
     // Pocket Shulker Features Category
     public static boolean PSBoolean(PocketShulker s) {
         return get().getBoolean(s.getConfigPath());
@@ -191,5 +195,23 @@ public class Config {
 
     public static float PSFloat(PocketShulker s) {
         return (float) get().getDouble(s.getConfigPath());
+    }
+
+
+    // Entity Tracker Fixer Category
+    public static boolean ETFBoolean(EntityTrackerFixer s) {
+        return get().getBoolean(s.getConfigPath());
+    }
+
+    public static int ETFInt(EntityTrackerFixer s) {
+        return get().getInt(s.getConfigPath());
+    }
+
+    public static double ETFDouble(EntityTrackerFixer s) {
+        return get().getDouble(s.getConfigPath());
+    }
+
+    public static List<String> ETFStringList(EntityTrackerFixer s) {
+        return get().getStringList(s.getConfigPath());
     }
 }

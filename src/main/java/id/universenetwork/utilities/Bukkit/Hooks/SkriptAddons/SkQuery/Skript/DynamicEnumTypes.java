@@ -40,7 +40,7 @@ public class DynamicEnumTypes {
     }
 
     static <T extends DummyClasses.DummyBase> void add(final Class<T> c, final String typeName, final ArrayList<String> patterns) {
-        Classes.registerClass(new ClassInfo<>(c, typeName).user(typeName + "s?").parser(new Parser<T>() {
+        Classes.registerClass(new ClassInfo<>(c, typeName).user(typeName + "s?").parser(new Parser<>() {
             @Override
             public T parse(String s, ParseContext parseContext) {
                 if (s.startsWith(typeName + ":")) s = s.substring(typeName.length() + 1);
@@ -69,22 +69,22 @@ public class DynamicEnumTypes {
             public String getVariableNamePattern() {
                 return typeName + ":.+";
             }
-        }).serializer(new Serializer<T>() {
+        }).serializer(new Serializer<>() {
 
             @Override
-            public Fields serialize(T o) throws NotSerializableException {
+            public Fields serialize(T o) {
                 Fields f = new Fields();
                 f.putObject("name", o.getValue());
                 return f;
             }
 
             @Override
-            public void deserialize(T o, Fields f) throws StreamCorruptedException, NotSerializableException {
+            public void deserialize(T o, Fields f) {
                 assert false;
             }
 
             @Override
-            protected T deserialize(Fields fields) throws StreamCorruptedException, NotSerializableException {
+            protected T deserialize(Fields fields) throws StreamCorruptedException {
                 try {
                     T instance = c.newInstance();
                     instance.setValue((String) fields.getObject("name"));

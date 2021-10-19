@@ -3,8 +3,8 @@ package com.xxmicloxx.NoteBlockAPI.utils;
 import org.bukkit.Location;
 
 public class MathUtils {
-    static double[] cos = new double[360];
-    static double[] sin = new double[360];
+    static final double[] cos = new double[360];
+    static final double[] sin = new double[360];
 
     static {
         for (int deg = 0; deg < 360; deg++) {

@@ -28,6 +28,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.RayTraceResult;
+import org.jetbrains.annotations.NotNull;
 
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.addon;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.slimefunTickCount;

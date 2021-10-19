@@ -14,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.addon;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Utils.FluffyItems.*;
+import static io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems.COPPER_INGOT;
 import static io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems.*;
 import static org.bukkit.Material.*;
 

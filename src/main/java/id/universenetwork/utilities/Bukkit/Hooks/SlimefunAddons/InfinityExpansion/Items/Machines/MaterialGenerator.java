@@ -13,6 +13,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,10 +48,6 @@ public final class MaterialGenerator extends AbstractMachineBlock implements Rec
     @Override
     protected int[] getOutputSlots() {
         return OUTPUT_SLOTS;
-    }
-
-    @Override
-    public void onNewInstance(@NotNull BlockMenu menu, @NotNull Block b) {
     }
 
     @NotNull

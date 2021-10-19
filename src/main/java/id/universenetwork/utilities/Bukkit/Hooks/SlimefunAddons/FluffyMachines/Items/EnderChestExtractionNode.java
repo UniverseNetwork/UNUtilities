@@ -7,11 +7,9 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
-import io.github.thebusybiscuit.slimefun4.libraries.paperlib.PaperLib;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.block.Block;
@@ -23,16 +21,20 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
+
+import static io.github.thebusybiscuit.slimefun4.libraries.paperlib.PaperLib.getBlockState;
+import static me.mrCookieSlime.Slimefun.api.BlockStorage.getLocationInfo;
+import static org.bukkit.Bukkit.getOfflinePlayer;
+import static org.bukkit.block.BlockFace.*;
 
 public class EnderChestExtractionNode extends SlimefunItem {
     static final Material material = Material.ENDER_CHEST;
 
     public EnderChestExtractionNode(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
-        addItemHandler(onPlace());
-        addItemHandler(onInteract());
     }
 
     @Override
@@ -50,17 +52,17 @@ public class EnderChestExtractionNode extends SlimefunItem {
         });
     }
 
-    void tick(@NotNull Block b) {
+    void tick(Block b) {
         ItemStack transferItemStack;
         BlockFace face;
-        if (b.getRelative(BlockFace.NORTH).getType() == material) face = BlockFace.SOUTH;
-        else if (b.getRelative(BlockFace.SOUTH).getType() == material) face = BlockFace.NORTH;
-        else if (b.getRelative(BlockFace.EAST).getType() == material) face = BlockFace.WEST;
-        else if (b.getRelative(BlockFace.WEST).getType() == material) face = BlockFace.EAST;
+        if (b.getRelative(NORTH).getType() == material) face = SOUTH;
+        else if (b.getRelative(SOUTH).getType() == material) face = NORTH;
+        else if (b.getRelative(EAST).getType() == material) face = WEST;
+        else if (b.getRelative(WEST).getType() == material) face = EAST;
         else return;
-        BlockState state = PaperLib.getBlockState(b.getRelative(face), false).getState();
+        BlockState state = getBlockState(b.getRelative(face), false).getState();
         if (state instanceof InventoryHolder) {
-            Player p = Bukkit.getOfflinePlayer(UUID.fromString(BlockStorage.getLocationInfo(b.getLocation(), "owner"))).getPlayer();
+            Player p = getOfflinePlayer(UUID.fromString(getLocationInfo(b.getLocation(), "owner"))).getPlayer();
 
             // Ender chest null check necessary because Bukkit yes.
             if (p != null) {
@@ -114,7 +116,7 @@ public class EnderChestExtractionNode extends SlimefunItem {
         return e -> {
             Player p = e.getPlayer();
             Block b = e.getClickedBlock().get();
-            Utils.send(p, "&eThis Ender Chest Extraction Node belongs to " + BlockStorage.getLocationInfo(b.getLocation(), "playername") + " &7(UUID: " + BlockStorage.getLocationInfo(b.getLocation(), "owner") + ")");
+            Utils.send(p, "&eThis Ender Chest Extraction Node belongs to " + getLocationInfo(b.getLocation(), "playername") + " &7(UUID: " + getLocationInfo(b.getLocation(), "owner") + ")");
         };
     }
 }

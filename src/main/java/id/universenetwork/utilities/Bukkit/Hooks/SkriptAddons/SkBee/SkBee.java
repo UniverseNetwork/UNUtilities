@@ -3,7 +3,7 @@ package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkBee;
 import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkBee.Config.Config;
 
 public class SkBee {
-    Config config;
+    final Config config;
     static SkBee instance;
 
     public SkBee() {

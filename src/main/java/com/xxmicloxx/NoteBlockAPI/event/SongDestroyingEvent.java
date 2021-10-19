@@ -12,7 +12,7 @@ import org.bukkit.event.HandlerList;
  */
 public class SongDestroyingEvent extends Event implements Cancellable {
     static final HandlerList handlers = new HandlerList();
-    SongPlayer song;
+    final SongPlayer song;
     boolean cancelled = false;
 
     public SongDestroyingEvent(SongPlayer song) {
@@ -33,7 +33,7 @@ public class SongDestroyingEvent extends Event implements Cancellable {
     }
 
     @Override
-	public HandlerList getHandlers() {
+    public HandlerList getHandlers() {
         return handlers;
     }
 

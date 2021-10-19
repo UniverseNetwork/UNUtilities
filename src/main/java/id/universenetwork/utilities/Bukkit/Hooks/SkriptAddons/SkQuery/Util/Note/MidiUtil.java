@@ -12,7 +12,7 @@ import java.util.HashMap;
 import static ch.njol.skript.Skript.exception;
 
 public class MidiUtil {
-    static HashMap<String, Sequencer> playing = new HashMap<>();
+    static final HashMap<String, Sequencer> playing = new HashMap<>();
 
     static void playMidi(Sequence sequence, float tempo, String ID, Player... listeners) {
         try {

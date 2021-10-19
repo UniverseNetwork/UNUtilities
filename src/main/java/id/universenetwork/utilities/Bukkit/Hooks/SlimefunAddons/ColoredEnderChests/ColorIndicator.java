@@ -13,8 +13,8 @@ import org.bukkit.util.EulerAngle;
 import java.util.Objects;
 
 final class ColorIndicator {
-    static double angle = Math.toRadians(345);
-    static double offset = -0.08;
+    static final double angle = Math.toRadians(345);
+    static final double offset = -0.08;
 
     ColorIndicator() {
     }

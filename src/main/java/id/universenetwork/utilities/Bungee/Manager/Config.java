@@ -6,7 +6,6 @@ import net.md_5.bungee.config.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.CopyOption;
 import java.nio.file.Files;
 
 import static id.universenetwork.utilities.Bungee.UNUtilities.config;
@@ -23,7 +22,7 @@ public class Config {
             if (!configFile.exists()) {
                 InputStream in = plugin.getResourceAsStream(configName);
                 try {
-                    Files.copy(in, configFile.toPath(), new CopyOption[0]);
+                    Files.copy(in, configFile.toPath());
                 } catch (Throwable v6) {
                     if (in != null) {
                         try {

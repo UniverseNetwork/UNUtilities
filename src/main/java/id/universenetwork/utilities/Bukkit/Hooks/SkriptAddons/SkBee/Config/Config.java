@@ -6,18 +6,18 @@ import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Addons.Sett
 
 public class Config {
     // Config stuff
-    public boolean SETTINGS_DEBUG;
-    public boolean ELEMENTS_NBT;
-    public boolean ELEMENTS_BOARD;
-    public boolean ELEMENTS_RECIPE;
-    public boolean ELEMENTS_BOUND;
-    public boolean ELEMENTS_STRUCTURE;
-    public boolean ELEMENTS_VIRTUAL_FURNACE;
-    public boolean ELEMENTS_TEXT_COMPONENT;
-    public boolean ELEMENTS_PATHFINDING;
-    public boolean ELEMENTS_WORLD_CREATOR;
-    public boolean AUTO_LOAD_WORLDS;
-    public String RECIPE_NAMESPACE;
+    public final boolean SETTINGS_DEBUG;
+    public final boolean ELEMENTS_NBT;
+    public final boolean ELEMENTS_BOARD;
+    public final boolean ELEMENTS_RECIPE;
+    public final boolean ELEMENTS_BOUND;
+    public final boolean ELEMENTS_STRUCTURE;
+    public final boolean ELEMENTS_VIRTUAL_FURNACE;
+    public final boolean ELEMENTS_TEXT_COMPONENT;
+    public final boolean ELEMENTS_PATHFINDING;
+    public final boolean ELEMENTS_WORLD_CREATOR;
+    public final boolean AUTO_LOAD_WORLDS;
+    public final String RECIPE_NAMESPACE;
 
     public Config() {
         ConfigurationSection config = Settings("SkBee");

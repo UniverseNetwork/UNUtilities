@@ -3,7 +3,7 @@ package com.xxmicloxx.NoteBlockAPI.utils;
 import com.xxmicloxx.NoteBlockAPI.model.Note;
 
 public class NoteUtils {
-    static float[] pitches;
+    static final float[] pitches;
 
     static {
         pitches = new float[2401];

@@ -23,7 +23,7 @@ import static org.bukkit.FluidCollisionMode.NEVER;
 import static org.bukkit.Material.AIR;
 
 public class Commands extends id.universenetwork.utilities.Bukkit.Manager.Commands {
-    boolean enabled;
+    final boolean enabled;
 
     public Commands(boolean enabled) {
         super("infinityexpansion", "unutilities.command.infinityexpansion", true);

@@ -3,15 +3,15 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-
 import org.jetbrains.annotations.Nullable;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.*;
 
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion.PotionExpansion.enabled;
 
 public class PotionExpansionTab implements TabCompleter {
-    List<String> subcommands;
+    final List<String> subcommands;
 
     public PotionExpansionTab() {
         subcommands = new ArrayList<>();

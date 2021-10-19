@@ -12,7 +12,7 @@ import org.bukkit.event.HandlerList;
  */
 public class SongStoppedEvent extends Event {
     static final HandlerList handlers = new HandlerList();
-    SongPlayer songPlayer;
+    final SongPlayer songPlayer;
 
     public SongStoppedEvent(SongPlayer songPlayer) {
         this.songPlayer = songPlayer;
@@ -32,7 +32,7 @@ public class SongStoppedEvent extends Event {
     }
 
     @Override
-	public HandlerList getHandlers() {
+    public HandlerList getHandlers() {
         return handlers;
     }
 }

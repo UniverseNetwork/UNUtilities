@@ -5,6 +5,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.World.Environment;
 import org.bukkit.block.Biome;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.ThreadLocalRandom;
 

@@ -30,11 +30,11 @@ import static org.bukkit.event.block.Action.RIGHT_CLICK_AIR;
 import static org.bukkit.event.inventory.ClickType.RIGHT;
 
 public class PocketShulkerListener implements Listener {
-    Map<Player, ItemStack> openshulkers = new HashMap<>();
-    Map<Player, Boolean> fromhand = new HashMap<>();
-    Map<UUID, Inventory> openinventories = new HashMap<>();
-    Map<Player, Inventory> opencontainer = new HashMap<>();
-    Map<Player, Long> pvp_timer = new HashMap<>();
+    final Map<Player, ItemStack> openshulkers = new HashMap<>();
+    final Map<Player, Boolean> fromhand = new HashMap<>();
+    final Map<UUID, Inventory> openinventories = new HashMap<>();
+    final Map<Player, Inventory> opencontainer = new HashMap<>();
+    final Map<Player, Long> pvp_timer = new HashMap<>();
     String defaultname = DARK_PURPLE + "Shulker Box";
 
     public PocketShulkerListener() {

@@ -16,7 +16,7 @@ public class IterableEnumeration<T> implements Iterable<T> {
     public Iterator<T> iterator() {
         final Enumeration<? extends T> e = this.e;
         if (e == null) return EmptyIterator.get();
-        return new Iterator<T>() {
+        return new Iterator<>() {
             @Override
             public boolean hasNext() {
                 return e.hasMoreElements();

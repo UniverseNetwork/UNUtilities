@@ -20,18 +20,18 @@ import static org.bukkit.Bukkit.getLogger;
  * Plays a Song for a list of Players
  */
 public abstract class SongPlayer {
-    protected NoteBlockAPI plugin;
+    protected final NoteBlockAPI plugin;
     protected Song song;
     protected Playlist playlist;
     protected int actualSong = 0;
     protected short tick = -1;
     protected boolean playing = false;
     protected boolean fading = false;
-    protected Map<UUID, Boolean> playerList = new ConcurrentHashMap<>();
-    protected Map<Song, Boolean> songQueue = new ConcurrentHashMap<>(); //True if already played
+    protected final Map<UUID, Boolean> playerList = new ConcurrentHashMap<>();
+    protected final Map<Song, Boolean> songQueue = new ConcurrentHashMap<>(); //True if already played
     protected byte volume = 100;
-    protected Fade fadeIn;
-    protected Fade fadeOut;
+    protected final Fade fadeIn;
+    protected final Fade fadeOut;
     protected Fade fadeTemp = null;
     protected SoundCategory soundCategory;
     protected RepeatMode repeat = RepeatMode.NO;

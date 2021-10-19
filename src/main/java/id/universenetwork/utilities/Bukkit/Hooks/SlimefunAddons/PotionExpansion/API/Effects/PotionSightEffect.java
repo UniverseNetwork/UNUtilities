@@ -3,7 +3,7 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion
 import javax.annotation.ParametersAreNonnullByDefault;
 
 public class PotionSightEffect {
-    PotionSightType type;
+    final PotionSightType type;
     long time;
 
     @ParametersAreNonnullByDefault

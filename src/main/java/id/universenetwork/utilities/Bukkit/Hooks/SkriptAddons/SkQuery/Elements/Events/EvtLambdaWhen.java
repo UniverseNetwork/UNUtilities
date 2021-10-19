@@ -24,7 +24,7 @@ public class EvtLambdaWhen extends SkriptEvent {
 
     LambdaCondition lambda;
     Boolean limit;
-    public static Set<LambdaCondition> limiter = new HashSet<>();
+    public static final Set<LambdaCondition> limiter = new HashSet<>();
 
     @Override
     public boolean check(Event e) {

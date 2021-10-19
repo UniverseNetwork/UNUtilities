@@ -33,7 +33,7 @@ public class SoulJars {
     ItemGroup itemGroup;
     RecipeType recipeType;
     SlimefunItemStack emptyJar;
-    boolean silkspawners;
+    final boolean silkspawners;
 
     public SoulJars() {
         silkspawners = getPluginManager().isPluginEnabled("SilkSpawners");

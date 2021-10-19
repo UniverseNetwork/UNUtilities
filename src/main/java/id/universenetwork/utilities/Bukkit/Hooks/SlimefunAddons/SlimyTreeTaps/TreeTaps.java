@@ -28,10 +28,10 @@ import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 
 public class TreeTaps {
-    int amber_chance = Config.get().getInt(ADDONSSETTINGS.getConfigPath() + "SlimyTreeTaps.Amber-Chance");
-    int standard_chance = Config.get().getInt(ADDONSSETTINGS.getConfigPath() + "SlimyTreeTaps.Resin-Chance.Standard");
-    int reinforced_chance = Config.get().getInt(ADDONSSETTINGS.getConfigPath() + "SlimyTreeTaps.Resin-Chance.Reinforced");
-    int diamond_chance = Config.get().getInt(ADDONSSETTINGS.getConfigPath() + "SlimyTreeTaps.Resin-Chance.Diamond");
+    final int amber_chance = Config.get().getInt(ADDONSSETTINGS.getConfigPath() + "SlimyTreeTaps.Amber-Chance");
+    final int standard_chance = Config.get().getInt(ADDONSSETTINGS.getConfigPath() + "SlimyTreeTaps.Resin-Chance.Standard");
+    final int reinforced_chance = Config.get().getInt(ADDONSSETTINGS.getConfigPath() + "SlimyTreeTaps.Resin-Chance.Reinforced");
+    final int diamond_chance = Config.get().getInt(ADDONSSETTINGS.getConfigPath() + "SlimyTreeTaps.Resin-Chance.Diamond");
 
     public TreeTaps() {
         if (Enabled("SlimyTreeTaps")) {

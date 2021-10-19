@@ -10,14 +10,21 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.ToolUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
-import org.bukkit.*;
+import org.bukkit.Axis;
+import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Orientable;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Predicate;
+
+import static me.mrCookieSlime.Slimefun.api.BlockStorage.checkID;
+import static org.bukkit.Bukkit.getPluginManager;
 
 public class UpgradedLumberAxe extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
     static final int MAX_BROKEN = 200;
@@ -39,13 +46,15 @@ public class UpgradedLumberAxe extends SimpleSlimefunItem<ItemUseHandler> implem
     ToolUseHandler onBlockBreak() {
         return (e, tool, fortune, drops) -> {
             if (Tag.LOGS.getValues().contains(e.getBlock().getType())) {
+                // Prevent use on Slimefun blocks
+                if (checkID(e.getBlock()) != null) return;
                 List<Block> logs = find(e.getBlock(), MAX_BROKEN, b -> Tag.LOGS.isTagged(b.getType()));
                 logs.remove(e.getBlock());
                 for (Block b : logs)
                     if (Slimefun.getProtectionManager().hasPermission(e.getPlayer(), b, Interaction.BREAK_BLOCK)) {
                         b.breakNaturally(tool);
                         if (triggerOtherPlugins.getValue())
-                            Bukkit.getPluginManager().callEvent(new AlternateBreakEvent(b, e.getPlayer()));
+                            getPluginManager().callEvent(new AlternateBreakEvent(b, e.getPlayer()));
                     }
             }
         };

@@ -17,7 +17,7 @@ import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 
 public class ColoredEnderChests {
-    protected Map<Integer, String> colors = new HashMap<>();
+    protected final Map<Integer, String> colors = new HashMap<>();
     protected ItemGroup itemGroup;
 
     public ColoredEnderChests() {

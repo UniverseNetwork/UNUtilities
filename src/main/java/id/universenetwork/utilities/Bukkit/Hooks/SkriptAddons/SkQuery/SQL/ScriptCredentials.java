@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ScriptCredentials {
-    static Map<File, ScriptCredentials> credentials = new HashMap<>();
+    static final Map<File, ScriptCredentials> credentials = new HashMap<>();
     Map<String, Connection> connection = new HashMap<>();
     public static String currentPool = "default";
     String url, username, password;

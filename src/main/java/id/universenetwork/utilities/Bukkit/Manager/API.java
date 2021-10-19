@@ -1,6 +1,7 @@
 package id.universenetwork.utilities.Bukkit.Manager;
 
 import com.xxmicloxx.NoteBlockAPI.NoteBlockAPI;
+import dev._2lstudios.hamsterapi.HamsterAPI;
 import org.bukkit.Bukkit;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
@@ -18,15 +19,30 @@ public class API {
     }
 
     public static void NoteBlockAPISetup(String Mode) {
+        NoteBlockAPI API = new NoteBlockAPI();
         if (Mode.equalsIgnoreCase("enabling")) {
             System.out.println(prefix + " §6Preparing NoteBlockAPI...");
-            NoteBlockAPI.getAPI().onEnable();
+            API.onEnable();
             System.out.println(prefix + " §bNoteBlockAPI have been prepared");
         }
         if (Mode.equalsIgnoreCase("disabling")) {
             System.out.println(prefix + " §6Disabling NoteBlockAPI...");
-            NoteBlockAPI.getAPI().onDisable();
+            API.onDisable();
             System.out.println(prefix + " §bNoteBlockAPI has been disabled");
+        }
+    }
+
+    public static void HamsterAPISetup(String Mode) {
+        HamsterAPI API = new HamsterAPI();
+        if (Mode.equalsIgnoreCase("enabling")) {
+            System.out.println(prefix + " §6Preparing HamsterAPI...");
+            API.onEnable();
+            System.out.println(prefix + " §bHamsterAPI have been prepared");
+        }
+        if (Mode.equalsIgnoreCase("disabling")) {
+            System.out.println(prefix + " §6Disabling HamsterAPI...");
+            API.onDisable();
+            System.out.println(prefix + " §bHamsterAPI has been disabled");
         }
     }
 }

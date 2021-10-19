@@ -30,10 +30,12 @@
 - Per-Player Keeper **[Experimental]**
 - Fly Fixer **[Experimental]**
 - Pocket Shulker (Fork of [Shulker Backpacks](http://spigotmc.org/resources/67466))
+- Entity Tracker Fixer (Fork of [EntityTrackerFixer](http://spigotmc.org/resources/70902))
 
 ## API Included
 - [ActionBarAPI](http://spigotmc.org/resources/1315)
 - [NoteBlockAPI](http://ci.haprosgames.com/job/NoteBlockAPI-2.0/lastSuccessfulBuild)
+- [HamsterAPI](http://spigotmc.org/resources/78831)
 
 ## Third Party Addons Included
 ### [Slimefun](http://thebusybiscuit.github.io/builds)

@@ -33,8 +33,7 @@ public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<S
         if (fireTicks > 0) l.add(GRAY + "On Fire: " + RESET + "true");
         return l;
     }
-
-    @NotNull
+    
     @Override
     default Class<String> getPrimitiveType() {
         return String.class;
@@ -45,13 +44,11 @@ public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<S
         return JsonObject.class;
     }
 
-    @NotNull
     @Override
     default String toPrimitive(JsonObject json, @NotNull PersistentDataAdapterContext context) {
         return json.toString();
     }
 
-    @NotNull
     @Override
     default JsonObject fromPrimitive(String primitive, PersistentDataAdapterContext context) {
         return new JsonParser().parse(primitive).getAsJsonObject();

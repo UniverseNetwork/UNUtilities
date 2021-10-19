@@ -781,7 +781,7 @@ Features:
       # Message if the written book is filtered successfully
       success: '%p% &aVersi yang difilter dari buku ini telah ditambahkan ke inventory kamu'
 
-  # Per-Player Keeper Features
+  ## Per-Player Keeper Features
   Per-PlayerKeeper:
 
     # Enable Per-Player Keeper Features?
@@ -797,20 +797,20 @@ Features:
     # Message if /keep inventory is executed
     invMessage: '%p% &eMode Keep Inventory: %mode%'
 
-  # Fly Fixer Features
+  ## Fly Fixer Features
   FlyFixer:
 
     # Enable Fly Fixer Features?
     # Default: false
     enabled: false
 
-  # Pocket Shulker Features
+  ## Pocket Shulker Features
   PocketShulker:
 
     # Enable Pocket Shulker Features?
     # !!! -> You must restart the server after change this settings
     # Default: true
-    enabled: false
+    enabled: true
 
     blacklistedinventories: [ "&4&lMineXChange", "test inventory" ]
 
@@ -845,3 +845,49 @@ Features:
 
     # 0.1 is quiet, 1 is loud
     shulkervolume: 1
+
+  ## Entity Tracker Fixer Features
+  EntityTrackerFixer:
+
+    # Enable Entity Tracker Fixer Features?
+    # Default: true
+    enabled: true
+
+    # Should we notify the console when we interact with entities?
+    # Default: true
+    log-to-console: true
+
+    # Should we disable tick operations of un-tracked entities?
+    # Note 1: this option only works for +1.16.1 servers
+    # Note 2: this option is experimental and could contain errors
+    # Default: true
+    disable-tick-for-untracked-entities: true
+
+    # Should the plugin perform tasks on all worlds?
+    # Note: if this is set to true, the option "worlds" will be ignored
+    # Default: true
+    enable-on-all-worlds: true
+
+    # How often (in ticks) should we check for "lingering" entities?
+    # Default: 400
+    untrack-ticks: 400
+
+    # How low should the server's TPS be before we do anything?
+    # Note: Setting this value above 20 will skip this check, allowing the tasks to run 24/7.
+    # Default: 19.5
+    tps-limit: 19.5
+
+    # How often (in ticks) should we check for players near un-tracked entities?
+    # Default: 40
+    check-untracked-entities-frequency: 40
+
+    # How far (in blocks) should we look for players near un-tracked entities?
+    # Default: 30
+    tracking-range: 30
+
+    # What worlds should we perform our tasks on?
+    # Default: [world, world_nether, world_the_end]
+    worlds:
+      - world
+      - world_nether
+      - world_the_end

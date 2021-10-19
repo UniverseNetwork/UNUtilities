@@ -5,6 +5,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.Unplaceabl
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public final class Singularity extends UnplaceableBlock {
     }
 
     @NotNull
-    private static ItemStack[] makeRecipe(ItemStack item, int amount) {
+    static ItemStack[] makeRecipe(ItemStack item, int amount) {
         List<ItemStack> recipe = new ArrayList<>();
         int stacks = (int) Math.floor(amount / 64D);
         int extra = amount % 64;

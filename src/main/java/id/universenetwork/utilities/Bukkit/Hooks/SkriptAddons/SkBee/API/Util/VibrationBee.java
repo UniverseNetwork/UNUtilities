@@ -11,9 +11,9 @@ import org.bukkit.Vibration.Destination.BlockDestination;
  * part isn't even loaded. Silly workaround class.</p>
  */
 public class VibrationBee {
-    Location origin;
-    Location destination;
-    int arrivalTime;
+    final Location origin;
+    final Location destination;
+    final int arrivalTime;
 
     public VibrationBee(Location origin, Location destination, int arrivalTime) {
         this.origin = origin;

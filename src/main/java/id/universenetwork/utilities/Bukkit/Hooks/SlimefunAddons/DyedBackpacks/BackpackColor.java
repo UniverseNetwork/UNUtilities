@@ -2,6 +2,7 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DyedBackpacks;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

@@ -55,6 +55,9 @@ provides:
   - InfinityExpansion
   - ShulkerPacks
   - SkQuery
+  - NoteBlockAPI
+  - EntityTrackerFixer
+  - HamsterAPI
 
 
 commands:

@@ -7,6 +7,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.backpacks.Slimefu
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

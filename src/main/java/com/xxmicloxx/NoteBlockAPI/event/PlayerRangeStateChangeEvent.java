@@ -10,9 +10,9 @@ import org.bukkit.event.HandlerList;
  */
 public class PlayerRangeStateChangeEvent extends Event {
     static final HandlerList handlers = new HandlerList();
-    SongPlayer song;
-    Player player;
-    boolean state;
+    final SongPlayer song;
+    final Player player;
+    final boolean state;
 
     public PlayerRangeStateChangeEvent(SongPlayer song, Player player, boolean state) {
         this.song = song;

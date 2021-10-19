@@ -17,6 +17,7 @@ import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.ad
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.InfinityExpansion.Groups.Groups.MAIN_MATERIALS;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.InfinityExpansion.Items.Blocks.InfinityWorkbench.TYPE;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems.COPPER_INGOT;
 import static io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems.*;
 import static org.bukkit.Material.*;
 

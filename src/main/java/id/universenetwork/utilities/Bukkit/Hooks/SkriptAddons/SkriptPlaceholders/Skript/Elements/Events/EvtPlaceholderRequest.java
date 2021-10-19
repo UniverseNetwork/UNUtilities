@@ -26,7 +26,7 @@ import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlace
 public class EvtPlaceholderRequest extends SkriptEvent {
     static {
         Skript.registerEvent("Placeholder Request", EvtPlaceholderRequest.class, PlaceholderEvent.class, "(placeholder[ ]api|papi) [placeholder] request (for|with) [the] prefix[es] %strings%", "mvdw[ ](placeholder[ ]api [placeholder]|placeholder) request (for|with) [the] placeholder[s] %strings%");
-        EventValues.registerEventValue(PlaceholderEvent.class, Player.class, new Getter<Player, PlaceholderEvent>() {
+        EventValues.registerEventValue(PlaceholderEvent.class, Player.class, new Getter<>() {
             @Override
             @Nullable
             public Player get(PlaceholderEvent e) {
@@ -34,7 +34,7 @@ public class EvtPlaceholderRequest extends SkriptEvent {
                 return null;
             }
         }, 0);
-        EventValues.registerEventValue(PlaceholderEvent.class, OfflinePlayer.class, new Getter<OfflinePlayer, PlaceholderEvent>() {
+        EventValues.registerEventValue(PlaceholderEvent.class, OfflinePlayer.class, new Getter<>() {
             @Override
             @Nullable
             public OfflinePlayer get(PlaceholderEvent e) {

@@ -18,6 +18,7 @@ import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.HashMap;
@@ -53,10 +54,6 @@ public final class GeoQuarry extends AbstractMachineBlock implements RecipeDispl
     @Override
     protected int[] getOutputSlots() {
         return OUTPUT_SLOTS;
-    }
-
-    @Override
-    public void onNewInstance(@NotNull BlockMenu menu, @NotNull Block b) {
     }
 
     @Override
