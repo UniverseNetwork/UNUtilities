@@ -2,7 +2,6 @@ package id.universenetwork.utilities.Bukkit;
 
 import id.universenetwork.utilities.Bukkit.Enums.Features.MaxPlayerChangerCommand;
 import id.universenetwork.utilities.Bukkit.Events.UNUtilitiesDisableEvent;
-import id.universenetwork.utilities.Bukkit.Manager.Event;
 import id.universenetwork.utilities.Bukkit.Manager.*;
 import id.universenetwork.utilities.Bukkit.Tasks.CompatibilityCheckTask;
 import id.universenetwork.utilities.Bukkit.Tasks.MainTask;
@@ -21,13 +20,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
-import java.util.logging.Level;
 
 import static id.universenetwork.utilities.Bukkit.Enums.Features.VillagerOptimization.TPAS;
 import static id.universenetwork.utilities.Bukkit.Enums.Features.VillagerOptimization.VCPP;
 import static id.universenetwork.utilities.Bukkit.Manager.API.*;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.VOEnabled;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.VOLong;
+import static java.util.logging.Level.SEVERE;
 import static java.util.stream.Collectors.toList;
 import static org.bukkit.Bukkit.getPluginManager;
 import static org.bukkit.Bukkit.getScheduler;
@@ -50,7 +49,7 @@ public final class UNUtilities extends JavaPlugin {
         ActionBarAPISetup();
         NoteBlockAPISetup("enabling");
         HamsterAPISetup("enabling");
-        Event.register();
+        Listeners.register();
         Commands.register();
         Hooks.AsyncWorldEditBossBarDisplay("enabling");
         Hooks.ShopGUIPlusSilkSpawnersConnector();
@@ -81,6 +80,7 @@ public final class UNUtilities extends JavaPlugin {
         HamsterAPISetup("disabling");
         if (Config.MPCCBoolean(MaxPlayerChangerCommand.SOR) && Config.MPCCBoolean(MaxPlayerChangerCommand.ENABLED))
             updateServerProperties();
+        saveAAVLP();
         Hooks.AsyncWorldEditBossBarDisplay("disabling");
         System.out.println("\n\n\n" +
                 "§b██╗░░░██╗§e███╗░░██╗§9██╗░░░██╗████████╗██╗██╗░░░░░██╗████████╗██╗███████╗░██████╗\n" +
@@ -126,7 +126,7 @@ public final class UNUtilities extends JavaPlugin {
             }
             os.close();
         } catch (IOException v11) {
-            getLogger().log(Level.SEVERE, "Error while saving max players in server properties", v11);
+            getLogger().log(SEVERE, prefix + " §cError while saving max players in server properties", v11);
         }
     }
 
