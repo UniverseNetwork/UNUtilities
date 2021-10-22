@@ -176,7 +176,7 @@ Features:
       MoreTools: false
 
       # !!! -> This addon can only be used on paper or all forks of paper
-      HeadLimiter: false
+      HeadLimiter: true
 
       # !!! -> You need ProtocolLib to use this addon
       SoundMuffler: true
@@ -631,6 +631,13 @@ Features:
     # Don't set this too low. Anything below 200 and the plugin really won't be doing much.
     # !!! -> You must restart the server after change this settings
     ticks-per-allow-search: 600
+
+    # The max number of chunks a single player may claim
+    # !!! -> You must restart the server after change this settings
+    vanilla-chunks-per-player: 1
+
+    # Message if this feature is disabled
+    disabledMessage: '%p% &cFitur ini dinonaktifkan'
 
   ## Skript Addons Features
   SkriptAddons:

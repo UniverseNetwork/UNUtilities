@@ -27,13 +27,11 @@ public class HamsterChannelHandler extends ChannelDuplexHandler {
         final boolean async = !server.isPrimaryThread();
         final PacketSendEvent event = new PacketSendEvent(channelHandlerContext, hamsterPlayer, packetWrapper, async);
         try {
-            this.pluginManager.callEvent(event);
+            pluginManager.callEvent(event);
         } catch (final Exception exception) {
             exception.printStackTrace();
         }
-        if (!event.isCancelled()) {
-            super.write(channelHandlerContext, packetWrapper.getPacket(), channelPromise);
-        }
+        if (!event.isCancelled()) super.write(channelHandlerContext, packetWrapper.getPacket(), channelPromise);
     }
 
     @Override

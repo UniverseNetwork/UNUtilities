@@ -1,8 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Manager;
 
-import id.universenetwork.utilities.Bukkit.Commands.ChangeSlots;
-import id.universenetwork.utilities.Bukkit.Commands.Hat;
-import id.universenetwork.utilities.Bukkit.Commands.UNU;
+import id.universenetwork.utilities.Bukkit.Commands.*;
 import id.universenetwork.utilities.Bukkit.Enums.Settings;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -11,6 +9,7 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
+import static id.universenetwork.utilities.Bukkit.Manager.Config.VOEnabled;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 
@@ -58,7 +57,8 @@ public abstract class Commands implements TabExecutor {
         new Hat();
         new ChangeSlots();
         // new Keep();
-
+        new AAVLP(VOEnabled());
+        new VLP(VOEnabled());
         System.out.println(prefix + " §aAll Commands Successfully Registered");
     }
 }

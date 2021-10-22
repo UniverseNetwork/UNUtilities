@@ -1,7 +1,6 @@
 package dev._2lstudios.hamsterapi.hamsterplayer;
 
 import dev._2lstudios.hamsterapi.HamsterAPI;
-import dev._2lstudios.hamsterapi.enums.HamsterHandler;
 import dev._2lstudios.hamsterapi.handlers.HamsterChannelHandler;
 import dev._2lstudios.hamsterapi.handlers.HamsterDecoderHandler;
 import dev._2lstudios.hamsterapi.utils.Reflection;
@@ -18,6 +17,8 @@ import java.lang.reflect.Method;
 import java.nio.channels.ClosedChannelException;
 import java.util.UUID;
 
+import static dev._2lstudios.hamsterapi.enums.HamsterHandler.HAMSTER_CHANNEL;
+import static dev._2lstudios.hamsterapi.enums.HamsterHandler.HAMSTER_DECODER;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 import static org.bukkit.Bukkit.getLogger;
 import static org.bukkit.Bukkit.getServer;
@@ -55,10 +56,7 @@ public class HamsterPlayer {
         final Object chatAction = toChatBaseComponent.invoke(null, "{ \"text\":\"" + text + "\" }");
         final Class<?> chatMessageTypeClass = reflection.getChatMessageType();
         final Object[] enumConstants = chatMessageTypeClass.getEnumConstants();
-        final Object packet = reflection.getPacketPlayOutChat()
-                .getConstructor(iChatBaseComponentClass, chatMessageTypeClass, UUID.class)
-                .newInstance(chatAction, enumConstants[2], player.getUniqueId());
-
+        final Object packet = reflection.getPacketPlayOutChat().getConstructor(iChatBaseComponentClass, chatMessageTypeClass, UUID.class).newInstance(chatAction, enumConstants[2], player.getUniqueId());
         sendPacket(packet);
     }
 
@@ -164,8 +162,8 @@ public class HamsterPlayer {
     public void uninject() {
         if (injected && channel != null && channel.isActive()) {
             final ChannelPipeline pipeline = channel.pipeline();
-            if (pipeline.get(HamsterHandler.HAMSTER_DECODER) != null) pipeline.remove(HamsterHandler.HAMSTER_DECODER);
-            if (pipeline.get(HamsterHandler.HAMSTER_CHANNEL) != null) pipeline.remove(HamsterHandler.HAMSTER_CHANNEL);
+            if (pipeline.get(HAMSTER_DECODER) != null) pipeline.remove(HAMSTER_DECODER);
+            if (pipeline.get(HAMSTER_CHANNEL) != null) pipeline.remove(HAMSTER_CHANNEL);
         }
     }
 
@@ -193,13 +191,13 @@ public class HamsterPlayer {
             final ByteToMessageDecoder hamsterDecoderHandler = new HamsterDecoderHandler(this);
             final ChannelDuplexHandler hamsterChannelHandler = new HamsterChannelHandler(this);
             if (pipeline.get("decompress") != null)
-                pipeline.addAfter("decompress", HamsterHandler.HAMSTER_DECODER, hamsterDecoderHandler);
+                pipeline.addAfter("decompress", HAMSTER_DECODER, hamsterDecoderHandler);
             else if (pipeline.get("splitter") != null)
-                pipeline.addAfter("splitter", HamsterHandler.HAMSTER_DECODER, hamsterDecoderHandler);
+                pipeline.addAfter("splitter", HAMSTER_DECODER, hamsterDecoderHandler);
             else
-                throw new IllegalAccessException("No ChannelHandler was found on the pipeline to inject " + HamsterHandler.HAMSTER_DECODER);
+                throw new IllegalAccessException("No ChannelHandler was found on the pipeline to inject " + HAMSTER_DECODER);
             if (pipeline.get("decoder") != null)
-                pipeline.addAfter("decoder", HamsterHandler.HAMSTER_CHANNEL, hamsterChannelHandler);
+                pipeline.addAfter("decoder", HAMSTER_CHANNEL, hamsterChannelHandler);
             else
                 throw new IllegalAccessException("No ChannelHandler was found on the pipeline to inject " + hamsterChannelHandler);
             this.injected = true;
@@ -211,8 +209,7 @@ public class HamsterPlayer {
         try {
             setup();
             inject();
-        } catch (final IllegalAccessException | InvocationTargetException | NoSuchMethodException | NoSuchFieldException
-                | ClosedChannelException e) {
+        } catch (final IllegalAccessException | InvocationTargetException | NoSuchMethodException | NoSuchFieldException | ClosedChannelException e) {
             return false;
         }
         return true;

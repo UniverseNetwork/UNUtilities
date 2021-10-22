@@ -3,9 +3,6 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.HeadLimiter;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -21,9 +18,14 @@ import java.util.concurrent.ThreadFactory;
 
 import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimeFunAddons.ADDONSSETTINGS;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled;
+import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Settings;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.get;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+import static me.mrCookieSlime.Slimefun.api.BlockStorage.check;
+import static me.mrCookieSlime.Slimefun.api.BlockStorage.clearBlockInfo;
+import static org.bukkit.Bukkit.getScheduler;
+import static org.bukkit.ChatColor.RED;
 
 public final class HeadLimiter implements Listener {
     final ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("HeadLimiter-pool-%d").build();
@@ -32,6 +34,7 @@ public final class HeadLimiter implements Listener {
     public HeadLimiter() {
         if (Enabled("HeadLimiter")) {
             plugin.getServer().getPluginManager().registerEvents(this, plugin);
+            new CountCommand(this);
             System.out.println(prefix + " §bSuccessfully Registered §dHeadLimiter §bAddon");
         }
     }
@@ -43,26 +46,26 @@ public final class HeadLimiter implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlace(BlockPlaceEvent e) {
         final SlimefunItem sfItem = SlimefunItem.getByItem(e.getItemInHand());
-        if (!e.isCancelled() && (e.getBlock().getType() == Material.PLAYER_HEAD || e.getBlock().getType() == Material.PLAYER_WALL_HEAD) && sfItem != null && isCargo(sfItem)) {
+        if (!e.isCancelled() && (e.getBlock().getType().equals(Material.PLAYER_HEAD) || e.getBlock().getType().equals(Material.PLAYER_WALL_HEAD)) && sfItem != null && isCargo(sfItem)) {
             final Block block = e.getBlock();
             final BlockState[] te = block.getChunk().getTileEntities();
             executorService.submit(() -> {
                 int i = 0;
                 for (BlockState bs : te) {
-                    final SlimefunItem slimefunItem = BlockStorage.check(bs.getLocation());
+                    final SlimefunItem slimefunItem = check(bs.getLocation());
                     if (slimefunItem != null && isCargo(slimefunItem)) i++;
                 }
-                final int threshold = get().getInt(ADDONSSETTINGS.getConfigPath() + "HeadLimiter.Amount");
-                if (i >= threshold) {
-                    Bukkit.getScheduler().runTask(plugin, () -> {
-                        if (block.getType() != Material.AIR) {
+                final int threshold = Settings("HeadLimiter").getInt("Amount");
+                if (i > threshold) {
+                    getScheduler().runTask(plugin, () -> {
+                        if (!block.getType().equals(Material.AIR)) {
                             block.setType(Material.AIR);
                             if (!e.getPlayer().getGameMode().equals(GameMode.CREATIVE))
                                 block.getWorld().dropItemNaturally(block.getLocation(), sfItem.getItem());
                         }
                     });
-                    BlockStorage.clearBlockInfo(block.getLocation());
-                    e.getPlayer().sendMessage(ChatColor.RED + "You hit the limit of Cargo nodes in this chunk");
+                    clearBlockInfo(block.getLocation());
+                    e.getPlayer().sendMessage(RED + "You hit the limit of Cargo nodes in this chunk");
                 }
             });
         }

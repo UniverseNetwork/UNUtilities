@@ -143,8 +143,12 @@ public class Config {
         return get().getBoolean(VillagerOptimization.ENABLED.getConfigPath());
     }
 
-    public static long VOTPAS() {
-        return get().getLong(VillagerOptimization.TPAS.getConfigPath(), 600L /* Default value, if config does not contain the entry */);
+    public static long VOLong(VillagerOptimization s) {
+        return get().getLong(s.getConfigPath());
+    }
+
+    public static String VOString(VillagerOptimization s) {
+        return get().getString(s.getConfigPath());
     }
 
 

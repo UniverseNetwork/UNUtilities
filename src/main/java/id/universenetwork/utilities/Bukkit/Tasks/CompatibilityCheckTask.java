@@ -1,14 +1,13 @@
 package id.universenetwork.utilities.Bukkit.Tasks;
 
-import org.bukkit.Bukkit;
-
 import java.lang.reflect.InvocationTargetException;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 import static org.bukkit.Bukkit.getLogger;
+import static org.bukkit.Bukkit.getServer;
 
 public class CompatibilityCheckTask implements Runnable {
-    final static String NAME = Bukkit.getServer().getClass().getPackage().getName();
+    final static String NAME = getServer().getClass().getPackage().getName();
     final static String VERSION = NAME.substring(NAME.lastIndexOf('.') + 1);
     final String[] supportedVersions = new String[]{"v1_14_R1", "v1_15_R1", "v1_16_R1", "v1_16_R2", "v1_16_R3", "v1_17_R1"};
     boolean pass;
@@ -42,7 +41,7 @@ public class CompatibilityCheckTask implements Runnable {
     }
 
     void warn(String message) {
-        getLogger().warning(prefix + " §6" + message);
+        getLogger().warning(prefix + " §e" + message);
     }
 
     public boolean passedCheck() {

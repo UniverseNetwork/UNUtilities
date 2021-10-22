@@ -40,7 +40,7 @@ public class Commands extends id.universenetwork.utilities.Bukkit.Manager.Comman
                         return;
                     }
                     SlimefunItem sfItem = SlimefunItem.getById(args[1].toUpperCase());
-                    if (sfItem == null || sfItem instanceof MultiBlockMachine || sfItem.getRecipeType() == RecipeType.GEO_MINER) {
+                    if (sfItem == null || sfItem instanceof MultiBlockMachine || sfItem.getRecipeType().equals(RecipeType.GEO_MINER)) {
                         sender.sendMessage(ChatColor.RED + "Invalid Slimefun item!");
                         return;
                     }
@@ -52,7 +52,7 @@ public class Commands extends id.universenetwork.utilities.Bukkit.Manager.Comman
                 } else if (args[0].equalsIgnoreCase("printitem")) {
                     Player p = (Player) sender;
                     ItemStack item = p.getInventory().getItemInMainHand();
-                    if (item.getType() == AIR) {
+                    if (item.getType().equals(AIR)) {
                         p.sendMessage(ChatColor.RED + "You must be holding an item!");
                         return;
                     }
@@ -75,13 +75,13 @@ public class Commands extends id.universenetwork.utilities.Bukkit.Manager.Comman
                 if (args[1].equalsIgnoreCase("giverecipe"))
                     for (SlimefunItem item : getRegistry().getEnabledSlimefunItems()) arg.add(item.getId());
                 else if (args[1].equalsIgnoreCase("setdata")) {
-                    if (target != null || target.getType() != AIR) if (hasBlockInfo(target)) {
+                    if (target != null || !target.getType().equals(AIR)) if (hasBlockInfo(target)) {
                         arg.addAll(getLocationInfo(target.getLocation()).getKeys());
                         arg.remove("id");
                     }
                 }
             } else if (args.length == 3 && !args[2].equals("id")) {
-                if (target != null || target.getType() != AIR) {
+                if (target != null || !target.getType().equals(AIR)) {
                     String current = getLocationInfo(target.getLocation(), args[2]);
                     if (current != null) {
                         arg.add(current);

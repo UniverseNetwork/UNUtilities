@@ -1,6 +1,5 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.InfinityExpansion.Items.Gear;
 
-import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -8,7 +7,6 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Soulbound;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
@@ -18,20 +16,25 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Iterator;
 import java.util.List;
 
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
+import static org.bukkit.ChatColor.*;
+
 public final class InfinityMatrix extends SimpleSlimefunItem<ItemUseHandler> implements Listener, Soulbound, NotPlaceable {
-    public InfinityMatrix(ItemGroup category, SlimefunItemStack item, RecipeType type, ItemStack[] recipe) {
-        super(category, item, type, recipe);
-        Events.registerListener(this);
+    public InfinityMatrix(ItemGroup itemGroup, SlimefunItemStack item, RecipeType type, ItemStack[] recipe) {
+        super(itemGroup, item, type, recipe);
+        registerListener(this);
     }
 
     static void disableFlight(Player p) {
-        p.sendMessage(ChatColor.RED + "Infinity Flight Disabled!");
+        p.sendMessage(RED + "Infinity Flight Disabled!");
         p.setAllowFlight(false);
     }
 
     static void enableFlight(Player p) {
-        p.sendMessage(ChatColor.GREEN + "Infinity Flight Enabled!");
-        p.setAllowFlight(true);
+        if (p.hasPermission("unutilities.use.infinitymatrix")) {
+            p.sendMessage(GREEN + "Infinity Flight Enabled!");
+            p.setAllowFlight(true);
+        } else p.sendMessage(RED + "You don't have permission to use Infinity Matrix!");
     }
 
     @NotNull
@@ -47,27 +50,27 @@ public final class InfinityMatrix extends SimpleSlimefunItem<ItemUseHandler> imp
             Iterator<String> iterator = lore.listIterator();
             while (iterator.hasNext()) {
                 String line = iterator.next();
-                if (ChatColor.stripColor(line).contains("UUID: ")) {
-                    String uuid = ChatColor.stripColor(line).substring(6);
+                if (stripColor(line).contains("UUID: ")) {
+                    String uuid = stripColor(line).substring(6);
                     if (!p.getUniqueId().toString().equals(uuid)) {
-                        p.sendMessage(ChatColor.YELLOW + "You do not own this matrix!");
+                        p.sendMessage(YELLOW + "You do not own this matrix!");
                         return;
                     }
                     if (p.isSneaking()) { //remove owner
                         iterator.remove();
                         meta.setLore(lore);
                         item.setItemMeta(meta);
-                        p.sendMessage(ChatColor.GOLD + "Ownership removed!");
+                        p.sendMessage(GOLD + "Ownership removed!");
                         disableFlight(p);
                     } else if (p.getAllowFlight()) disableFlight(p);
                     else enableFlight(p);
                     return;
                 }
             }
-            lore.add(ChatColor.GREEN + "UUID: " + p.getUniqueId());
+            lore.add(GREEN + "UUID: " + p.getUniqueId());
             meta.setLore(lore);
             item.setItemMeta(meta);
-            p.sendMessage(ChatColor.GOLD + "Ownership claimed!");
+            p.sendMessage(GOLD + "Ownership claimed!");
             enableFlight(p);
         };
     }

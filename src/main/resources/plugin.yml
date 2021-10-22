@@ -94,6 +94,17 @@ commands:
     usage: /infinityexpansion <subcommand>
     aliases: [ ie, ix, infinity ]
 
+  headlimiter:
+    description: Basic HeadLimiter command
+    aliases: hl
+
+  aavlp:
+    description: Prevents UNUtilities from modifying villagers in the chunk the player is currently standing in (anti anti villager lag prevention)
+    permission: avlp.vanilla
+
+  vlp:
+    description: Tells you if the chunk you're in is using vanilla mechanics
+    permission: avlp.check
 
 permissions:
   unutilities.*:
@@ -111,6 +122,8 @@ permissions:
       - unutilities.command.hat
       - unutilities.command.changeslots
       - unutilities.command.filter
+      - avlp.vanilla
+      - avlp.check
 
   unutilities.redstone:
     default: op

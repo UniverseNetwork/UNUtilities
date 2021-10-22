@@ -82,7 +82,7 @@ public class HamsterAPI {
                 final HamsterPlayer hamsterPlayer = this.hamsterPlayerManager.get(player);
                 if (hamsterPlayer != null) hamsterPlayer.uninject();
                 this.hamsterPlayerManager.remove(player);
-            } catch (NullPointerException ignored) {
+            } catch (NullPointerException ignore) {
             }
         }
     }
