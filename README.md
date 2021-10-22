@@ -30,7 +30,7 @@
 - Per-Player Keeper **[Experimental]**
 - Fly Fixer **[Experimental]**
 - Pocket Shulker (Fork of [Shulker Backpacks](http://spigotmc.org/resources/67466))
-- Entity Tracker Fixer (Fork of [EntityTrackerFixer](http://spigotmc.org/resources/70902))
+- Entity Tracker Fixer (Fork of [EntityTrackerFixer](http://spigotmc.org/resources/70902) and some patches from [cascaseno](http://github.com/cascaseno/EntityTrackerFixer))
 
 ## API Included
 - [ActionBarAPI](http://spigotmc.org/resources/1315)
