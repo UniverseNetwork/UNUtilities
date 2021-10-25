@@ -9,6 +9,11 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 
+/**
+ * A category that is hidden from the main guide page
+ *
+ * @author Mooy1
+ */
 @ParametersAreNonnullByDefault
 public final class SubGroup extends ItemGroup {
     public SubGroup(String key, ItemStack item) {

@@ -23,11 +23,10 @@ import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.sl
 
 @ParametersAreNonnullByDefault
 public final class MachineBlock extends AbstractMachineBlock {
-
     @Setter
     protected MachineLayout layout = MachineLayout.MACHINE_DEFAULT;
-    private final List<MachineBlockRecipe> recipes = new ArrayList<>();
-    private int ticksPerOutput = -1;
+    final List<MachineBlockRecipe> recipes = new ArrayList<>();
+    int ticksPerOutput = -1;
 
     public MachineBlock(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
@@ -81,10 +80,7 @@ public final class MachineBlock extends AbstractMachineBlock {
 
     @Override
     protected boolean process(Block b, BlockMenu menu) {
-        if (slimefunTickCount % ticksPerOutput != 0) {
-            return true;
-        }
-
+        if (slimefunTickCount % ticksPerOutput != 0) return true;
         int[] slots = layout.inputSlots();
         ItemStack[] input = new ItemStack[slots.length];
         for (int i = 0; i < slots.length; i++) input[i] = menu.getItemInSlot(slots[i]);

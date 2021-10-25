@@ -12,6 +12,11 @@ import java.util.Map;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 
+/**
+ * A config which is able to save all of its comments and has some additional utility methods
+ *
+ * @author Mooy1
+ */
 public class ConfigBuilder extends YamlConfiguration {
     final YamlConfiguration defaults = new YamlConfiguration();
     final Map<String, String> comments = new HashMap<>();
@@ -143,10 +148,8 @@ public class ConfigBuilder extends YamlConfiguration {
                 // Add the comment to the path and clear
                 comments.put(pathBuilder.build(), commentBuilder.toString());
                 commentBuilder = new StringBuilder("\n");
-            } else if (pathBuilder.inMainSection()) {
-                // The main section should always have spaces between keys
-                comments.put(pathBuilder.build(), "\n");
-            }
+            } else if (pathBuilder.inMainSection())
+                comments.put(pathBuilder.build(), "\n"); // The main section should always have spaces between keys
         }
         input.close();
         return yamlBuilder.toString();

@@ -20,6 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
+/**
+ * A class with some persistent data types
+ *
+ * @author Mooy1
+ */
 @RequiredArgsConstructor
 @ParametersAreNonnullByDefault
 public final class PersistentType<T, Z> implements PersistentDataType<T, Z> {
@@ -103,6 +108,9 @@ public final class PersistentType<T, Z> implements PersistentDataType<T, Z> {
         return list;
     });
 
+    /**
+     * Only use this if you were using it prior to the slimefun breaking changes
+     */
     @Deprecated
     public static final PersistentDataType<String, ItemStack> ITEM_STACK_OLD = new PersistentType<>(String.class, ItemStack.class, itemStack -> {
         YamlConfiguration config = new YamlConfiguration();

@@ -7,22 +7,28 @@ import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuide;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideImplementation;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideMode;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
-import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
-import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Arrays;
-import java.util.Comparator;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getLocalization;
+import static io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getRegistry;
+import static io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils.*;
+import static java.util.Comparator.comparingInt;
+import static org.bukkit.ChatColor.GRAY;
+import static org.bukkit.Sound.ITEM_BOOK_PAGE_TURN;
 
+/**
+ * A multi group which can hold other groups
+ *
+ * @author Mooy1
+ */
 @ParametersAreNonnullByDefault
 public final class MultiGroup extends FlexItemGroup {
     final ItemGroup[] subGroups;
@@ -34,14 +40,14 @@ public final class MultiGroup extends FlexItemGroup {
 
     public MultiGroup(String key, ItemStack item, int tier, ItemGroup... subGroups) {
         super(new NamespacedKey(plugin, key), item, tier);
-        Arrays.sort(subGroups, Comparator.comparingInt(ItemGroup::getTier));
+        Arrays.sort(subGroups, comparingInt(ItemGroup::getTier));
         this.subGroups = subGroups;
         this.name = ItemUtils.getItemName(item);
     }
 
     @Override
     public boolean isVisible(Player p, PlayerProfile profile, SlimefunGuideMode mode) {
-        return mode == SlimefunGuideMode.SURVIVAL_MODE;
+        return mode.equals(SlimefunGuideMode.SURVIVAL_MODE);
     }
 
     @Override
@@ -50,15 +56,15 @@ public final class MultiGroup extends FlexItemGroup {
     }
 
     void openGuide(Player p, PlayerProfile profile, SlimefunGuideMode mode, int page) {
-        SlimefunGuideImplementation guide = Slimefun.getRegistry().getSlimefunGuide(mode);
+        SlimefunGuideImplementation guide = getRegistry().getSlimefunGuide(mode);
         profile.getGuideHistory().add(this, page);
         ChestMenu menu = new ChestMenu(name);
         menu.setEmptySlotsClickable(false);
-        menu.addMenuOpeningHandler(pl -> pl.playSound(pl.getLocation(), Sound.ITEM_BOOK_PAGE_TURN, 1, 1));
+        menu.addMenuOpeningHandler(pl -> pl.playSound(pl.getLocation(), ITEM_BOOK_PAGE_TURN, 1, 1));
         for (int i = 0; i < 9; i++)
-            menu.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
-        String back = ChatColor.GRAY + Slimefun.getLocalization().getMessage(p, "guide.back.guide");
-        menu.addItem(1, ChestMenuUtils.getBackButton(p, "", back));
+            menu.addItem(i, getBackground(), getEmptyClickHandler());
+        String back = GRAY + getLocalization().getMessage(p, "guide.back.guide");
+        menu.addItem(1, getBackButton(p, "", back));
         menu.addMenuClickHandler(1, (pl, s, is, action) -> {
             profile.getGuideHistory().goBack(guide);
             return false;
@@ -77,14 +83,14 @@ public final class MultiGroup extends FlexItemGroup {
         }
         int pages = target == subGroups.length - 1 ? page : (subGroups.length - 1) / 36 + 1;
         for (int i = 45; i < 54; i++)
-            menu.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
-        menu.addItem(46, ChestMenuUtils.getPreviousButton(p, page, pages));
+            menu.addItem(i, getBackground(), getEmptyClickHandler());
+        menu.addItem(46, getPreviousButton(p, page, pages));
         menu.addMenuClickHandler(46, (pl, slot, item, action) -> {
             int next = page - 1;
             if (next > 0) openGuide(p, profile, mode, next);
             return false;
         });
-        menu.addItem(52, ChestMenuUtils.getNextButton(p, page, pages));
+        menu.addItem(52, getNextButton(p, page, pages));
         menu.addMenuClickHandler(52, (pl, slot, item, action) -> {
             int next = page + 1;
             if (next <= pages) openGuide(p, profile, mode, next);

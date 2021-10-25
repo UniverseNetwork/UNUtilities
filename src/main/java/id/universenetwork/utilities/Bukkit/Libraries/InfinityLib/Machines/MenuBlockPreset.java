@@ -1,7 +1,5 @@
 package id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Machines;
 
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
@@ -12,10 +10,12 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import static io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getProtectionManager;
+import static io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.INTERACT_BLOCK;
+
 @ParametersAreNonnullByDefault
 final class MenuBlockPreset extends BlockMenuPreset {
-
-    private final MenuBlock menuBlock;
+    final MenuBlock menuBlock;
 
     MenuBlockPreset(MenuBlock menuBlock) {
         super(menuBlock.getId(), menuBlock.getItemName());
@@ -35,13 +35,11 @@ final class MenuBlockPreset extends BlockMenuPreset {
 
     @Override
     public void init() {
-
     }
 
     @Override
     public boolean canOpen(Block b, Player p) {
-        return Slimefun.getProtectionManager().hasPermission(p, b.getLocation(), Interaction.INTERACT_BLOCK)
-                && menuBlock.canUse(p, false);
+        return getProtectionManager().hasPermission(p, b.getLocation(), INTERACT_BLOCK) && menuBlock.canUse(p, false);
     }
 
     @Override

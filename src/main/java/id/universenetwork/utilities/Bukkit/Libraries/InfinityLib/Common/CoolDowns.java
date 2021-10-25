@@ -6,6 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * An object for holding cool downs based on uuids
+ *
+ * @author Mooy1
+ */
 @RequiredArgsConstructor
 public final class CoolDowns {
     final Map<UUID, Long> map = new HashMap<>();

@@ -11,8 +11,6 @@ import lombok.Setter;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -23,14 +21,16 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.bukkit.ChatColor.*;
+import static org.bukkit.Material.LIME_STAINED_GLASS_PANE;
+
 @ParametersAreNonnullByDefault
 public class CraftingBlock extends MenuBlock {
-
-    public static final ItemStack CLICK_TO_CRAFT = new CustomItemStack(Material.LIME_STAINED_GLASS_PANE, "&aClick To Craft!");
+    public static final ItemStack CLICK_TO_CRAFT = new CustomItemStack(LIME_STAINED_GLASS_PANE, "&aClick To Craft!");
 
     @Setter
     protected MachineLayout layout = MachineLayout.CRAFTING_DEFAULT;
-    private final List<CraftingBlockRecipe> recipes = new ArrayList<>();
+    final List<CraftingBlockRecipe> recipes = new ArrayList<>();
 
     public CraftingBlock(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
@@ -39,12 +39,8 @@ public class CraftingBlock extends MenuBlock {
     protected void craft(Block b, BlockMenu menu, Player p) {
         int[] slots = layout.inputSlots();
         ItemStack[] input = new ItemStack[slots.length];
-        for (int i = 0; i < slots.length; i++) {
-            input[i] = menu.getItemInSlot(slots[i]);
-        }
-
+        for (int i = 0; i < slots.length; i++) input[i] = menu.getItemInSlot(slots[i]);
         CraftingBlockRecipe recipe = getOutput(input);
-
         if (recipe != null) {
             if (recipe.check(p)) {
                 if (menu.fits(recipe.output, layout.outputSlots())) {
@@ -52,18 +48,13 @@ public class CraftingBlock extends MenuBlock {
                     onSuccessfulCraft(menu, output);
                     menu.pushItem(output, layout.outputSlots());
                     recipe.consume(input);
-                    p.sendMessage(ChatColor.GREEN + "Successfully Crafted: " + ItemUtils.getItemName(output));
-                } else {
-                    p.sendMessage(ChatColor.GOLD + "Not Enough Room!");
-                }
+                    p.sendMessage(GREEN + "Successfully Crafted: " + ItemUtils.getItemName(output));
+                } else p.sendMessage(GOLD + "Not Enough Room!");
             }
-        } else {
-            p.sendMessage(ChatColor.RED + "Invalid Recipe!");
-        }
+        } else p.sendMessage(RED + "Invalid Recipe!");
     }
 
     protected void onSuccessfulCraft(BlockMenu menu, ItemStack toOutput) {
-
     }
 
     @Override
@@ -99,11 +90,7 @@ public class CraftingBlock extends MenuBlock {
     @Nullable
     protected final CraftingBlockRecipe getOutput(ItemStack[] input) {
         ItemStackSnapshot[] snapshots = ItemStackSnapshot.wrapArray(input);
-        for (CraftingBlockRecipe recipe : recipes) {
-            if (recipe.check(snapshots)) {
-                return recipe;
-            }
-        }
+        for (CraftingBlockRecipe recipe : recipes) if (recipe.check(snapshots)) return recipe;
         return null;
     }
 
@@ -121,5 +108,4 @@ public class CraftingBlock extends MenuBlock {
     protected final int[] getOutputSlots() {
         return layout.outputSlots();
     }
-
 }

@@ -3,7 +3,7 @@ package id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Core;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class PathBuilder {
+final class PathBuilder {
     final List<String> path = new ArrayList<>();
 
     public PathBuilder append(String line) {

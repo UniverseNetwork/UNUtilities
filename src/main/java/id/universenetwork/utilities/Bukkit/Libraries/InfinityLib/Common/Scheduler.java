@@ -5,6 +5,11 @@ import lombok.experimental.UtilityClass;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static org.bukkit.Bukkit.getScheduler;
 
+/**
+ * A class for scheduling tasks
+ *
+ * @author Mooy1
+ */
 @UtilityClass
 public class Scheduler {
     public static void run(Runnable runnable) {
