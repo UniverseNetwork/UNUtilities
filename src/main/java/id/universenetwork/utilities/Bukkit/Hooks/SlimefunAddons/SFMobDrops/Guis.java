@@ -3,7 +3,6 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.SFMobDrops;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.common.ChatColors;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -21,8 +20,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import static org.bukkit.ChatColor.*;
+
 final class Guis implements Listener {
-    static final String TITLE = ChatColor.DARK_PURPLE + "Mob Drops";
+    static final String TITLE = DARK_PURPLE + "Mob Drops";
 
     protected Guis() {
     }
@@ -38,15 +39,15 @@ final class Guis implements Listener {
             final ItemStack is = new ItemStack(getMaterialForMob(drop.getDropsFrom()));
             final ItemMeta im = is.getItemMeta();
             final int amount = drop.getAmount();
-            im.setDisplayName(ChatColor.GRAY + "" + amount + "x " + item.getItemName());
+            im.setDisplayName(GRAY + "" + amount + "x " + item.getItemName());
             final List<String> lore = new ArrayList<>();
-            lore.add(ChatColor.GRAY + "Drops from " + getEntity(drop.getDropsFrom()));
+            lore.add(GRAY + "Drops from " + getEntity(drop.getDropsFrom()));
             lore.add("");
-            lore.add(ChatColor.LIGHT_PURPLE + "" + drop.getChance() + "% " + ChatColor.GRAY + "chance");
+            lore.add(LIGHT_PURPLE + "" + drop.getChance() + "% " + GRAY + "chance");
             if (drop.getEntityName() != null)
-                lore.add(ChatColor.GRAY + "Requires name: " + ChatColors.color(drop.getEntityName()));
+                lore.add(GRAY + "Requires name: " + ChatColors.color(drop.getEntityName()));
             if (drop.getEntityNbtTag() != null)
-                lore.add(ChatColor.GRAY + "Requires tag: " + ChatColor.LIGHT_PURPLE + drop.getEntityNbtTag());
+                lore.add(GRAY + "Requires tag: " + LIGHT_PURPLE + drop.getEntityNbtTag());
             im.setLore(lore);
             is.setItemMeta(im);
             inv.addItem(is);
@@ -56,17 +57,12 @@ final class Guis implements Listener {
 
     // TODO: Get some mob heads
     static Material getMaterialForMob(@NotNull EntityType type) {
-        if (type == EntityType.ENDER_DRAGON) {
-            return Material.DRAGON_HEAD;
-        } else if (type == EntityType.ZOMBIE) {
-            return Material.ZOMBIE_HEAD;
-        } else if (type == EntityType.CREEPER) {
-            return Material.CREEPER_HEAD;
-        } else if (type == EntityType.SKELETON) {
-            return Material.SKELETON_SKULL;
-        } else if (type == EntityType.WITHER_SKELETON) {
-            return Material.WITHER_SKELETON_SKULL;
-        } else {
+        if (type.equals(EntityType.ENDER_DRAGON)) return Material.DRAGON_HEAD;
+        else if (type.equals(EntityType.ZOMBIE)) return Material.ZOMBIE_HEAD;
+        else if (type.equals(EntityType.CREEPER)) return Material.CREEPER_HEAD;
+        else if (type.equals(EntityType.SKELETON)) return Material.SKELETON_SKULL;
+        else if (type.equals(EntityType.WITHER_SKELETON)) return Material.WITHER_SKELETON_SKULL;
+        else {
             final Material mat = Material.getMaterial(type + "_SPAWN_EGG");
             if (mat != null) return mat;
             else return Material.SPAWNER;
@@ -74,7 +70,7 @@ final class Guis implements Listener {
     }
 
     static String getEntity(@NotNull EntityType type) {
-        return ChatColor.LIGHT_PURPLE + capitalise(type.name().charAt(0) + type.name().substring(1).replace('_', ' ').toLowerCase(Locale.ROOT));
+        return LIGHT_PURPLE + capitalise(type.name().charAt(0) + type.name().substring(1).replace('_', ' ').toLowerCase(Locale.ROOT));
     }
 
     static String capitalise(String str) {

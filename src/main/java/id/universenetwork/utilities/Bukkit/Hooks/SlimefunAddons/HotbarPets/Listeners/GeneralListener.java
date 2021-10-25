@@ -2,21 +2,19 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.HotbarPets.List
 
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.HotbarPets.HotbarPet;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.HotbarPets.HotbarPet.getMessageDelay;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
 import static io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem.getByItem;
-import static org.bukkit.Bukkit.getPluginManager;
 import static org.bukkit.event.EventPriority.LOWEST;
 import static org.bukkit.event.inventory.InventoryType.SlotType.ARMOR;
 
-public class GeneralListener implements Listener {
+public class GeneralListener implements org.bukkit.event.Listener {
     public GeneralListener() {
-        getPluginManager().registerEvents(this, plugin);
+        registerListener(this);
     }
 
     @EventHandler(priority = LOWEST, ignoreCancelled = true)
@@ -26,7 +24,7 @@ public class GeneralListener implements Listener {
 
     @EventHandler
     public void onEquip(InventoryClickEvent e) {
-        if (e.getSlotType() == ARMOR && getByItem(e.getCursor()) instanceof HotbarPet)
+        if (e.getSlotType().equals(ARMOR) && getByItem(e.getCursor()) instanceof HotbarPet)
             e.setCancelled(true);
     }
 

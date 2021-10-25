@@ -9,8 +9,8 @@ import org.bukkit.inventory.ItemStack;
 import java.util.concurrent.ThreadLocalRandom;
 
 class OreResource implements GEOResource {
-    private final NamespacedKey key;
-    private final OreChunk oreChunk;
+    final NamespacedKey key;
+    final OreChunk oreChunk;
 
     public OreResource(NamespacedKey key, OreChunk item) {
         this.key = key;
@@ -24,7 +24,7 @@ class OreResource implements GEOResource {
 
     @Override
     public int getDefaultSupply(Environment environment, Biome biome) {
-        if (environment == Environment.NORMAL) {
+        if (environment.equals(Environment.NORMAL)) {
             int amplifier = this.oreChunk.getAmplifier();
             return ThreadLocalRandom.current().nextInt(amplifier * 2, 18 + amplifier * 4);
         } else return 0;

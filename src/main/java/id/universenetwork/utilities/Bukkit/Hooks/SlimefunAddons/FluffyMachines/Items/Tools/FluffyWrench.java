@@ -2,6 +2,7 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.
 
 import fr.neatmonster.nocheatplus.hooks.NCPExemptionManager;
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Utils.Constants;
+import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -19,7 +20,6 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -28,13 +28,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.UUID;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getProtectionManager;
 import static io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.BREAK_BLOCK;
 import static me.mrCookieSlime.Slimefun.api.BlockStorage.check;
 import static org.bukkit.Bukkit.getPluginManager;
 
-public class FluffyWrench extends SimpleSlimefunItem<ItemUseHandler> implements Listener, DamageableItem, Rechargeable {
+public class FluffyWrench extends SimpleSlimefunItem<ItemUseHandler> implements org.bukkit.event.Listener, DamageableItem, Rechargeable {
     final Wrench type;
     final HashMap<UUID, Long> cooldowns = new HashMap<>();
     static final int WRENCH_DELAY = 250; // Not an itemsetting, too low causes dupes and no reason to increase
@@ -42,7 +41,7 @@ public class FluffyWrench extends SimpleSlimefunItem<ItemUseHandler> implements 
     public FluffyWrench(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, Wrench type) {
         super(itemGroup, item, recipeType, recipe);
         this.type = type;
-        getPluginManager().registerEvents(this, plugin);
+        Events.registerListener(this);
     }
 
     @NotNull

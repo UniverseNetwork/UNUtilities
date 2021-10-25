@@ -9,8 +9,8 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Optional;
 
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static org.bukkit.Bukkit.getPluginManager;
 import static org.bukkit.event.EventPriority.HIGH;
 
 public class PelletListener implements Listener {
@@ -18,7 +18,7 @@ public class PelletListener implements Listener {
 
     public PelletListener(MobCapturer Main) {
         this.Main = Main;
-        getPluginManager().registerEvents(this, plugin);
+        registerListener(this);
     }
 
     @EventHandler(ignoreCancelled = true, priority = HIGH)

@@ -1,7 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DyedBackpacks;
 
 import id.universenetwork.utilities.Bukkit.Enums.Features.SlimeFunAddons;
-import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons;
 import id.universenetwork.utilities.Bukkit.Manager.Config;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -15,10 +14,12 @@ import org.bukkit.NamespacedKey;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Objects;
 
+import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled;
+import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.addon;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 
-public class DyedBackpacks extends Addons {
+public class DyedBackpacks {
     public DyedBackpacks() {
         if (Enabled("DyedBackpacks")) {
             Research research = new Research(new NamespacedKey(plugin, "dyed_backpacks"), 17200, "Dyed Backpacks", 24);

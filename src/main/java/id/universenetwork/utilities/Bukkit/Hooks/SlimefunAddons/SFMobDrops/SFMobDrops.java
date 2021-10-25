@@ -21,10 +21,10 @@ import java.util.logging.Level;
 
 import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimeFunAddons.ADDONSSETTINGS;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.get;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
-import static org.bukkit.Bukkit.getPluginManager;
 
 public class SFMobDrops implements Listener {
     static SFMobDrops instance;
@@ -36,8 +36,7 @@ public class SFMobDrops implements Listener {
         if (enabled) {
             instance = this;
             loadConfig();
-            getPluginManager().registerEvents(this, plugin);
-            getPluginManager().registerEvents(new Guis(), plugin);
+            registerListener(this, new Guis());
             System.out.println(prefix + " §bSuccessfully Registered §dSFMobDrops §bAddon");
         }
         plugin.getCommand("mobdrops").setExecutor(new MobDropsCommand());
@@ -143,7 +142,7 @@ public class SFMobDrops implements Listener {
     @Nullable
     Drop findDropFromEntity(@NotNull LivingEntity entity) {
         for (Drop drop : this.drops)
-            if (entity.getType() == drop.getDropsFrom()) {
+            if (entity.getType().equals(drop.getDropsFrom())) {
                 if (drop.getEntityName() != null && entity.getCustomName() != null && !ChatColors.color(drop.getEntityName()).equals(entity.getCustomName()))
                     continue;
                 if (drop.getEntityNbtTag() != null && entity.getPersistentDataContainer().getKeys().stream().noneMatch(key -> key.toString().equals(drop.getEntityNbtTag())))

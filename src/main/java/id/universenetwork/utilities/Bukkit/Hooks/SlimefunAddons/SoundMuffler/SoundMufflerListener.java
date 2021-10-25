@@ -28,16 +28,16 @@ public class SoundMufflerListener extends PacketAdapter implements Listener, Ene
 
     @Override
     public void onPacketSending(PacketEvent event) {
-        if (event.getPacketType() == NAMED_SOUND_EFFECT || event.getPacketType() == ENTITY_SOUND) {
+        if (event.getPacketType().equals(NAMED_SOUND_EFFECT) || event.getPacketType().equals(ENTITY_SOUND)) {
             Location l;
-            if (event.getPacketType() == NAMED_SOUND_EFFECT) {
+            if (event.getPacketType().equals(NAMED_SOUND_EFFECT)) {
                 int x = event.getPacket().getIntegers().read(0) >> 3;
                 int y = event.getPacket().getIntegers().read(1) >> 3;
                 int z = event.getPacket().getIntegers().read(2) >> 3;
                 l = new Location(event.getPlayer().getWorld(), x, y, z);
-            } else if (event.getPacketType() == ENTITY_SOUND) {
+            } else if (event.getPacketType().equals(ENTITY_SOUND))
                 l = event.getPlayer().getWorld().getEntities().stream().filter(e -> e.getEntityId() == event.getPacket().getIntegers().read(1)).map(Entity::getLocation).findAny().orElse(null);
-            } else return;
+            else return;
             if (l == null) return;
             final Block soundMuff = findSoundMuffler(l);
             if (soundMuff != null && getLocationInfo(soundMuff.getLocation(), "enabled") != null && getLocationInfo(soundMuff.getLocation(), "enabled").equals("true") && getCharge(soundMuff.getLocation()) > 8) {
@@ -55,7 +55,7 @@ public class SoundMufflerListener extends PacketAdapter implements Listener, Ene
                 for (int z = l.getBlockZ() - dis; z < l.getBlockZ() + dis; z++) {
                     if (!l.getWorld().isChunkLoaded(x >> 4, z >> 4)) continue;
                     Block b = l.getWorld().getBlockAt(x, y, z);
-                    if (b.getType() == Material.WHITE_CONCRETE && hasBlockInfo(b)) {
+                    if (b.getType().equals(Material.WHITE_CONCRETE) && hasBlockInfo(b)) {
                         SlimefunItem item = check(b);
                         if (item.getId().equals("SOUND_MUFFLER")) return b;
                     }

@@ -4,22 +4,20 @@ import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.HotbarPets.Hotba
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
 import static io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem.getById;
 import static io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils.isItemSimilar;
-import static org.bukkit.Bukkit.getPluginManager;
 import static org.bukkit.Material.PUMPKIN_PIE;
 
-public class SoulPieListener implements Listener {
+public class SoulPieListener implements org.bukkit.event.Listener {
     final HotbarPet eyamaz;
 
     public SoulPieListener() {
         eyamaz = (HotbarPet) getById("HOTBAR_PET_EYAMAZ");
-        getPluginManager().registerEvents(this, plugin);
+        registerListener(this);
     }
 
     @EventHandler

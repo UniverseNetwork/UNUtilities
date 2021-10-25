@@ -3,21 +3,19 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.HotbarPets.List
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.HotbarPets.HotbarPet;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
 import static id.universenetwork.utilities.Bukkit.Manager.Color.Translator;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem.getById;
 import static io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils.isItemSimilar;
-import static org.bukkit.Bukkit.getPluginManager;
 import static org.bukkit.Sound.*;
 
-public class DamageListener implements Listener {
+public class DamageListener implements org.bukkit.event.Listener {
     final HotbarPet creeper;
     final HotbarPet magmacube;
     final HotbarPet slime;
@@ -34,7 +32,7 @@ public class DamageListener implements Listener {
         wither = (HotbarPet) getById("HOTBAR_PET_WITHER");
         walshrus = (HotbarPet) getById("HOTBAR_PET_WALSHRUS");
         blaze = (HotbarPet) getById("HOTBAR_PET_BLAZE");
-        getPluginManager().registerEvents(this, plugin);
+        registerListener(this);
     }
 
     @EventHandler

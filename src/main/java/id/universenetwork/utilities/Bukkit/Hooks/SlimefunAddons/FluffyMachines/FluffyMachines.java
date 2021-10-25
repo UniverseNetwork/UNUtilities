@@ -16,7 +16,7 @@ import java.util.regex.Matcher;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Utils.Constants.GLOW_ENCHANT;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Utils.Constants.SLIMEFUN_VERSION;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 import static java.lang.Integer.parseInt;
 import static java.util.Collections.singletonList;
@@ -70,16 +70,16 @@ public class FluffyMachines /*implements TabExecutor*/ {
             }
 
             // Register McMMO Events
-            if (mcMMO) getPluginManager().registerEvents(new McMMOEvents(), plugin);
+            if (mcMMO) registerListener(new McMMOEvents());
 
             // Get Slimefun Numerical Version
             try {
                 Matcher matcher = Constants.VERSION_PATTERN.matcher(SLIMEFUN_VERSION);
                 if (matcher.find()) {
                     int parsedVersion = parseInt(matcher.group(2));
-                    if (parsedVersion < 844) {
+                    if (parsedVersion < 844)
                         System.out.println(prefix + " §eYou are running a Slimefun version before DEV 844. FluffyMachines requires you to update your Slimefun version so that barrels remain functional. Update before 4/15/2021, or players may encounter issues with FluffyMachines that I am not accountable for.");
-                    } else Constants.SLIMEFUN_UPDATED = true;
+                    else Constants.SLIMEFUN_UPDATED = true;
                 } else
                     System.out.println(prefix + " §eYou are running a RC version of Slimefun or running a custom build. FluffyMachines requires you to update your Slimefun version so that barrels remain functional. Update before 4/15/2021, or players may encounter issues with FluffyMachines that I am not accountable for");
             } catch (NumberFormatException e) {
@@ -90,7 +90,7 @@ public class FluffyMachines /*implements TabExecutor*/ {
             FluffyItemSetup.setup();
 
             // Register Events Class
-            getPluginManager().registerEvents(new Events(), plugin);
+            registerListener(new Events());
             if (mcMMO && !NCP)
                 System.out.println(prefix + " §bSuccessfully Registered §dFluffyMachines §bAddon With §dmcMMO §bSupport");
             else if (!mcMMO && NCP)

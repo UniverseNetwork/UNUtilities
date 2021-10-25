@@ -2,15 +2,14 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.HotbarPets.List
 
 import org.bukkit.entity.Arrow;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static org.bukkit.Bukkit.getPluginManager;
 
-public class ProjectileListener implements Listener {
+public class ProjectileListener implements org.bukkit.event.Listener {
     public ProjectileListener() {
-        getPluginManager().registerEvents(this, plugin);
+        registerListener(this);
     }
 
     @EventHandler

@@ -3,7 +3,6 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.HotbarPets.List
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.HotbarPets.HotbarPet;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -17,7 +16,7 @@ import static org.bukkit.Sound.ENTITY_PIG_AMBIENT;
 import static org.bukkit.potion.PotionEffectType.HUNGER;
 import static org.bukkit.potion.PotionEffectType.POISON;
 
-public class FoodListener implements Listener {
+public class FoodListener implements org.bukkit.event.Listener {
     final HotbarPet pig;
     final HotbarPet zombie;
 

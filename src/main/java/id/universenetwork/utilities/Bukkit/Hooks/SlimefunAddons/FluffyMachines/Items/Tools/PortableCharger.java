@@ -1,6 +1,7 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Items.Tools;
 
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Utils.Utils;
+import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -43,7 +44,7 @@ public class PortableCharger extends SimpleSlimefunItem<ItemUseHandler> implemen
         super(itemGroup, item, recipeType, recipe);
         this.CHARGE_CAPACITY = chargeCapacity;
         this.CHARGE_SPEED = chargeSpeed;
-        Bukkit.getPluginManager().registerEvents(this, plugin);
+        Events.registerListener(this);
     }
 
     @NotNull
@@ -92,7 +93,7 @@ public class PortableCharger extends SimpleSlimefunItem<ItemUseHandler> implemen
                         float availableCharge = charger.getItemCharge(chargerItem);
 
                         // Three different scenarios
-                        if (p.getGameMode() == GameMode.CREATIVE && neededCharge > 0)
+                        if (p.getGameMode().equals(GameMode.CREATIVE) && neededCharge > 0)
                             device.setItemCharge(deviceItem, device.getMaxItemCharge(deviceItem));
                         else if (neededCharge > 0 && availableCharge > 0)
                             if (neededCharge >= CHARGE_SPEED && availableCharge >= CHARGE_SPEED)

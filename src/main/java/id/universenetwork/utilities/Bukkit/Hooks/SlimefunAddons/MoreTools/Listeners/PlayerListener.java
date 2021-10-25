@@ -7,11 +7,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
 
 public class PlayerListener implements Listener {
     public PlayerListener() {
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        registerListener(this);
     }
 
     @EventHandler

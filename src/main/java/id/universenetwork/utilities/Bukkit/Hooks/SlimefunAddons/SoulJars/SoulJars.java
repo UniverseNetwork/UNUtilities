@@ -1,6 +1,5 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.SoulJars;
 
-import id.universenetwork.utilities.Bukkit.Manager.Config;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -9,22 +8,22 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.BrokenSpaw
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.RepairedSpawner;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.EnumMap;
 import java.util.Map;
-import java.util.logging.Level;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimeFunAddons.ADDONSSETTINGS;
-import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled;
-import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.addon;
+import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.*;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 import static io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems.*;
+import static io.github.thebusybiscuit.slimefun4.utils.ChatUtils.humanize;
+import static java.util.logging.Level.SEVERE;
+import static org.bukkit.Bukkit.getLogger;
 import static org.bukkit.Bukkit.getPluginManager;
 
 public class SoulJars {
@@ -34,6 +33,7 @@ public class SoulJars {
     RecipeType recipeType;
     SlimefunItemStack emptyJar;
     final boolean silkspawners;
+    final ConfigurationSection conf = Settings("SoulJars");
 
     public SoulJars() {
         silkspawners = getPluginManager().isPluginEnabled("SilkSpawners");
@@ -43,14 +43,13 @@ public class SoulJars {
             recipeType = new RecipeType(new NamespacedKey(plugin, "mob_killing"), new CustomItemStack(Material.DIAMOND_SWORD, "&cKill the specified Mob", "&cwhile having an empty Soul Jar", "&cin your Inventory"));
             new SlimefunItem(itemGroup, emptyJar, RecipeType.ANCIENT_ALTAR, new ItemStack[]{EARTH_RUNE, new ItemStack(Material.SOUL_SAND), WATER_RUNE, new ItemStack(Material.SOUL_SAND), NECROTIC_SKULL, new ItemStack(Material.SOUL_SAND), AIR_RUNE, new ItemStack(Material.SOUL_SAND), FIRE_RUNE}, new CustomItemStack(emptyJar, 3)).register(addon);
             new JarsListener(this);
-            for (String mob : Config.get().getStringList(ADDONSSETTINGS.getConfigPath() + "SoulJars.Mobs")) {
+            for (String mob : conf.getStringList("Mobs"))
                 try {
                     EntityType type = EntityType.valueOf(mob);
                     registerSoul(type);
                 } catch (Exception x) {
-                    plugin.getLogger().log(Level.SEVERE, "{0}: Possibly invalid mob type: {1}", new Object[]{x.getClass().getSimpleName(), mob});
+                    getLogger().log(SEVERE, prefix + " §c{0}: Possibly invalid mob type: {1}", new Object[]{x.getClass().getSimpleName(), mob});
                 }
-            }
             if (silkspawners)
                 System.out.println(prefix + " §bSuccessfully Registered §dSoulJars §bAddon With §dSilkSpawners §bSupport");
             else System.out.println(prefix + " §bSuccessfully Registered §dSoulJars §bAddon");
@@ -58,8 +57,8 @@ public class SoulJars {
     }
 
     void registerSoul(EntityType type) {
-        String name = ChatUtils.humanize(type.name());
-        int souls = Config.get().getInt(ADDONSSETTINGS.getConfigPath() + "SoulJars.Souls-Required." + type, 128);
+        String name = humanize(type.name());
+        int souls = conf.getInt("Souls-Required." + type, 128);
         mobs.put(type, souls);
         Material mobEgg = Material.getMaterial(type + "_SPAWN_EGG");
         if (mobEgg == null) mobEgg = Material.ZOMBIE_SPAWN_EGG;

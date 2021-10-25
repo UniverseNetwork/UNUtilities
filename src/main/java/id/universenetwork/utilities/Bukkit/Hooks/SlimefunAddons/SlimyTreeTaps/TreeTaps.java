@@ -1,6 +1,5 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.SlimyTreeTaps;
 
-import id.universenetwork.utilities.Bukkit.Manager.Config;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -17,21 +16,21 @@ import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimeFunAddons.ADDONSSETTINGS;
-import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled;
-import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.addon;
+import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.*;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 
 public class TreeTaps {
-    final int amber_chance = Config.get().getInt(ADDONSSETTINGS.getConfigPath() + "SlimyTreeTaps.Amber-Chance");
-    final int standard_chance = Config.get().getInt(ADDONSSETTINGS.getConfigPath() + "SlimyTreeTaps.Resin-Chance.Standard");
-    final int reinforced_chance = Config.get().getInt(ADDONSSETTINGS.getConfigPath() + "SlimyTreeTaps.Resin-Chance.Reinforced");
-    final int diamond_chance = Config.get().getInt(ADDONSSETTINGS.getConfigPath() + "SlimyTreeTaps.Resin-Chance.Diamond");
+    final ConfigurationSection conf = Settings("SlimyTreeTaps");
+    final int amber_chance = conf.getInt("Amber-Chance");
+    final int standard_chance = conf.getInt("Resin-Chance.Standard");
+    final int reinforced_chance = conf.getInt("Resin-Chance.Reinforced");
+    final int diamond_chance = conf.getInt("Resin-Chance.Diamond");
 
     public TreeTaps() {
         if (Enabled("SlimyTreeTaps")) {

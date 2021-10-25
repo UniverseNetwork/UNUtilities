@@ -22,9 +22,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MaterialGenerator extends SlimefunItem {
-    private static final Map<BlockPosition, Integer> generatorProgress = new HashMap<>();
-    private int rate = 2;
-    private ItemStack item;
+    static final Map<BlockPosition, Integer> generatorProgress = new HashMap<>();
+    int rate = 2;
+    ItemStack item;
 
     @ParametersAreNonnullByDefault
     public MaterialGenerator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -49,7 +49,7 @@ public class MaterialGenerator extends SlimefunItem {
 
     public void tick(@NotNull Block b) {
         Block targetBlock = b.getRelative(BlockFace.UP);
-        if (targetBlock.getType() == Material.CHEST) {
+        if (targetBlock.getType().equals(Material.CHEST)) {
             BlockState state = PaperLib.getBlockState(targetBlock, false).getState();
             if (state instanceof InventoryHolder) {
                 Inventory inv = ((InventoryHolder) state).getInventory();

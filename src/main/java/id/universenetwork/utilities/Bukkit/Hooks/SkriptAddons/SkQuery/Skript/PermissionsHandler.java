@@ -12,15 +12,15 @@ import org.bukkit.permissions.PermissionAttachment;
 import java.util.HashMap;
 import java.util.UUID;
 
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static org.bukkit.Bukkit.getPluginManager;
 
 public class PermissionsHandler implements Listener {
     static boolean enabled = false;
     static final HashMap<UUID, PermissionAttachment> permissions = new HashMap<>();
 
     public static void enable() {
-        if (!enabled) getPluginManager().registerEvents(new PermissionsHandler(), plugin);
+        if (!enabled) registerListener(new PermissionsHandler());
         enabled = true;
     }
 

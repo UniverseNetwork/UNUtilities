@@ -4,26 +4,27 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 
 import java.util.UUID;
 
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getProtectionManager;
 import static io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.ATTACK_PLAYER;
 import static io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.BREAK_BLOCK;
-import static org.bukkit.Bukkit.*;
+import static org.bukkit.Bukkit.getOfflinePlayer;
+import static org.bukkit.Bukkit.getPlayer;
 import static org.bukkit.ChatColor.DARK_RED;
 import static org.bukkit.entity.EntityType.PRIMED_TNT;
 import static org.bukkit.event.EventPriority.LOW;
 
-public class TNTListener implements Listener {
+public class TNTListener implements org.bukkit.event.Listener {
     static final String METADATA_KEY = "hotbarpets_player";
 
     public TNTListener() {
-        getPluginManager().registerEvents(this, plugin);
+        registerListener(this);
     }
 
     @EventHandler
@@ -40,7 +41,7 @@ public class TNTListener implements Listener {
 
     @EventHandler(priority = LOW, ignoreCancelled = true)
     public void onTNTExplode(EntityExplodeEvent e) {
-        if (e.getEntityType() == PRIMED_TNT && e.getEntity().hasMetadata(METADATA_KEY)) {
+        if (e.getEntityType().equals(PRIMED_TNT) && e.getEntity().hasMetadata(METADATA_KEY)) {
             OfflinePlayer player = getOfflinePlayer((UUID) e.getEntity().getMetadata(METADATA_KEY).get(0).value());
             plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> e.getEntity().removeMetadata(METADATA_KEY, plugin), 4);
             e.blockList().removeIf(b -> !getProtectionManager().hasPermission(player, b, BREAK_BLOCK));

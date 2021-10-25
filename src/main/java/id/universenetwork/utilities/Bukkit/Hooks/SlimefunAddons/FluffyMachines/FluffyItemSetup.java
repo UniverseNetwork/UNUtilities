@@ -23,9 +23,6 @@ public final class FluffyItemSetup {
     static final ItemStack orangeGlass = new ItemStack(ORANGE_STAINED_GLASS);
     static final ItemStack brownGlass = new ItemStack(BROWN_STAINED_GLASS);
 
-    FluffyItemSetup() {
-    }
-
     public static void setup() {
         // Barrels
         new Barrel(fluffybarrels, SMALL_FLUFFY_BARREL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{new ItemStack(OAK_LOG), new ItemStack(BARREL), new ItemStack(OAK_LOG), new ItemStack(OAK_LOG), new ItemStack(BARREL), new ItemStack(OAK_LOG), new ItemStack(OAK_LOG), REINFORCED_PLATE, new ItemStack(OAK_LOG)}, "&eSmall Fluffy Barrel", Barrel.SMALL_BARREL_SIZE).register(addon);

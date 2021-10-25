@@ -15,7 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.List;
 import java.util.Map;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
 
 class JarsListener implements Listener {
     final SlimefunItem emptyJar;
@@ -23,7 +23,7 @@ class JarsListener implements Listener {
 
     public JarsListener(SoulJars Main) {
         this.Main = Main;
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        registerListener(this);
         this.emptyJar = SlimefunItem.getById("SOUL_JAR");
     }
 

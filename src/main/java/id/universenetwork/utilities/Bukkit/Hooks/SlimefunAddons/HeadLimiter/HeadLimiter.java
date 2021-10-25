@@ -9,7 +9,6 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 
 import java.util.concurrent.ExecutorService;
@@ -19,6 +18,7 @@ import java.util.concurrent.ThreadFactory;
 import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimeFunAddons.ADDONSSETTINGS;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Settings;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.get;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
@@ -27,13 +27,13 @@ import static me.mrCookieSlime.Slimefun.api.BlockStorage.clearBlockInfo;
 import static org.bukkit.Bukkit.getScheduler;
 import static org.bukkit.ChatColor.RED;
 
-public final class HeadLimiter implements Listener {
+public final class HeadLimiter implements org.bukkit.event.Listener {
     final ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("HeadLimiter-pool-%d").build();
     final ExecutorService executorService = Executors.newFixedThreadPool(get().getInt(ADDONSSETTINGS.getConfigPath() + "Thread-Pool-Size", 4), threadFactory);
 
     public HeadLimiter() {
         if (Enabled("HeadLimiter")) {
-            plugin.getServer().getPluginManager().registerEvents(this, plugin);
+            registerListener(this);
             new CountCommand(this);
             System.out.println(prefix + " §bSuccessfully Registered §dHeadLimiter §bAddon");
         }

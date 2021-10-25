@@ -1,12 +1,12 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.InfinityExpansion.Items.Gear;
 
 import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.CoolDowns;
-import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
+import io.github.thebusybiscuit.slimefun4.implementation.items.magical.runes.SoulboundRune;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -24,14 +24,20 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
-
 import org.jetbrains.annotations.Nullable;
+
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
 import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Scheduler.run;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 
+/**
+ * A VeinMiner rune, most code from {@link SoulboundRune}
+ *
+ * @author Mooy1
+ */
 public final class VeinMinerRune extends SlimefunItem implements Listener, NotPlaceable {
     static final String[] ALLOWED = {"_ORE", "_LOG", "_WOOD", "GILDED", "SOUL", "GRAVEL", "MAGMA", "OBSIDIAN", "DIORITE", "ANDESITE", "GRANITE", "_LEAVES", "GLASS", "DIRT", "GRASS", "DEBRIS", "GLOWSTONE"};
     static final double RANGE = 1.5;
@@ -43,7 +49,7 @@ public final class VeinMinerRune extends SlimefunItem implements Listener, NotPl
 
     public VeinMinerRune(ItemGroup itemGroup, SlimefunItemStack item, RecipeType type, ItemStack[] recipe) {
         super(itemGroup, item, type, recipe);
-        Events.registerListener(this);
+        registerListener(this);
     }
 
     @EventHandler
@@ -170,7 +176,7 @@ public final class VeinMinerRune extends SlimefunItem implements Listener, NotPl
     static void getVein(Set<Location> checked, Set<Block> found, Location l, Block b) {
         if (found.size() >= MAX) return;
         for (Location check : getAdjacentLocations(l))
-            if (checked.add(check) && check.getBlock().getType() == b.getType() && !BlockStorage.hasBlockInfo(b)) {
+            if (checked.add(check) && check.getBlock().getType().equals(b.getType()) && !BlockStorage.hasBlockInfo(b)) {
                 found.add(b);
                 getVein(checked, found, check, check.getBlock());
             }
