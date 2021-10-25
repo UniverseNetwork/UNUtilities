@@ -5,6 +5,7 @@ import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.server.level.PlayerChunkMap.EntityTracker;
 import net.minecraft.server.level.WorldServer;
 import net.minecraft.server.network.ServerPlayerConnection;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.boss.EntityComplexPart;
 import net.minecraft.world.entity.boss.enderdragon.EntityEnderDragon;
 import net.minecraft.world.entity.decoration.EntityArmorStand;
@@ -56,7 +57,7 @@ public class UntrackerTask extends BukkitRunnable {
         ChunkProviderServer cps = ws.getChunkProvider();
         try {
             for (EntityTracker et : cps.a.G.values()) {
-                net.minecraft.world.entity.Entity nmsEnt = (net.minecraft.world.entity.Entity) trackerField.get(et);
+                Entity nmsEnt = (Entity) trackerField.get(et);
                 if (nmsEnt instanceof EntityPlayer || nmsEnt instanceof EntityEnderDragon || nmsEnt instanceof EntityComplexPart)
                     continue;
                 if (nmsEnt instanceof EntityArmorStand && nmsEnt.getBukkitEntity().getCustomName() != null) continue;

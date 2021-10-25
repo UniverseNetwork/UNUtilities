@@ -1,11 +1,11 @@
 package id.universenetwork.utilities.Bukkit.NMS.v1_14_R1.Tasks;
 
 import net.minecraft.server.v1_14_R1.ChunkProviderServer;
+import net.minecraft.server.v1_14_R1.Entity;
 import net.minecraft.server.v1_14_R1.WorldServer;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_14_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_14_R1.entity.CraftEntity;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -32,11 +32,11 @@ public class CheckTask extends BukkitRunnable {
     public void checkWorld(String worldName) {
         WorldServer ws = ((CraftWorld) getWorld(worldName)).getHandle();
         ChunkProviderServer cps = ws.getChunkProvider();
-        Set<net.minecraft.server.v1_14_R1.Entity> trackAgain = new HashSet<>();
+        Set<Entity> trackAgain = new HashSet<>();
         int d = ETFInt(TRACKRANGE);
         for (Player player : getWorld(worldName).getPlayers())
-            for (Entity ent : player.getNearbyEntities(d, d, d)) {
-                net.minecraft.server.v1_14_R1.Entity nms = ((CraftEntity) ent).getHandle();
+            for (org.bukkit.entity.Entity ent : player.getNearbyEntities(d, d, d)) {
+                Entity nms = ((CraftEntity) ent).getHandle();
                 if (cps.playerChunkMap.trackedEntities.containsKey(nms.getId()) || !nms.valid) continue;
                 trackAgain.add(((CraftEntity) ent).getHandle());
             }

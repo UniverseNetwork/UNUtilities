@@ -2,6 +2,7 @@ package id.universenetwork.utilities.Bukkit.NMS.v1_17_R1;
 
 import net.minecraft.server.level.ChunkProviderServer;
 import net.minecraft.server.level.PlayerChunkMap;
+import net.minecraft.world.entity.Entity;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -15,27 +16,24 @@ public final class NMSEntityTracker {
 
     static {
         try {
-            addEntityMethod = getPrivateMethod(PlayerChunkMap.class, "addEntity", new Class[]{net.minecraft.world.entity.Entity.class});
-            removeEntityMethod = getPrivateMethod(PlayerChunkMap.class, "removeEntity", new Class[]{net.minecraft.world.entity.Entity.class});
+            addEntityMethod = getPrivateMethod(PlayerChunkMap.class, "addEntity", new Class[]{Entity.class});
+            removeEntityMethod = getPrivateMethod(PlayerChunkMap.class, "removeEntity", new Class[]{Entity.class});
         } catch (NoSuchMethodException | SecurityException | IllegalArgumentException e) {
             e.printStackTrace();
         }
     }
 
-    NMSEntityTracker() {
-    }
-
-    public static void trackEntities(ChunkProviderServer cps, Set<net.minecraft.world.entity.Entity> trackList) {
+    public static void trackEntities(ChunkProviderServer cps, Set<Entity> trackList) {
         try {
-            for (net.minecraft.world.entity.Entity entity : trackList) addEntityMethod.invoke(cps.a, entity);
+            for (Entity entity : trackList) addEntityMethod.invoke(cps.a, entity);
         } catch (SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
             e.printStackTrace();
         }
     }
 
-    public static void untrackEntities(ChunkProviderServer cps, Set<net.minecraft.world.entity.Entity> untrackList) {
+    public static void untrackEntities(ChunkProviderServer cps, Set<Entity> untrackList) {
         try {
-            for (net.minecraft.world.entity.Entity entity : untrackList) removeEntityMethod.invoke(cps.a, entity);
+            for (Entity entity : untrackList) removeEntityMethod.invoke(cps.a, entity);
         } catch (SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
             e.printStackTrace();
         }

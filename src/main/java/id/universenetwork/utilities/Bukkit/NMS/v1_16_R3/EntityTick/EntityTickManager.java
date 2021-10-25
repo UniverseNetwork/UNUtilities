@@ -1,25 +1,24 @@
 package id.universenetwork.utilities.Bukkit.NMS.v1_16_R3.EntityTick;
 
+import net.minecraft.server.v1_16_R3.Entity;
 import net.minecraft.server.v1_16_R3.EntityInsentient;
 import net.minecraft.server.v1_16_R3.MinecraftServer;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
-import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.world.ChunkLoadEvent;
 
 import java.util.Set;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static org.bukkit.Bukkit.getPluginManager;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
 
 public class EntityTickManager implements org.bukkit.event.Listener {
     static EntityTickManager instance;
 
     EntityTickManager() {
-        getPluginManager().registerEvents(this, plugin);
+        registerListener(this);
     }
 
-    public void disableTicking(net.minecraft.server.v1_16_R3.Entity entity) {
+    public void disableTicking(Entity entity) {
         if (entity == null) return;
         if (!entity.valid) return;
         entity.activatedTick = -2147483648L;
@@ -29,8 +28,8 @@ public class EntityTickManager implements org.bukkit.event.Listener {
         }
     }
 
-    public void enableTicking(Set<net.minecraft.server.v1_16_R3.Entity> entities) {
-        for (net.minecraft.server.v1_16_R3.Entity entity : entities) {
+    public void enableTicking(Set<Entity> entities) {
+        for (Entity entity : entities) {
             if (entity == null) continue;
             if (!entity.valid) continue;
             entity.activatedTick = MinecraftServer.currentTick;
@@ -41,8 +40,8 @@ public class EntityTickManager implements org.bukkit.event.Listener {
 
     @EventHandler
     public void onChunkLoad(ChunkLoadEvent event) {
-        for (Entity entity : event.getChunk().getEntities()) {
-            net.minecraft.server.v1_16_R3.Entity nms = ((CraftEntity) entity).getHandle();
+        for (org.bukkit.entity.Entity entity : event.getChunk().getEntities()) {
+            Entity nms = ((CraftEntity) entity).getHandle();
             if (nms instanceof EntityInsentient)
                 if (!((EntityInsentient) nms).aware) ((EntityInsentient) nms).aware = true;
         }

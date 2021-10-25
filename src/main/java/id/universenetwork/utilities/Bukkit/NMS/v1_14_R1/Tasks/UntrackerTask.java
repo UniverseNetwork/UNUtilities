@@ -42,14 +42,14 @@ public class UntrackerTask extends BukkitRunnable {
 
     void untrackProcess(String worldName) {
         if (getWorld(worldName) == null) return;
-        //Set<net.minecraft.server.v1_14_R1.Entity> toRemove = new HashSet<>();
+        //Set<Entity> toRemove = new HashSet<>();
         Set<Integer> toRemove = new HashSet<>();
         int removed = 0;
         WorldServer ws = ((CraftWorld) getWorld(worldName)).getHandle();
         ChunkProviderServer cps = ws.getChunkProvider();
         try {
             for (EntityTracker et : cps.playerChunkMap.trackedEntities.values()) {
-                net.minecraft.server.v1_14_R1.Entity nmsEnt = (net.minecraft.server.v1_14_R1.Entity) trackerField.get(et);
+                Entity nmsEnt = (Entity) trackerField.get(et);
                 if (nmsEnt instanceof EntityPlayer || nmsEnt instanceof EntityEnderDragon || nmsEnt instanceof EntityComplexPart)
                     continue;
                 if (nmsEnt instanceof EntityArmorStand && nmsEnt.getBukkitEntity().getCustomName() != null) continue;

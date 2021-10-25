@@ -50,7 +50,7 @@ public class UntrackerTask extends BukkitRunnable {
         ChunkProviderServer cps = ws.getChunkProvider();
         try {
             for (EntityTracker et : cps.playerChunkMap.trackedEntities.values()) {
-                net.minecraft.server.v1_16_R3.Entity nmsEnt = (net.minecraft.server.v1_16_R3.Entity) trackerField.get(et);
+                Entity nmsEnt = (Entity) trackerField.get(et);
                 if (nmsEnt instanceof EntityPlayer || nmsEnt instanceof EntityEnderDragon || nmsEnt instanceof EntityComplexPart)
                     continue;
                 if (nmsEnt instanceof EntityArmorStand && nmsEnt.getBukkitEntity().getCustomName() != null) continue;
