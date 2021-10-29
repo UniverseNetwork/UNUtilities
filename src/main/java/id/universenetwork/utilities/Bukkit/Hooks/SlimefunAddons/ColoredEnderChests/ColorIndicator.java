@@ -1,23 +1,15 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.ColoredEnderChests;
 
-import io.github.thebusybiscuit.slimefun4.utils.ColoredMaterial;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.EulerAngle;
-
-import java.util.Objects;
 
 final class ColorIndicator {
     static final double angle = Math.toRadians(345);
     static final double offset = -0.08;
-
-    ColorIndicator() {
-    }
 
     static void updateIndicator(Block b, int c1, int c2, int c3, int yaw) {
         removeIndicator(b);
@@ -29,15 +21,15 @@ final class ColorIndicator {
     }
 
     static void removeIndicator(Block b) {
-        for (Entity n : b.getChunk().getEntities())
+        for (org.bukkit.entity.Entity n : b.getChunk().getEntities())
             if (n instanceof ArmorStand && b.getLocation().add(0.5D, 0.5D, 0.5D).distanceSquared(n.getLocation()) < 0.75D && n.getCustomName() == null)
                 n.remove();
     }
 
     public static void createArmorStand(Location l, ItemStack item, EulerAngle arm, float yaw) {
         l.setYaw(yaw);
-        ArmorStand armorStand = (ArmorStand) l.getWorld().spawnEntity(l, EntityType.ARMOR_STAND);
-        Objects.requireNonNull(armorStand.getEquipment()).setItemInMainHand(item);
+        ArmorStand armorStand = (ArmorStand) l.getWorld().spawnEntity(l, org.bukkit.entity.EntityType.ARMOR_STAND);
+        armorStand.getEquipment().setItemInMainHand(item);
         armorStand.setVisible(false);
         armorStand.setSilent(true);
         armorStand.setMarker(true);
@@ -50,16 +42,13 @@ final class ColorIndicator {
     }
 
     static Material getWool(int index) {
-        return ColoredMaterial.WOOL.get(index);
+        return io.github.thebusybiscuit.slimefun4.utils.ColoredMaterial.WOOL.get(index);
     }
 
     static Location translocate(Location l, int yaw) {
-        if (yaw == 45) { // 0
-            return l.add(0.275 * 1, 0, 0);
-        } else if (yaw == 225) { // 180
-            return l.add(-0.275 * 1, 0, 0);
-        } else if (yaw == -45) { // -90
-            return l.add(0, 0, -0.275 * 1);
-        } else return l.add(0, 0, 0.275 * 1); // 90
+        if (yaw == 45) return l.add(0.275 * 1, 0, 0); // 0
+        else if (yaw == 225) return l.add(-0.275 * 1, 0, 0); // 180
+        else if (yaw == -45) return l.add(0, 0, -0.275 * 1); // -90
+        else return l.add(0, 0, 0.275 * 1); // 90
     }
 }
