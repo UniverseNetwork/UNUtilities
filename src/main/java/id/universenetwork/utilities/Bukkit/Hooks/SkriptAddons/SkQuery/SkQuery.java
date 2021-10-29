@@ -12,10 +12,10 @@ import java.util.Set;
 
 import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Addons.Enabled;
 import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Addons.addon;
+import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Registration.enableSnooper;
 import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.SQL.ScriptCredentials.clear;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
-import static org.bukkit.Bukkit.getPluginManager;
 
 public class SkQuery implements Listener {
     public static Boolean LIME_EDIT = true;
@@ -24,9 +24,8 @@ public class SkQuery implements Listener {
         if (Enabled("SkQuery")) {
             DynamicEnumTypes.register();
             addon.setLanguageFileDirectory("Lang");
-            Registration.enableSnooper();
-            getPluginManager().registerEvents(new FormattedSlotManager(), plugin);
-            getPluginManager().registerEvents(this, plugin);
+            enableSnooper();
+            registerListener(new FormattedSlotManager(), this);
             //new Documentation(this);
             System.out.println(prefix + " §bSuccessfully Registered §6SkQuery §bAddon");
         }

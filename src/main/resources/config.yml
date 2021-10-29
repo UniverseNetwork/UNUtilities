@@ -13,6 +13,7 @@ Settings:
   denyConsoleMessage: "%p% &cCommand ini hanya dapat dijalankan oleh player"
 
 Features:
+
   ## Anti Redstone Features
   AntiRedstone:
 
@@ -58,14 +59,14 @@ Features:
 
     # !!! -> IT MUST BE THE SAME AS IN THE BUNGEECORD config.yml UNDER 'host: '
     # !!! -> Please change your BungeeCord Address to your origin server address (e.g from your v- or rootserver). Example: 12.34.56.78
-    # Default: 0.0.0.0
-    address: 0.0.0.0
     # You can whitelist multiple bungeecord servers by splitting them with a ";"
     # Example: 33.44.55.66;1.23.45.56;5.6.77.88
+    # Default: 0.0.0.0
+    address: 0.0.0.0
 
     # The message if a player doesn't join over the whitelisted address
-    kickMessage: '&cHarap menggunakan ip &aplay.&buniverse&enetwork&6.id &cuntuk bergabung'
     # You can use %enter% to go to a new line
+    kickMessage: '&cHarap menggunakan ip &aplay.&buniverse&enetwork&6.id &cuntuk bergabung'
 
   ## Anti Zero Tick Farm Features
   AntiZeroTickFarm:
@@ -136,18 +137,18 @@ Features:
   ShopGUI+SilkSpawnersConnector:
     # Enable ShopGUI+ SilkSpawners Connector Features?
     # !!! -> You need ShopGUI+ and SilkSpawners to use this features
+    # !!! -> You must restart the server after change this settings
     # Default: false
     enabled: false
-    # !!! -> You must restart the server after change this settings
 
-  ## SlimeFun Addons Features
-  SlimeFunAddons:
+  ## Slimefun Addons Features
+  SlimefunAddons:
 
-    # Enable SlimeFun Addons Features?
+    # Enable Slimefun Addons Features?
     # !!! -> You need SlimeFun4 to use this features
+    # !!! -> You must restart the server after change this settings
     # Default: false
     enabled: false
-    # !!! -> You must restart the server after change this settings
 
     ## Addons List
     # !!! -> You have to restart the server after enabling or disabling addons
@@ -171,12 +172,14 @@ Features:
       HotbarPets: true
       ElectricSpawners: true
       InfinityExpansion: true
+      Bump: true
+      DynaTech: true
 
       # !!! -> This addon contains some bugs and is not recommended being activated
       MoreTools: false
 
       # !!! -> This addon can only be used on paper or all forks of paper
-      HeadLimiter: true
+      HeadLimiter: false
 
       # !!! -> You need ProtocolLib to use this addon
       SoundMuffler: true
@@ -253,10 +256,6 @@ Features:
 
       ## PotionExpansion Addon Settings
       PotionExpansion:
-
-        # Message if this addon is disabled
-        disabledMessage: '%p% &cFitur ini dinonaktifkan'
-
         Potions-Sight:
 
           # Duration of potion (in seconds).
@@ -441,10 +440,6 @@ Features:
 
       # SFMobDrops Addon Settings
       SFMobDrops:
-
-        # Message if this addon is disabled
-        disabledMessage: '%p% &cFitur ini dinonaktifkan'
-
         Drops:
           # This is a basic example
           - entity: ZOMBIE
@@ -505,10 +500,6 @@ Features:
 
       ## InfinityExpansion Addon Settings
       InfinityExpansion:
-
-        # Message if this addon is disabled
-        disabledMessage: '%p% &cFitur ini dinonaktifkan'
-
         balance-options:
 
           # Increases or decreases the cost of infinity singularities
@@ -619,6 +610,10 @@ Features:
             protection: 20
             thorns: 10
 
+      ## DynaTech Addon Settings
+      DynaTech:
+        disable-dimensionalhome-world: false
+
   ## Villager Optimization Features
   VillagerOptimization:
 
@@ -652,72 +647,8 @@ Features:
     # !!! -> You have to restart the server after enabling or disabling addons
     Addons:
 
-      # !!! -> You need PlaceholderAPI or  to use this addon
+      # !!! -> You need PlaceholderAPI or MVdWPlaceholderAPI to use this addon
       SkriptPlaceholders: true
-
-      SkQuery: true
-
-    ## Addons Settings
-    # Some addons may have settings that can be changed.
-    # !!! -> Some addon settings can only be applied after the server is restarted
-    Settings:
-
-      ## SkBee Addon Settings
-      SkBee:
-
-        # Welcome to SkBee
-        settings:
-
-          # Enable this if you would like to see more verbose debug messages
-          debug: false
-
-        # Disable elements you do not plan to use.
-        elements:
-
-          # Enable NBT elements
-          nbt: true
-
-          # Enable Scoreboard elements
-          scoreboard: true
-
-          # Enable custom recipe elements
-          # Note: Only available on 1.13+
-          recipe: true
-
-          # Enable bound elements
-          # Bounds are like custom world guard regions
-          bound: true
-
-          # Enable structure elements
-          # Note: Only available on 1.9.4+
-          structure: true
-
-          # Enable VirtualFurnace elements
-          # Note: Only available on 1.13+
-          # This feature is semi-experimental, please use with caution
-          virtual-furnace: false
-
-          # Enable Text Component elements
-          text-component: true
-
-          # Enable pathfinding elements
-          # Note: Only available on Paper 1.13+
-          pathfinding: true
-
-          # Enable world creator elements
-          world-creator: true
-
-          # Whether or not custom worlds should automatically load on server start
-          # If disabled, you will need to load worlds with the load world effect
-          auto-load-custom-worlds: true
-
-        recipe:
-
-          # This is the namespace all recipes will be saved under, you can choose whatever you wish
-          # Example, when using the minecraft recipe command `/minecraft:recipe give playerName skrecipe:my_custom_recipe
-          # If upgrading to this plugin from SkRecipe, keep this namespace as `skrecipe` to ensure previous recipes
-          # loaded to players will continue to work
-          namespace: "skrecipe"
 
   ## Anti Book Exploit Features
   AntiBookExploit:
@@ -758,17 +689,17 @@ Features:
     # commands or URLs which you wish to allow in books. The * wildcard is supported and will match any sequence
     # of characters. Be careful where to place it. '/*' for example will match any command and effectively disable
     # the check!
-    permitted_content:
-    #  - '/help'
-    #  - 'https://www.minecraft.net/*'
-
+    # permitted_content:
+    # - '/help'
+    # - 'https://www.minecraft.net/*'
+    #
     # Restricts all checks to selected worlds only. This value is optional and absent by default, which means
     # checks are active in all worlds. An empty list or null will enable checks in all worlds as well.
-    world_whitelist:
-    #  - world
-    #  - world_nether
-    #  - world_the_end
-
+    # world_whitelist:
+    # - world
+    # - world_nether
+    # - world_the_end
+    #
     # The message to notify a player that content was filtered from their book. Set to null or ~ to disable.
     # Possible values: any string, null, ~. Supports minecraft color codes using &, e.g. &4
     player_message: 'Illegal content was filtered from this book'
@@ -787,29 +718,6 @@ Features:
 
       # Message if the written book is filtered successfully
       success: '%p% &aVersi yang difilter dari buku ini telah ditambahkan ke inventory kamu'
-
-  ## Per-Player Keeper Features
-  Per-PlayerKeeper:
-
-    # Enable Per-Player Keeper Features?
-    # Default: false
-    enabled: false
-
-    # Message if this feature is disabled
-    disabledMessage: '%p% &cFitur ini dinonaktifkan'
-
-    # Message if /keep experience is executed
-    xpMessage: '%p% &eMode Keep Experience: %mode%'
-
-    # Message if /keep inventory is executed
-    invMessage: '%p% &eMode Keep Inventory: %mode%'
-
-  ## Fly Fixer Features
-  FlyFixer:
-
-    # Enable Fly Fixer Features?
-    # Default: false
-    enabled: false
 
   ## Pocket Shulker Features
   PocketShulker:
@@ -898,3 +806,97 @@ Features:
       - world
       - world_nether
       - world_the_end
+
+  ## Pillagers Limiter Features
+  PillagersLimiter:
+
+    # Enable Pillagers Limiter Features?
+    # Default: true
+    enabled: true
+
+    ## Stoppper
+    Stopper:
+
+      # Should we stop Pillagers from spawning anywhere? (overwrites Limiter)
+      Enabled: false
+
+      # Should we stop Pillager spawning when there is already x amount of Pillagers on the server instead of them all? (Needs stopped to be enabled)
+      Use-Hard-Limit: false
+      Hard-Limit-Amount: 25
+
+      # Should we ignore Pillager Leaders (Ones with banners) so players can still get the Bad Omen effect?
+      Ignore-Leaders: false
+
+      # Should we ignore named Pillagers?
+      Ignore-Named: false
+
+      # Should we ignore Pillagers that are part of a raid?
+      Ignore-Raiders: false
+
+    ## Limiter
+    Limiter:
+
+      # Should we limit Pillager spawns? (Needs stopper to be false)
+      Enabled: true
+
+      # What radius should be check for other Pillagers?
+      Radius-X: 48
+      Radius-Y: 32
+      Radius-Z: 48
+
+      # What amount of nearby Pillagers should we stop future Pillagers from spawning?
+      Stop-At-Amount: 6
+
+      # Should we ignore Pillager Leaders (Ones with banners) so players can still get the Bad Omen effect?
+      Ignore-Leaders: false
+
+      # Should we ignore named Pillagers?
+      Ignore-Named: false
+
+      # Should we ignore Pillagers that are part of a raid?
+      Ignore-Raiders: false
+
+    ## Remover
+    Remover:
+
+      # Should we also remove any Pillagers that are already in the world?
+      # Checks for Pillagers on the chunk load event and can be used with the Stopper or Limiter!
+      # I highly don't recommend using this. Only use if you need to.
+      Enabled: false
+
+      # Should we ignore Pillager Leaders (Ones with banners) so players can still get the Bad Omen effect?
+      Ignore-Leaders: false
+
+      # Should we ignore named Pillagers?
+      Ignore-Named: false
+
+    ## Patrol Remover
+    Patrol-Remover:
+
+      # Should we stop Patrols from spawning anywhere?
+      #
+      # !!! This is now a feature included in Paper !!!
+      #
+      # I'd recommend using that instead unless you only want to remove the target of the
+      # patrol mob then enable both here and disable the setting in paper
+      #
+      Enabled: true
+
+      # Should we ONLY remove the patrol mobs target to fix their lag but let patrols spawn and attack players like normal mobs? (Needs Enabled to be true)
+      # see https://www.youtube.com/watch?v=BJ0jzlzEhgo
+      Only-Remove-Target: true
+
+    ## Command Messages
+    Messages:
+
+      # Message for when you do /limitpillagers without the arg
+      Usage: "%p% &cUsage: /limitpillagers count/remove"
+
+      # Message for the count command showing how many Pillagers are alive on your server
+      Count: "%p% &7There is %count% Pillager(s) on the server!"
+
+      # Message for the remove command when you remove all Pillagers from the server
+      Remove: "%p% &aRemoved %amount% Pillager(s) from the server!"
+
+      # Message if this feature is disabled
+      Disabled: "%p% &cFitur ini dinonaktifkan"

@@ -1,10 +1,10 @@
-name: ${project.name}
-version: ${project.version}
+name: UNUtilities
+version: 1.6
 main: id.universenetwork.utilities.Bukkit.UNUtilities
 api-version: 1.16
 author: ARVIN3108 ID
-description: ${project.description}
-website: ${project.url}
+description: Utilities Features for UniverseNetwork
+website: https://universenetwork.id
 
 
 softdepend:
@@ -18,6 +18,7 @@ softdepend:
   - MVdWPlaceholderAPI
   - mcMMO
   - NoCheatPlus
+  - ExoticGarden
 
 
 provides:
@@ -54,57 +55,14 @@ provides:
   - BookExploitFix
   - InfinityExpansion
   - ShulkerPacks
-  - SkQuery
   - NoteBlockAPI
   - EntityTrackerFixer
   - HamsterAPI
+  - AvlPlus
+  - Bump
+  - DynaTech
+  - LimitPillagers
 
-
-commands:
-  universeutilities:
-    description: Main command for UNUtilities
-    aliases: [ unu, uu ]
-
-  hat:
-    description: Hat Command Features
-    permission: unutilities.command.hat
-
-  changeslots:
-    description: Max Player Changer Command Features
-    usage: /<command> <slots>
-    aliases: [ setslots ]
-    permission: unutilities.command.changeslots
-
-  potionexpansion:
-    description: PotionExpansion SlimeFun Addons Command
-    aliases: [ pe ]
-
-  mobdrops:
-    description: SFMobDrops SlimeFun Addons Command
-    aliases: [ sfmobdrops, mobdrop, sfmd ]
-
-  filter:
-    aliases: [ bookfilter, filterbook ]
-    usage: /<command>
-    description: Anti Book Exploit Command Features
-    permission: unutilities.command.filter
-
-  infinityexpansion:
-    description: Do /infinityexpansion help for a list of commands
-    usage: /infinityexpansion <subcommand>
-    aliases: [ ie, ix, infinity ]
-
-  headlimiter:
-    description: Basic HeadLimiter command
-    aliases: hl
-
-  aavlp:
-    description: Prevents UNUtilities from modifying villagers in the chunk the player is currently standing in (anti anti villager lag prevention)
-    permission: avlp.vanilla
-
-  vlp:
-    description: Tells you if the chunk you're in is using vanilla mechanics
-    permission: avlp.check
 
 permissions:
   unutilities.*:
@@ -122,6 +80,7 @@ permissions:
       - unutilities.command.hat
       - unutilities.command.changeslots
       - unutilities.command.filter
+      - unutilities.command.limitpillagers
       - avlp.vanilla
       - avlp.check
 
@@ -144,3 +103,7 @@ permissions:
   unutilities.command.filter:
     default: op
     description: Permission to use Anti Book Exploit Filter Command
+
+  unutilities.command.limitpillagers:
+    default: op
+    description: Permission to use /limitpillagers

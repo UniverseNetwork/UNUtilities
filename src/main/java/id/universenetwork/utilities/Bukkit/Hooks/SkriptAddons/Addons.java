@@ -1,7 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons;
 
 import ch.njol.skript.SkriptAddon;
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.SkQuery;
 import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders;
 import org.bukkit.configuration.ConfigurationSection;
 
@@ -19,7 +18,6 @@ public class Addons {
         System.out.println(prefix + " §6Found Skript. Registering Addons...");
         addon = registerAddon(plugin);
         new SkriptPlaceholders();
-        new SkQuery();
         System.out.println(prefix + " §aSuccessfully Registered All Enabled Addons to Skript");
     }
 

@@ -2,7 +2,7 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion
 
 import id.universenetwork.utilities.Bukkit.Manager.Config;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimeFunAddons.ADDONSSETTINGS;
+import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimefunAddons.ADDONSSETTINGS;
 
 public class Settings {
     static int potionDuration;

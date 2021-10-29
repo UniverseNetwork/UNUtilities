@@ -4,7 +4,6 @@ import id.universenetwork.utilities.Bukkit.Manager.Commands;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import org.bukkit.ChatColor;
 import org.bukkit.block.BlockState;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -25,12 +24,12 @@ public class CountCommand extends Commands {
     };
 
     public CountCommand(HeadLimiter Instance) {
-        super("headlimiter", "unutilities.command.headlimiter", true);
+        super("headlimiter", "Basic HeadLimiter command", true, "hl");
         INSTANCE = Instance;
     }
 
     @Override
-    public void Execute(CommandSender sender, Command command, String[] args) {
+    public void Execute(CommandSender sender, String[] args) {
         Player p = (Player) sender;
         final BlockState[] tileEntities = p.getChunk().getTileEntities();
         INSTANCE.executorService.submit(() -> {
@@ -54,7 +53,7 @@ public class CountCommand extends Commands {
     }
 
     @Override
-    public List<String> TabComplete(CommandSender sender, Command command, String str, String[] args) {
+    public List<String> TabComplete(CommandSender sender, String str, String[] args) {
         return emptyList();
     }
 }

@@ -11,14 +11,11 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 
-import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.addon;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 
 public class ChestTerminal {
     public ChestTerminal() {
-        if (Enabled("ChestTerminal")) {
+        if (id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled("ChestTerminal")) {
             SlimefunItemStack milkyQuartz = new SlimefunItemStack("MILKY_QUARTZ", Material.QUARTZ, "&fMilky Quartz");
             SlimefunItemStack ctPanel = new SlimefunItemStack("CT_PANEL", "7a44ff3a5f49c69cab676bad8d98a063fa78cfa61916fdef3e267557fec18283", "&3CT Illuminated Panel", "&7Crafting Component");
             SlimefunItemStack chestTerminal = new SlimefunItemStack("CHEST_TERMINAL", "7a44ff3a5f49c69cab676bad8d98a063fa78cfa61916fdef3e267557fec18283", "&3CT Access Terminal", "&7If this Block is connected to a", "&7Cargo Network, it will allow you to remotely", "&7interact with any Items supplied by", "&7Nodes tuned into the ChestTerminal Channel");
@@ -28,7 +25,7 @@ public class ChestTerminal {
             SlimefunItemStack wirelessTerminal64 = new SlimefunItemStack("CT_WIRELESS_ACCESS_TERMINAL_64", Material.ITEM_FRAME, "&3CT Wireless Access Terminal &b(64)", "&8\u21E8 &7Linked to: &cNowhere", "&8\u21E8 &7Range: &e64 Blocks", "&c&o&8\u21E8 &e\u26A1 &70 / 25 J", "", "&7If this Block is linked to an Access Terminal", "&7it will be able to remotely access that Terminal", "", "&7&eRight Click on an Access Terminal &7to link", "&7&eRight Click&7 to open the linked Terminal");
             SlimefunItemStack wirelessTerminal128 = new SlimefunItemStack("CT_WIRELESS_ACCESS_TERMINAL_128", Material.ITEM_FRAME, "&3CT Wireless Access Terminal &b(128)", "&8\u21E8 &7Linked to: &cNowhere", "&8\u21E8 &7Range: &e128 Blocks", "&c&o&8\u21E8 &e\u26A1 &70 / 50 J", "", "&7If this Block is linked to an Access Terminal", "&7it will be able to remotely access that Terminal", "", "&7&eRight Click on an Access Terminal &7to link", "&7&eRight Click&7 to open the linked Terminal");
             SlimefunItemStack wirelessTerminalTransdimensional = new SlimefunItemStack("CT_WIRELESS_ACCESS_TERMINAL_TRANSDIMENSIONAL", Material.ITEM_FRAME, "&3CT Wireless Access Terminal &b(Transdimensional)", "&8\u21E8 &7Linked to: &cNowhere", "&8\u21E8 &7Range: &eUnlimited", "&c&o&8\u21E8 &e\u26A1 &70 / 50 J", "", "&7If this Block is linked to an Access Terminal", "&7it will be able to remotely access that Terminal", "", "&7&eRight Click on an Access Terminal &7to link", "&7&eRight Click&7 to open the linked Terminal");
-            ItemGroup itemGroup = new ItemGroup(new NamespacedKey(plugin, "chest_terminal"), new CustomItemStack(chestTerminal, "&5Chest Terminal", "", "&a> Click to open"));
+            ItemGroup itemGroup = new ItemGroup(new NamespacedKey(id.universenetwork.utilities.Bukkit.UNUtilities.plugin, "chest_terminal"), new CustomItemStack(chestTerminal, "&5Chest Terminal", "", "&a> Click to open"));
             new SlimefunItem(itemGroup, milkyQuartz, RecipeType.GEO_MINER, new ItemStack[0]).register(addon);
             new SlimefunItem(itemGroup, ctPanel, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{milkyQuartz, SlimefunItems.BLISTERING_INGOT_3, milkyQuartz, SlimefunItems.REDSTONE_ALLOY, SlimefunItems.POWER_CRYSTAL, SlimefunItems.REDSTONE_ALLOY, milkyQuartz, SlimefunItems.BLISTERING_INGOT_3, milkyQuartz}).register(addon);
             new AccessTerminal(itemGroup, chestTerminal, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{milkyQuartz, SlimefunItems.GPS_TRANSMITTER_3, milkyQuartz, SlimefunItems.POWER_CRYSTAL, ctPanel, SlimefunItems.POWER_CRYSTAL, SlimefunItems.PLASTIC_SHEET, SlimefunItems.ENERGY_REGULATOR, SlimefunItems.PLASTIC_SHEET}).register(addon);
@@ -79,7 +76,7 @@ public class ChestTerminal {
                 }
             }.register(addon);
             new MilkyQuartz(milkyQuartz).register();
-            System.out.println(prefix + " §bSuccessfully Registered §dChestTerminal §bAddon");
+            System.out.println(id.universenetwork.utilities.Bukkit.UNUtilities.prefix + " §bSuccessfully Registered §dChestTerminal §bAddon");
         }
     }
 }

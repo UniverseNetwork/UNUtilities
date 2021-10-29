@@ -2,34 +2,22 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion
 
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion.API.Effects.EffectsManager;
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion.API.Effects.PotionSightEffect;
-import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion.API.Effects.PotionSightType;
-import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion.Settings;
-import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion.Utils.XRayUtil;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import static id.universenetwork.utilities.Bukkit.Manager.Color.Translator;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 
-public class EffectsTask extends BukkitRunnable {
+public class EffectsTask extends org.bukkit.scheduler.BukkitRunnable {
     public EffectsTask() {
-        runTaskTimer(plugin, 0L, 20L);
+        runTaskTimer(id.universenetwork.utilities.Bukkit.UNUtilities.plugin, 0L, 20L);
     }
 
     @Override
     public void run() {
-        for (Player player : Bukkit.getOnlinePlayers()) {
+        for (Player player : org.bukkit.Bukkit.getOnlinePlayers()) {
             if (EffectsManager.hasAnyEffect(player)) {
                 List<PotionSightEffect> effects = EffectsManager.getPlayerEffects(player);
                 effects.forEach(effect -> effect.setTime(effect.getTime() - 1));
@@ -41,13 +29,13 @@ public class EffectsTask extends BukkitRunnable {
         }
     }
 
-    public void showEffects(@NotNull Player player, boolean actionBar) {
+    public void showEffects(@org.jetbrains.annotations.NotNull Player player, boolean actionBar) {
         StringBuilder message = new StringBuilder();
         message.append(Translator("&aEffects: &e"));
         boolean first = true;
         for (PotionSightEffect potionSightEffect : EffectsManager.getPlayerEffects(player)) {
             SimpleDateFormat formatter = new SimpleDateFormat("mm'm' ss's'");
-            String formattedTime = formatter.format(new Date(potionSightEffect.getTime() * 1000L));
+            String formattedTime = formatter.format(new java.util.Date(potionSightEffect.getTime() * 1000L));
             if (first) {
                 message.append(ChatUtils.humanize(potionSightEffect.getType().toString()) + " ");
                 message.append(Translator("&aTime: &e" + formattedTime));
@@ -57,17 +45,17 @@ public class EffectsTask extends BukkitRunnable {
                 message.append(Translator("&aTime: &e" + formattedTime));
             }
         }
-        if (actionBar) {
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message.toString()));
-        } else player.sendMessage(message.toString());
+        if (actionBar)
+            player.spigot().sendMessage(net.md_5.bungee.api.ChatMessageType.ACTION_BAR, net.md_5.bungee.api.chat.TextComponent.fromLegacyText(message.toString()));
+        else player.sendMessage(message.toString());
     }
 
-    @ParametersAreNonnullByDefault
     void tick(Player player, List<PotionSightEffect> effects) {
         for (PotionSightEffect effect : effects) {
-            PotionSightType type = effect.getType();
-            for (Material ore : type.getOres())
-                if (ore != null) XRayUtil.showPathsToMaterial(player, ore, type.getColor(), Settings.getSearchRadius());
+            id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion.API.Effects.PotionSightType type = effect.getType();
+            for (org.bukkit.Material ore : type.getOres())
+                if (ore != null)
+                    id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion.Utils.XRayUtil.showPathsToMaterial(player, ore, type.getColor(), id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion.Settings.getSearchRadius());
         }
     }
 }

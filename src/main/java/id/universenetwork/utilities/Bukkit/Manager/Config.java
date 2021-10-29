@@ -28,10 +28,6 @@ public class Config {
         }
         prefix = Config.Settings(Settings.PREFIX);
         getLogger().info(prefix + " §aConfig Manager have been prepared");
-        Data.setup();
-        Proxy.setup();
-        new BookExploitHandler();
-        ETF.setup();
     }
 
     public static ConfigBuilder get() {
@@ -134,7 +130,7 @@ public class Config {
 
     // SlimeFun Addons Features Category
     public static boolean SFABoolean() {
-        return get().getBoolean(SlimeFunAddons.ENABLED.getConfigPath());
+        return get().getBoolean(SlimefunAddons.ENABLED.getConfigPath());
     }
 
 
@@ -217,5 +213,19 @@ public class Config {
 
     public static List<String> ETFStringList(EntityTrackerFixer s) {
         return get().getStringList(s.getConfigPath());
+    }
+
+
+    // Pillagers Limiter Category
+    public static String PLString(PillagersLimiter s) {
+        return Translator(get().getString(s.getConfigPath()));
+    }
+
+    public static boolean PLBoolean(PillagersLimiter s) {
+        return get().getBoolean(s.getConfigPath());
+    }
+
+    public static int PLInt(PillagersLimiter s) {
+        return get().getInt(s.getConfigPath());
     }
 }

@@ -2,7 +2,6 @@ package id.universenetwork.utilities.Bukkit.Commands;
 
 import id.universenetwork.utilities.Bukkit.Filters.BookFilter;
 import org.bukkit.Material;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -16,12 +15,12 @@ public class Filter extends id.universenetwork.utilities.Bukkit.Manager.Commands
     final BookFilter bookFilter;
 
     public Filter(BookFilter bookFilter) {
-        super("filter", "unutilities.command.filter", true);
+        super("filter", "Anti Book Exploit Command Features", "unutilities.command.filter", true, "bookfilter", "filterbook");
         this.bookFilter = bookFilter;
     }
 
     @Override
-    public void Execute(CommandSender sender, Command command, String[] args) {
+    public void Execute(CommandSender sender, String[] args) {
         if (ABEEnabled()) {
             final Player p = (Player) sender;
             final ItemStack b = p.getInventory().getItemInMainHand();
@@ -38,7 +37,7 @@ public class Filter extends id.universenetwork.utilities.Bukkit.Manager.Commands
     }
 
     @Override
-    public java.util.List<String> TabComplete(CommandSender sender, Command command, String str, String[] args) {
+    public java.util.List<String> TabComplete(CommandSender sender, String str, String[] args) {
         return java.util.Collections.emptyList();
     }
 }

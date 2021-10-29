@@ -2,7 +2,7 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MoreTools;
 
 import java.util.Objects;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimeFunAddons.ADDONSSETTINGS;
+import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimefunAddons.ADDONSSETTINGS;
 import static id.universenetwork.utilities.Bukkit.Manager.Color.Translator;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.get;
 

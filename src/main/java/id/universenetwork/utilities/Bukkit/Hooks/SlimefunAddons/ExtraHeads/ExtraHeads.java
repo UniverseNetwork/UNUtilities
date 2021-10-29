@@ -8,32 +8,25 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.EnumMap;
 import java.util.Map;
-import java.util.logging.Level;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimeFunAddons.ADDONSSETTINGS;
+import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimefunAddons.ADDONSSETTINGS;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.get;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 import static io.github.thebusybiscuit.slimefun4.api.MinecraftVersion.*;
 import static io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getMinecraftVersion;
-import static io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead.getItemStack;
-import static io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin.fromHashCode;
-import static io.github.thebusybiscuit.slimefun4.utils.ChatUtils.humanize;
-import static org.bukkit.Bukkit.getLogger;
-import static org.bukkit.Material.IRON_SWORD;
 
 public class ExtraHeads {
-    final Map<EntityType, ItemStack> mobs = new EnumMap<>(EntityType.class);
+    final Map<EntityType, ItemStack> mobs = new java.util.EnumMap<>(EntityType.class);
     ItemGroup itemGroup;
     RecipeType recipeType;
 
     public ExtraHeads() {
         if (Enabled("ExtraHeads")) {
-            itemGroup = new ItemGroup(new NamespacedKey(plugin, "heads"), new CustomItemStack(getItemStack(fromHashCode("5f1379a82290d7abe1efaabbc70710ff2ec02dd34ade386bc00c930c461cf932")), "&7Extra Heads", "", "&a> Click to open"), 1);
-            recipeType = new RecipeType(new NamespacedKey(plugin, "decapitation"), new CustomItemStack(IRON_SWORD, "&6Kill the specified Mob"));
+            itemGroup = new ItemGroup(new NamespacedKey(plugin, "heads"), new CustomItemStack(io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead.getItemStack(io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin.fromHashCode("5f1379a82290d7abe1efaabbc70710ff2ec02dd34ade386bc00c930c461cf932")), "&7Extra Heads", "", "&a> Click to open"), 1);
+            recipeType = new RecipeType(new NamespacedKey(plugin, "decapitation"), new CustomItemStack(org.bukkit.Material.IRON_SWORD, "&6Kill the specified Mob"));
             registerHead("Bat Head", EntityType.BAT, "2796aa6d18edc5b724bd89e983bc3215a41bf775d112635e9b5835d1b8ad20cb");
             registerHead("Blaze Head", EntityType.BLAZE, "b78ef2e4cf2c41a2d14bfde9caff10219f5b1bf5b35a49eb51c6467882cb5f0");
             registerHead("Cave Spider Head", EntityType.CAVE_SPIDER, "41645dfd77d09923107b3496e94eeb5c30329f97efc96ed76e226e98224");
@@ -104,9 +97,9 @@ public class ExtraHeads {
         try {
             double chance = get().getOrSetDefault(ADDONSSETTINGS.getConfigPath() + "ExtraHeads.Chances." + type.toString(), 5.0);
             SlimefunItemStack item = new SlimefunItemStack(type + "_HEAD", texture, "&r" + name);
-            new MobHead(itemGroup, item, recipeType, new CustomItemStack(item, "&rKill 1 " + humanize(type.name()), "&7Chance: &e" + chance + "%")).register(() -> mobs.put(type, item));
+            new MobHead(itemGroup, item, recipeType, new CustomItemStack(item, "&rKill 1 " + io.github.thebusybiscuit.slimefun4.utils.ChatUtils.humanize(type.name()), "&7Chance: &e" + chance + "%")).register(() -> mobs.put(type, item));
         } catch (Exception x) {
-            getLogger().log(Level.WARNING, x, () -> prefix + " §eCould not load Mob Head for Entity: " + type);
+            org.bukkit.Bukkit.getLogger().log(java.util.logging.Level.WARNING, x, () -> prefix + " §eCould not load Mob Head for Entity: " + type);
         }
     }
 

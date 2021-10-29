@@ -4,26 +4,28 @@ import id.universenetwork.utilities.Bukkit.Enums.Features.MaxPlayerChangerComman
 import id.universenetwork.utilities.Bukkit.Manager.Commands;
 import id.universenetwork.utilities.Bukkit.Manager.Config;
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 import static id.universenetwork.utilities.Bukkit.Manager.Config.MPCCMessage;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 
 public class ChangeSlots extends Commands {
-    private Field maxPlayersField;
+    Field maxPlayersField;
 
     public ChangeSlots() {
-        super("changeslots", "unutilities.command.changeslots", false);
+        super("ChangeSlots", "Max Player Changer Command Features", "unutilities.command.changeslots", false, "setslots");
+        List<String> alias = new ArrayList<>();
+        alias.add("setslots");
+        setAliases(alias);
     }
 
     @Override
-    public void Execute(CommandSender sender, Command command, String[] args) {
+    public void Execute(CommandSender sender, String[] args) {
         if (Config.MPCCBoolean(MaxPlayerChangerCommand.ENABLED)) {
             if (args.length == 1) {
                 try {
@@ -43,11 +45,11 @@ public class ChangeSlots extends Commands {
     }
 
     @Override
-    public List<String> TabComplete(CommandSender sender, Command command, String str, String[] args) {
-        return Collections.emptyList();
+    public List<String> TabComplete(CommandSender sender, String str, String[] args) {
+        return java.util.Collections.emptyList();
     }
 
-    private void changeSlots(int slots) throws ReflectiveOperationException {
+    void changeSlots(int slots) throws ReflectiveOperationException {
         Method serverGetHandle = plugin.getServer().getClass().getDeclaredMethod("getHandle");
         Object playerList = serverGetHandle.invoke(plugin.getServer());
         if (maxPlayersField == null) {
@@ -56,7 +58,7 @@ public class ChangeSlots extends Commands {
         maxPlayersField.setInt(playerList, slots);
     }
 
-    private Field getMaxPlayersField(Object playerList) throws ReflectiveOperationException {
+    Field getMaxPlayersField(Object playerList) throws ReflectiveOperationException {
         Class playerListClass = playerList.getClass().getSuperclass();
         try {
             Field field = playerListClass.getDeclaredField("maxPlayers");

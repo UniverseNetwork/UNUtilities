@@ -4,7 +4,6 @@ import id.universenetwork.utilities.Bukkit.Enums.Features.PerPlayerKeeper;
 import id.universenetwork.utilities.Bukkit.Manager.Commands;
 import id.universenetwork.utilities.Bukkit.Manager.Config;
 import id.universenetwork.utilities.Bukkit.Manager.Data;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ public class Keep extends Commands {
     }
 
     @Override
-    public void Execute(CommandSender sender, Command command, String[] args) {
+    public void Execute(CommandSender sender, String[] args) {
         if (args.length == 1) {
             if (args[0].equalsIgnoreCase("inventory") || args[0].equalsIgnoreCase("inv")) {
                 List<String> keepINV = Data.get().getStringList("keepINV");
@@ -43,12 +42,12 @@ public class Keep extends Commands {
                     Data.set("keepXP", keepXP);
                     sendTranslate(sender, Config.PPKMessage(PerPlayerKeeper.XPMESSAGE).replaceAll("%mode%", "&aOFF"));
                 }
-            } else sendHelp(sender, command);
-        } else sendHelp(sender, command);
+            } else sendHelp(sender);
+        } else sendHelp(sender);
     }
 
     @Override
-    public List<String> TabComplete(CommandSender sender, Command command, String str, String[] args) {
+    public List<String> TabComplete(CommandSender sender, String str, String[] args) {
         if (args.length == 1) {
             List<String> arg = new ArrayList<>();
             arg.add("inventory");
@@ -58,10 +57,10 @@ public class Keep extends Commands {
         return Collections.emptyList();
     }
 
-    void sendHelp(CommandSender sender, Command cmd) {
+    void sendHelp(CommandSender sender) {
         sendTranslate(sender, "&b&lU&e&lN&9&lUtilities");
         sendTranslate(sender, "");
-        sendTranslate(sender, "&d/" + cmd.getName() + " inventory");
-        sendTranslate(sender, "&d/" + cmd.getName() + " experience");
+        sendTranslate(sender, "&d/" + getName() + " inventory");
+        sendTranslate(sender, "&d/" + getName() + " experience");
     }
 }

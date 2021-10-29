@@ -1,13 +1,13 @@
 package id.universenetwork.utilities.Bukkit.Enums.Features;
 
-public enum SlimeFunAddons {
+public enum SlimefunAddons {
     // SlimeFun Addons Variable Settings
-    ENABLED("Features.SlimeFunAddons.enabled"),
-    ADDONS("Features.SlimeFunAddons.Addons."),
-    ADDONSSETTINGS("Features.SlimeFunAddons.Settings.");
+    ENABLED("Features.SlimefunAddons.enabled"),
+    ADDONS("Features.SlimefunAddons.Addons."),
+    ADDONSSETTINGS("Features.SlimefunAddons.Settings.");
     final String configPath;
 
-    SlimeFunAddons(String configPath) {
+    SlimefunAddons(String configPath) {
         this.configPath = configPath;
     }
 

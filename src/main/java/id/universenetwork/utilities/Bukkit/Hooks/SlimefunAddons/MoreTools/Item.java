@@ -7,7 +7,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimeFunAddons.ADDONSSETTINGS;
+import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimefunAddons.ADDONSSETTINGS;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.get;
 
 public class Item {

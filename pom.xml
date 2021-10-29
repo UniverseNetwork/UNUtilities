@@ -138,6 +138,14 @@
             <id>CodeMC</id>
             <url>https://repo.codemc.org/repository/maven-public</url>
         </repository>
+        <repository>
+            <id>mineacademy-repo</id>
+            <url>https://bitbucket.org/mineacademy/libraries/raw/master</url>
+        </repository>
+        <repository>
+            <id>shanebeestudios-repo</id>
+            <url>https://shanebeestudios.com/maven/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -300,6 +308,12 @@
             <version>1.17.1</version>
             <scope>system</scope>
             <systemPath>${basedir}/lib/spigot-1.17.1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.github.TheBusyBiscuit</groupId>
+            <artifactId>ExoticGarden</artifactId>
+            <version>master</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

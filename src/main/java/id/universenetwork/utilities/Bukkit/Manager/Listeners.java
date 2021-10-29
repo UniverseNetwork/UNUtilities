@@ -13,11 +13,10 @@ public final class Listeners {
                 new AntiRedstoneListener(),
                 new ArmorStandArmsAdderListener(),
                 new AddressWhitelisterListener(),
-                //new FlyFixerListener(),
-                //new PerPlayerKeeperListener(),
-                new AntiZeroTickFarmListener()
+                new AntiZeroTickFarmListener(),
+                new PillagersLimiterListener()
         );
         if (Config.PSBoolean(PocketShulker.ENABLED)) registerListener(new PocketShulkerListener());
-        System.out.println(prefix + " §aAll Events Successfully Registered");
+        System.out.println(prefix + " §aAll Listeners Successfully Registered");
     }
 }

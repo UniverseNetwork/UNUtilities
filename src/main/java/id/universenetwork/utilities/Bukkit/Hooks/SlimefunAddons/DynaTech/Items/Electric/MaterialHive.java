@@ -5,6 +5,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -12,7 +13,9 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MaterialHive extends id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.Items.Electric.Abstracts.AMachine implements io.github.thebusybiscuit.slimefun4.core.attributes.Radioactive {
+import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.DynaTechItems.*;
+
+public class MaterialHive extends id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.Items.Electric.Abstracts.AMachine implements io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem, io.github.thebusybiscuit.slimefun4.core.attributes.Radioactive {
     static final int[] BORDER = new int[]{0, 1, 2, 6, 7, 8, 31, 36, 37, 38, 39, 40, 41, 42, 43, 44};
     static final int[] BORDER_IN = new int[]{9, 10, 11, 12, 18, 21, 27, 28, 29, 30};
     static final int[] BORDER_OUT = new int[]{14, 15, 16, 17, 23, 26, 32, 33, 34, 35};
@@ -29,49 +32,43 @@ public class MaterialHive extends id.universenetwork.utilities.Bukkit.Hooks.Slim
 
     @Override
     public MachineRecipe findNextRecipe(me.mrCookieSlime.Slimefun.api.inventory.BlockMenu inv) {
-        ItemStack key = inv.getItemInSlot(getInputSlots()[2]);
-        if (key == null || key.getAmount() != 64) return null;
-        ItemStack output;
-
-        // Check if its a valid key and get output
-        SlimefunItem sfItem = SlimefunItem.getByItem(key);
-        if (sfItem != null && slimefunItemsAccepted.getValue().contains(sfItem.getId()))
-            output = sfItem.getItem().clone();
-        else if (vanillaItemsAccepted.getValue().contains(key.getType().toString()))
-            output = new ItemStack(key.getType());
-        else return null;
-        int seconds = 1800;
-        ItemStack b1 = inv.getItemInSlot(getInputSlots()[0]);
-        Bee bee1 = null;
-
-        // Check 1st bee
-        if (b1 != null) {
-            SlimefunItem bee = SlimefunItem.getByItem(b1);
-            if (bee instanceof Bee) {
-                bee1 = (Bee) bee;
-
-                // Subtract time
-                seconds -= bee1.getSpeedMultipler() * b1.getAmount();
+        for (MachineRecipe recipe : recipes) {
+            ItemStack input = recipe.getInput()[0];
+            ItemStack key = inv.getItemInSlot(getInputSlots()[2]);
+            if (SlimefunUtils.isItemSimilar(key, input, true) && key.getAmount() == 64) {
+                int seconds = 1800;
+                ItemStack b1 = inv.getItemInSlot(getInputSlots()[0]);
+                ItemStack b2 = inv.getItemInSlot(getInputSlots()[1]);
+                if (b1 != null) {
+                    SlimefunItem bee1 = SlimefunItem.getByItem(b1);
+                    if (bee1 instanceof Bee) seconds -= ((Bee) bee1).getSpeedMultipler() * b1.getAmount();
+                }
+                if (b2 != null) {
+                    SlimefunItem bee2 = SlimefunItem.getByItem(b2);
+                    if (bee2 instanceof Bee) seconds -= ((Bee) bee2).getSpeedMultipler() * b2.getAmount();
+                    if (SlimefunUtils.isItemSimilar(b1, b2, true) && b1.getAmount() == 64 && b2.getAmount() == 64) {
+                        if (bee2.getId().equals(BEE.getItemId())) seconds = 1500;
+                        if (bee2.getId().equals(ROBOTIC_BEE.getItemId())) seconds = 900;
+                        if (bee2.getId().equals(ADVANCED_ROBOTIC_BEE.getItemId())) seconds = 300;
+                    }
+                }
+                return new MachineRecipe(seconds, recipe.getInput(), recipe.getOutput());
             }
         }
+        return null;
+    }
 
-        ItemStack b2 = inv.getItemInSlot(getInputSlots()[1]);
-
-        // Check 2nd bee
-        if (b2 != null) {
-            SlimefunItem bee = SlimefunItem.getByItem(b2);
-            if (bee instanceof Bee) {
-                Bee bee2 = (Bee) bee;
-
-                // Subtract time
-                seconds -= bee2.getSpeedMultipler() * b2.getAmount();
-
-                // If same type and both max stack size, add 32 bees worth of boost
-                if (bee1 == bee2 && b1.getAmount() == 64 && b2.getAmount() == 64)
-                    seconds -= bee1.getSpeedMultipler() * 32;
-            }
+    @Override
+    public void registerDefaultRecipes() {
+        for (String slimefunItem : getDefaultAllowedSlimefunItems()) {
+            ItemStack item = SlimefunItem.getById(slimefunItem).getItem().clone();
+            item.setAmount(64);
+            registerRecipe(new MachineRecipe(1800, new ItemStack[]{item}, new ItemStack[]{SlimefunItem.getById(slimefunItem).getItem()}));
         }
-        return new MachineRecipe(seconds, new ItemStack[]{id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.DynaTechItems.BEE, key}, new ItemStack[]{output});
+        for (String material : getDefaultAllowedVanillaItems()) {
+            ItemStack item = new ItemStack(Material.matchMaterial(material), 64);
+            registerRecipe(new MachineRecipe(1800, new ItemStack[]{item}, new ItemStack[]{new ItemStack(Material.matchMaterial(material))}));
+        }
     }
 
     @Override
@@ -144,7 +141,7 @@ public class MaterialHive extends id.universenetwork.utilities.Bukkit.Hooks.Slim
         // Alloys
         sfItemsAllowed.add("STEEL_INGOT");
         sfItemsAllowed.add("DURALUMIN_INGOT");
-        sfItemsAllowed.add("BILLION_INGOT");
+        sfItemsAllowed.add("BILLON_INGOT");
         sfItemsAllowed.add("BRASS_INGOT");
         sfItemsAllowed.add("ALUMINUM_BRASS_INGOT");
         sfItemsAllowed.add("ALUMINUM_BRONZE_INGOT");

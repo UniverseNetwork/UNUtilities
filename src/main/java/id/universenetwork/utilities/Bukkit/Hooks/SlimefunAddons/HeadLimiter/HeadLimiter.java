@@ -15,11 +15,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimeFunAddons.ADDONSSETTINGS;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Settings;
 import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
-import static id.universenetwork.utilities.Bukkit.Manager.Config.get;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 import static me.mrCookieSlime.Slimefun.api.BlockStorage.check;
@@ -29,7 +27,7 @@ import static org.bukkit.ChatColor.RED;
 
 public final class HeadLimiter implements org.bukkit.event.Listener {
     final ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("HeadLimiter-pool-%d").build();
-    final ExecutorService executorService = Executors.newFixedThreadPool(get().getInt(ADDONSSETTINGS.getConfigPath() + "Thread-Pool-Size", 4), threadFactory);
+    final ExecutorService executorService = Executors.newFixedThreadPool(Settings("HeadLimiter").getInt("Thread-Pool-Size", 4), threadFactory);
 
     public HeadLimiter() {
         if (Enabled("HeadLimiter")) {

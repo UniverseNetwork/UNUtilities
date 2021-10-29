@@ -41,7 +41,7 @@ public class AntigravityBubble extends id.universenetwork.utilities.Bukkit.Hooks
         for (Entity entity : bubbledEntities)
             if (entity instanceof Player) {
                 Player p = (Player) entity;
-                if (!p.getAllowFlight()) {
+                if (!p.getAllowFlight() && p.hasPermission("unutilities.use.antigravitybubble")) {
                     enabledPlayers.add(p.getUniqueId());
                     p.setAllowFlight(true);
                     removeCharge(b.getLocation(), getEnergyConsumption());

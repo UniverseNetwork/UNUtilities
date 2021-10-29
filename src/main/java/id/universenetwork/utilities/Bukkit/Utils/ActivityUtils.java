@@ -193,12 +193,15 @@ public class ActivityUtils {
     }
 
     public static void replaceBadMemories(Villager villager) {
-        if (villager.getMemory(MemoryKey.HOME) == null)
-            villager.setMemory(MemoryKey.HOME, new Location(villager.getWorld(), villager.getLocation().getBlockX(), -10000, villager.getLocation().getBlockZ()));
-        if (villager.getMemory(MemoryKey.JOB_SITE) == null && !IGNORE_JOB_SITE_VERSIONS.contains(VERSION))
-            villager.setMemory(MemoryKey.JOB_SITE, new Location(villager.getWorld(), villager.getLocation().getBlockX(), -10000, villager.getLocation().getBlockZ()));
-        if (villager.getMemory(MemoryKey.MEETING_POINT) == null)
-            villager.setMemory(MemoryKey.MEETING_POINT, new Location(villager.getWorld(), villager.getLocation().getBlockX(), -10000, villager.getLocation().getBlockZ()));
+        try {
+            if (villager.getMemory(MemoryKey.HOME) == null)
+                villager.setMemory(MemoryKey.HOME, new Location(villager.getWorld(), villager.getLocation().getBlockX(), -10000, villager.getLocation().getBlockZ()));
+            if (villager.getMemory(MemoryKey.JOB_SITE) == null && !IGNORE_JOB_SITE_VERSIONS.contains(VERSION))
+                villager.setMemory(MemoryKey.JOB_SITE, new Location(villager.getWorld(), villager.getLocation().getBlockX(), -10000, villager.getLocation().getBlockZ()));
+            if (villager.getMemory(MemoryKey.MEETING_POINT) == null)
+                villager.setMemory(MemoryKey.MEETING_POINT, new Location(villager.getWorld(), villager.getLocation().getBlockX(), -10000, villager.getLocation().getBlockZ()));
+        } catch (NullPointerException ignore) {
+        }
     }
 
     public static boolean isPlaceholderMemory(Villager villager, MemoryKey<Location> memoryKey) {
@@ -207,12 +210,15 @@ public class ActivityUtils {
     }
 
     public static void clearPlaceholderMemories(Villager villager) {
-        if (villager.getMemory(MemoryKey.HOME) != null && isPlaceholderMemory(villager, MemoryKey.HOME))
-            villager.setMemory(MemoryKey.HOME, null);
-        if (villager.getMemory(MemoryKey.JOB_SITE) != null && isPlaceholderMemory(villager, MemoryKey.JOB_SITE))
-            villager.setMemory(MemoryKey.JOB_SITE, null);
-        if (villager.getMemory(MemoryKey.MEETING_POINT) != null && isPlaceholderMemory(villager, MemoryKey.MEETING_POINT))
-            villager.setMemory(MemoryKey.MEETING_POINT, null);
+        try {
+            if (villager.getMemory(MemoryKey.HOME) != null && isPlaceholderMemory(villager, MemoryKey.HOME))
+                villager.setMemory(MemoryKey.HOME, null);
+            if (villager.getMemory(MemoryKey.JOB_SITE) != null && isPlaceholderMemory(villager, MemoryKey.JOB_SITE))
+                villager.setMemory(MemoryKey.JOB_SITE, null);
+            if (villager.getMemory(MemoryKey.MEETING_POINT) != null && isPlaceholderMemory(villager, MemoryKey.MEETING_POINT))
+                villager.setMemory(MemoryKey.MEETING_POINT, null);
+        } catch (NullPointerException ignore) {
+        }
     }
 
     public static boolean isScheduleNormal(Villager villager) {

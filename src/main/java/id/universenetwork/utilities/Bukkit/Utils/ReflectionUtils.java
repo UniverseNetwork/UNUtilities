@@ -5,9 +5,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public final class ReflectionUtils {
-    ReflectionUtils() {
-    }
-
     public static Object getPrivateField(Class<?> clazz, Object obj, String fieldName) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
         Field field = clazz.getDeclaredField(fieldName);
         field.setAccessible(true);

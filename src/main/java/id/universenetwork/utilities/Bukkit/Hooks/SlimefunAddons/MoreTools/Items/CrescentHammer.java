@@ -36,7 +36,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimeFunAddons.ADDONSSETTINGS;
+import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimefunAddons.ADDONSSETTINGS;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.get;
 import static io.github.thebusybiscuit.slimefun4.implementation.Slimefun.*;
 import static io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.BREAK_BLOCK;

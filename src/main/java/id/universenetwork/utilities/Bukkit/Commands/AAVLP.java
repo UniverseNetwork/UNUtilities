@@ -3,7 +3,6 @@ package id.universenetwork.utilities.Bukkit.Commands;
 import id.universenetwork.utilities.Bukkit.Manager.Commands;
 import org.bukkit.Chunk;
 import org.bukkit.NamespacedKey;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.libs.it.unimi.dsi.fastutil.longs.LongOpenHashSet;
 import org.bukkit.craftbukkit.libs.it.unimi.dsi.fastutil.longs.LongSet;
@@ -29,12 +28,12 @@ public class AAVLP extends Commands {
     final boolean Enabled;
 
     public AAVLP(boolean Enabled) {
-        super("aavlp", "avlp.vanilla", true);
+        super("aavlp", "Prevents UNUtilities from modifying villagers in the chunk the player is currently standing in (anti anti villager lag prevention)", "avlp.vanilla", true);
         this.Enabled = Enabled;
     }
 
     @Override
-    public void Execute(CommandSender sender, Command command, String[] args) {
+    public void Execute(CommandSender sender, String[] args) {
         if (Enabled) {
             Player player = (Player) sender;
             Chunk chunk = player.getLocation().getChunk();
@@ -76,7 +75,7 @@ public class AAVLP extends Commands {
     }
 
     @Override
-    public List<String> TabComplete(CommandSender sender, Command command, String str, String[] args) {
+    public List<String> TabComplete(CommandSender sender, String str, String[] args) {
         return emptyList();
     }
 }

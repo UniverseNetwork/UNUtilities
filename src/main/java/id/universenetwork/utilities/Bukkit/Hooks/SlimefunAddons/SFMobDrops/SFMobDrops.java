@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.common.ChatColors;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -19,34 +18,29 @@ import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimeFunAddons.ADDONSSETTINGS;
-import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled;
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
-import static id.universenetwork.utilities.Bukkit.Manager.Config.get;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 
-public class SFMobDrops implements Listener {
+public class SFMobDrops implements org.bukkit.event.Listener {
     static SFMobDrops instance;
     final Set<Drop> drops = new HashSet<>();
     public static boolean enabled;
 
     public SFMobDrops() {
-        enabled = Enabled("SFMobDrops");
-        if (enabled) {
+        if (id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled("SFMobDrops")) {
             instance = this;
             loadConfig();
-            registerListener(this, new Guis());
+            id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener(this, new Guis());
+            new MobDropsCommand();
             System.out.println(prefix + " §bSuccessfully Registered §dSFMobDrops §bAddon");
         }
-        plugin.getCommand("mobdrops").setExecutor(new MobDropsCommand());
     }
 
     protected void loadConfig() {
         final Set<Drop> newSet = new HashSet<>();
 
         // No Inspection Unchecked
-        final List<Map<String, Object>> list = (List<Map<String, Object>>) get().getList(ADDONSSETTINGS.getConfigPath() + "SFMobDrops.Drops");
+        final List<Map<String, Object>> list = (List<Map<String, Object>>) id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Settings("SFMobDrops").getList("Drops");
         if (list == null || list.isEmpty()) return;
         for (Map<String, Object> map : list) {
 

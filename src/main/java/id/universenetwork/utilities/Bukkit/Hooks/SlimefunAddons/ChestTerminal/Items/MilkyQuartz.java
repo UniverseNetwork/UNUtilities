@@ -1,22 +1,17 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.ChestTerminal.Items;
 
-import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
 import org.bukkit.NamespacedKey;
-import org.bukkit.World.Environment;
-import org.bukkit.block.Biome;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.concurrent.ThreadLocalRandom;
+import static java.util.concurrent.ThreadLocalRandom.current;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-
-public class MilkyQuartz implements GEOResource {
+public class MilkyQuartz implements io.github.thebusybiscuit.slimefun4.api.geo.GEOResource {
     final NamespacedKey key;
     final ItemStack item;
 
     public MilkyQuartz(ItemStack item) {
-        this.key = new NamespacedKey(plugin, "milky_quartz");
+        this.key = new NamespacedKey(id.universenetwork.utilities.Bukkit.UNUtilities.plugin, "milky_quartz");
         this.item = item;
     }
 
@@ -27,14 +22,14 @@ public class MilkyQuartz implements GEOResource {
     }
 
     @Override
-    public int getDefaultSupply(Environment environment, @NotNull Biome biome) {
+    public int getDefaultSupply(org.bukkit.World.Environment environment, @NotNull org.bukkit.block.Biome biome) {
         switch (environment) {
             case THE_END:
                 return 0;
             case NETHER:
-                return ThreadLocalRandom.current().nextInt(12);
+                return current().nextInt(12);
             default:
-                return ThreadLocalRandom.current().nextInt(8);
+                return current().nextInt(8);
         }
     }
 

@@ -1,6 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DyedBackpacks;
 
-import id.universenetwork.utilities.Bukkit.Enums.Features.SlimeFunAddons;
+import id.universenetwork.utilities.Bukkit.Enums.Features.SlimefunAddons;
 import id.universenetwork.utilities.Bukkit.Manager.Config;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -47,6 +47,6 @@ public class DyedBackpacks {
     }
 
     boolean backpacks(String Name) {
-        return Config.get().getBoolean(SlimeFunAddons.ADDONSSETTINGS.getConfigPath() + "DyedBackpacks.Backpacks." + Name);
+        return Config.get().getBoolean(SlimefunAddons.ADDONSSETTINGS.getConfigPath() + "DyedBackpacks.Backpacks." + Name);
     }
 }
