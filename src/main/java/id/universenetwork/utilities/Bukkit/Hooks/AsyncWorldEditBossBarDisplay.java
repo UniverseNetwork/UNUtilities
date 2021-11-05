@@ -1,44 +1,35 @@
 package id.universenetwork.utilities.Bukkit.Hooks;
 
-import id.universenetwork.utilities.Bukkit.Manager.Config;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import id.universenetwork.utilities.Bukkit.UNUtilities;
 import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
-import org.bukkit.entity.Player;
 import org.primesoft.asyncworldedit.api.IAsyncWorldEdit;
 import org.primesoft.asyncworldedit.api.playerManager.IPlayerEntry;
-import org.primesoft.asyncworldedit.api.progressDisplay.IProgressDisplay;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.HashMap;
-import java.util.UUID;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+import static id.universenetwork.utilities.Bukkit.Manager.Config.AWEBDMessage;
+import static org.bukkit.Bukkit.*;
 
-public class AsyncWorldEditBossBarDisplay implements IProgressDisplay {
-    final HashMap<UUID, BossBar> bossBars = new HashMap<>();
+public class AsyncWorldEditBossBarDisplay implements org.primesoft.asyncworldedit.api.progressDisplay.IProgressDisplay {
+    final HashMap<java.util.UUID, BossBar> bossBars = new HashMap<>();
+    static final IAsyncWorldEdit awe = (IAsyncWorldEdit) getPluginManager().getPlugin("AsyncWorldEdit");
 
     public static void hooks() {
-        System.out.println(prefix + " §6Found AsyncWorldEdit. Hooking...");
-        IAsyncWorldEdit awe = (IAsyncWorldEdit) Bukkit.getPluginManager().getPlugin("AsyncWorldEdit");
+        System.out.println(UNUtilities.prefix + " §6Found AsyncWorldEdit. Hooking...");
         awe.getProgressDisplayManager().registerProgressDisplay(new AsyncWorldEditBossBarDisplay());
-        System.out.println(prefix + " §aSuccessfully hooked with AsyncWorldEdit");
+        System.out.println(UNUtilities.prefix + " §aSuccessfully hooked with AsyncWorldEdit");
     }
 
     public static void unhooks() {
-        System.out.println(prefix + " §6Unhooking with AsyncWorldEdit...");
-        IAsyncWorldEdit awe = (IAsyncWorldEdit) Bukkit.getPluginManager().getPlugin("AsyncWorldEdit");
+        System.out.println(UNUtilities.prefix + " §6Unhooking with AsyncWorldEdit...");
         awe.getProgressDisplayManager().unregisterProgressDisplay(new AsyncWorldEditBossBarDisplay());
-        System.out.println(prefix + " §cSuccessfully unhooked with AsyncWorldEdit");
+        System.out.println(UNUtilities.prefix + " §cSuccessfully unhooked with AsyncWorldEdit");
     }
 
     @Override
     public String getName() {
-        return plugin.getName();
+        return UNUtilities.plugin.getName();
     }
 
     @Override
@@ -51,25 +42,20 @@ public class AsyncWorldEditBossBarDisplay implements IProgressDisplay {
 
     @Override
     public void setMessage(IPlayerEntry player, int jobsCount, int queuedBlocks, int maxQueuedBlocks, double timeLeft, double placingSpeed, double percentage) {
-        Player p = Bukkit.getPlayer(player.getUUID());
+        org.bukkit.entity.Player p = getPlayer(player.getUUID());
         BossBar bossBar;
-        if (this.bossBars.containsKey(player.getUUID())) {
-            bossBar = bossBars.get(player.getUUID());
-        } else {
-            BarColor color = BarColor.valueOf(Config.AWEBDMessage(id.universenetwork.utilities.Bukkit.Enums.Features.AsyncWorldEditBossBarDisplay.COLOR));
-            bossBar = Bukkit.createBossBar("", color, BarStyle.SOLID);
+        if (this.bossBars.containsKey(player.getUUID())) bossBar = bossBars.get(player.getUUID());
+        else {
+            BarColor color = BarColor.valueOf(AWEBDMessage(id.universenetwork.utilities.Bukkit.Enums.Features.AsyncWorldEditBossBarDisplay.COLOR));
+            bossBar = createBossBar("", color, org.bukkit.boss.BarStyle.SOLID);
             bossBar.addPlayer(p);
         }
-
-        if (!bossBar.getPlayers().contains(Bukkit.getPlayer(player.getUUID()))) {
-            bossBar.addPlayer(p);
-        }
-
+        if (!bossBar.getPlayers().contains(getPlayer(player.getUUID()))) bossBar.addPlayer(p);
         double progress = Math.max(0.0D, Math.min(1.0D, percentage / 100.0D));
         bossBar.setProgress(progress);
-        NumberFormat nf = new DecimalFormat("#.##");
-        String format = Config.AWEBDMessage(id.universenetwork.utilities.Bukkit.Enums.Features.AsyncWorldEditBossBarDisplay.TITLE);
-        format = ChatColor.translateAlternateColorCodes('&', format == null ? "ETA: $timeLeft seconds, Speed: $placingSpeed block/sec, $percentage %" : format);
+        java.text.NumberFormat nf = new java.text.DecimalFormat("#.##");
+        String format = AWEBDMessage(id.universenetwork.utilities.Bukkit.Enums.Features.AsyncWorldEditBossBarDisplay.TITLE);
+        format = id.universenetwork.utilities.Bukkit.Manager.Color.Translator(format == null ? "ETA: $timeLeft seconds, Speed: $placingSpeed block/sec, $percentage %" : format);
         format = format.replace("$jobsCount", jobsCount + "").replace("$queuedBlocks", queuedBlocks + "").replace("$maxQueuedBlocks", maxQueuedBlocks + "").replace("$timeLeft", nf.format(timeLeft)).replace("$placingSpeed", nf.format(placingSpeed)).replace("$percentage", nf.format(percentage));
         bossBar.setTitle(format);
         bossBar.setVisible(true);
