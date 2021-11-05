@@ -32,7 +32,7 @@ public class MobCannon extends SimpleSlimefunItem<ItemUseHandler> {
         };
     }
 
-    private boolean consumeAmmo(Player p, MobPellet pellet) {
+    boolean consumeAmmo(Player p, MobPellet pellet) {
         if (p.getGameMode() == GameMode.CREATIVE) return true;
         for (ItemStack item : p.getInventory()) {
             if (pellet.isItem(item)) {

@@ -48,6 +48,7 @@ public class Addons implements SlimefunAddon {
         new id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.InfinityExpansion.InfinityExpansion();
         new id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Bump.Bump();
         new id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.DynaTech();
+        new id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FlowerPower.FlowerPowerPlugin();
         System.out.println(prefix + " §aSuccessfully Registered All Enabled Addons to Slimefun");
     }
 

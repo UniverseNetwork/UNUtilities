@@ -30,7 +30,7 @@ public class AntiZeroTickFarmListener implements Listener {
         if (AZTFBoolean(AntiZeroTickFarm.ENABLED)) breakPlantsAbove(e.getBlocks());
     }
 
-    private void breakPlantsBeside(Block block, BlockFace direction) {
+    void breakPlantsBeside(Block block, BlockFace direction) {
 
         for (Block b : getNearbyBlocks(block, direction)) {
             if (b.getType() == Material.CACTUS) {
@@ -40,7 +40,7 @@ public class AntiZeroTickFarmListener implements Listener {
 
     }
 
-    private void breakPlantsAbove(List<Block> blockList) {
+    void breakPlantsAbove(List<Block> blockList) {
         for (Block block : blockList) {
             Block target = block.getRelative(BlockFace.UP);
             if (target.getBlockData() instanceof Ageable) {
@@ -50,7 +50,7 @@ public class AntiZeroTickFarmListener implements Listener {
 
     }
 
-    private List<Block> getNearbyBlocks(Block block, BlockFace direction) {
+    List<Block> getNearbyBlocks(Block block, BlockFace direction) {
         List<Block> blocks = new ArrayList();
         blocks.add(block.getRelative(direction).getRelative(direction));
         switch (direction) {

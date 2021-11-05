@@ -64,7 +64,7 @@ public class AlchemicStation extends MultiBlockMachine {
     }
 
     @Nullable
-    private AlchemicRecipe checkRecipe(@NotNull Inventory input) {
+    AlchemicRecipe checkRecipe(@NotNull Inventory input) {
         ItemStack ingredient = input.getItem(INGREDIENT_SLOT);
 
         if (ingredient != null) {
@@ -80,7 +80,7 @@ public class AlchemicStation extends MultiBlockMachine {
         return null;
     }
 
-    private List<Block> getWhiteGlassBlocks(@NotNull Block block) {
+    List<Block> getWhiteGlassBlocks(@NotNull Block block) {
         List<Block> list = new ArrayList<>();
         if (block.getRelative(BlockFace.NORTH).getType() == Material.WHITE_STAINED_GLASS) {
             list.add(block.getRelative(BlockFace.NORTH));
@@ -96,7 +96,7 @@ public class AlchemicStation extends MultiBlockMachine {
     }
 
     @ParametersAreNonnullByDefault
-    private void startAnimation(AlchemicRecipe recipe, Inventory dispInv, Block b, List<Block> glassBlocks) {
+    void startAnimation(AlchemicRecipe recipe, Inventory dispInv, Block b, List<Block> glassBlocks) {
         for (int i = 0; i < 10; i++) {
             int j = i;
             PotionExpansion.runSync(() -> {
@@ -118,20 +118,20 @@ public class AlchemicStation extends MultiBlockMachine {
     }
 
     @ParametersAreNonnullByDefault
-    private void brew(AlchemicRecipe recipe, Inventory dispInv) {
+    void brew(AlchemicRecipe recipe, Inventory dispInv) {
         for (int i = POTION_1_SLOT; i < POTION_3_SLOT + 1; i++) {
             if (checkPotionSlot(recipe, dispInv.getItem(i))) dispInv.setItem(i, recipe.getOutput());
         }
     }
 
     @ParametersAreNonnullByDefault
-    private boolean anyValidPotionSlot(AlchemicRecipe recipe, Inventory dispInv) {
+    boolean anyValidPotionSlot(AlchemicRecipe recipe, Inventory dispInv) {
         for (int i = POTION_1_SLOT; i < POTION_3_SLOT + 1; i++)
             if (checkPotionSlot(recipe, dispInv.getItem(i))) return true;
         return false;
     }
 
-    private boolean checkPotionSlot(@NotNull AlchemicRecipe recipe, @Nullable ItemStack item) {
+    boolean checkPotionSlot(@NotNull AlchemicRecipe recipe, @Nullable ItemStack item) {
         if (item != null && item.getType() == Material.POTION && item.hasItemMeta()) {
             PotionMeta meta = (PotionMeta) item.getItemMeta();
             return meta.getBasePotionData().getType() == recipe.getPotion();

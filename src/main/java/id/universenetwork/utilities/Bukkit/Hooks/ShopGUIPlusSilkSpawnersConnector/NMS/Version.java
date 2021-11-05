@@ -18,7 +18,7 @@ public enum Version {
     v1_16,
     v1_17;
 
-    private static final Pattern ONE_POINT_VERSION_NUMBER_PATTERN = Pattern.compile("v\\d_(\\d+)");
+    static final Pattern ONE_POINT_VERSION_NUMBER_PATTERN = Pattern.compile("v\\d_(\\d+)");
 
     public int extractVersionNumber() {
         Matcher matcher = ONE_POINT_VERSION_NUMBER_PATTERN.matcher(this.name());

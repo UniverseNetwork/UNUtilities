@@ -1,31 +1,30 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons;
 
-import ch.njol.skript.SkriptAddon;
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders;
+import id.universenetwork.utilities.Bukkit.Enums.Features.SkriptAddons;
+import id.universenetwork.utilities.Bukkit.UNUtilities;
 import org.bukkit.configuration.ConfigurationSection;
 
-import static ch.njol.skript.Skript.registerAddon;
-import static id.universenetwork.utilities.Bukkit.Enums.Features.SkriptAddons.ADDONS;
-import static id.universenetwork.utilities.Bukkit.Enums.Features.SkriptAddons.ADDONSSETTINGS;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.get;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 
 public class Addons {
-    public static SkriptAddon addon;
+    public static ch.njol.skript.SkriptAddon addon;
 
     public static void setup() {
-        System.out.println(prefix + " §6Found Skript. Registering Addons...");
-        addon = registerAddon(plugin);
-        new SkriptPlaceholders();
-        System.out.println(prefix + " §aSuccessfully Registered All Enabled Addons to Skript");
+        System.out.println(UNUtilities.prefix + " §6Found Skript. Registering Addons...");
+        addon = ch.njol.skript.Skript.registerAddon(UNUtilities.plugin);
+        new id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders();
+        new id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptVotifierHook.SkriptVotifierHook();
+        new id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkWhitelist.SkWhitelist();
+        new id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.BungeeAddon.BungeeAddon();
+        new id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkMusic.SkMusic();
+        System.out.println(UNUtilities.prefix + " §aSuccessfully Registered All Enabled Addons to Skript");
     }
 
     public static ConfigurationSection Settings(String AddonName) {
-        return get().getConfigurationSection(ADDONSSETTINGS.getConfigPath() + AddonName);
+        return get().getConfigurationSection(SkriptAddons.ADDONSSETTINGS.getConfigPath() + AddonName);
     }
 
     public static boolean Enabled(String AddonName) {
-        return get().getBoolean(ADDONS.getConfigPath() + AddonName);
+        return get().getBoolean(SkriptAddons.ADDONS.getConfigPath() + AddonName);
     }
 }

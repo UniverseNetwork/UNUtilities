@@ -315,5 +315,17 @@
             <version>master</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.NuVotifier</groupId>
+            <artifactId>NuVotifier</artifactId>
+            <version>master</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.DevLeoko</groupId>
+            <artifactId>AdvancedBan</artifactId>
+            <version>143d044</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>

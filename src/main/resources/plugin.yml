@@ -19,6 +19,7 @@ softdepend:
   - mcMMO
   - NoCheatPlus
   - ExoticGarden
+  - Votifier
 
 
 provides:
@@ -62,6 +63,11 @@ provides:
   - Bump
   - DynaTech
   - LimitPillagers
+  - FlowerPower
+  - skript-votifier-hook
+  - skWhitelist
+  - BungeeAddon
+  - SkMusic
 
 
 permissions:

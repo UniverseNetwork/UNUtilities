@@ -7,7 +7,7 @@ public enum Settings {
     RELOAD("Settings.reloadMessage"),
     DENYCONSOLE("Settings.denyConsoleMessage");
 
-    private final String configPath;
+    final String configPath;
 
     Settings(String configPath) {
         this.configPath = configPath;

@@ -74,7 +74,7 @@ public class Collect {
         }
     }
 
-    private static ArrayList<File> getListFiles(File root, final FilenameFilter filter, ArrayList<File> toAdd) {
+    static ArrayList<File> getListFiles(File root, final FilenameFilter filter, ArrayList<File> toAdd) {
         for (File f : root.listFiles()) {
             if (f.isDirectory()) toAdd.addAll(getListFiles(f, filter, toAdd));
             else if (filter.accept(f, f.getName())) toAdd.add(f);

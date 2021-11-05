@@ -20,7 +20,7 @@ import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 
 public class AsyncWorldEditBossBarDisplay implements IProgressDisplay {
-    private final HashMap<UUID, BossBar> bossBars = new HashMap<>();
+    final HashMap<UUID, BossBar> bossBars = new HashMap<>();
 
     public static void hooks() {
         System.out.println(prefix + " §6Found AsyncWorldEdit. Hooking...");

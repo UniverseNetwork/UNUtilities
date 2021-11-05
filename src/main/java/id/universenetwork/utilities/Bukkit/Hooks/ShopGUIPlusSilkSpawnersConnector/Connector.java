@@ -10,7 +10,7 @@ import org.bukkit.Bukkit;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 
 public class Connector {
-    private static SilkSpawnersProvider spawnerProvider;
+    static SilkSpawnersProvider spawnerProvider;
 
     public static void hooks() {
         System.out.println(prefix + " §6Found SilkSpawners & ShopGUI+. Hooking...");
@@ -19,7 +19,7 @@ public class Connector {
             System.out.println(prefix + " §aSuccessfully hooked with SilkSpawners as Spawner Provider from ShopGUI+");
     }
 
-    private static void hookIntoSilkSpawners() {
+    static void hookIntoSilkSpawners() {
         if (usingLegacySilkSpawners()) {
             spawnerProvider = new SilkSpawners5Provider();
         } else {
@@ -28,7 +28,7 @@ public class Connector {
         spawnerProvider.hookIntoSilkSpawners(Bukkit.getPluginManager().getPlugin("SilkSpawners"));
     }
 
-    private static boolean hookIntoShopGui() {
+    static boolean hookIntoShopGui() {
         try {
             ShopGuiPlusApi.registerSpawnerProvider(spawnerProvider);
             return true;
@@ -38,7 +38,7 @@ public class Connector {
         }
     }
 
-    private static boolean usingLegacySilkSpawners() {
+    static boolean usingLegacySilkSpawners() {
         String version = Bukkit.getPluginManager().getPlugin("SilkSpawners").getDescription().getVersion();
         int versionMajorNumber;
         try {

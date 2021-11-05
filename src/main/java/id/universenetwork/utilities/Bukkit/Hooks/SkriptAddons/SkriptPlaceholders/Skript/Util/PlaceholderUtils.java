@@ -6,7 +6,7 @@ import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.Nullable;
 
 import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders.hasMVdW;
-import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders.hasPapi;
+import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders.hasPAPI;
 
 public class PlaceholderUtils {
     @Nullable
@@ -18,7 +18,7 @@ public class PlaceholderUtils {
                 return value.equals(placeholder) ? null : (colorize ? Color.Translator(value) : value);
             }
         }
-        if (hasPapi) {
+        if (hasPAPI) {
             // Try to add percentage signs manually
             if (placeholder.indexOf('%') == -1) placeholder = "%" + placeholder + "%";
             value = PlaceholderAPI.setPlaceholders(player, placeholder);

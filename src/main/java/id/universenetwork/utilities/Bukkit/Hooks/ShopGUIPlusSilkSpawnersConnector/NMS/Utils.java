@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utils {
-    private static final Pattern MINECRAFT_SHORT_VERSION_PATTERN = Pattern.compile("(v\\d_\\d+)");
+    static final Pattern MINECRAFT_SHORT_VERSION_PATTERN = Pattern.compile("(v\\d_\\d+)");
 
     public static boolean isNmsVersionAtLeast(Version requiredNmsVersion) {
         Version currentVersion = readNmsVersion();
@@ -18,11 +18,11 @@ public class Utils {
         return !isNmsVersionAtLeast(maximalNmsVersion);
     }
 
-    private static Version readNmsVersion() {
+    static Version readNmsVersion() {
         return parseShortNmsVersion(extractNmsVersion(MINECRAFT_SHORT_VERSION_PATTERN));
     }
 
-    private static String extractNmsVersion(Pattern pattern) {
+    static String extractNmsVersion(Pattern pattern) {
         String nmsClasspath = Bukkit.getServer().getClass().getPackage().getName();
         Matcher matcher = pattern.matcher(nmsClasspath);
         if (matcher.find()) {
@@ -32,7 +32,7 @@ public class Utils {
         }
     }
 
-    private static Version parseShortNmsVersion(String version) {
+    static Version parseShortNmsVersion(String version) {
         try {
             return Version.valueOf(version);
         } catch (IllegalArgumentException var3) {

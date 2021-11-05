@@ -57,7 +57,7 @@ public final class Util {
     }
 
     @Nullable
-    private static Enchantment enchantmentByPath(@NotNull String path) {
+    static Enchantment enchantmentByPath(@NotNull String path) {
         switch (path) {
             case "sharpness":
                 return Enchantment.DAMAGE_ALL;

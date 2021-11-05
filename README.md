@@ -66,3 +66,7 @@
 - [SkriptPlaceholders](http://github.com/APickledWalrus/skript-placeholders/releases) (Require [PlaceholderAPI](http://spigotmc.org/resources/6245) or [MVdWPlaceholderAPI](http://spigotmc.org/resources/11182))
 - [SkQuery](http://github.com/SkQuery/SkQuery/releases) **[Under Construction]**
 - [SkBee](http://github.com/ShaneBeee/SkBee/releases) **[Under Construction]**
+- [SkWhitelist](http://github.com/tim740/skWhitelist/releases)
+- [BungeeAddon](http://github.com/Pikachu920/BungeeAddon/releases)
+- [SkUniversal](http://spigotmc.org/resources/45392) **[Under Construction]**
+- [SkMusic](http://spigotmc.org/resources/34625)

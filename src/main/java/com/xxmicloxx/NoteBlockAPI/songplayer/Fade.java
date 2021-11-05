@@ -58,8 +58,9 @@ public class Fade {
      *
      * @param type FadeType
      */
-    public void setType(FadeType type) {
+    public Fade setType(FadeType type) {
         this.type = type;
+        return this;
     }
 
     /**
@@ -76,8 +77,9 @@ public class Fade {
      *
      * @param fadeDuration duration in ticks
      */
-    public void setFadeDuration(int fadeDuration) {
+    public Fade setFadeDuration(int fadeDuration) {
         this.fadeDuration = fadeDuration;
+        return this;
     }
 
     protected byte getFadeStart() {

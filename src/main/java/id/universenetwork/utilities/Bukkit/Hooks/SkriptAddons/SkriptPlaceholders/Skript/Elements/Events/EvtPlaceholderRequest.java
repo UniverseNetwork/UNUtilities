@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders.hasMVdW;
-import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders.hasPapi;
+import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders.hasPAPI;
 
 public class EvtPlaceholderRequest extends SkriptEvent {
     static {
@@ -52,7 +52,7 @@ public class EvtPlaceholderRequest extends SkriptEvent {
     public boolean init(Literal<?>[] args, int matchedPattern, ParseResult parseResult) {
         switch (matchedPattern) { // Installation Check
             case PLACEHOLDERAPI:
-                if (!hasPapi) {
+                if (!hasPAPI) {
                     Skript.error("PlaceholderAPI is required to register PlaceholderAPI placeholders.", ErrorQuality.SEMANTIC_ERROR);
                     return false;
                 }

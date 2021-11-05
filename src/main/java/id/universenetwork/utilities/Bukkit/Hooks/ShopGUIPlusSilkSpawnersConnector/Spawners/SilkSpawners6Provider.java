@@ -67,7 +67,7 @@ public class SilkSpawners6Provider implements SilkSpawnersProvider {
         return entityType;
     }
 
-    private EntityType getEntityTypeFromStringWithoutUnderScores(String entityTypeName) {
+    EntityType getEntityTypeFromStringWithoutUnderScores(String entityTypeName) {
         EntityType[] v2 = EntityType.values();
         int v3 = v2.length;
 
@@ -80,7 +80,7 @@ public class SilkSpawners6Provider implements SilkSpawnersProvider {
         return null;
     }
 
-    private void loadEntityTypes() {
+    void loadEntityTypes() {
         entityTypesMap = HashBiMap.create();
         if (Utils.isNmsVersionLowerThan(Version.v1_16)) {
             entityTypesMap.put(EntityType.valueOf("PIG_ZOMBIE"), "zombie_pigman");
