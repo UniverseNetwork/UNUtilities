@@ -1,25 +1,18 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Elements.Conditions;
 
 import ch.njol.skript.conditions.base.PropertyCondition;
-import ch.njol.skript.conditions.base.PropertyCondition.PropertyType;
-import ch.njol.skript.doc.Name;
-import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser.ParseResult;
-import ch.njol.util.Kleenean;
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Annotations.Description;
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Annotations.Patterns;
 import org.bukkit.event.Event;
 
-@Name("Is Prime")
-@Description("Checks whether or not a number is prime.")
-@Patterns({"%numbers% (is|are) [a] prime [number]", "%numbers% (isn't|is not|aren't|are not) [a] prime [number]"})
-public class CondIsPrime extends Condition {
+@ch.njol.skript.doc.Name("Is Prime")
+@id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Annotations.Description("Checks whether or not a number is prime.")
+@id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Annotations.Patterns({"%numbers% (is|are) [a] prime [number]", "%numbers% (isn't|is not|aren't|are not) [a] prime [number]"})
+public class CondIsPrime extends ch.njol.skript.lang.Condition {
     Expression<Number> numbers;
 
     @SuppressWarnings("unchecked")
     @Override
-    public boolean init(Expression<?>[] expressions, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
+    public boolean init(Expression<?>[] expressions, int matchedPattern, ch.njol.util.Kleenean isDelayed, ch.njol.skript.lang.SkriptParser.ParseResult parseResult) {
         numbers = (Expression<Number>) expressions[0];
         setNegated(matchedPattern == 1);
         return true;
@@ -32,7 +25,7 @@ public class CondIsPrime extends Condition {
 
     @Override
     public String toString(Event event, boolean debug) {
-        return PropertyCondition.toString(this, PropertyType.BE, event, debug, numbers, "prime");
+        return PropertyCondition.toString(this, PropertyCondition.PropertyType.BE, event, debug, numbers, "prime");
     }
 
     public static boolean isPrime(int number) {

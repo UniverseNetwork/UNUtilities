@@ -1,41 +1,29 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery;
 
-import id.universenetwork.utilities.Bukkit.Events.UNUtilitiesDisableEvent;
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Elements.Events.EvtLambdaWhen;
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Skript.DynamicEnumTypes;
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Skript.LambdaCondition;
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Util.Menus.FormattedSlotManager;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
+import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Elements.Events.EvtLambdaWhen.limiter;
 
-import java.util.Set;
-
-import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Addons.Enabled;
-import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Addons.addon;
-import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Registration.enableSnooper;
-import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.SQL.ScriptCredentials.clear;
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
-
-public class SkQuery implements Listener {
-    public static Boolean LIME_EDIT = true;
+public class SkQuery extends id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Addons implements org.bukkit.event.Listener {
+    public static boolean LIME_EDIT = true;
 
     public SkQuery() {
-        if (Enabled("SkQuery")) {
-            DynamicEnumTypes.register();
-            addon.setLanguageFileDirectory("Lang");
-            enableSnooper();
-            registerListener(new FormattedSlotManager(), this);
-            //new Documentation(this);
-            System.out.println(prefix + " §bSuccessfully Registered §6SkQuery §bAddon");
-        }
+        super("SkQuery");
     }
 
-    @EventHandler
-    public void onDisable(UNUtilitiesDisableEvent e) {
-        clear();
-        Set<LambdaCondition> limiter = EvtLambdaWhen.limiter;
-        if (limiter == null || limiter.isEmpty()) return;
-        EvtLambdaWhen.limiter.clear();
+    @Override
+    public void Load() {
+        id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Skript.DynamicEnumTypes.register();
+        addon.setLanguageFileDirectory("Lang");
+        id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Registration.enableSnooper();
+        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener(new id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Util.Menus.FormattedSlotManager(), this);
+        //new Documentation(this);
+        System.out.println(id.universenetwork.utilities.Bukkit.UNUtilities.prefix + " §bSuccessfully Registered §6SkQuery §bAddon");
+    }
+
+    @org.bukkit.event.EventHandler
+    public void onDisable(id.universenetwork.utilities.Bukkit.Events.UNUtilitiesDisableEvent e) {
+        id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.SQL.ScriptCredentials.clear();
+        java.util.Set<id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Skript.LambdaCondition> l = limiter;
+        if (l == null || l.isEmpty()) return;
+        limiter.clear();
     }
 }

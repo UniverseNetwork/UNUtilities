@@ -1,19 +1,15 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Elements.Conditions;
 
-import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser.ParseResult;
-import ch.njol.util.Kleenean;
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Annotations.Patterns;
 import org.bukkit.event.Event;
 
-@Patterns("%booleans%")
-public class CondBoolean extends Condition {
+@id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Annotations.Patterns("%booleans%")
+public class CondBoolean extends ch.njol.skript.lang.Condition {
     Expression<Boolean> condition;
 
     @SuppressWarnings("unchecked")
     @Override
-    public boolean init(Expression<?>[] expressions, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
+    public boolean init(Expression<?>[] expressions, int matchedPattern, ch.njol.util.Kleenean isDelayed, ch.njol.skript.lang.SkriptParser.ParseResult parseResult) {
         condition = (Expression<Boolean>) expressions[0];
         return true;
     }

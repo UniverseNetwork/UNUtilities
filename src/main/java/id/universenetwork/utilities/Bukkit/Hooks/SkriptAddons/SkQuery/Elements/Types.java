@@ -1,24 +1,20 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Elements;
 
-import ch.njol.skript.Skript;
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.Parser;
-import ch.njol.skript.classes.Serializer;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.registrations.Classes;
 import ch.njol.yggdrasil.Fields;
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Annotations.AbstractTask;
 import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Skript.LambdaCondition;
 import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Skript.LambdaEffect;
 import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Skript.Markup;
 
-import java.io.StreamCorruptedException;
-
+import static ch.njol.skript.Skript.error;
 import static ch.njol.skript.log.ErrorQuality.SEMANTIC_ERROR;
 
-public class Types extends AbstractTask {
+public class Types extends id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Annotations.AbstractTask {
     @Override
     public void run() {
         Classes.registerClass(new ClassInfo<>(Markup.class, "markup").parser(new Parser<>() {
@@ -48,7 +44,7 @@ public class Types extends AbstractTask {
             public String getVariableNamePattern() {
                 return ".+";
             }
-        }).serializer(new Serializer<>() {
+        }).serializer(new ch.njol.skript.classes.Serializer<>() {
             @Override
             public Fields serialize(Markup markup) {
                 Fields f = new Fields();
@@ -62,7 +58,7 @@ public class Types extends AbstractTask {
             }
 
             @Override
-            protected Markup deserialize(Fields fields) throws StreamCorruptedException {
+            protected Markup deserialize(Fields fields) throws java.io.StreamCorruptedException {
                 return new Markup((String) fields.getObject("src"));
             }
 
@@ -87,7 +83,7 @@ public class Types extends AbstractTask {
                     public LambdaCondition parse(String s, ParseContext parseContext) {
                         if (s.length() > 2 && s.charAt(0) == '[' && s.charAt(s.length() - 1) == ']') {
                             Condition e = Condition.parse(s.substring(1, s.length() - 1), null);
-                            if (e == null) Skript.error(s + " is not a valid lambda statement.", SEMANTIC_ERROR);
+                            if (e == null) error(s + " is not a valid lambda statement.", SEMANTIC_ERROR);
                             else return new LambdaCondition(e);
                         }
                         return null;
@@ -119,7 +115,7 @@ public class Types extends AbstractTask {
                 if (s.length() > 3 && s.charAt(0) == '[' && s.charAt(s.length() - 1) == ']') {
                     if ("void".equals(s.substring(1, s.length() - 1))) return new LambdaEffect(true);
                     Effect e = Effect.parse(s.substring(1, s.length() - 1), null);
-                    if (e == null) Skript.error(s + " is not a valid lambda statement.", SEMANTIC_ERROR);
+                    if (e == null) error(s + " is not a valid lambda statement.", SEMANTIC_ERROR);
                     else return new LambdaEffect(e);
                 }
                 return null;

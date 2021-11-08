@@ -2,7 +2,6 @@ package id.universenetwork.utilities.Bukkit;
 
 import id.universenetwork.utilities.Bukkit.Enums.Features.MaxPlayerChangerCommand;
 import id.universenetwork.utilities.Bukkit.Enums.Features.VillagerOptimization;
-import id.universenetwork.utilities.Bukkit.Listeners.PillagersLimiterListener;
 import id.universenetwork.utilities.Bukkit.Manager.*;
 
 import java.awt.*;
@@ -13,9 +12,10 @@ import java.util.Properties;
 
 import static id.universenetwork.utilities.Bukkit.Manager.API.*;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.*;
+import static id.universenetwork.utilities.Bukkit.Manager.Hooks.*;
 
 public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
-    // I could replace this with a LongSet but for some reason craftbukkit wont import
+    // I could replace this with a LongSet but for some reason craftbukkit won't import
     // it's micro optimizations anyways :P
     public static final java.util.Set<Point> VANILLA_CHUNKS = new java.util.HashSet<>();
     public static long maxChunks;
@@ -29,7 +29,6 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
         // Plugin loaded logic
         plugin = this;
         setup();
-        new PillagersLimiterListener();
         System.out.println("\n\n\n" +
                 "§b██╗░░░██╗§e███╗░░██╗§9██╗░░░██╗████████╗██╗██╗░░░░░██╗████████╗██╗███████╗░██████╗\n" +
                 "§b██║░░░██║§e████╗░██║§9██║░░░██║╚══██╔══╝██║██║░░░░░██║╚══██╔══╝██║██╔════╝██╔════╝\n" +
@@ -53,10 +52,11 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
         HamsterAPISetup("enabling");
         Listeners.register();
         Commands.register();
-        Hooks.AsyncWorldEditBossBarDisplay("enabling");
-        Hooks.ShopGUIPlusSilkSpawnersConnector();
-        Hooks.SlimeFunAddons();
-        Hooks.SkriptAddons();
+        AsyncWorldEditBossBarDisplay("enabling");
+        ShopGUIPlusSilkSpawnersConnector();
+        SlimefunAddons();
+        SkriptAddons();
+        ViaLegacy();
         if (VOEnabled() && new id.universenetwork.utilities.Bukkit.Tasks.CompatibilityCheckTask().passedCheck()) {
             maxChunks = VOLong(VillagerOptimization.VCPP);
             if (task != null) task.cancel();
@@ -83,7 +83,7 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
         if (Config.MPCCBoolean(MaxPlayerChangerCommand.SOR) && Config.MPCCBoolean(MaxPlayerChangerCommand.ENABLED))
             updateServerProperties();
         saveAAVLP();
-        Hooks.AsyncWorldEditBossBarDisplay("disabling");
+        AsyncWorldEditBossBarDisplay("disabling");
         plugin = null;
         System.out.println("\n\n\n" +
                 "§b██╗░░░██╗§e███╗░░██╗§9██╗░░░██╗████████╗██╗██╗░░░░░██╗████████╗██╗███████╗░██████╗\n" +

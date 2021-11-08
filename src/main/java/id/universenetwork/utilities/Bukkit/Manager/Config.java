@@ -164,22 +164,6 @@ public class Config {
     }
 
 
-    // Per-Player Keeper Features Category
-    public static boolean PPKBoolean() {
-        return get().getBoolean(PerPlayerKeeper.ENABLED.getConfigPath());
-    }
-
-    public static String PPKMessage(PerPlayerKeeper s) {
-        return get().getString(s.getConfigPath());
-    }
-
-
-    // Fly Fixer Features Category
-    public static boolean FFEnabled() {
-        return get().getBoolean(FlyFixer.ENABLED.getConfigPath());
-    }
-
-
     // Pocket Shulker Features Category
     public static boolean PSBoolean(PocketShulker s) {
         return get().getBoolean(s.getConfigPath());
@@ -226,6 +210,20 @@ public class Config {
     }
 
     public static int PLInt(PillagersLimiter s) {
+        return get().getInt(s.getConfigPath());
+    }
+
+
+    // ViaLegacy Category
+    public static String VLString(ViaLegacy s) {
+        return Translator(get().getString(s.getConfigPath()));
+    }
+
+    public static boolean VLBoolean(ViaLegacy s) {
+        return get().getBoolean(s.getConfigPath());
+    }
+
+    public static int VLInt(ViaLegacy s) {
         return get().getInt(s.getConfigPath());
     }
 }

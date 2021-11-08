@@ -1,28 +1,21 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Elements.Conditions;
 
 import ch.njol.skript.conditions.base.PropertyCondition;
-import ch.njol.skript.conditions.base.PropertyCondition.PropertyType;
-import ch.njol.skript.doc.Name;
-import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser.ParseResult;
-import ch.njol.util.Kleenean;
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Annotations.Description;
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Annotations.Patterns;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
 import org.bukkit.potion.PotionEffectType;
 
-@Name("Entity has Potion")
-@Description("Checks whether or not an entity has a certain potion effect.")
-@Patterns({"%livingentities% (has|have) [potion [effect]] %potioneffecttypes%", "%livingentities% (doesn't|does not|do not|don't) have [potion [effect]] %potioneffecttypes%"})
-public class CondHasPotion extends Condition {
+@ch.njol.skript.doc.Name("Entity has Potion")
+@id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Annotations.Description("Checks whether or not an entity has a certain potion effect.")
+@id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Annotations.Patterns({"%livingentities% (has|have) [potion [effect]] %potioneffecttypes%", "%livingentities% (doesn't|does not|do not|don't) have [potion [effect]] %potioneffecttypes%"})
+public class CondHasPotion extends ch.njol.skript.lang.Condition {
     Expression<PotionEffectType> effects;
     Expression<LivingEntity> entities;
 
     @SuppressWarnings("unchecked")
     @Override
-    public boolean init(Expression<?>[] expressions, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
+    public boolean init(Expression<?>[] expressions, int matchedPattern, ch.njol.util.Kleenean isDelayed, ch.njol.skript.lang.SkriptParser.ParseResult parseResult) {
         entities = (Expression<LivingEntity>) expressions[0];
         effects = (Expression<PotionEffectType>) expressions[1];
         setNegated(matchedPattern == 1);
@@ -36,6 +29,6 @@ public class CondHasPotion extends Condition {
 
     @Override
     public String toString(Event event, boolean debug) {
-        return PropertyCondition.toString(this, PropertyType.HAVE, event, debug, entities, "effects " + effects.toString(event, debug));
+        return PropertyCondition.toString(this, PropertyCondition.PropertyType.HAVE, event, debug, entities, "effects " + effects.toString(event, debug));
     }
 }

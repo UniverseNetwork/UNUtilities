@@ -1,13 +1,22 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons;
 
+import ch.njol.skript.SkriptAddon;
 import id.universenetwork.utilities.Bukkit.Enums.Features.SkriptAddons;
 import id.universenetwork.utilities.Bukkit.UNUtilities;
 import org.bukkit.configuration.ConfigurationSection;
 
 import static id.universenetwork.utilities.Bukkit.Manager.Config.get;
 
-public class Addons {
-    public static ch.njol.skript.SkriptAddon addon;
+public abstract class Addons {
+    public static SkriptAddon addon;
+    final String Name;
+
+    public Addons(String Name) {
+        this.Name = Name;
+        if (get().getBoolean(SkriptAddons.ADDONS.getConfigPath() + Name)) Load();
+    }
+
+    public abstract void Load();
 
     public static void setup() {
         System.out.println(UNUtilities.prefix + " §6Found Skript. Registering Addons...");
@@ -20,11 +29,7 @@ public class Addons {
         System.out.println(UNUtilities.prefix + " §aSuccessfully Registered All Enabled Addons to Skript");
     }
 
-    public static ConfigurationSection Settings(String AddonName) {
-        return get().getConfigurationSection(SkriptAddons.ADDONSSETTINGS.getConfigPath() + AddonName);
-    }
-
-    public static boolean Enabled(String AddonName) {
-        return get().getBoolean(SkriptAddons.ADDONS.getConfigPath() + AddonName);
+    public ConfigurationSection Settings() {
+        return get().getConfigurationSection(SkriptAddons.ADDONSSETTINGS.getConfigPath() + Name);
     }
 }
