@@ -29,6 +29,7 @@
 - Anti Book Exploit (Fork of [BookExploitFix](http://spigotmc.org/resources/5897))
 - Pocket Shulker (Fork of [Shulker Backpacks](http://spigotmc.org/resources/67466))
 - Entity Tracker Fixer (Fork of [EntityTrackerFixer](http://spigotmc.org/resources/70902) and some patches from [cascaseno](http://github.com/cascaseno/EntityTrackerFixer))
+- ViaLegacy (Fork of [ViaRewind Legacy Support](http://spigotmc.org/resources/52924) + [ViaPotions](http://github.com/2lstudios-mc/ViaPotions/releases))
 
 ## API Included
 - [ActionBarAPI](http://spigotmc.org/resources/1315)
@@ -70,3 +71,4 @@
 - [BungeeAddon](http://github.com/Pikachu920/BungeeAddon/releases)
 - [SkUniversal](http://spigotmc.org/resources/45392) **[Under Construction]**
 - [SkMusic](http://spigotmc.org/resources/34625)
+- [Skream](http://github.com/hapily04/Skream/releases) **[Under Construction]**
