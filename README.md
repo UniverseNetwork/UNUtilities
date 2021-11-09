@@ -25,11 +25,11 @@
 - AsyncWorldEdit BossBar Display (Fork of [AsyncWorldEdit - Boss Bar](http://spigotmc.org/resources/76600))
 - ShopGUI+ SilkSpawners Connector (Fork of [ShopGUI+ bridge for SilkSpawners](http://spigotmc.org/resources/73949))
 - Slimefun Addons ([See below for more info](#slimefun))
-- Villager Optimization (Fork of [Villager Optimizer Plus](http://spigotmc.org/resources/73933) and some patches from [TwinkleStar03](http://github.com/star12465/Anti-Villager-Lag))
+- Villager Optimization (Fork of [Villager Optimizer Plus](http://spigotmc.org/resources/73933) & some patches from [TwinkleStar03](http://github.com/star12465/Anti-Villager-Lag))
 - Skript Addons ([See below for more info](#skript))
 - Anti Book Exploit (Fork of [BookExploitFix](http://spigotmc.org/resources/5897))
 - Pocket Shulker (Fork of [Shulker Backpacks](http://spigotmc.org/resources/67466))
-- Entity Tracker Fixer (Fork of [EntityTrackerFixer](http://spigotmc.org/resources/70902) and some patches from [cascaseno](http://github.com/cascaseno/EntityTrackerFixer))
+- Entity Tracker Fixer (Fork of [EntityTrackerFixer](http://spigotmc.org/resources/70902) & some patches from [cascaseno](http://github.com/cascaseno/EntityTrackerFixer))
 - ViaLegacy (Fork of [ViaRewind Legacy Support](http://spigotmc.org/resources/52924) & [ViaPotions](http://github.com/2lstudios-mc/ViaPotions/releases))
 
 ## API Included
