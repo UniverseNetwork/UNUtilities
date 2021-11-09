@@ -1,19 +1,19 @@
 package id.universenetwork.utilities.Bukkit.Manager;
 
-import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Core.ConfigBuilder;
+import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Core.YamlBuilder;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 
 public class Data {
-    static ConfigBuilder data;
+    static YamlBuilder data;
 
     public static void setup() {
         System.out.println(prefix + " §ePreparing Data Manager...");
-        data = new ConfigBuilder("data.yml");
+        data = new YamlBuilder("data.yml");
         System.out.println(prefix + " §aData Manager have been prepared");
     }
 
-    public static ConfigBuilder get() {
+    public static YamlBuilder get() {
         return data;
     }
 

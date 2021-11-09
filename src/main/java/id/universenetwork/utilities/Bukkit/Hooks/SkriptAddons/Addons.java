@@ -26,6 +26,7 @@ public abstract class Addons {
         new id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkWhitelist.SkWhitelist();
         new id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.BungeeAddon.BungeeAddon();
         new id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkMusic.SkMusic();
+        new id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Skream.Skream();
         System.out.println(UNUtilities.prefix + " §aSuccessfully Registered All Enabled Addons to Skript");
     }
 

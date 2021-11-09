@@ -650,6 +650,7 @@ Features:
       SkWhitelist: true
       BungeeAddon: true
       SkMusic: true
+      Skream: true
 
       # !!! -> You need PlaceholderAPI or MVdWPlaceholderAPI to use this addon
       SkriptPlaceholders: true

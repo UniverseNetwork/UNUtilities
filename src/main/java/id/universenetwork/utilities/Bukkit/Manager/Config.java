@@ -4,7 +4,7 @@ import id.universenetwork.utilities.Bukkit.Enums.Features.*;
 import id.universenetwork.utilities.Bukkit.Enums.Settings;
 import id.universenetwork.utilities.Bukkit.Events.UNUtilitiesReloadConfigEvent;
 import id.universenetwork.utilities.Bukkit.Handlers.BookExploitHandler;
-import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Core.ConfigBuilder;
+import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Core.YamlBuilder;
 import id.universenetwork.utilities.Bukkit.NMS.ETF;
 
 import java.util.List;
@@ -16,13 +16,13 @@ import static org.bukkit.Bukkit.getLogger;
 import static org.bukkit.Bukkit.getPluginManager;
 
 public class Config {
-    static ConfigBuilder config;
+    static YamlBuilder config;
 
     // Finds and Generates the config file
     public static void setup() {
         plugin.getLogger().info("§ePreparing Config Manager...");
         try {
-            config = new ConfigBuilder("config.yml");
+            config = new YamlBuilder("config.yml");
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
@@ -30,7 +30,7 @@ public class Config {
         getLogger().info(prefix + " §aConfig Manager have been prepared");
     }
 
-    public static ConfigBuilder get() {
+    public static YamlBuilder get() {
         return config;
     }
 

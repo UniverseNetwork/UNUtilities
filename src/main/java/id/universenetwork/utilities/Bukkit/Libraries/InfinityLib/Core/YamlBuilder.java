@@ -17,18 +17,18 @@ import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
  *
  * @author Mooy1
  */
-public class ConfigBuilder extends YamlConfiguration {
+public class YamlBuilder extends YamlConfiguration {
     final YamlConfiguration defaults = new YamlConfiguration();
     final Map<String, String> comments = new HashMap<>();
     final File file;
 
-    public ConfigBuilder(String name) {
+    public YamlBuilder(String name) {
         file = new File(plugin.getDataFolder(), name);
         super.defaults = defaults;
         loadDefaults(name);
     }
 
-    public ConfigBuilder(String name, String path) {
+    public YamlBuilder(String name, String path) {
         file = new File(plugin.getDataFolder() + path, name);
         super.defaults = defaults;
         loadDefaults(name);

@@ -15,30 +15,30 @@ public class EffAddAdvancement extends ch.njol.skript.lang.Effect {
         ch.njol.skript.Skript.registerEffect(EffAddAdvancement.class, "(add|grant) %string% to [the] advancements of %player%");
     }
 
-    Expression<Player> player;
-    Expression<String> advancement;
+    Expression<Player> p;
+    Expression<String> a;
 
     @SuppressWarnings({"unchecked"})
     @Override
-    public boolean init(Expression<?>[] expressions, int matchedPattern, ch.njol.util.Kleenean isDelayed, ch.njol.skript.lang.SkriptParser.ParseResult parser) {
-        this.player = (Expression<Player>) expressions[1];
-        this.advancement = (Expression<String>) expressions[0];
+    public boolean init(Expression<?>[] e, int m, ch.njol.util.Kleenean i, ch.njol.skript.lang.SkriptParser.ParseResult p) {
+        this.p = (Expression<Player>) e[1];
+        this.a = (Expression<String>) e[0];
         return true;
     }
 
     @Override
-    public @NonNull String toString(@org.jetbrains.annotations.Nullable Event event, boolean debug) {
-        return "Add advancement effect: " + advancement.toString(event, debug) + " and player expression: " + player.toString(event, debug);
+    public @NonNull String toString(@org.jetbrains.annotations.Nullable Event e, boolean d) {
+        return "Add advancement effect: " + a.toString(e, d) + " and player expression: " + p.toString(e, d);
     }
 
     @Override
-    protected void execute(@NonNull Event event) {
-        if (player == null) return;
-        for (Player user : player.getAll(event)) {
-            NamespacedKey key = NamespacedKey.minecraft(advancement.toString().replaceAll("[^a-zA-Z/:_]", ""));
-            org.bukkit.advancement.AdvancementProgress progress = user.getPlayer().getAdvancementProgress(org.bukkit.Bukkit.getAdvancement(key));
-            for (String criteria : progress.getRemainingCriteria())
-                progress.awardCriteria(criteria);
+    protected void execute(@NonNull Event e) {
+        if (p == null) return;
+        for (Player u : p.getAll(e)) {
+            NamespacedKey k = NamespacedKey.minecraft(a.toString().replaceAll("[^a-zA-Z/:_]", ""));
+            org.bukkit.advancement.AdvancementProgress progress = u.getPlayer().getAdvancementProgress(org.bukkit.Bukkit.getAdvancement(k));
+            for (String c : progress.getRemainingCriteria())
+                progress.awardCriteria(c);
         }
     }
 }
