@@ -21,7 +21,7 @@ public class StaffList extends id.universenetwork.utilities.Bungee.Manager.Comma
             Collection<ProxiedPlayer> ap = net.md_5.bungee.api.ProxyServer.getInstance().getPlayers();
             ArrayList<ProxiedPlayer> fp = new ArrayList<>();
             for (ProxiedPlayer p : ap) if (p.hasPermission("unutilities.command.stafflist")) fp.add(p);
-            Sender.sendMessage("§bUniv§eerse §aStaff List §8(" + fp.size() + ")");
+            Sender.sendMessage("§bUniv§eerse §aStaff List §8(&e" + fp.size() + "&8)");
             for (ProxiedPlayer p : fp)
                 Sender.sendMessage("§e" + p.getName() + " §8- §a" + p.getServer().getInfo().getName());
         } else Sender.sendMessage(Config.SLString(DM));

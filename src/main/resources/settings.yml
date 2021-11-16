@@ -60,3 +60,55 @@ Features:
 
     # Message if this feature is disabled
     disabled-msg: '%p% &cFitur ini dinonaktifkan'
+
+  ## Discord Messsager Features
+  Discord:
+
+    # Token for Discord Bot
+    token: ''
+
+    # Channel ID for Discord Bot alert
+    channelid: ''
+
+    # Embed message options
+    embed:
+
+      # Join Embed Message
+      Join:
+        # Embed message title
+        title: '&bU&eN&CSecurity'
+
+        # Embed message description
+        description:
+          - '&bStaff &e%player% &ajoin &bthe network!'
+          - '&7IP: &e%ip%'
+
+        # Color of embed message
+        color: '#18ff00'
+
+      # Left Embed Message
+      Left:
+        # Embed message title
+        title: '&bU&eN&CSecurity'
+
+        # Embed message description
+        description:
+          - '&bStaff &e%player% &cleft &bthe network!'
+          - '&7IP: &e%ip%'
+
+        # Color of embed message
+        color: '#ff0000'
+
+
+
+
+
+
+
+
+
+
+
+
+
+

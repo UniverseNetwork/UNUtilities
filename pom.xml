@@ -343,5 +343,11 @@
             <version>2.0.28-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.javacord</groupId>
+            <artifactId>javacord</artifactId>
+            <version>3.3.2</version>
+            <type>pom</type>
+        </dependency>
     </dependencies>
 </project>
