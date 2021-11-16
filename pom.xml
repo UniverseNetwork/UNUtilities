@@ -6,7 +6,7 @@
 
     <groupId>id.universenetwork.utilities</groupId>
     <artifactId>UNUtilities</artifactId>
-    <version>1.6</version>
+    <version>1.7</version>
     <packaging>jar</packaging>
     <name>UNUtilities</name>
     <description>Utilities Features for UniverseNetwork</description>
@@ -43,8 +43,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>9</source>
-                    <target>9</target>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
             </plugin>
             <plugin>
