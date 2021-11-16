@@ -6,9 +6,9 @@ import org.bukkit.entity.Entity;
 import java.util.List;
 
 import static id.universenetwork.utilities.Bukkit.Enums.Features.VillagerOptimization.DISABLEDMSG;
-import static id.universenetwork.utilities.Bukkit.Manager.Color.sendTranslate;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.VOString;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.isInVanilla;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.sendTranslate;
 import static org.bukkit.ChatColor.DARK_GREEN;
 import static org.bukkit.ChatColor.GREEN;
 

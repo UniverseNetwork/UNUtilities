@@ -15,14 +15,14 @@ import static ch.njol.skript.registrations.EventValues.registerEventValue;
 public abstract class EvntNPCClick extends SimpleEvent {
     static {
         ch.njol.skript.Skript.registerEvent("NPC Click", SimpleEvent.class, NPCClickEvent.class, "npc click");
-        registerEventValue(NPCClickEvent.class, Integer.class, new Getter<>() {
+        registerEventValue(NPCClickEvent.class, Integer.class, new Getter<Integer, NPCClickEvent>() {
             @Override
             @Nullable
             public Integer get(NPCClickEvent e) {
                 return e.getNPC().getId();
             }
         }, 0);
-        registerEventValue(NPCClickEvent.class, Player.class, new Getter<>() {
+        registerEventValue(NPCClickEvent.class, Player.class, new Getter<Player, NPCClickEvent>() {
             @Override
             @Nullable
             public Player get(NPCClickEvent e) {

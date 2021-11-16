@@ -9,8 +9,8 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
-import static id.universenetwork.utilities.Bukkit.Manager.Color.Translator;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
 import static io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem.getById;
 import static io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils.isItemSimilar;
 import static org.bukkit.Sound.*;
@@ -32,7 +32,7 @@ public class DamageListener implements org.bukkit.event.Listener {
         wither = (HotbarPet) getById("HOTBAR_PET_WITHER");
         walshrus = (HotbarPet) getById("HOTBAR_PET_WALSHRUS");
         blaze = (HotbarPet) getById("HOTBAR_PET_BLAZE");
-        registerListener(this);
+        registerListeners(this);
     }
 
     @EventHandler

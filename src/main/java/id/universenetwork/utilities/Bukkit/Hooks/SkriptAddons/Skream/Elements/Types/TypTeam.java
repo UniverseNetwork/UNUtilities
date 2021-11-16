@@ -5,7 +5,7 @@ import org.bukkit.scoreboard.Team;
 
 public class TypTeam {
     static {
-        ch.njol.skript.registrations.Classes.registerClass(new ch.njol.skript.classes.ClassInfo<>(Team.class, "team").user("teams?").name("Team").description("Vanilla team").parser(new ch.njol.skript.classes.Parser<>() {
+        ch.njol.skript.registrations.Classes.registerClass(new ch.njol.skript.classes.ClassInfo<>(Team.class, "team").user("teams?").name("Team").description("Vanilla team").parser(new ch.njol.skript.classes.Parser<Team>() {
             @Override
             public Team parse(String s, ParseContext pc) {
                 return org.bukkit.Bukkit.getScoreboardManager().getMainScoreboard().getTeam(s);

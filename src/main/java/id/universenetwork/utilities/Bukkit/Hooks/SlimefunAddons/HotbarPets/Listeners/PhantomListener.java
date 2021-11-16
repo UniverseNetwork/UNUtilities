@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
 import static io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem.getById;
 import static org.bukkit.entity.EntityType.PHANTOM;
 
@@ -15,7 +15,7 @@ public class PhantomListener implements org.bukkit.event.Listener {
 
     public PhantomListener() {
         panda = (HotbarPet) getById("HOTBAR_PET_PANDA");
-        registerListener(this);
+        registerListeners(this);
     }
 
     @EventHandler

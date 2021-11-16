@@ -16,7 +16,7 @@ import java.util.regex.Matcher;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Utils.Constants.GLOW_ENCHANT;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Utils.Constants.SLIMEFUN_VERSION;
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 import static java.lang.Integer.parseInt;
 import static java.util.Collections.singletonList;
@@ -70,7 +70,7 @@ public class FluffyMachines /*implements TabExecutor*/ {
             }
 
             // Register McMMO Events
-            if (mcMMO) registerListener(new McMMOEvents());
+            if (mcMMO) registerListeners(new McMMOEvents());
 
             // Get Slimefun Numerical Version
             try {
@@ -90,7 +90,7 @@ public class FluffyMachines /*implements TabExecutor*/ {
             FluffyItemSetup.setup();
 
             // Register Events Class
-            registerListener(new Events());
+            registerListeners(new Events());
             if (mcMMO && !NCP)
                 System.out.println(prefix + " §bSuccessfully Registered §dFluffyMachines §bAddon With §dmcMMO §bSupport");
             else if (!mcMMO && NCP)

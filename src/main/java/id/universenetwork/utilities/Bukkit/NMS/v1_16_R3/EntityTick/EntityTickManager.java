@@ -9,13 +9,13 @@ import org.bukkit.event.world.ChunkLoadEvent;
 
 import java.util.Set;
 
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
 
 public class EntityTickManager implements org.bukkit.event.Listener {
     static EntityTickManager instance;
 
     EntityTickManager() {
-        registerListener(this);
+        registerListeners(this);
     }
 
     public void disableTicking(Entity entity) {

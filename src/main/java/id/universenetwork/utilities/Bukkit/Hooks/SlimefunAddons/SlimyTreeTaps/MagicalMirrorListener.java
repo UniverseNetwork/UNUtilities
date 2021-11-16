@@ -6,13 +6,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
 
 class MagicalMirrorListener implements Listener {
     final MagicalMirror mirror;
 
     public MagicalMirrorListener(MagicalMirror mirror) {
-        registerListener(this);
+        registerListeners(this);
         this.mirror = mirror;
     }
 

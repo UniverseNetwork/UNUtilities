@@ -18,7 +18,7 @@ public class PicnicBasketListener implements org.bukkit.event.Listener {
     final PicnicBasket picnicBasket;
 
     public PicnicBasketListener(@NotNull PicnicBasket picnicBasket) {
-        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener(this);
+        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this);
         this.picnicBasket = picnicBasket;
     }
 

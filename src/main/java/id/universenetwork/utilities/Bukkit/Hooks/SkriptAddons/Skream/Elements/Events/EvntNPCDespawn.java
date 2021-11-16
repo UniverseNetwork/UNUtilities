@@ -10,7 +10,7 @@ import net.citizensnpcs.api.event.NPCDespawnEvent;
 public abstract class EvntNPCDespawn extends SimpleEvent {
     static {
         ch.njol.skript.Skript.registerEvent("NPC Despawn", SimpleEvent.class, NPCDespawnEvent.class, "npc de[ |-]spawn");
-        ch.njol.skript.registrations.EventValues.registerEventValue(NPCDespawnEvent.class, Integer.class, new ch.njol.skript.util.Getter<>() {
+        ch.njol.skript.registrations.EventValues.registerEventValue(NPCDespawnEvent.class, Integer.class, new ch.njol.skript.util.Getter<Integer, NPCDespawnEvent>() {
             @Override
             @org.jetbrains.annotations.Nullable
             public Integer get(NPCDespawnEvent e) {

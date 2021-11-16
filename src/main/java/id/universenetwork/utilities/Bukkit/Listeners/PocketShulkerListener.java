@@ -17,9 +17,9 @@ import org.bukkit.inventory.meta.BlockStateMeta;
 import java.util.*;
 
 import static id.universenetwork.utilities.Bukkit.Enums.Features.PocketShulker.*;
-import static id.universenetwork.utilities.Bukkit.Manager.Color.Translator;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.*;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
 import static org.bukkit.Bukkit.createInventory;
 import static org.bukkit.Bukkit.getScheduler;
 import static org.bukkit.ChatColor.*;

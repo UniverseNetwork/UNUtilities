@@ -1,10 +1,10 @@
-name: UNUtilities
-version: 1.6
+name: ${name}
+version: ${version}
 main: id.universenetwork.utilities.Bukkit.UNUtilities
 api-version: 1.16
 author: ARVIN3108 ID
-description: Utilities Features for UniverseNetwork
-website: https://universenetwork.id
+description: ${description}
+website: ${url}
 
 
 softdepend:

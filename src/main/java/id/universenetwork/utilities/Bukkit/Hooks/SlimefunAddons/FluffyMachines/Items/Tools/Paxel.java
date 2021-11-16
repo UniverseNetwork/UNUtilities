@@ -29,7 +29,7 @@ public class Paxel extends SlimefunItem implements org.bukkit.event.Listener, No
 
     public Paxel(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
-        Events.registerListener(this);
+        Events.registerListeners(this);
     }
 
     @EventHandler(ignoreCancelled = true)

@@ -1,6 +1,7 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FlowerPower.Items;
 
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FlowerPower.Utils.Utils;
+import id.universenetwork.utilities.Bukkit.Utils.Color;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
@@ -20,7 +21,7 @@ public class ExperienceTome extends io.github.thebusybiscuit.slimefun4.api.items
 
     public ExperienceTome(io.github.thebusybiscuit.slimefun4.api.items.ItemGroup itemGroup, io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack item, io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
-        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener(this);
+        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this);
     }
 
     @org.bukkit.event.EventHandler
@@ -84,7 +85,7 @@ public class ExperienceTome extends io.github.thebusybiscuit.slimefun4.api.items
         }
 
         // Update name to display stored amount
-        tomeMeta.setDisplayName(id.universenetwork.utilities.Bukkit.Manager.Color.Translator("&eExperience Tome &a(" + tomeExp + " / 1000000)"));
+        tomeMeta.setDisplayName(Color.Translator("&eExperience Tome &a(" + tomeExp + " / 1000000)"));
         tome.setItemMeta(tomeMeta);
     }
 }

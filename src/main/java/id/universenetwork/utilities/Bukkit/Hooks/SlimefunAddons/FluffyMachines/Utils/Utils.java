@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-import static id.universenetwork.utilities.Bukkit.Manager.Color.Translator;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
 import static io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getProtectionManager;
 import static io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.INTERACT_BLOCK;
 import static java.text.DecimalFormatSymbols.getInstance;

@@ -14,7 +14,7 @@ public class SkQuery extends id.universenetwork.utilities.Bukkit.Hooks.SkriptAdd
         id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Skript.DynamicEnumTypes.register();
         addon.setLanguageFileDirectory("Lang");
         id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Registration.enableSnooper();
-        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener(new id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Util.Menus.FormattedSlotManager(), this);
+        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(new id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Util.Menus.FormattedSlotManager(), this);
         //new Documentation(this);
         System.out.println(id.universenetwork.utilities.Bukkit.UNUtilities.prefix + " §bSuccessfully Registered §6SkQuery §bAddon");
     }

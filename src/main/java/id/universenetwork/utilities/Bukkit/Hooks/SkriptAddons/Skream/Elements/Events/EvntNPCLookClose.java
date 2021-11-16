@@ -15,7 +15,7 @@ import static ch.njol.skript.registrations.EventValues.registerEventValue;
 public abstract class EvntNPCLookClose extends SimpleEvent {
     static {
         ch.njol.skript.Skript.registerEvent("NPC Look Close", SimpleEvent.class, NPCLookCloseChangeTargetEvent.class, "npc lookclose");
-        registerEventValue(NPCLookCloseChangeTargetEvent.class, Integer.class, new Getter<>() {
+        registerEventValue(NPCLookCloseChangeTargetEvent.class, Integer.class, new Getter<Integer, NPCLookCloseChangeTargetEvent>() {
             @Override
             @Nullable
             public Integer get(NPCLookCloseChangeTargetEvent e) {
@@ -23,7 +23,7 @@ public abstract class EvntNPCLookClose extends SimpleEvent {
             }
 
         }, 0);
-        registerEventValue(NPCLookCloseChangeTargetEvent.class, Player.class, new Getter<>() {
+        registerEventValue(NPCLookCloseChangeTargetEvent.class, Player.class, new Getter<Player, NPCLookCloseChangeTargetEvent>() {
             @Override
             @Nullable
             public Player get(NPCLookCloseChangeTargetEvent e) {

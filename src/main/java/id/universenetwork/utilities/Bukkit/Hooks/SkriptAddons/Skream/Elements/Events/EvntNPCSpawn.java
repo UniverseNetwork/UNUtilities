@@ -15,14 +15,14 @@ import static ch.njol.skript.registrations.EventValues.registerEventValue;
 public abstract class EvntNPCSpawn extends SimpleEvent {
     static {
         ch.njol.skript.Skript.registerEvent("NPC Spawn", SimpleEvent.class, NPCSpawnEvent.class, "npc spawn");
-        registerEventValue(NPCSpawnEvent.class, Integer.class, new Getter<>() {
+        registerEventValue(NPCSpawnEvent.class, Integer.class, new Getter<Integer, NPCSpawnEvent>() {
             @Override
             @Nullable
             public Integer get(NPCSpawnEvent e) {
                 return e.getNPC().getId();
             }
         }, 0);
-        registerEventValue(NPCSpawnEvent.class, Location.class, new Getter<>() {
+        registerEventValue(NPCSpawnEvent.class, Location.class, new Getter<Location, NPCSpawnEvent>() {
             @Override
             @Nullable
             public Location get(NPCSpawnEvent e) {

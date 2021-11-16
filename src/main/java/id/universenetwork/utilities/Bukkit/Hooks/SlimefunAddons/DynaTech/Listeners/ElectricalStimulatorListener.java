@@ -11,7 +11,7 @@ public class ElectricalStimulatorListener implements org.bukkit.event.Listener {
     final ElectricalStimulator electricalStimulator;
 
     public ElectricalStimulatorListener(@org.jetbrains.annotations.NotNull ElectricalStimulator electricalStimulator) {
-        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener(this);
+        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this);
         this.electricalStimulator = electricalStimulator;
     }
 

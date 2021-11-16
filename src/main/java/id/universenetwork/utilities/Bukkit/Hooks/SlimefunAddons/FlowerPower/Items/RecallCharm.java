@@ -1,6 +1,7 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FlowerPower.Items;
 
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FlowerPower.Utils.Utils;
+import id.universenetwork.utilities.Bukkit.Utils.Color;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import org.bukkit.Location;
@@ -45,7 +46,7 @@ public class RecallCharm extends io.github.thebusybiscuit.slimefun4.implementati
 
                 // Put location info into lore
                 java.util.List<String> lore = charmMeta.getLore();
-                lore.set(LORE_INDEX, id.universenetwork.utilities.Bukkit.Manager.Color.Translator("&3Bound Location: " + l.getWorld().getName() + " @ " + l.getBlockX() + ", " + l.getBlockY() + ", " + l.getBlockZ()));
+                lore.set(LORE_INDEX, Color.Translator("&3Bound Location: " + l.getWorld().getName() + " @ " + l.getBlockX() + ", " + l.getBlockY() + ", " + l.getBlockZ()));
                 charmMeta.setLore(lore);
                 charm.setItemMeta(charmMeta);
 

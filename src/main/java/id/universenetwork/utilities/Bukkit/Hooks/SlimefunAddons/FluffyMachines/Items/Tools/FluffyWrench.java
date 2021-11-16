@@ -41,7 +41,7 @@ public class FluffyWrench extends SimpleSlimefunItem<ItemUseHandler> implements 
     public FluffyWrench(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, Wrench type) {
         super(itemGroup, item, recipeType, recipe);
         this.type = type;
-        Events.registerListener(this);
+        Events.registerListeners(this);
     }
 
     @NotNull

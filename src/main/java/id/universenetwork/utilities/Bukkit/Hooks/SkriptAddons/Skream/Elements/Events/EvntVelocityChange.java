@@ -16,14 +16,14 @@ import org.jetbrains.annotations.Nullable;
 public abstract class EvntVelocityChange extends SkriptEvent {
     static {
         ch.njol.skript.Skript.registerEvent("Velocity Change", SimpleEvent.class, PlayerVelocityEvent.class, "[player] velocity (change|shift)");
-        EventValues.registerEventValue(PlayerVelocityEvent.class, Vector.class, new Getter<>() {
+        EventValues.registerEventValue(PlayerVelocityEvent.class, Vector.class, new Getter<Vector, PlayerVelocityEvent>() {
             @Override
             @Nullable
             public Vector get(PlayerVelocityEvent e) {
                 return e.getVelocity();
             }
         }, 0);
-        EventValues.registerEventValue(PlayerVelocityEvent.class, Player.class, new Getter<>() {
+        EventValues.registerEventValue(PlayerVelocityEvent.class, Player.class, new Getter<Player, PlayerVelocityEvent>() {
             @Override
             @Nullable
             public Player get(PlayerVelocityEvent e) {

@@ -8,7 +8,7 @@ import id.universenetwork.utilities.Bukkit.UNUtilities;
 import org.bukkit.Bukkit;
 
 import static id.universenetwork.utilities.Bukkit.Enums.Features.ViaLegacy.*;
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.VLBoolean;
 
 public class ViaLegacy {
@@ -20,16 +20,16 @@ public class ViaLegacy {
                 if (serverProtocol == -1) return;
                 cancel();
                 if (serverProtocol > 5) {
-                    if (VLBoolean(ENCHANTING_GUI_FIX)) registerListener(new EnchantingListener());
-                    if (VLBoolean(SLIME_FIX)) registerListener(new BounceListener());
+                    if (VLBoolean(ENCHANTING_GUI_FIX)) registerListeners(new EnchantingListener());
+                    if (VLBoolean(SLIME_FIX)) registerListeners(new BounceListener());
                 }
-                if (serverProtocol > 78 && VLBoolean(BREWING_STAND_GUI_FIX)) registerListener(new BrewingListener());
+                if (serverProtocol > 78 && VLBoolean(BREWING_STAND_GUI_FIX)) registerListeners(new BrewingListener());
                 if (serverProtocol > 84 && VLBoolean(LILY_PAD_FIX)) BoundingBoxFixer.fixLilyPad();
                 if (serverProtocol > 48 && VLBoolean(LADDER_FIX)) BoundingBoxFixer.fixLadder();
-                if (serverProtocol > 47 && VLBoolean(SOUND_FIX)) registerListener(new SoundListener());
-                if (serverProtocol > 76 && VLBoolean(ELYTRA_FIX)) registerListener(new ElytraListener());
+                if (serverProtocol > 47 && VLBoolean(SOUND_FIX)) registerListeners(new SoundListener());
+                if (serverProtocol > 76 && VLBoolean(ELYTRA_FIX)) registerListeners(new ElytraListener());
                 if (serverProtocol > 54 && VLBoolean(AREA_EFFECT_CLOUD_PARTICLES))
-                    registerListener(new AreaEffectCloudListener());
+                    registerListeners(new AreaEffectCloudListener());
                 if (VLBoolean(VERSIONINFO_ACTIVE)) new VersionInformer();
                 if (VLBoolean(POTION_FIX)) {
                     if (Bukkit.getPluginManager().isPluginEnabled("ProtocolLib")) {

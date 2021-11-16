@@ -18,7 +18,7 @@ public class SkMusic extends id.universenetwork.utilities.Bukkit.Hooks.SkriptAdd
 
     @Override
     public void Load() {
-        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener(new Events());
+        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(new Events());
         registerEffect(PlayNBS.class, "[skmusic] [nbs] play [song][music] %string% to %player%");
         registerEffect(StopNBS.class, "[skmusic] [nbs] stop play[ing] [song][music] to %player%");
         registerEffect(BroadcastNBS.class, "[skmusic] [nbs] broadcast [song][music] %string%");

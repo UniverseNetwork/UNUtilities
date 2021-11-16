@@ -24,7 +24,7 @@ public class AngelGem extends io.github.thebusybiscuit.slimefun4.api.items.Slime
         super(itemGroup, item, recipeType, recipe);
         addItemSetting(maxFlightSpeed, hasMaxFlightSpeed);
         addItemHandler(onRightClick(), onItemDrop());
-        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener(this);
+        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this);
     }
 
     io.github.thebusybiscuit.slimefun4.core.handlers.ItemDropHandler onItemDrop() {

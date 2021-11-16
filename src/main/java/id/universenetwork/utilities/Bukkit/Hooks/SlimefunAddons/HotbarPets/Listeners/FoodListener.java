@@ -6,8 +6,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 
-import static id.universenetwork.utilities.Bukkit.Manager.Color.Translator;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
 import static io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem.getById;
 import static io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils.isItemSimilar;
 import static org.bukkit.Bukkit.getScheduler;

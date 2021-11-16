@@ -1,5 +1,5 @@
-name: UNUtilities
-version: ${project.version}
+name: ${name}
+version: ${version}
 main: id.universenetwork.utilities.Bungee.UNUtilities
 author: ARVIN3108 ID
-description: Utilities Features for UniverseNetwork
+description: ${description}

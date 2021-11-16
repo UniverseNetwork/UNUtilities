@@ -29,7 +29,7 @@ public class YamlBuilder extends YamlConfiguration {
     }
 
     public YamlBuilder(String name, String path) {
-        file = new File(plugin.getDataFolder() + path, name);
+        file = new File(path, name);
         super.defaults = defaults;
         loadDefaults(name);
     }

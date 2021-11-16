@@ -29,7 +29,7 @@ public class FlowerPowerPlugin implements org.bukkit.event.Listener {
             if (Enchantment.getByKey(glowEnchant.getKey()) == null) Enchantment.registerEnchantment(glowEnchant);
 
             // Register Listener
-            id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener(this);
+            id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this);
 
             // Register All Items
             id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FlowerPower.Setup.FlowerPowerItemSetup.setup();

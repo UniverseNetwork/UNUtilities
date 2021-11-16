@@ -9,9 +9,9 @@ import id.universenetwork.utilities.Bukkit.NMS.ETF;
 
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.Manager.Color.Translator;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
 import static org.bukkit.Bukkit.getLogger;
 import static org.bukkit.Bukkit.getPluginManager;
 

@@ -9,7 +9,7 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 
 import java.util.UUID;
 
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getProtectionManager;
 import static io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.ATTACK_PLAYER;
@@ -24,7 +24,7 @@ public class TNTListener implements org.bukkit.event.Listener {
     static final String METADATA_KEY = "hotbarpets_player";
 
     public TNTListener() {
-        registerListener(this);
+        registerListeners(this);
     }
 
     @EventHandler

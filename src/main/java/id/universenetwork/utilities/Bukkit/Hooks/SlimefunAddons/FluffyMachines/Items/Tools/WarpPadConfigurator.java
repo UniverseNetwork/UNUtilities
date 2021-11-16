@@ -23,8 +23,8 @@ import org.bukkit.persistence.PersistentDataContainer;
 import java.util.List;
 
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Utils.Utils.send;
-import static id.universenetwork.utilities.Bukkit.Manager.Color.Translator;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
 import static io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getProtectionManager;
 import static io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils.isItemSimilar;
 import static me.mrCookieSlime.Slimefun.api.BlockStorage.*;
@@ -42,7 +42,7 @@ public class WarpPadConfigurator extends SlimefunItem implements HologramOwner, 
 
     public WarpPadConfigurator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
-        Events.registerListener(this);
+        Events.registerListeners(this);
         addItemSetting(MAX_DISTANCE);
     }
 

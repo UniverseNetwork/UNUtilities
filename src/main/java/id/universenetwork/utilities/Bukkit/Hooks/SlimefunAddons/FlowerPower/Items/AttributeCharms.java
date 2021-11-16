@@ -1,5 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FlowerPower.Items;
 
+import id.universenetwork.utilities.Bukkit.Utils.Color;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import org.bukkit.NamespacedKey;
@@ -21,7 +22,7 @@ public class AttributeCharms extends io.github.thebusybiscuit.slimefun4.implemen
     public AttributeCharms(io.github.thebusybiscuit.slimefun4.api.items.ItemGroup itemGroup, io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack item, io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType recipeType, ItemStack[] recipe, Charm type) {
         super(itemGroup, item, recipeType, recipe);
         this.type = type;
-        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener(this);
+        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this);
     }
 
     @org.jetbrains.annotations.NotNull
@@ -42,7 +43,7 @@ public class AttributeCharms extends io.github.thebusybiscuit.slimefun4.implemen
 
             // Update lore
             java.util.List<String> lore = charmMeta.getLore();
-            lore.set(LORE_INDEX, id.universenetwork.utilities.Bukkit.Manager.Color.Translator("&aThis charm has been inspected"));
+            lore.set(LORE_INDEX, Color.Translator("&aThis charm has been inspected"));
             charmMeta.setLore(lore);
 
             p.playSound(p.getLocation(), org.bukkit.Sound.BLOCK_BELL_RESONATE, 1, 1);

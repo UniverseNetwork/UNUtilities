@@ -40,7 +40,7 @@ public class DynamicEnumTypes {
     }
 
     static <T extends DummyClasses.DummyBase> void add(final Class<T> c, final String typeName, final ArrayList<String> patterns) {
-        Classes.registerClass(new ClassInfo<>(c, typeName).user(typeName + "s?").parser(new Parser<>() {
+        Classes.registerClass(new ClassInfo<>(c, typeName).user(typeName + "s?").parser(new Parser<T>() {
             @Override
             public T parse(String s, ParseContext parseContext) {
                 if (s.startsWith(typeName + ":")) s = s.substring(typeName.length() + 1);
@@ -69,7 +69,7 @@ public class DynamicEnumTypes {
             public String getVariableNamePattern() {
                 return typeName + ":.+";
             }
-        }).serializer(new Serializer<>() {
+        }).serializer(new Serializer<T>() {
 
             @Override
             public Fields serialize(T o) {

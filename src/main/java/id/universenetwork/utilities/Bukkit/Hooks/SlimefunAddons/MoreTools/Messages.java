@@ -3,8 +3,8 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MoreTools;
 import java.util.Objects;
 
 import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimefunAddons.ADDONSSETTINGS;
-import static id.universenetwork.utilities.Bukkit.Manager.Color.Translator;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.get;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
 
 public enum Messages {
     CRESCENTHAMMER_BLOCKBREAKING("Block-Breaking"),

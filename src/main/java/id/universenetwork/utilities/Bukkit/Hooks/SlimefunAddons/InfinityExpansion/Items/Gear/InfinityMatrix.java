@@ -16,13 +16,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Iterator;
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
 import static org.bukkit.ChatColor.*;
 
 public final class InfinityMatrix extends SimpleSlimefunItem<ItemUseHandler> implements Listener, Soulbound, NotPlaceable {
     public InfinityMatrix(ItemGroup itemGroup, SlimefunItemStack item, RecipeType type, ItemStack[] recipe) {
         super(itemGroup, item, type, recipe);
-        registerListener(this);
+        registerListeners(this);
     }
 
     static void disableFlight(Player p) {

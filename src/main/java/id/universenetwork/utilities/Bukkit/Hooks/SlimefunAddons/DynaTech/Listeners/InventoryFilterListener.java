@@ -11,7 +11,7 @@ public class InventoryFilterListener implements org.bukkit.event.Listener {
     final java.util.Set<Material> blacklistedMaterials = java.util.EnumSet.noneOf(Material.class);
 
     public InventoryFilterListener(@NotNull InventoryFilter inventoryFilter) {
-        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener(this);
+        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this);
         this.inventoryFilter = inventoryFilter;
     }
 

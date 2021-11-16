@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 public abstract class EvntNPCLeftClick extends SimpleEvent {
     static {
         ch.njol.skript.Skript.registerEvent("NPC Leftclick", SimpleEvent.class, NPCLeftClickEvent.class, "npc leftclick");
-        EventValues.registerEventValue(NPCLeftClickEvent.class, Integer.class, new Getter<>() {
+        EventValues.registerEventValue(NPCLeftClickEvent.class, Integer.class, new Getter<Integer, NPCLeftClickEvent>() {
             @Override
             @Nullable
             public Integer get(NPCLeftClickEvent e) {
@@ -22,7 +22,7 @@ public abstract class EvntNPCLeftClick extends SimpleEvent {
             }
 
         }, 0);
-        EventValues.registerEventValue(NPCLeftClickEvent.class, Player.class, new Getter<>() {
+        EventValues.registerEventValue(NPCLeftClickEvent.class, Player.class, new Getter<Player, NPCLeftClickEvent>() {
             @Override
             @Nullable
             public Player get(NPCLeftClickEvent e) {

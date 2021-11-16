@@ -12,7 +12,7 @@ import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 public abstract class EvntOnAdvancement extends SimpleEvent {
     static {
         ch.njol.skript.Skript.registerEvent("Advancement", SimpleEvent.class, PlayerAdvancementDoneEvent.class, "[player] advancement (complete|done)");
-        ch.njol.skript.registrations.EventValues.registerEventValue(PlayerAdvancementDoneEvent.class, NamespacedKey.class, new Getter<>() {
+        ch.njol.skript.registrations.EventValues.registerEventValue(PlayerAdvancementDoneEvent.class, NamespacedKey.class, new Getter<NamespacedKey, PlayerAdvancementDoneEvent>() {
             @Override
             @org.jetbrains.annotations.Nullable
             public NamespacedKey get(PlayerAdvancementDoneEvent e) {

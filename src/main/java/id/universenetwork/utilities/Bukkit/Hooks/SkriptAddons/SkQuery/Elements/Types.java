@@ -17,7 +17,7 @@ import static ch.njol.skript.log.ErrorQuality.SEMANTIC_ERROR;
 public class Types extends id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkQuery.Annotations.AbstractTask {
     @Override
     public void run() {
-        Classes.registerClass(new ClassInfo<>(Markup.class, "markup").parser(new Parser<>() {
+        Classes.registerClass(new ClassInfo<>(Markup.class, "markup").parser(new Parser<Markup>() {
             @Override
             public Markup parse(String s, ParseContext parseContext) {
                 if (s.charAt(0) == '`' && s.charAt(s.length() - 1) == '`')
@@ -44,7 +44,7 @@ public class Types extends id.universenetwork.utilities.Bukkit.Hooks.SkriptAddon
             public String getVariableNamePattern() {
                 return ".+";
             }
-        }).serializer(new ch.njol.skript.classes.Serializer<>() {
+        }).serializer(new ch.njol.skript.classes.Serializer<Markup>() {
             @Override
             public Fields serialize(Markup markup) {
                 Fields f = new Fields();
@@ -77,39 +77,38 @@ public class Types extends id.universenetwork.utilities.Bukkit.Hooks.SkriptAddon
                 return false;
             }
         }));
-        Classes.registerClass(new ClassInfo<>(LambdaCondition.class, "predicate")
-                .parser(new Parser<>() {
-                    @Override
-                    public LambdaCondition parse(String s, ParseContext parseContext) {
-                        if (s.length() > 2 && s.charAt(0) == '[' && s.charAt(s.length() - 1) == ']') {
-                            Condition e = Condition.parse(s.substring(1, s.length() - 1), null);
-                            if (e == null) error(s + " is not a valid lambda statement.", SEMANTIC_ERROR);
-                            else return new LambdaCondition(e);
-                        }
-                        return null;
-                    }
+        Classes.registerClass(new ClassInfo<>(LambdaCondition.class, "predicate").parser(new Parser<LambdaCondition>() {
+            @Override
+            public LambdaCondition parse(String s, ParseContext parseContext) {
+                if (s.length() > 2 && s.charAt(0) == '[' && s.charAt(s.length() - 1) == ']') {
+                    Condition e = Condition.parse(s.substring(1, s.length() - 1), null);
+                    if (e == null) error(s + " is not a valid lambda statement.", SEMANTIC_ERROR);
+                    else return new LambdaCondition(e);
+                }
+                return null;
+            }
 
-                    @Override
-                    public boolean canParse(ParseContext context) {
-                        return true;
-                    }
+            @Override
+            public boolean canParse(ParseContext context) {
+                return true;
+            }
 
-                    @Override
-                    public String toString(LambdaCondition lambdaCondition, int i) {
-                        return lambdaCondition.toString();
-                    }
+            @Override
+            public String toString(LambdaCondition lambdaCondition, int i) {
+                return lambdaCondition.toString();
+            }
 
-                    @Override
-                    public String toVariableNameString(LambdaCondition lambdaCondition) {
-                        return lambdaCondition.toString();
-                    }
+            @Override
+            public String toVariableNameString(LambdaCondition lambdaCondition) {
+                return lambdaCondition.toString();
+            }
 
-                    @Override
-                    public String getVariableNamePattern() {
-                        return ".+";
-                    }
-                }));
-        Classes.registerClass(new ClassInfo<>(LambdaEffect.class, "lambda").parser(new Parser<>() {
+            @Override
+            public String getVariableNamePattern() {
+                return ".+";
+            }
+        }));
+        Classes.registerClass(new ClassInfo<>(LambdaEffect.class, "lambda").parser(new Parser<LambdaEffect>() {
             @Override
             public LambdaEffect parse(String s, ParseContext parseContext) {
                 if (s.length() > 3 && s.charAt(0) == '[' && s.charAt(s.length() - 1) == ']') {

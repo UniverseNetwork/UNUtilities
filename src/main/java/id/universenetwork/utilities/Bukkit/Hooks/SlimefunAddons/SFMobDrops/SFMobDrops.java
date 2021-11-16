@@ -30,7 +30,7 @@ public class SFMobDrops implements org.bukkit.event.Listener {
         if (id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled("SFMobDrops")) {
             instance = this;
             loadConfig();
-            id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener(this, new Guis());
+            id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this, new Guis());
             new MobDropsCommand();
             System.out.println(prefix + " §bSuccessfully Registered §dSFMobDrops §bAddon");
         }

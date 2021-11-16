@@ -52,7 +52,7 @@ public class EnumClassInfo<E extends Enum<E>> {
         if (Classes.getExactClassInfo(enumType) == null) {
             //for .lang files in the future
             //Classes.registerClass(classInfo.user(user).parser(new LangEnumParser<E>(codeName, enumType)).serializer(new EnumSerializer<>(enumType)));
-            Classes.registerClass(classInfo.user(user).parser(new Parser<>() {
+            Classes.registerClass(classInfo.user(user).parser(new Parser<E>() {
                 @Override
                 public E parse(String s, ParseContext parseContext) {
                     if (s.startsWith(codeName + ":")) s = s.substring(codeName.length() + 1);

@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
 import static io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem.getById;
 import static io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils.isItemSimilar;
 import static org.bukkit.Material.PUMPKIN_PIE;
@@ -17,7 +17,7 @@ public class SoulPieListener implements org.bukkit.event.Listener {
 
     public SoulPieListener() {
         eyamaz = (HotbarPet) getById("HOTBAR_PET_EYAMAZ");
-        registerListener(this);
+        registerListeners(this);
     }
 
     @EventHandler

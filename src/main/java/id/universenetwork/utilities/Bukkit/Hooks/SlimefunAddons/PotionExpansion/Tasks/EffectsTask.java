@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.Manager.Color.Translator;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
 
 public class EffectsTask extends org.bukkit.scheduler.BukkitRunnable {
     public EffectsTask() {

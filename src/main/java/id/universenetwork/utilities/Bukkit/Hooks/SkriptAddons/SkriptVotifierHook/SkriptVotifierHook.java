@@ -16,7 +16,7 @@ public class SkriptVotifierHook extends id.universenetwork.utilities.Bukkit.Hook
             } catch (java.io.IOException e) {
                 e.printStackTrace();
             }
-            id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener(this);
+            id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this);
             System.out.println(prefix + " §aVotifier found. §bSuccessfully Registered §6SkriptVotifierHook §bAddon");
         } else
             getServer().getLogger().warning(prefix + " §eVotifier not found. §cYou need Votifier to use §6SkriptVotifierHook §cAddon");

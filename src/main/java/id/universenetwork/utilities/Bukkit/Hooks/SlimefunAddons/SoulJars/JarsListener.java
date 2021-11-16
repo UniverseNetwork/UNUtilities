@@ -1,6 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.SoulJars;
 
-import id.universenetwork.utilities.Bukkit.Manager.Color;
+import id.universenetwork.utilities.Bukkit.Utils.Color;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
 import org.bukkit.ChatColor;
@@ -15,7 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.List;
 import java.util.Map;
 
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
 
 class JarsListener implements Listener {
     final SlimefunItem emptyJar;
@@ -23,7 +23,7 @@ class JarsListener implements Listener {
 
     public JarsListener(SoulJars Main) {
         this.Main = Main;
-        registerListener(this);
+        registerListeners(this);
         this.emptyJar = SlimefunItem.getById("SOUL_JAR");
     }
 

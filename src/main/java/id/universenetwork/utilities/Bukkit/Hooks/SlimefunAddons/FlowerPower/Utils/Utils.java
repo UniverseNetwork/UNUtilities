@@ -1,5 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FlowerPower.Utils;
 
+import id.universenetwork.utilities.Bukkit.Utils.Color;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
 /**
@@ -9,7 +10,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
  */
 public class Utils {
     public static void send(org.bukkit.command.CommandSender s, String msg) {
-        s.sendMessage(id.universenetwork.utilities.Bukkit.Manager.Color.Translator("&5&l[Magic] " + msg));
+        s.sendMessage(Color.Translator("&5&l[Magic] " + msg));
     }
 
     public static int getExpAtLevel(int level) {

@@ -14,8 +14,7 @@
   </p>
 </div>
 
-## Features
-
+## Bukkit Features
 - Anti Redstone
 - Armor Stand Arms Adder
 - Address Whitelister (Fork of [PreventPortBypass](http://spigotmc.org/resources/54934))
@@ -32,14 +31,16 @@
 - Entity Tracker Fixer (Fork of [EntityTrackerFixer](http://spigotmc.org/resources/70902) & some patches from [cascaseno](http://github.com/cascaseno/EntityTrackerFixer))
 - ViaLegacy (Fork of [ViaRewind Legacy Support](http://spigotmc.org/resources/52924) & [ViaPotions](http://github.com/2lstudios-mc/ViaPotions/releases))
 
-## API Included
+## Bungee Features
+- Max Player Changer Command (Fork of [ChangeSlots](http://spigotmc.org/resources/49648))
+- Staff List
 
+## API Included
 - [ActionBarAPI](http://spigotmc.org/resources/1315)
 - [NoteBlockAPI](http://ci.haprosgames.com/job/NoteBlockAPI-2.0/lastSuccessfulBuild)
 - [HamsterAPI](http://spigotmc.org/resources/78831)
 
 ## Third Party Addons Included
-
 ### [Slimefun](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/Slimefun4/master)
 - [ExtraGear](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/ExtraGear/master)
 - [PrivateStorage](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/PrivateStorage/master)

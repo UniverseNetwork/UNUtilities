@@ -1,6 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.Skript.Util;
 
-import id.universenetwork.utilities.Bukkit.Manager.Color;
+import id.universenetwork.utilities.Bukkit.Utils.Color;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.Nullable;

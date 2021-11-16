@@ -1,6 +1,7 @@
 package id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.VersionInfo;
 
 import id.universenetwork.utilities.Bukkit.Manager.Config;
+import id.universenetwork.utilities.Bukkit.Utils.Color;
 import org.bukkit.Bukkit;
 
 import static com.viaversion.viaversion.api.Via.getAPI;
@@ -11,11 +12,11 @@ public class VersionInformer implements org.bukkit.event.Listener {
     final int maxVersion;
 
     public VersionInformer() {
-        message = id.universenetwork.utilities.Bukkit.Manager.Color.Translator(Config.VLString(VERSIONINFO_MSG)).replace("%version%", Bukkit.getVersion().split(" ")[2].replace(")", ""));
+        message = Color.Translator(Config.VLString(VERSIONINFO_MSG)).replace("%version%", Bukkit.getVersion().split(" ")[2].replace(")", ""));
         maxVersion = Config.VLInt(VERSIONINFO_MAX_VERSION);
         String interval = Config.VLString(VERSIONINFO_INTERVAL);
         if (interval.equalsIgnoreCase("JOIN"))
-            id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener(this);
+            id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this);
         else {
             long ticks = Long.parseLong(interval);
             Bukkit.getScheduler().runTaskTimer(id.universenetwork.utilities.Bukkit.UNUtilities.plugin, () -> Bukkit.getOnlinePlayers().forEach(player -> {

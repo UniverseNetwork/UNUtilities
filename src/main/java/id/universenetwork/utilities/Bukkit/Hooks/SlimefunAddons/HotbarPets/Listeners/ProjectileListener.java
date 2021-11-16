@@ -4,12 +4,12 @@ import org.bukkit.entity.Arrow;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.ProjectileHitEvent;
 
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 
 public class ProjectileListener implements org.bukkit.event.Listener {
     public ProjectileListener() {
-        registerListener(this);
+        registerListeners(this);
     }
 
     @EventHandler

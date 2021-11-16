@@ -51,7 +51,7 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
         NoteBlockAPISetup("enabling");
         HamsterAPISetup("enabling");
         Listeners.register();
-        Commands.register();
+        Commands.Register();
         AsyncWorldEditBossBarDisplay("enabling");
         ShopGUIPlusSilkSpawnersConnector();
         SlimefunAddons();
@@ -100,36 +100,18 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
         Properties properties = new Properties();
         File propertiesFile = new File("server.properties");
         try {
-            FileInputStream is = new FileInputStream(propertiesFile);
-            try {
+            try (java.io.InputStream is = new FileInputStream(propertiesFile)) {
                 properties.load(is);
-            } catch (Throwable v10) {
-                try {
-                    is.close();
-                } catch (Throwable v8) {
-                    v10.addSuppressed(v8);
-                }
-                throw v10;
             }
-            is.close();
             String maxPlayers = Integer.toString(getServer().getMaxPlayers());
             if (properties.getProperty("max-players").equals(maxPlayers)) return;
-            System.out.println(prefix + " §6Saving max players to server.properties...");
+            System.out.println(prefix + " §eSaving max players to server.properties...");
             properties.setProperty("max-players", maxPlayers);
-            FileOutputStream os = new FileOutputStream(propertiesFile);
-            try {
+            try (java.io.OutputStream os = new FileOutputStream(propertiesFile)) {
                 properties.store(os, "Minecraft server properties");
-            } catch (Throwable v9) {
-                try {
-                    os.close();
-                } catch (Throwable v7) {
-                    v9.addSuppressed(v7);
-                }
-                throw v9;
             }
-            os.close();
-        } catch (java.io.IOException v11) {
-            getLogger().log(java.util.logging.Level.SEVERE, prefix + " §cError while saving max players in server properties", v11);
+        } catch (java.io.IOException e) {
+            org.bukkit.Bukkit.getLogger().log(java.util.logging.Level.SEVERE, prefix + " §cAn error occurred while updating the server properties", e);
         }
     }
 

@@ -2,7 +2,7 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion
 
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion.API.Effects.EffectsManager;
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion.PotionExpansion;
-import id.universenetwork.utilities.Bukkit.Manager.Color;
+import id.universenetwork.utilities.Bukkit.Utils.Color;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 

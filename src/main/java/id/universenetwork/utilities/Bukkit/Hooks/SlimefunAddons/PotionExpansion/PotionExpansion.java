@@ -16,7 +16,7 @@ public class PotionExpansion {
             PotionsItemSetup.setup();
             ResearchSetup.setup();
             new id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion.Commands.PotionExpansionCommand();
-            id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener(new id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion.Listeners.DrinkMilkListener());
+            id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(new id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PotionExpansion.Listeners.DrinkMilkListener());
             effectsTask = new EffectsTask();
             System.out.println(id.universenetwork.utilities.Bukkit.UNUtilities.prefix + " §bSuccessfully Registered §dPotionExpansion §bAddon");
         }

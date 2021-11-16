@@ -29,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
 import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Scheduler.run;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 
@@ -49,7 +49,7 @@ public final class VeinMinerRune extends SlimefunItem implements Listener, NotPl
 
     public VeinMinerRune(ItemGroup itemGroup, SlimefunItemStack item, RecipeType type, ItemStack[] recipe) {
         super(itemGroup, item, type, recipe);
-        registerListener(this);
+        registerListeners(this);
     }
 
     @EventHandler

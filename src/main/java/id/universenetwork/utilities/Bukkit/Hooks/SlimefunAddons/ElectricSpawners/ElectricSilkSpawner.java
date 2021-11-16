@@ -5,7 +5,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.RepairedSp
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
-import static id.universenetwork.utilities.Bukkit.Manager.Color.Translator;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
 import static io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems.REPAIRED_SPAWNER;
 import static io.github.thebusybiscuit.slimefun4.utils.ChatUtils.humanize;
 

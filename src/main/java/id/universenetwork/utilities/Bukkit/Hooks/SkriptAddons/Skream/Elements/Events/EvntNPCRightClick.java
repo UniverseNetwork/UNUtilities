@@ -15,7 +15,7 @@ import static ch.njol.skript.registrations.EventValues.registerEventValue;
 public abstract class EvntNPCRightClick extends SimpleEvent {
     static {
         ch.njol.skript.Skript.registerEvent("PC Rightclick", SimpleEvent.class, NPCRightClickEvent.class, "npc rightclick");
-        registerEventValue(NPCRightClickEvent.class, Integer.class, new Getter<>() {
+        registerEventValue(NPCRightClickEvent.class, Integer.class, new Getter<Integer, NPCRightClickEvent>() {
             @Override
             @Nullable
             public Integer get(NPCRightClickEvent e) {
@@ -23,7 +23,7 @@ public abstract class EvntNPCRightClick extends SimpleEvent {
             }
 
         }, 0);
-        registerEventValue(NPCRightClickEvent.class, Player.class, new Getter<>() {
+        registerEventValue(NPCRightClickEvent.class, Player.class, new Getter<Player, NPCRightClickEvent>() {
             @Override
             @Nullable
             public Player get(NPCRightClickEvent e) {

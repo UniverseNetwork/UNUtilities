@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
 
 import static com.viaversion.viaversion.api.Via.getAPI;
 import static id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Injector.NMSReflection.*;
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
 import static org.bukkit.event.EventPriority.MONITOR;
 
 public class SoundListener implements Listener {
@@ -26,7 +26,7 @@ public class SoundListener implements Listener {
     public SoundListener() {
         try {
             Class.forName("org.bukkit.event.entity.EntityPickupItemEvent");
-            registerListener(new Listener() {
+            registerListeners(new Listener() {
                 @EventHandler(priority = MONITOR, ignoreCancelled = true)
                 public void onItemPickUp(org.bukkit.event.entity.EntityPickupItemEvent e) {
                     if (!(e.getEntity() instanceof Player)) return;
@@ -34,7 +34,7 @@ public class SoundListener implements Listener {
                 }
             });
         } catch (Exception e) {
-            registerListener(new Listener() {
+            registerListeners(new Listener() {
                 @EventHandler(priority = MONITOR, ignoreCancelled = true)
                 public void onItemPickUp(org.bukkit.event.player.PlayerPickupItemEvent e) {
                     SoundListener.this.onItemPickUp(e.getPlayer());

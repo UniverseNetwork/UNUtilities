@@ -17,7 +17,7 @@ import java.util.concurrent.ThreadFactory;
 
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Settings;
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 import static me.mrCookieSlime.Slimefun.api.BlockStorage.check;
@@ -31,7 +31,7 @@ public final class HeadLimiter implements org.bukkit.event.Listener {
 
     public HeadLimiter() {
         if (Enabled("HeadLimiter")) {
-            registerListener(this);
+            registerListeners(this);
             new CountCommand(this);
             System.out.println(prefix + " §bSuccessfully Registered §dHeadLimiter §bAddon");
         }

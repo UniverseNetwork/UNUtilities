@@ -12,7 +12,7 @@ import org.bukkit.permissions.PermissionAttachment;
 import java.util.HashMap;
 import java.util.UUID;
 
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 
 public class PermissionsHandler implements Listener {
@@ -20,7 +20,7 @@ public class PermissionsHandler implements Listener {
     static final HashMap<UUID, PermissionAttachment> permissions = new HashMap<>();
 
     public static void enable() {
-        if (!enabled) registerListener(new PermissionsHandler());
+        if (!enabled) registerListeners(new PermissionsHandler());
         enabled = true;
     }
 

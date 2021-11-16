@@ -11,7 +11,7 @@ public class HydroGenerator extends io.github.thebusybiscuit.slimefun4.api.items
     final int energy;
     final int capacity;
 
-    final com.google.common.cache.LoadingCache<BlockPosition, Integer> cachedGeneration = com.google.common.cache.CacheBuilder.newBuilder().refreshAfterWrite(1, MINUTES).expireAfterAccess(3, MINUTES).build(new com.google.common.cache.CacheLoader<>() {
+    final com.google.common.cache.LoadingCache<BlockPosition, Integer> cachedGeneration = com.google.common.cache.CacheBuilder.newBuilder().refreshAfterWrite(1, MINUTES).expireAfterAccess(3, MINUTES).build(new com.google.common.cache.CacheLoader<BlockPosition, Integer>() {
         @Override
         public Integer load(@NotNull BlockPosition key) {
             return fetchOutputForBlock(key);

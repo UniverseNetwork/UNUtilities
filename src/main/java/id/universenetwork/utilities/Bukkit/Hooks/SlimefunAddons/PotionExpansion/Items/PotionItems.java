@@ -14,8 +14,8 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 
-import static id.universenetwork.utilities.Bukkit.Manager.Color.Translator;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
 import static org.bukkit.Color.AQUA;
 
 public class PotionItems {

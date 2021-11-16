@@ -14,13 +14,13 @@ public class SlimefunHook implements io.github.thebusybiscuit.slimefun4.api.Slim
 
     static {
         ch.njol.skript.Skript.registerEvent("Slimefun - Research Unlock", ch.njol.skript.lang.util.SimpleEvent.class, ResearchUnlockEvent.class, "[Slimefun] research unlock[ing]", "[Slimefun] unlock[ing] research").description("Called when a player unlocks a Slimefun research.").examples("on research unlock:", "\tsend \"You unlocked research!\"");
-        EventValues.registerEventValue(ResearchUnlockEvent.class, Player.class, new Getter<>() {
+        EventValues.registerEventValue(ResearchUnlockEvent.class, Player.class, new Getter<Player, ResearchUnlockEvent>() {
             @Override
             public Player get(ResearchUnlockEvent e) {
                 return e.getPlayer();
             }
         }, 0);
-        EventValues.registerEventValue(ResearchUnlockEvent.class, String.class, new Getter<>() {
+        EventValues.registerEventValue(ResearchUnlockEvent.class, String.class, new Getter<String, ResearchUnlockEvent>() {
             @Override
             public String get(ResearchUnlockEvent e) {
                 return e.getResearch().getKey().getKey();

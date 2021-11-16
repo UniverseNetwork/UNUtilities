@@ -1,6 +1,7 @@
 package id.universenetwork.utilities.Bukkit.Hooks;
 
 import id.universenetwork.utilities.Bukkit.UNUtilities;
+import id.universenetwork.utilities.Bukkit.Utils.Color;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BossBar;
 import org.primesoft.asyncworldedit.api.IAsyncWorldEdit;
@@ -55,7 +56,7 @@ public class AsyncWorldEditBossBarDisplay implements org.primesoft.asyncworldedi
         bossBar.setProgress(progress);
         java.text.NumberFormat nf = new java.text.DecimalFormat("#.##");
         String format = AWEBDMessage(id.universenetwork.utilities.Bukkit.Enums.Features.AsyncWorldEditBossBarDisplay.TITLE);
-        format = id.universenetwork.utilities.Bukkit.Manager.Color.Translator(format == null ? "ETA: $timeLeft seconds, Speed: $placingSpeed block/sec, $percentage %" : format);
+        format = Color.Translator(format == null ? "ETA: $timeLeft seconds, Speed: $placingSpeed block/sec, $percentage %" : format);
         format = format.replace("$jobsCount", jobsCount + "").replace("$queuedBlocks", queuedBlocks + "").replace("$maxQueuedBlocks", maxQueuedBlocks + "").replace("$timeLeft", nf.format(timeLeft)).replace("$placingSpeed", nf.format(placingSpeed)).replace("$percentage", nf.format(percentage));
         bossBar.setTitle(format);
         bossBar.setVisible(true);

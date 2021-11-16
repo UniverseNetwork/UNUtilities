@@ -44,7 +44,7 @@ public class PortableCharger extends SimpleSlimefunItem<ItemUseHandler> implemen
         super(itemGroup, item, recipeType, recipe);
         this.CHARGE_CAPACITY = chargeCapacity;
         this.CHARGE_SPEED = chargeSpeed;
-        Events.registerListener(this);
+        Events.registerListeners(this);
     }
 
     @NotNull

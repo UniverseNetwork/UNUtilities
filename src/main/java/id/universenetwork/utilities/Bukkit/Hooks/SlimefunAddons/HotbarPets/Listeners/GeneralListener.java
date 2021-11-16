@@ -7,14 +7,14 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.HotbarPets.HotbarPet.getMessageDelay;
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
 import static io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem.getByItem;
 import static org.bukkit.event.EventPriority.LOWEST;
 import static org.bukkit.event.inventory.InventoryType.SlotType.ARMOR;
 
 public class GeneralListener implements org.bukkit.event.Listener {
     public GeneralListener() {
-        registerListener(this);
+        registerListeners(this);
     }
 
     @EventHandler(priority = LOWEST, ignoreCancelled = true)

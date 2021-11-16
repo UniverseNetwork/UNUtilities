@@ -43,7 +43,7 @@ public class TypeClassInfo<T> {
 
     public ClassInfo<T> register() {
         if (Classes.getExactClassInfo(clazz) == null) {
-            classInfo.user(codeName + "s?").defaultExpression(new EventValueExpression<>(clazz)).parser(new Parser<>() {
+            classInfo.user(codeName + "s?").defaultExpression(new EventValueExpression<>(clazz)).parser(new Parser<T>() {
                 @Override
                 public String getVariableNamePattern() {
                     return codeName + ":.+";
@@ -60,12 +60,12 @@ public class TypeClassInfo<T> {
                 }
 
                 @Override
-                public String toString(T t, int i) {
+                public String toString(Object t, int i) {
                     return t.toString();
                 }
 
                 @Override
-                public String toVariableNameString(T t) {
+                public String toVariableNameString(Object t) {
                     return codeName + ':' + t.toString();
                 }
             }).serializeAs(clazz);

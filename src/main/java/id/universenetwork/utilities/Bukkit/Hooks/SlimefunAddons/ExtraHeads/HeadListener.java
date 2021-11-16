@@ -9,14 +9,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimefunAddons.ADDONSSETTINGS;
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListener;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
 
 class HeadListener implements Listener {
     final ExtraHeads Main;
 
     public HeadListener(ExtraHeads Main) {
         this.Main = Main;
-        registerListener(this);
+        registerListeners(this);
     }
 
     @EventHandler(ignoreCancelled = true)

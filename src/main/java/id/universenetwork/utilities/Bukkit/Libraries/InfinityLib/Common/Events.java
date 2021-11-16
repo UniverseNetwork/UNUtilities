@@ -35,12 +35,12 @@ public class Events implements Listener {
     /**
      * Registers the given listener class
      */
-    public static void registerListener(Listener... Listeners) {
-        for (Listener listener : Listeners)
+    public static void registerListeners(Listener... Listeners) {
+        for (Listener l : Listeners)
             try {
-                getPluginManager().registerEvents(listener, plugin);
+                getPluginManager().registerEvents(l, plugin);
             } catch (Exception e) {
-                getLogger().severe(prefix + " §cFailed to register listener! [" + listener.toString() + "]");
+                getLogger().severe(prefix + " §cFailed to register listener! [" + l.toString() + "]");
                 e.printStackTrace();
             }
     }
