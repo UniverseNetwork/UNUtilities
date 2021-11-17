@@ -6,7 +6,7 @@
 
     <groupId>id.universenetwork.utilities</groupId>
     <artifactId>UNUtilities</artifactId>
-    <version>1.7</version>
+    <version>1.8</version>
     <packaging>jar</packaging>
     <name>UNUtilities</name>
     <description>Utilities Features for UniverseNetwork</description>
@@ -149,6 +149,11 @@
         <repository>
             <id>Citizens Repository</id>
             <url>https://repo.citizensnpcs.co/</url>
+        </repository>
+        <repository>
+            <id>dv8tion</id>
+            <name>m2-dv8tion</name>
+            <url>https://m2.dv8tion.net/releases</url>
         </repository>
     </repositories>
 
@@ -348,6 +353,11 @@
             <artifactId>javacord</artifactId>
             <version>3.3.2</version>
             <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>net.dv8tion</groupId>
+            <artifactId>JDA</artifactId>
+            <version>4.3.0_277</version>
         </dependency>
     </dependencies>
 </project>
