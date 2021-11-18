@@ -9,7 +9,7 @@ import org.bukkit.NamespacedKey;
 import java.util.HashMap;
 import java.util.Map;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.SlimefunAddons.ADDONSSETTINGS;
+import static id.universenetwork.utilities.Bukkit.Enums.SlimefunAddons.ADDONSSETTINGS;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled;
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.addon;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.get;

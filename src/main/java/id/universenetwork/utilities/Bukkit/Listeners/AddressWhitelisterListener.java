@@ -1,6 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Listeners;
 
-import id.universenetwork.utilities.Bukkit.Enums.Features.AddressWhitelister;
+import id.universenetwork.utilities.Bukkit.Enums.AddressWhitelister;
 import id.universenetwork.utilities.Bukkit.Manager.Config;
 import id.universenetwork.utilities.Bukkit.Manager.Proxy;
 import org.bukkit.event.EventHandler;

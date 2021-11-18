@@ -1,6 +1,6 @@
 package id.universenetwork.utilities.Bungee.Listeners;
 
-import id.universenetwork.utilities.Bungee.Enums.Features.MaxPlayerChangerCommand;
+import id.universenetwork.utilities.Bungee.Enums.MaxPlayerChangerCommand;
 
 import static id.universenetwork.utilities.Bungee.Manager.Config.MPCCBoolean;
 

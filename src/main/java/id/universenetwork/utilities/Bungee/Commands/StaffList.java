@@ -7,8 +7,8 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static id.universenetwork.utilities.Bungee.Enums.Features.StaffList.DM;
-import static id.universenetwork.utilities.Bungee.Enums.Features.StaffList.ENABLED;
+import static id.universenetwork.utilities.Bungee.Enums.StaffList.DM;
+import static id.universenetwork.utilities.Bungee.Enums.StaffList.ENABLED;
 
 public class StaffList extends id.universenetwork.utilities.Bungee.Manager.Commands {
     public StaffList() {

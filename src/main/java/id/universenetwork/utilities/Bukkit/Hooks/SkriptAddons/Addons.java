@@ -1,7 +1,7 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons;
 
 import ch.njol.skript.SkriptAddon;
-import id.universenetwork.utilities.Bukkit.Enums.Features.SkriptAddons;
+import id.universenetwork.utilities.Bukkit.Enums.SkriptAddons;
 import id.universenetwork.utilities.Bukkit.UNUtilities;
 import org.bukkit.configuration.ConfigurationSection;
 

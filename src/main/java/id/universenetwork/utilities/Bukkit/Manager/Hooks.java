@@ -1,8 +1,8 @@
 package id.universenetwork.utilities.Bukkit.Manager;
 
-import id.universenetwork.utilities.Bukkit.Enums.Features.AsyncWorldEditBossBarDisplay;
-import id.universenetwork.utilities.Bukkit.Enums.Features.ShopGUIPlusSilkSpawnersConnector;
-import id.universenetwork.utilities.Bukkit.Enums.Features.ViaLegacy;
+import id.universenetwork.utilities.Bukkit.Enums.AsyncWorldEditBossBarDisplay;
+import id.universenetwork.utilities.Bukkit.Enums.ShopGUIPlusSilkSpawnersConnector;
+import id.universenetwork.utilities.Bukkit.Enums.ViaLegacy;
 import id.universenetwork.utilities.Bukkit.Hooks.ShopGUIPlusSilkSpawnersConnector.Connector;
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons;
 import id.universenetwork.utilities.Bukkit.UNUtilities;
@@ -15,7 +15,7 @@ import static id.universenetwork.utilities.Bukkit.Manager.Config.*;
 public class Hooks {
     public static void AsyncWorldEditBossBarDisplay(String Mode) {
         if (Mode.equalsIgnoreCase("enabling")) {
-            if (AWEBDBoolean(id.universenetwork.utilities.Bukkit.Enums.Features.AsyncWorldEditBossBarDisplay.ENABLED)) {
+            if (AWEBDBoolean(AsyncWorldEditBossBarDisplay.ENABLED)) {
                 System.out.println(UNUtilities.prefix + " §6AsyncWorldEdit BossBar Display Features is enabled on config.yml. Searching AsyncWorldEdit...");
                 if (Bukkit.getPluginManager().isPluginEnabled("AsyncWorldEdit")) {
                     hooks();

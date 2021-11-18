@@ -7,7 +7,7 @@ import id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.VersionInfo.VersionIn
 import id.universenetwork.utilities.Bukkit.UNUtilities;
 import org.bukkit.Bukkit;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.ViaLegacy.*;
+import static id.universenetwork.utilities.Bukkit.Enums.ViaLegacy.*;
 import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.VLBoolean;
 

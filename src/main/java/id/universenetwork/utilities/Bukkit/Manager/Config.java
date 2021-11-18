@@ -1,11 +1,11 @@
 package id.universenetwork.utilities.Bukkit.Manager;
 
-import id.universenetwork.utilities.Bukkit.Enums.Features.*;
-import id.universenetwork.utilities.Bukkit.Enums.Settings;
+import id.universenetwork.utilities.Bukkit.Enums.*;
 import id.universenetwork.utilities.Bukkit.Events.UNUtilitiesReloadConfigEvent;
 import id.universenetwork.utilities.Bukkit.Handlers.BookExploitHandler;
 import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Core.YamlBuilder;
 import id.universenetwork.utilities.Bukkit.NMS.ETF;
+import id.universenetwork.utilities.Universal.Enums.Settings;
 
 import java.util.List;
 

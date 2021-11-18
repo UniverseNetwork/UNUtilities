@@ -47,7 +47,7 @@ public class AsyncWorldEditBossBarDisplay implements org.primesoft.asyncworldedi
         BossBar bossBar;
         if (this.bossBars.containsKey(player.getUUID())) bossBar = bossBars.get(player.getUUID());
         else {
-            BarColor color = BarColor.valueOf(AWEBDMessage(id.universenetwork.utilities.Bukkit.Enums.Features.AsyncWorldEditBossBarDisplay.COLOR));
+            BarColor color = BarColor.valueOf(AWEBDMessage(id.universenetwork.utilities.Bukkit.Enums.AsyncWorldEditBossBarDisplay.COLOR));
             bossBar = createBossBar("", color, org.bukkit.boss.BarStyle.SOLID);
             bossBar.addPlayer(p);
         }
@@ -55,7 +55,7 @@ public class AsyncWorldEditBossBarDisplay implements org.primesoft.asyncworldedi
         double progress = Math.max(0.0D, Math.min(1.0D, percentage / 100.0D));
         bossBar.setProgress(progress);
         java.text.NumberFormat nf = new java.text.DecimalFormat("#.##");
-        String format = AWEBDMessage(id.universenetwork.utilities.Bukkit.Enums.Features.AsyncWorldEditBossBarDisplay.TITLE);
+        String format = AWEBDMessage(id.universenetwork.utilities.Bukkit.Enums.AsyncWorldEditBossBarDisplay.TITLE);
         format = Color.Translator(format == null ? "ETA: $timeLeft seconds, Speed: $placingSpeed block/sec, $percentage %" : format);
         format = format.replace("$jobsCount", jobsCount + "").replace("$queuedBlocks", queuedBlocks + "").replace("$maxQueuedBlocks", maxQueuedBlocks + "").replace("$timeLeft", nf.format(timeLeft)).replace("$placingSpeed", nf.format(placingSpeed)).replace("$percentage", nf.format(percentage));
         bossBar.setTitle(format);

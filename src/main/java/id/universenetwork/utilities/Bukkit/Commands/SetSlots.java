@@ -1,7 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Commands;
 
-import id.universenetwork.utilities.Bukkit.Enums.Features.MaxPlayerChangerCommand;
-import id.universenetwork.utilities.Bukkit.Manager.Commands;
+import id.universenetwork.utilities.Bukkit.Enums.MaxPlayerChangerCommand;
 import id.universenetwork.utilities.Bukkit.Manager.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -13,7 +12,7 @@ import java.util.List;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.MPCCMessage;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 
-public class SetSlots extends Commands {
+public class SetSlots extends id.universenetwork.utilities.Bukkit.Manager.Commands {
     Field maxPlayersField;
 
     public SetSlots() {

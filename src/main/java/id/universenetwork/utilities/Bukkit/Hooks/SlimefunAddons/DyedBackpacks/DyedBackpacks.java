@@ -1,6 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DyedBackpacks;
 
-import id.universenetwork.utilities.Bukkit.Enums.Features.SlimefunAddons;
+import id.universenetwork.utilities.Bukkit.Enums.SlimefunAddons;
 import id.universenetwork.utilities.Bukkit.Manager.Config;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;

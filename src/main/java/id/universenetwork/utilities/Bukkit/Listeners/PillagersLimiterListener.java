@@ -8,7 +8,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.PillagersLimiter.*;
+import static id.universenetwork.utilities.Bukkit.Enums.PillagersLimiter.*;
 import static org.bukkit.Material.AIR;
 import static org.bukkit.event.EventPriority.HIGHEST;
 

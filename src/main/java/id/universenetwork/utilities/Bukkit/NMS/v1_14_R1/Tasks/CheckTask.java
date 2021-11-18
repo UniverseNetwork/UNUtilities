@@ -12,7 +12,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashSet;
 import java.util.Set;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.EntityTrackerFixer.*;
+import static id.universenetwork.utilities.Bukkit.Enums.EntityTrackerFixer.*;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.*;
 import static id.universenetwork.utilities.Bukkit.NMS.v1_14_R1.NMSEntityTracker.trackEntities;
 import static org.bukkit.Bukkit.getWorld;

@@ -1,6 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Manager;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.AddressWhitelister.ADDRESS;
+import static id.universenetwork.utilities.Bukkit.Enums.AddressWhitelister.ADDRESS;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 
 public class Proxy {

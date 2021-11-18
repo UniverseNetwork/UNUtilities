@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bungee.Enums.Features;
+package id.universenetwork.utilities.Bungee.Enums;
 
 public enum MaxPlayerChangerCommand {
     // Max Player Changer Command Variable Settings

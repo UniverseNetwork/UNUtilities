@@ -5,7 +5,7 @@ import org.bukkit.entity.Entity;
 
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.VillagerOptimization.DISABLEDMSG;
+import static id.universenetwork.utilities.Bukkit.Enums.VillagerOptimization.DISABLEDMSG;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.VOString;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.isInVanilla;
 import static id.universenetwork.utilities.Bukkit.Utils.Color.sendTranslate;

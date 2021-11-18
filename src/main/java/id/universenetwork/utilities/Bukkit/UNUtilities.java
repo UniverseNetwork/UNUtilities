@@ -1,7 +1,7 @@
 package id.universenetwork.utilities.Bukkit;
 
-import id.universenetwork.utilities.Bukkit.Enums.Features.MaxPlayerChangerCommand;
-import id.universenetwork.utilities.Bukkit.Enums.Features.VillagerOptimization;
+import id.universenetwork.utilities.Bukkit.Enums.MaxPlayerChangerCommand;
+import id.universenetwork.utilities.Bukkit.Enums.VillagerOptimization;
 import id.universenetwork.utilities.Bukkit.Manager.*;
 
 import java.awt.*;

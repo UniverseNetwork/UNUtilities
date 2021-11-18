@@ -1,6 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Listeners;
 
-import id.universenetwork.utilities.Bukkit.Enums.Features.AntiZeroTickFarm;
+import id.universenetwork.utilities.Bukkit.Enums.AntiZeroTickFarm;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;

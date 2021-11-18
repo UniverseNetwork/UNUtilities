@@ -1,6 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Listeners;
 
-import id.universenetwork.utilities.Bukkit.Enums.Features.AntiRedstone;
+import id.universenetwork.utilities.Bukkit.Enums.AntiRedstone;
 import id.universenetwork.utilities.Bukkit.Manager.Config;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;

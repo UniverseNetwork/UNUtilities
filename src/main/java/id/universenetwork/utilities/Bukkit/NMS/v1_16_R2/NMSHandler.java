@@ -4,8 +4,8 @@ import id.universenetwork.utilities.Bukkit.NMS.v1_16_R2.Tasks.CheckTask;
 import id.universenetwork.utilities.Bukkit.NMS.v1_16_R2.Tasks.UntrackerTask;
 import org.bukkit.scheduler.BukkitTask;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.EntityTrackerFixer.CHECKFREQUENCY;
-import static id.universenetwork.utilities.Bukkit.Enums.Features.EntityTrackerFixer.UNTRACKTICKS;
+import static id.universenetwork.utilities.Bukkit.Enums.EntityTrackerFixer.CHECKFREQUENCY;
+import static id.universenetwork.utilities.Bukkit.Enums.EntityTrackerFixer.UNTRACKTICKS;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.ETFInt;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 

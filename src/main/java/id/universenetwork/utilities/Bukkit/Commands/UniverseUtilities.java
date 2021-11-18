@@ -16,7 +16,7 @@ public class UniverseUtilities extends id.universenetwork.utilities.Bukkit.Manag
     public void Execute(CommandSender sender, String[] args) {
         if (args.length == 1 && (args[0].equalsIgnoreCase("reload") || args[0].equalsIgnoreCase("rl"))) {
             Config.reload();
-            sender.sendMessage(Config.Settings(id.universenetwork.utilities.Bukkit.Enums.Settings.RELOAD));
+            sender.sendMessage(Config.Settings(id.universenetwork.utilities.Universal.Enums.Settings.RELOAD));
         } else {
             sendTranslate(sender, "&b&lU&e&lN&9&lUtilities");
             sendTranslate(sender, "");

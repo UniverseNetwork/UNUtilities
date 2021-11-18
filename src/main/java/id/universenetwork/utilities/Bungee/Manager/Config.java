@@ -1,14 +1,15 @@
 package id.universenetwork.utilities.Bungee.Manager;
 
-import id.universenetwork.utilities.Bungee.Enums.Features.MaxPlayerChangerCommand;
-import id.universenetwork.utilities.Bungee.Enums.Features.StaffList;
+import id.universenetwork.utilities.Bungee.Enums.MaxPlayerChangerCommand;
+import id.universenetwork.utilities.Bungee.Enums.StaffList;
+import id.universenetwork.utilities.Universal.Enums.Settings;
 
 import static id.universenetwork.utilities.Bungee.UNUtilities.settings;
 import static id.universenetwork.utilities.Bungee.Utils.Color.Translator;
 
 public class Config {
     // Settings Category
-    public static String Settings(id.universenetwork.utilities.Bungee.Enums.Settings s) {
+    public static String Settings(Settings s) {
         return Translator(settings.getString(s.getConfigPath()));
     }
 

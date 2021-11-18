@@ -2,7 +2,7 @@ package id.universenetwork.utilities.Bukkit.NMS;
 
 import org.bukkit.scheduler.BukkitTask;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.EntityTrackerFixer.ENABLED;
+import static id.universenetwork.utilities.Bukkit.Enums.EntityTrackerFixer.ENABLED;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.ETFBoolean;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.set;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;

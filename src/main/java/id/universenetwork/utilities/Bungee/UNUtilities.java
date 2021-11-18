@@ -11,7 +11,7 @@ public class UNUtilities extends net.md_5.bungee.api.plugin.Plugin {
     public void onLoad() {
         plugin = this;
         settings = new Settings(false);
-        prefix = id.universenetwork.utilities.Bungee.Manager.Config.Settings(id.universenetwork.utilities.Bungee.Enums.Settings.PREFIX);
+        prefix = id.universenetwork.utilities.Bungee.Manager.Config.Settings(id.universenetwork.utilities.Universal.Enums.Settings.PREFIX);
         System.out.println(UNUtilities.prefix + " §aSettings Manager have been prepared");
         System.out.println("\n\n\n" +
                 "§b██╗░░░██╗§e███╗░░██╗§9██╗░░░██╗████████╗██╗██╗░░░░░██╗████████╗██╗███████╗░██████╗\n" +

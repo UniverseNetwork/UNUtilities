@@ -10,7 +10,7 @@ import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Set;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.EntityTrackerFixer.*;
+import static id.universenetwork.utilities.Bukkit.Enums.EntityTrackerFixer.*;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.*;
 import static id.universenetwork.utilities.Bukkit.NMS.v1_16_R3.EntityTick.EntityTickManager.getInstance;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;

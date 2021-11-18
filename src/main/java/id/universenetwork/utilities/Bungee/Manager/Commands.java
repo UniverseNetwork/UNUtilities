@@ -3,7 +3,7 @@ package id.universenetwork.utilities.Bungee.Manager;
 import id.universenetwork.utilities.Bungee.Commands.GSetSlots;
 import id.universenetwork.utilities.Bungee.Commands.StaffList;
 import id.universenetwork.utilities.Bungee.Commands.UniverseUtilitiesBungee;
-import id.universenetwork.utilities.Bungee.Enums.Settings;
+import id.universenetwork.utilities.Universal.Enums.Settings;
 import net.md_5.bungee.api.CommandSender;
 
 import static id.universenetwork.utilities.Bungee.UNUtilities.plugin;

@@ -3,7 +3,7 @@ package id.universenetwork.utilities.Bungee.Commands;
 import id.universenetwork.utilities.Bungee.Manager.Config;
 import net.md_5.bungee.api.CommandSender;
 
-import static id.universenetwork.utilities.Bungee.Enums.Features.MaxPlayerChangerCommand.*;
+import static id.universenetwork.utilities.Bungee.Enums.MaxPlayerChangerCommand.*;
 import static id.universenetwork.utilities.Bungee.UNUtilities.plugin;
 
 public class GSetSlots extends id.universenetwork.utilities.Bungee.Manager.Commands {

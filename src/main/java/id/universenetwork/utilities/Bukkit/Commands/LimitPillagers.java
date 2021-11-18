@@ -8,7 +8,7 @@ import org.bukkit.entity.Pillager;
 import java.util.Iterator;
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.PillagersLimiter.*;
+import static id.universenetwork.utilities.Bukkit.Enums.PillagersLimiter.*;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.PLBoolean;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.PLString;
 import static org.bukkit.Bukkit.getWorlds;

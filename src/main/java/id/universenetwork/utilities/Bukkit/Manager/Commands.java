@@ -1,7 +1,7 @@
 package id.universenetwork.utilities.Bukkit.Manager;
 
 import id.universenetwork.utilities.Bukkit.Commands.*;
-import id.universenetwork.utilities.Bukkit.Enums.Settings;
+import id.universenetwork.utilities.Universal.Enums.Settings;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
@@ -36,7 +36,7 @@ public abstract class Commands extends org.bukkit.command.Command {
     }
 
     public Commands(String Name, String Description, String Permission, boolean PlayerOnly) {
-        this(Name, Description, Permission, PlayerOnly, (String) null);
+        this(Name, Description, Permission, PlayerOnly, null);
     }
 
     public Commands(String Name, String Description, boolean PlayerOnly) {

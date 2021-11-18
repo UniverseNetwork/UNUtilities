@@ -13,7 +13,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashSet;
 import java.util.Set;
 
-import static id.universenetwork.utilities.Bukkit.Enums.Features.EntityTrackerFixer.*;
+import static id.universenetwork.utilities.Bukkit.Enums.EntityTrackerFixer.*;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.*;
 import static id.universenetwork.utilities.Bukkit.NMS.v1_16_R1.EntityTick.EntityTickManager.getInstance;
 import static id.universenetwork.utilities.Bukkit.NMS.v1_16_R1.NMSEntityTracker.trackEntities;

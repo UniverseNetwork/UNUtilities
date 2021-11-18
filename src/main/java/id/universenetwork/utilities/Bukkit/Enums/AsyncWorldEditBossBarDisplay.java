@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Enums.Features;
+package id.universenetwork.utilities.Bukkit.Enums;
 
 public enum AsyncWorldEditBossBarDisplay {
     // AsyncWorldEdit BossBar Display Variable Settings

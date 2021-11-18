@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Enums.Features;
+package id.universenetwork.utilities.Bukkit.Enums;
 
 public enum PillagersLimiter {
     // Pillagers Limitter Variable Settings

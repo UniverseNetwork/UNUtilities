@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Enums;
+package id.universenetwork.utilities.Universal.Enums;
 
 public enum Settings {
     // Plugin Settings Variable
@@ -6,7 +6,6 @@ public enum Settings {
     NOPERMISSION("Settings.denyMessage"),
     RELOAD("Settings.reloadMessage"),
     DENYCONSOLE("Settings.denyConsoleMessage");
-
     final String configPath;
 
     Settings(String configPath) {

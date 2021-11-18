@@ -5,7 +5,7 @@ import id.universenetwork.utilities.Bukkit.Utils.Color;
 import org.bukkit.Bukkit;
 
 import static com.viaversion.viaversion.api.Via.getAPI;
-import static id.universenetwork.utilities.Bukkit.Enums.Features.ViaLegacy.*;
+import static id.universenetwork.utilities.Bukkit.Enums.ViaLegacy.*;
 
 public class VersionInformer implements org.bukkit.event.Listener {
     final String message;
