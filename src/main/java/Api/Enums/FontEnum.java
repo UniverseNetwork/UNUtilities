@@ -121,8 +121,8 @@ public enum FontEnum {
     }
 
     public static FontEnum getFontInfo(char c){
-        for(FontEnum dFI : FontEnum.values()){
-            if(dFI.getCharacter() == c) return dFI;
+        for(FontEnum FI : FontEnum.values()){
+            if(FI.getCharacter() == c) return FI;
         }
         return FontEnum.DEFAULT;
     }
