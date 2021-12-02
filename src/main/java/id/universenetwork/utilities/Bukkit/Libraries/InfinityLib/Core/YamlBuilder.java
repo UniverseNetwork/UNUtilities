@@ -16,22 +16,23 @@ import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
  * A config which is able to save all of its comments and has some additional utility methods
  *
  * @author Mooy1
+ * @author ARVIN3108 ID
  */
 public class YamlBuilder extends YamlConfiguration {
     final YamlConfiguration defaults = new YamlConfiguration();
     final Map<String, String> comments = new HashMap<>();
     final File file;
 
-    public YamlBuilder(String name) {
-        file = new File(plugin.getDataFolder(), name);
+    public YamlBuilder(String Name) {
+        file = new File(plugin.getDataFolder(), Name);
         super.defaults = defaults;
-        loadDefaults(name);
+        loadDefaults(Name);
     }
 
-    public YamlBuilder(String name, String path) {
-        file = new File(path, name);
+    public YamlBuilder(String Name, String Path) {
+        file = new File(Path, Name);
         super.defaults = defaults;
-        loadDefaults(name);
+        loadDefaults(Name);
     }
 
     public int getInt(String path, int min, int max) {

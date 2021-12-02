@@ -24,7 +24,7 @@ import java.util.List;
 
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Utils.Utils.send;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translate;
 import static io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getProtectionManager;
 import static io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils.isItemSimilar;
 import static me.mrCookieSlime.Slimefun.api.BlockStorage.*;
@@ -64,7 +64,7 @@ public class WarpPadConfigurator extends SlimefunItem implements HologramOwner, 
                         pdc.set(xCoord, INTEGER, b.getX());
                         pdc.set(yCoord, INTEGER, b.getY());
                         pdc.set(zCoord, INTEGER, b.getZ());
-                        lore.set(LORE_COORDINATE_INDEX, Translator("&eLinked Coordinates: &7" + b.getX() + ", " + b.getY() + ", " + b.getZ()));
+                        lore.set(LORE_COORDINATE_INDEX, Translate("&eLinked Coordinates: &7" + b.getX() + ", " + b.getY() + ", " + b.getZ()));
                         meta.setLore(lore);
                         item.setItemMeta(meta);
                         updateHologram(b, "&a&lDestination");

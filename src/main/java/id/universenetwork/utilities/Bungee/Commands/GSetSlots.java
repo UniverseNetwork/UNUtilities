@@ -1,32 +1,29 @@
 package id.universenetwork.utilities.Bungee.Commands;
 
-import id.universenetwork.utilities.Bungee.Manager.Config;
+import id.universenetwork.utilities.Bungee.Manager.Settings;
 import net.md_5.bungee.api.CommandSender;
 
 import static id.universenetwork.utilities.Bungee.Enums.MaxPlayerChangerCommand.*;
 import static id.universenetwork.utilities.Bungee.UNUtilities.plugin;
 
+@id.universenetwork.utilities.Universal.Annotations.CommandProperties(Name = "GSetSlots", Permission = "unutilities.command.changeslots", PlayerOnly = false, Aliases = {"GChangeSlots"})
 public class GSetSlots extends id.universenetwork.utilities.Bungee.Manager.Commands {
-    public GSetSlots() {
-        super("GSetSlots", "unutilities.command.changeslots", false, "GChangeSlots");
-    }
-
     @Override
     public void Execute(CommandSender Sender, String[] Args) {
-        if (Config.MPCCBoolean(ENABLED)) {
+        if (Settings.MPCCBoolean(ENABLED)) {
             if (Args.length == 1) {
                 try {
                     int s = Integer.parseInt(Args[0]);
                     changeSlots(s);
-                    if (Config.MPCCBoolean(SOR)) updateBungeeConfig(s);
-                    Sender.sendMessage(Config.MPCCString(SUCCESSMSG).replaceAll("%n%", Args[0]));
+                    if (Settings.MPCCBoolean(SOR)) updateBungeeConfig(s);
+                    Sender.sendMessage(org.apache.commons.lang3.StringUtils.replace(Settings.MPCCString(SUCCESSMSG), "%n%", Args[0]));
                 } catch (NumberFormatException e) {
-                    Sender.sendMessage(Config.MPCCString(NONUMMSG));
+                    Sender.sendMessage(Settings.MPCCString(NONUMMSG));
                 } catch (ReflectiveOperationException e) {
-                    Sender.sendMessage(Config.MPCCString(ERRMSG));
+                    Sender.sendMessage(Settings.MPCCString(ERRMSG));
                 }
-            } else Sender.sendMessage(Config.MPCCString(NOARGMSG));
-        } else Sender.sendMessage(Config.MPCCString(DISABLEDMSG));
+            } else Sender.sendMessage(Settings.MPCCString(NOARGMSG));
+        } else Sender.sendMessage(Settings.MPCCString(DISABLEDMSG));
     }
 
     @Override

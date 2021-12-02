@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translate;
 import static io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem.getById;
 import static io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils.isItemSimilar;
 import static org.bukkit.Bukkit.getScheduler;
@@ -32,7 +32,7 @@ public class FoodListener implements org.bukkit.event.Listener {
             ItemStack item = p.getInventory().getItem(i);
             if (pig != null && isItemSimilar(item, pig.getItem(), true)) {
                 if (!p.getInventory().containsAtLeast(pig.getFavouriteFood(), 1)) {
-                    p.sendMessage(Translator("&9Your &5Pig Pet &9would have helped you if you did not neglect it by not feeding it :("));
+                    p.sendMessage(Translate("&9Your &5Pig Pet &9would have helped you if you did not neglect it by not feeding it :("));
                     return;
                 }
                 getScheduler().scheduleSyncDelayedTask(plugin, () -> {

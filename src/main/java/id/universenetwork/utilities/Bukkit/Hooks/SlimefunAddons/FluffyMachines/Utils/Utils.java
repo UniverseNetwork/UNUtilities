@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.TreeMap;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translate;
 import static io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getProtectionManager;
 import static io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.INTERACT_BLOCK;
 import static java.text.DecimalFormatSymbols.getInstance;
@@ -67,7 +67,7 @@ public final class Utils {
         else NCMeta.setDisplayName(" ");
         if (lore.length > 0) {
             List<String> lines = new ArrayList<>();
-            for (String line : lore) lines.add(Translator(line));
+            for (String line : lore) lines.add(Translate(line));
             NCMeta.setLore(lines);
         }
         NCMeta.setCustomModelData(6969);

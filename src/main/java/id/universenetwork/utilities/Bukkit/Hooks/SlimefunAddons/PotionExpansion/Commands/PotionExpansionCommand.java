@@ -21,9 +21,9 @@ public class PotionExpansionCommand extends id.universenetwork.utilities.Bukkit.
         Player player = (Player) sender;
         if (args.length != 0) if (args[0].equalsIgnoreCase("showEffects")) {
             if (EffectsManager.hasAnyEffect(player)) PotionExpansion.Main.getEffectsTask().showEffects(player, false);
-            else player.sendMessage(Color.Translator("&cYou don't have any effect!"));
+            else player.sendMessage(Color.Translate("&cYou don't have any effect!"));
         }
-        Color.sendTranslate(sender, get().getString(ADDONSSETTINGS.getConfigPath() + "PotionExpansion.disabledMessage"));
+        Color.sendTranslated(sender, get().getString(ADDONSSETTINGS.getConfigPath() + "PotionExpansion.disabledMessage"));
     }
 
     @Override

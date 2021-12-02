@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translate;
 
 public class EffectsTask extends org.bukkit.scheduler.BukkitRunnable {
     public EffectsTask() {
@@ -31,18 +31,18 @@ public class EffectsTask extends org.bukkit.scheduler.BukkitRunnable {
 
     public void showEffects(@org.jetbrains.annotations.NotNull Player player, boolean actionBar) {
         StringBuilder message = new StringBuilder();
-        message.append(Translator("&aEffects: &e"));
+        message.append(Translate("&aEffects: &e"));
         boolean first = true;
         for (PotionSightEffect potionSightEffect : EffectsManager.getPlayerEffects(player)) {
             SimpleDateFormat formatter = new SimpleDateFormat("mm'm' ss's'");
             String formattedTime = formatter.format(new java.util.Date(potionSightEffect.getTime() * 1000L));
             if (first) {
                 message.append(ChatUtils.humanize(potionSightEffect.getType().toString()) + " ");
-                message.append(Translator("&aTime: &e" + formattedTime));
+                message.append(Translate("&aTime: &e" + formattedTime));
                 first = false;
             } else {
-                message.append(Translator("&a, &e" + ChatUtils.humanize(potionSightEffect.getType().toString()) + " "));
-                message.append(Translator("&aTime: &e" + formattedTime));
+                message.append(Translate("&a, &e" + ChatUtils.humanize(potionSightEffect.getType().toString()) + " "));
+                message.append(Translate("&aTime: &e" + formattedTime));
             }
         }
         if (actionBar)

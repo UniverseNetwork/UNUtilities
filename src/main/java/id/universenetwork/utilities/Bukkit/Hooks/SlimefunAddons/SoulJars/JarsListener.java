@@ -48,7 +48,7 @@ class JarsListener implements Listener {
                         killer.getInventory().addItem(filledJar.getItem().clone());
                     } else killer.getInventory().setItem(slot, filledJar.getItem().clone());
                 } else {
-                    lore.set(1, Color.Translator(lore.get(1).split(": ")[0] + ": &e" + souls));
+                    lore.set(1, Color.Translate(lore.get(1).split(": ")[0] + ": &e" + souls));
                     if (stack.getAmount() > 1) {
                         stack.setAmount(stack.getAmount() - 1);
                         stack = stack.clone();

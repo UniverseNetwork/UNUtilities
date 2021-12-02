@@ -18,7 +18,7 @@ import static id.universenetwork.utilities.Bukkit.Enums.VillagerOptimization.DIS
 import static id.universenetwork.utilities.Bukkit.Manager.Config.VOString;
 import static id.universenetwork.utilities.Bukkit.Tasks.NormalActivityTask.activateVillager;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.*;
-import static id.universenetwork.utilities.Bukkit.Utils.Color.sendTranslate;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.sendTranslated;
 import static java.util.Collections.emptyList;
 import static org.bukkit.ChatColor.*;
 import static org.bukkit.persistence.PersistentDataType.LONG_ARRAY;
@@ -71,7 +71,7 @@ public class AAVLP extends Commands {
                 }
             }
             container.set(Key, LONG_ARRAY, set.toLongArray());
-        } else sendTranslate(sender, VOString(DISABLEDMSG));
+        } else sendTranslated(sender, VOString(DISABLEDMSG));
     }
 
     @Override

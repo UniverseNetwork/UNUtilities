@@ -1,4 +1,4 @@
-package Api.Enums;
+package id.universenetwork.utilities.Universal.API.Enums;
 
 public enum FontEnum {
 
@@ -98,33 +98,29 @@ public enum FontEnum {
     COMMA(',', 1),
     SPACE(' ', 3),
     DEFAULT('a', 4);
-
-    private char character;
-    private int length;
+    final char character;
+    final int length;
 
     FontEnum(char character, int length) {
         this.character = character;
         this.length = length;
     }
 
-    public char getCharacter(){
+    public char getCharacter() {
         return this.character;
     }
 
-    public int getLength(){
+    public int getLength() {
         return this.length;
     }
 
-    public int getBoldLength(){
-        if(this == FontEnum.SPACE) return this.getLength();
+    public int getBoldLength() {
+        if (this == FontEnum.SPACE) return this.getLength();
         return this.length + 1;
     }
 
-    public static FontEnum getFontInfo(char c){
-        for(FontEnum FI : FontEnum.values()){
-            if(FI.getCharacter() == c) return FI;
-        }
+    public static FontEnum getFontInfo(char c) {
+        for (FontEnum FI : FontEnum.values()) if (FI.getCharacter() == c) return FI;
         return FontEnum.DEFAULT;
     }
-
 }

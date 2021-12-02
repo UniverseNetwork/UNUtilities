@@ -43,7 +43,7 @@ public class AttributeCharms extends io.github.thebusybiscuit.slimefun4.implemen
 
             // Update lore
             java.util.List<String> lore = charmMeta.getLore();
-            lore.set(LORE_INDEX, Color.Translator("&aThis charm has been inspected"));
+            lore.set(LORE_INDEX, Color.Translate("&aThis charm has been inspected"));
             charmMeta.setLore(lore);
 
             p.playSound(p.getLocation(), org.bukkit.Sound.BLOCK_BELL_RESONATE, 1, 1);

@@ -1,33 +1,31 @@
-package Api.Chat;
+package id.universenetwork.utilities.Bungee.API.Chat;
 
-import Api.Enums.FontEnum;
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
+import id.universenetwork.utilities.Universal.API.Enums.FontEnum;
+import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 
-public class UNBukkitChat {
+import static id.universenetwork.utilities.Bungee.Utils.Color.Translator;
 
-    private final static int CENTER_PX = 154;
+public class CenteredText {
+    final static int CENTER_PX = 154;
 
-    public static void sendCentredMessage(Player player, String message) {
-        if(message == null || message.equals("")) {
-            player.sendMessage("");
+    public static void sendCentered(CommandSender Sender, String Text) {
+        if (Text == null || Text.equals("")) {
+            Sender.sendMessage("");
             return;
         }
-        message = ChatColor.translateAlternateColorCodes('&', message);
-
+        Text = Translator(Text);
         int messagePxSize = 0;
         boolean previousCode = false;
         boolean isBold = false;
-
-        for(char c : message.toCharArray()){
-            if(c == '§'){
-                previousCode = true;
-            }else if(previousCode){
+        for (char c : Text.toCharArray()) {
+            if (c == '§') previousCode = true;
+            else if (previousCode) {
                 previousCode = false;
                 isBold = c == 'l' || c == 'L';
-            }else{
-                FontEnum FI = FontEnum.getFontInfo(c);
-                messagePxSize += isBold ? FI.getBoldLength() : FI.getLength();
+            } else {
+                FontEnum dFI = FontEnum.getFontInfo(c);
+                messagePxSize += isBold ? dFI.getBoldLength() : dFI.getLength();
                 messagePxSize++;
             }
         }
@@ -37,27 +35,27 @@ public class UNBukkitChat {
         int spaceLength = FontEnum.SPACE.getLength() + 1;
         int compensated = 0;
         StringBuilder sb = new StringBuilder();
-        while(compensated < toCompensate){
+        while (compensated < toCompensate) {
             sb.append(" ");
             compensated += spaceLength;
         }
-        player.sendMessage(sb.toString() + message);
+        Sender.sendMessage(sb + Text);
     }
 
-    public static String CenteredMessage(String message){
-        String[] lines = ChatColor.translateAlternateColorCodes('&', message).split("\n", 40);
+    public static void sendCentered(ProxiedPlayer Player, String Text) {
+        sendCentered((CommandSender) Player, Text);
+    }
+
+    public static String makeCentered(String Text) {
+        String[] lines = Translator(Text).split("\n", 40);
         StringBuilder returnMessage = new StringBuilder();
-
-
         for (String line : lines) {
             int messagePxSize = 0;
             boolean previousCode = false;
             boolean isBold = false;
-
             for (char c : line.toCharArray()) {
-                if (c == '§') {
-                    previousCode = true;
-                } else if (previousCode) {
+                if (c == '§') previousCode = true;
+                else if (previousCode) {
                     previousCode = false;
                     isBold = c == 'l';
                 } else {
@@ -70,14 +68,12 @@ public class UNBukkitChat {
             int spaceLength = FontEnum.SPACE.getLength() + 1;
             int compensated = 0;
             StringBuilder sb = new StringBuilder();
-            while(compensated < toCompensate){
+            while (compensated < toCompensate) {
                 sb.append(" ");
                 compensated += spaceLength;
             }
-            returnMessage.append(sb.toString()).append(line).append("\n");
+            returnMessage.append(sb).append(line).append("\n");
         }
-
         return returnMessage.toString();
     }
-
 }

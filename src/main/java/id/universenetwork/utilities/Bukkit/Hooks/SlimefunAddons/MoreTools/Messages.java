@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import static id.universenetwork.utilities.Bukkit.Enums.SlimefunAddons.ADDONSSETTINGS;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.get;
-import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translate;
 
 public enum Messages {
     CRESCENTHAMMER_BLOCKBREAKING("Block-Breaking"),
@@ -16,7 +16,7 @@ public enum Messages {
     final String message;
 
     Messages(String path) {
-        message = Translator(Objects.requireNonNull(get().getString(ADDONSSETTINGS.getConfigPath() + "MoreTools.Messages.Items.Crescent-Hammer." + path)));
+        message = Translate(Objects.requireNonNull(get().getString(ADDONSSETTINGS.getConfigPath() + "MoreTools.Messages.Items.Crescent-Hammer." + path)));
     }
 
     public String getMessage() {

@@ -5,7 +5,7 @@ import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.Utils.Color.sendTranslate;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.sendTranslated;
 
 public class UniverseUtilities extends id.universenetwork.utilities.Bukkit.Manager.Commands {
     public UniverseUtilities() {
@@ -18,9 +18,9 @@ public class UniverseUtilities extends id.universenetwork.utilities.Bukkit.Manag
             Config.reload();
             sender.sendMessage(Config.Settings(id.universenetwork.utilities.Universal.Enums.Settings.RELOAD));
         } else {
-            sendTranslate(sender, "&b&lU&e&lN&9&lUtilities");
-            sendTranslate(sender, "");
-            sendTranslate(sender, "&d/" + getName() + " reload");
+            sendTranslated(sender, "&b&lU&e&lN&9&lUtilities");
+            sendTranslated(sender, "");
+            sendTranslated(sender, "&d/" + getName() + " reload");
         }
     }
 

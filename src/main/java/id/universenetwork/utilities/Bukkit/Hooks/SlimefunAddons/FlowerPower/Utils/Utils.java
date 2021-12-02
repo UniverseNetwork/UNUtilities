@@ -10,7 +10,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
  */
 public class Utils {
     public static void send(org.bukkit.command.CommandSender s, String msg) {
-        s.sendMessage(Color.Translator("&5&l[Magic] " + msg));
+        s.sendMessage(Color.Translate("&5&l[Magic] " + msg));
     }
 
     public static int getExpAtLevel(int level) {

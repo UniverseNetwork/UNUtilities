@@ -12,7 +12,7 @@ public class VersionInformer implements org.bukkit.event.Listener {
     final int maxVersion;
 
     public VersionInformer() {
-        message = Color.Translator(Config.VLString(VERSIONINFO_MSG)).replace("%version%", Bukkit.getVersion().split(" ")[2].replace(")", ""));
+        message = Color.Translate(Config.VLString(VERSIONINFO_MSG)).replace("%version%", Bukkit.getVersion().split(" ")[2].replace(")", ""));
         maxVersion = Config.VLInt(VERSIONINFO_MAX_VERSION);
         String interval = Config.VLString(VERSIONINFO_INTERVAL);
         if (interval.equalsIgnoreCase("JOIN"))

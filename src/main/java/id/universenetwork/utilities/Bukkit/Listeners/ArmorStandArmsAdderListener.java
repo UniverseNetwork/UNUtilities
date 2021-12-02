@@ -20,7 +20,7 @@ public class ArmorStandArmsAdderListener implements Listener {
             if (Config.ASAABoolean(ArmorStandArmsAdder.ENABLED)) {
                 ((ArmorStand) e.getEntity()).setArms(true);
                 if (Config.ASAABoolean(ArmorStandArmsAdder.LOG))
-                    System.out.println(Config.Settings(Settings.PREFIX) + Color.Translator(" &bBerhasil menambahkan tangan ke Armor Stand dikoordinat ") + ChatColor.GREEN + l.getX() + " " + l.getY() + " " + l.getZ());
+                    System.out.println(Config.Settings(Settings.PREFIX) + Color.Translate(" &bBerhasil menambahkan tangan ke Armor Stand dikoordinat ") + ChatColor.GREEN + l.getX() + " " + l.getY() + " " + l.getZ());
             }
         }
     }

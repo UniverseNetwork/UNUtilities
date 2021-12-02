@@ -15,7 +15,7 @@ public class PlaceholderUtils {
         if (hasMVdW) {
             if (placeholder.charAt(0) == '{' && placeholder.charAt(placeholder.length() - 1) == '}') {
                 value = be.maximvdw.placeholderapi.PlaceholderAPI.replacePlaceholders(player, placeholder);
-                return value.equals(placeholder) ? null : (colorize ? Color.Translator(value) : value);
+                return value.equals(placeholder) ? null : (colorize ? Color.Translate(value) : value);
             }
         }
         if (hasPAPI) {
@@ -23,7 +23,7 @@ public class PlaceholderUtils {
             if (placeholder.indexOf('%') == -1) placeholder = "%" + placeholder + "%";
             value = PlaceholderAPI.setPlaceholders(player, placeholder);
             if (value.isEmpty() || value.equalsIgnoreCase(placeholder)) return null;
-            return colorize ? Color.Translator(value) : value;
+            return colorize ? Color.Translate(value) : value;
         }
         return null;
     }

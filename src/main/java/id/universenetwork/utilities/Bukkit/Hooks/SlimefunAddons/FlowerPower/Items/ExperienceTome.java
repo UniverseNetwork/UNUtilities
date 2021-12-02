@@ -85,7 +85,7 @@ public class ExperienceTome extends io.github.thebusybiscuit.slimefun4.api.items
         }
 
         // Update name to display stored amount
-        tomeMeta.setDisplayName(Color.Translator("&eExperience Tome &a(" + tomeExp + " / 1000000)"));
+        tomeMeta.setDisplayName(Color.Translate("&eExperience Tome &a(" + tomeExp + " / 1000000)"));
         tome.setItemMeta(tomeMeta);
     }
 }

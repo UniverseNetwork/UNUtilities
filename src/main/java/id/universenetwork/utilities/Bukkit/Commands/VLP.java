@@ -8,7 +8,7 @@ import java.util.List;
 import static id.universenetwork.utilities.Bukkit.Enums.VillagerOptimization.DISABLEDMSG;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.VOString;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.isInVanilla;
-import static id.universenetwork.utilities.Bukkit.Utils.Color.sendTranslate;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.sendTranslated;
 import static org.bukkit.ChatColor.DARK_GREEN;
 import static org.bukkit.ChatColor.GREEN;
 
@@ -25,7 +25,7 @@ public class VLP extends id.universenetwork.utilities.Bukkit.Manager.Commands {
         if (Enabled) {
             if (isInVanilla((Entity) sender)) sender.sendMessage(GREEN + "This chunk is using vanilla mechanics!");
             else sender.sendMessage(DARK_GREEN + "This chunk is using Avl mechanics!");
-        } else sendTranslate(sender, VOString(DISABLEDMSG));
+        } else sendTranslated(sender, VOString(DISABLEDMSG));
     }
 
     @Override

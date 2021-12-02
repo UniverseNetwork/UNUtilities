@@ -19,7 +19,7 @@ import java.util.*;
 import static id.universenetwork.utilities.Bukkit.Enums.PocketShulker.*;
 import static id.universenetwork.utilities.Bukkit.Manager.Config.*;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translate;
 import static org.bukkit.Bukkit.createInventory;
 import static org.bukkit.Bukkit.getScheduler;
 import static org.bukkit.ChatColor.*;
@@ -38,7 +38,7 @@ public class PocketShulkerListener implements Listener {
     String defaultname = DARK_PURPLE + "Shulker Box";
 
     public PocketShulkerListener() {
-        if (PSString(DEFNAME) != null) defaultname = Translator(PSString(DEFNAME));
+        if (PSString(DEFNAME) != null) defaultname = Translate(PSString(DEFNAME));
         getScheduler().scheduleSyncRepeatingTask(plugin, () -> {
             for (Player p : openshulkers.keySet()) {
                 if (openshulkers.get(p).getType() == AIR) p.closeInventory();
@@ -240,7 +240,7 @@ public class PocketShulkerListener implements Listener {
             if (i != null) {
                 if (i.getAmount() == 1 && i.getType().toString().contains("SHULKER")) {
                     if (getPvpTimer(p)) {
-                        p.sendMessage(Translator(PSString(DISABLECOMBATMSG)));
+                        p.sendMessage(Translate(PSString(DISABLECOMBATMSG)));
                         return false;
                     }
                     if (i.getItemMeta() instanceof BlockStateMeta) {

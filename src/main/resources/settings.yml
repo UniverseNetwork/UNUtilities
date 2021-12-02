@@ -61,54 +61,45 @@ Features:
     # Message if this feature is disabled
     disabled-msg: '%p% &cFitur ini dinonaktifkan'
 
-  ## Discord Messsager Features
-  Discord:
+  ## Whitelister Features
+  Whitelister:
 
-    # Token for Discord Bot
-    token: ''
+    # Enable Whitelister Features?
+    # Default: true
+    enabled: true
 
-    # Channel ID for Discord Bot alert
-    channelid: ''
+    # Message if whitelist toggled on
+    enabled-msg: '%p% &aWhitelist is now turned on'
 
-    # Embed message options
-    embed:
+    # Message if whitelist already enabled
+    already-enabled-msg: '%p% &cWhitelist is already turned on'
 
-      # Join Embed Message
-      Join:
-        # Embed message title
-        title: '&bU&eN&CSecurity'
+    # Message if whitelist toggled off
+    disabled-msg: '%p% &eWhitelist is now turned off'
 
-        # Embed message description
-        description:
-          - '&bStaff &e%player% &ajoin &bthe network!'
-          - '&7IP: &e%ip%'
+    # Message if whitelist already disabled
+    already-disabled-msg: '%p% &cWhitelist is already turned off'
 
-        # Color of embed message
-        color: '#18ff00'
+    # Message if player is added to whitelist
+    add-msg: '%p% &aAdded %player% to the whitelist'
 
-      # Left Embed Message
-      Left:
-        # Embed message title
-        title: '&bU&eN&CSecurity'
+    # Message if player is already added to whitelist
+    already-add-msg: '%p% &cPlayer is already whitelisted'
 
-        # Embed message description
-        description:
-          - '&bStaff &e%player% &cleft &bthe network!'
-          - '&7IP: &e%ip%'
+    # Message if player is removed to whitelist
+    remove-msg: '%p% &eRemoved %player% from the whitelist'
 
-        # Color of embed message
-        color: '#ff0000'
+    # Message if player is not whitelisted
+    not-whitelisted-msg: '%p% &cPlayer is not whitelisted'
 
+    # Whitelist list command
+    list-msg: '%p% &bThere are %count% whitelisted players: %player%'
 
+    # Whitelist list command if no player is whitelisted
+    list-no-whitelisted-message: '%p% &eThere are no whitelisted players'
 
+    # Message if a player is kicked for not being whitelisted
+    kick-msg: ''
 
-
-
-
-
-
-
-
-
-
-
+    # Message if this feature is disabled
+    disabled-feature-msg: '%p% &cFitur ini dinonaktifkan'

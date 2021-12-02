@@ -15,7 +15,7 @@ import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translate;
 import static org.bukkit.Color.AQUA;
 
 public class PotionItems {
@@ -29,7 +29,7 @@ public class PotionItems {
     public static final ItemGroup potionCategory = new ItemGroup(new NamespacedKey(plugin, "potionexpansion"), new CustomItemStack(Material.POTION, itemMeta -> {
         PotionMeta meta = (PotionMeta) itemMeta;
         meta.setColor(AQUA);
-        meta.setDisplayName(Translator("&bPotion Expansion"));
+        meta.setDisplayName(Translate("&bPotion Expansion"));
         meta.addEnchant(Enchantment.LURE, 1, true);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
     }));

@@ -46,7 +46,7 @@ public class RecallCharm extends io.github.thebusybiscuit.slimefun4.implementati
 
                 // Put location info into lore
                 java.util.List<String> lore = charmMeta.getLore();
-                lore.set(LORE_INDEX, Color.Translator("&3Bound Location: " + l.getWorld().getName() + " @ " + l.getBlockX() + ", " + l.getBlockY() + ", " + l.getBlockZ()));
+                lore.set(LORE_INDEX, Color.Translate("&3Bound Location: " + l.getWorld().getName() + " @ " + l.getBlockX() + ", " + l.getBlockY() + ", " + l.getBlockZ()));
                 charmMeta.setLore(lore);
                 charm.setItemMeta(charmMeta);
 

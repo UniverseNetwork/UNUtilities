@@ -10,7 +10,7 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
-import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translate;
 import static io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem.getById;
 import static io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils.isItemSimilar;
 import static org.bukkit.Sound.*;
@@ -53,7 +53,7 @@ public class DamageListener implements org.bukkit.event.Listener {
                     case LAVA:
                         if (magmacube != null && isItemSimilar(item, magmacube.getItem(), true)) {
                             if (!p.getInventory().containsAtLeast(magmacube.getFavouriteFood(), 1)) {
-                                p.sendMessage(Translator("&9Your &4Magma Cube Pet &9would have helped you if you did not neglect it by not feeding it :("));
+                                p.sendMessage(Translate("&9Your &4Magma Cube Pet &9would have helped you if you did not neglect it by not feeding it :("));
                                 return;
                             }
                             if (ThreadLocalRandom.current().nextInt(100) < 30)

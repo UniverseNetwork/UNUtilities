@@ -11,7 +11,7 @@ import java.util.List;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
-import static id.universenetwork.utilities.Bukkit.Utils.Color.Translator;
+import static id.universenetwork.utilities.Bukkit.Utils.Color.Translate;
 import static org.bukkit.Bukkit.getLogger;
 import static org.bukkit.Bukkit.getPluginManager;
 
@@ -56,7 +56,7 @@ public class Config {
 
     // Settings Category
     public static String Settings(Settings s) {
-        return Translator(get().getString(s.getConfigPath()));
+        return Translate(get().getString(s.getConfigPath()));
     }
 
 
@@ -66,7 +66,7 @@ public class Config {
     }
 
     public static String ARMessage(AntiRedstone s) {
-        return Translator(get().getString(s.getConfigPath()));
+        return Translate(get().getString(s.getConfigPath()));
     }
 
 
@@ -82,7 +82,7 @@ public class Config {
     }
 
     public static String AWMessage(AddressWhitelister s) {
-        return Translator(get().getString(s.getConfigPath()));
+        return Translate(get().getString(s.getConfigPath()));
     }
 
 
@@ -98,7 +98,7 @@ public class Config {
     }
 
     public static String HCMessage(HatCommand s) {
-        return Translator(get().getString(s.getConfigPath()));
+        return Translate(get().getString(s.getConfigPath()));
     }
 
 
@@ -108,7 +108,7 @@ public class Config {
     }
 
     public static String MPCCMessage(MaxPlayerChangerCommand s) {
-        return Translator(get().getString(s.getConfigPath()));
+        return Translate(get().getString(s.getConfigPath()));
     }
 
 
@@ -118,7 +118,7 @@ public class Config {
     }
 
     public static String AWEBDMessage(AsyncWorldEditBossBarDisplay s) {
-        return Translator(get().getString(s.getConfigPath()));
+        return Translate(get().getString(s.getConfigPath()));
     }
 
 
@@ -160,7 +160,7 @@ public class Config {
     }
 
     public static String ABEMessage(AntiBookExploit s) {
-        return Translator(get().getString(s.getConfigPath()));
+        return Translate(get().getString(s.getConfigPath()));
     }
 
 
@@ -202,7 +202,7 @@ public class Config {
 
     // Pillagers Limiter Category
     public static String PLString(PillagersLimiter s) {
-        return Translator(get().getString(s.getConfigPath()));
+        return Translate(get().getString(s.getConfigPath()));
     }
 
     public static boolean PLBoolean(PillagersLimiter s) {
@@ -216,7 +216,7 @@ public class Config {
 
     // ViaLegacy Category
     public static String VLString(ViaLegacy s) {
-        return Translator(get().getString(s.getConfigPath()));
+        return Translate(get().getString(s.getConfigPath()));
     }
 
     public static boolean VLBoolean(ViaLegacy s) {
