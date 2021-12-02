@@ -25,7 +25,7 @@ public class SetSlots extends id.universenetwork.utilities.Bukkit.Manager.Comman
             if (args.length == 1) {
                 try {
                     changeSlots(Integer.parseInt(args[0]));
-                    sender.sendMessage(MPCCMessage(MaxPlayerChangerCommand.SUCCESSMSG).replaceAll("%n%", args[0]));
+                    sender.sendMessage(org.apache.commons.lang.StringUtils.replace(MPCCMessage(MaxPlayerChangerCommand.SUCCESSMSG), "%n%", args[0]));
                 } catch (NumberFormatException e) {
                     sender.sendMessage(MPCCMessage(MaxPlayerChangerCommand.NONUMMSG));
                 } catch (ReflectiveOperationException e) {
