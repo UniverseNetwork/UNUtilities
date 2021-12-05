@@ -35,6 +35,7 @@
 ## Bungee
 - Max Player Changer Command (Fork of [ChangeSlots](http://spigotmc.org/resources/49648))
 - Staff List
+- Whitelister (Inspired by [BungeeWhiteList](http://spigotmc.org/resources/8824))
 
 # API Included
 - [ActionBarAPI](http://spigotmc.org/resources/1315)

@@ -14,7 +14,8 @@ public enum Whitelister {
     LM("Features.Whitelister.list-msg"),
     LNWM("Features.Whitelister.list-no-whitelisted-message"),
     KM("Features.Whitelister.kick-msg"),
-    DFM("Features.Whitelister.disabled-feature-msg");
+    DFM("Features.Whitelister.disabled-feature-msg"),
+    UM("Features.Whitelister.usage-msg");
     final String configPath;
 
     Whitelister(String configPath) {

@@ -6,7 +6,7 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.event.EventHandler;
 
 import static net.md_5.bungee.api.ProxyServer.getInstance;
-import static org.apache.commons.lang.StringUtils.replace;
+import static org.apache.commons.lang3.StringUtils.replace;
 
 public class StaffListListener implements net.md_5.bungee.api.plugin.Listener {
     @EventHandler

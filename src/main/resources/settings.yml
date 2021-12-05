@@ -99,7 +99,17 @@ Features:
     list-no-whitelisted-message: '%p% &eThere are no whitelisted players'
 
     # Message if a player is kicked for not being whitelisted
-    kick-msg: ''
+    kick-msg: 'You are not whitelisted on this server!'
 
     # Message if this feature is disabled
     disabled-feature-msg: '%p% &cFitur ini dinonaktifkan'
+
+    # Whitelist usage command
+    usage-msg:
+      - '&b&lU&e&lN&9&lUtilities &aWhitelist Bungee'
+      - ''
+      - '&d/WhitelistBungee off'
+      - '&d/WhitelistBungee on'
+      - '&d/WhitelistBungee list'
+      - '&d/WhitelistBungee add <player>'
+      - '&d/WhitelistBungee remove <player>'

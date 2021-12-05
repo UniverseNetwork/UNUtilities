@@ -2,6 +2,7 @@ package id.universenetwork.utilities.Bungee.Commands;
 
 import id.universenetwork.utilities.Bungee.Manager.Settings;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class WhitelistBungee extends id.universenetwork.utilities.Bungee.Manager
                     if (p.isEmpty()) Sender.sendMessage(Settings.WString(LNWM));
                     else
                         Sender.sendMessage(StringUtils.replaceEach(Settings.WString(LM), new String[]{"%count%", "%player%"}, new String[]{Integer.toString(p.size()), StringUtils.replace(p.toString(), "]", "").replaceAll("\\[", "")}));
-                }
+                } else sendUsage(Sender);
             } else if (Args.length == 2) {
                 if (Args[0].equalsIgnoreCase("add")) {
                     if (p.contains(Args[1])) Sender.sendMessage(Settings.WString(AAM));
@@ -49,14 +50,36 @@ public class WhitelistBungee extends id.universenetwork.utilities.Bungee.Manager
                         data.set("whitelist.players", p);
                         Sender.sendMessage(StringUtils.replace(Settings.WString(RM), "%player%", Args[1]));
                     } else Sender.sendMessage(Settings.WString(NWM));
-                }
-            }
+                } else sendUsage(Sender);
+            } else sendUsage(Sender);
         }
     }
 
     @Override
     public Iterable<String> TabComplete(CommandSender Sender, String[] Args) {
-        p = data.getStringList("whitelist.players");
-        return java.util.Collections.emptyList();
+        java.util.List<String> arg = new java.util.ArrayList<>();
+        if (Settings.WBoolean(ENABLED)) {
+            if (Args.length == 1) {
+                boolean enabled = data.getBoolean("whitelist.enabled");
+                if (enabled) arg.add("off");
+                else arg.add("on");
+                arg.add("list");
+                arg.add("add");
+                arg.add("remove");
+            } else if (Args.length == 2) {
+                p = data.getStringList("whitelist.players");
+                if (Args[0].equalsIgnoreCase("add")) {
+                    java.util.Collection<ProxiedPlayer> w = net.md_5.bungee.api.ProxyServer.getInstance().getPlayers();
+                    w.removeIf(pp -> p.contains(pp.getName()));
+                    for (ProxiedPlayer pp : w) arg.add(pp.getName());
+                } else if (Args[0].equalsIgnoreCase("remove")) arg.addAll(p);
+            }
+        }
+        return arg;
+    }
+
+    void sendUsage(CommandSender Sender) {
+        List<String> l = Settings.WStringList(UM);
+        for (String s : l) Sender.sendMessage(id.universenetwork.utilities.Bungee.Utils.Color.Translator(s));
     }
 }
