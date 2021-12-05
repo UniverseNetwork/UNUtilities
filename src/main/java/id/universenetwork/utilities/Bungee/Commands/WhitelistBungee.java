@@ -2,9 +2,11 @@ package id.universenetwork.utilities.Bungee.Commands;
 
 import id.universenetwork.utilities.Bungee.Manager.Settings;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Collection;
 import java.util.List;
 
 import static id.universenetwork.utilities.Bungee.Enums.Whitelister.*;
@@ -69,9 +71,8 @@ public class WhitelistBungee extends id.universenetwork.utilities.Bungee.Manager
             } else if (Args.length == 2) {
                 p = data.getStringList("whitelist.players");
                 if (Args[0].equalsIgnoreCase("add")) {
-                    java.util.Collection<ProxiedPlayer> w = net.md_5.bungee.api.ProxyServer.getInstance().getPlayers();
-                    w.removeIf(pp -> p.contains(pp.getName()));
-                    for (ProxiedPlayer pp : w) arg.add(pp.getName());
+                    Collection<ProxiedPlayer> listPlayers = ProxyServer.getInstance().getPlayers();
+                    return listPlayers.stream().map(ProxiedPlayer::getName).collect(java.util.stream.Collectors.toList());
                 } else if (Args[0].equalsIgnoreCase("remove")) arg.addAll(p);
             }
         }
