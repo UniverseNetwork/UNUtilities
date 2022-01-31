@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="http://github.com/UniverseNetwork/UNUtilities">
-    <img src="src/main/resources/icon.png" alt="Logo" width="663" height="95">
+    <img src="src/resources/icon.png" alt="Logo" width="663" height="95">
   </a>
   <h3 align="center">Utilities Features For UniverseNetwork</h3>
   <p align="center">
@@ -15,7 +15,9 @@
 </div>
 
 # Features
+
 ## Bukkit
+
 - Anti Redstone
 - Armor Stand Arms Adder
 - Address Whitelister (Fork of [PreventPortBypass](http://spigotmc.org/resources/54934))
@@ -25,25 +27,32 @@
 - AsyncWorldEdit BossBar Display (Fork of [AsyncWorldEdit - Boss Bar](http://spigotmc.org/resources/76600))
 - ShopGUI+ SilkSpawners Connector (Fork of [ShopGUI+ bridge for SilkSpawners](http://spigotmc.org/resources/73949))
 - Slimefun Addons ([See below for more info](#slimefun))
-- Villager Optimization (Fork of [Villager Optimizer Plus](http://spigotmc.org/resources/73933) & some patches from [TwinkleStar03](http://github.com/star12465/Anti-Villager-Lag))
+- Villager Optimization (Fork of [Villager Optimizer Plus](http://spigotmc.org/resources/73933) & some patches
+  from [TwinkleStar03](http://github.com/star12465/Anti-Villager-Lag))
 - Skript Addons ([See below for more info](#skript))
 - Anti Book Exploit (Fork of [BookExploitFix](http://spigotmc.org/resources/5897))
 - Pocket Shulker (Fork of [Shulker Backpacks](http://spigotmc.org/resources/67466))
-- Entity Tracker Fixer (Fork of [EntityTrackerFixer](http://spigotmc.org/resources/70902) & some patches from [cascaseno](http://github.com/cascaseno/EntityTrackerFixer))
-- ViaLegacy (Fork of [ViaRewind Legacy Support](http://spigotmc.org/resources/52924) & [ViaPotions](http://github.com/2lstudios-mc/ViaPotions/releases))
+- Entity Tracker Fixer (Fork of [EntityTrackerFixer](http://spigotmc.org/resources/70902) & some patches
+  from [cascaseno](http://github.com/cascaseno/EntityTrackerFixer))
+- ViaLegacy (Fork of [ViaRewind Legacy Support](http://spigotmc.org/resources/52924)
+  & [ViaPotions](http://github.com/2lstudios-mc/ViaPotions/releases))
 
 ## Bungee
+
 - Max Player Changer Command (Fork of [ChangeSlots](http://spigotmc.org/resources/49648))
 - Staff List
 - Whitelister (Inspired by [BungeeWhiteList](http://spigotmc.org/resources/8824))
 
 # API Included
+
 - [ActionBarAPI](http://spigotmc.org/resources/1315)
 - [NoteBlockAPI](http://ci.haprosgames.com/job/NoteBlockAPI-2.0/lastSuccessfulBuild)
 - [HamsterAPI](http://spigotmc.org/resources/78831)
 
 # Third Party Addons Included
+
 ## [Slimefun](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/Slimefun4/master)
+
 - [ExtraGear](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/ExtraGear/master)
 - [PrivateStorage](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/PrivateStorage/master)
 - [DyedBackpacks](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/DyedBackpacks/master)
@@ -59,8 +68,10 @@
 - [SlimyTreeTaps](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/SlimyTreeTaps/master)
 - [MoreTools](http://thebusybiscuit.github.io/builds/LinoxGH/MoreTools/build) `NOT Recommended to use`
 - [ChestTerminal](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/ChestTerminal/master)
-- [HeadLimiter](http://thebusybiscuit.github.io/builds/J3fftw1/HeadLimiter/master) (Require [Paper](http://papermc.io/downloads) or All Forks of Paper)
-- [SoundMuffler](http://thebusybiscuit.github.io/builds/J3fftw1/SoundMuffler/master) (Require [ProtocolLib](http://spigotmc.org/resources/1997))
+- [HeadLimiter](http://thebusybiscuit.github.io/builds/J3fftw1/HeadLimiter/master) (
+  Require [Paper](http://papermc.io/downloads) or All Forks of Paper)
+- [SoundMuffler](http://thebusybiscuit.github.io/builds/J3fftw1/SoundMuffler/master) (
+  Require [ProtocolLib](http://spigotmc.org/resources/1997))
 - [SFMobDrops](http://thebusybiscuit.github.io/builds/WalshyDev/SFMobDrops/main)
 - [FluffyMachines](http://thebusybiscuit.github.io/builds/NCBPFluffyBear/FluffyMachines/master)
 - [HotbarPets](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/HotbarPets/master)
@@ -70,7 +81,10 @@
 - [DynaTech](http://thebusybiscuit.github.io/builds/ProfElements/DynaTech/master)
 
 ## [Skript](http://github.com/SkriptLang/Skript/releases)
-- [SkriptPlaceholders](http://github.com/APickledWalrus/skript-placeholders/releases) (Require [PlaceholderAPI](http://spigotmc.org/resources/6245) or [MVdWPlaceholderAPI](http://spigotmc.org/resources/11182))
+
+- [SkriptPlaceholders](http://github.com/APickledWalrus/skript-placeholders/releases) (
+  Require [PlaceholderAPI](http://spigotmc.org/resources/6245)
+  or [MVdWPlaceholderAPI](http://spigotmc.org/resources/11182))
 - [SkQuery](http://github.com/SkQuery/SkQuery/releases) **[Under Construction]**
 - [SkBee](http://github.com/ShaneBeee/SkBee/releases) **[Under Construction]**
 - [SkWhitelist](http://github.com/tim740/skWhitelist/releases)
