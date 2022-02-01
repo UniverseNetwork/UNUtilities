@@ -18,10 +18,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static io.github.thebusybiscuit.slimefun4.libraries.dough.inventory.InvUtils.fitAll;
 import static org.apache.commons.lang.Validate.isTrue;
@@ -169,8 +166,9 @@ public abstract class AMachine extends SlimefunItem implements io.github.thebusy
             } else {
                 inv.replaceExistingItem(getProgressBarSlot(), new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
                 for (ItemStack output : processing.get(b).getOutput()) {
-                    output.setAmount(1);
-                    inv.pushItem(output.clone(), getOutputSlots());
+                    ItemStack out = output.clone();
+                    out.setAmount(1);
+                    inv.pushItem(out, getOutputSlots());
                 }
                 processing.remove(b);
                 progress.remove(b);
