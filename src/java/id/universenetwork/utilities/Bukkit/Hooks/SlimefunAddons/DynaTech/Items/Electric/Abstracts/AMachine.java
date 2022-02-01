@@ -168,7 +168,10 @@ public abstract class AMachine extends SlimefunItem implements io.github.thebusy
                 progress.put(b, timeLeft - 1);
             } else {
                 inv.replaceExistingItem(getProgressBarSlot(), new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
-                for (ItemStack output : processing.get(b).getOutput()) inv.pushItem(output.clone(), getOutputSlots());
+                for (ItemStack output : processing.get(b).getOutput()) {
+                    output.setAmount(1);
+                    inv.pushItem(output.clone(), getOutputSlots());
+                }
                 processing.remove(b);
                 progress.remove(b);
             }
