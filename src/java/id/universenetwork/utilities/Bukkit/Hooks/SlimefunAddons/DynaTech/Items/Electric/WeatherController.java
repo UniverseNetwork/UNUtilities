@@ -6,6 +6,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
+import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.DynaTech.runSync;
 import static org.bukkit.Material.*;
 
 public class WeatherController extends id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.Items.Electric.Abstracts.AMachine implements io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem {
@@ -26,18 +27,22 @@ public class WeatherController extends id.universenetwork.utilities.Bukkit.Hooks
         if (item != null && (item.getType() == SUNFLOWER || item.getType() == LILAC || item.getType() == CREEPER_HEAD)) {
             if (item.getType() == SUNFLOWER) {
                 if (b.getWorld().isClearWeather()) return;
-                b.getWorld().setClearWeatherDuration(1200);
-                removeCharge(b.getLocation(), getEnergyConsumption());
+                runSync(() -> {
+                    b.getWorld().setClearWeatherDuration(1200);
+                    removeCharge(b.getLocation(), getEnergyConsumption());
+                });
             }
             if (item.getType() == LILAC) {
                 if (b.getWorld().hasStorm()) return;
-                b.getWorld().setStorm(true);
-                b.getWorld().setWeatherDuration(1200);
-                removeCharge(b.getLocation(), getEnergyConsumption());
+                runSync(() -> {
+                    b.getWorld().setStorm(true);
+                    b.getWorld().setWeatherDuration(1200);
+                    removeCharge(b.getLocation(), getEnergyConsumption());
+                });
             }
             if (item.getType() == CREEPER_HEAD) {
                 if (b.getWorld().isThundering()) return;
-                id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.DynaTech.runSync(() -> {
+                runSync(() -> {
                     b.getWorld().setThundering(true);
                     b.getWorld().setThunderDuration(1200);
                     removeCharge(b.getLocation(), getEnergyConsumption());

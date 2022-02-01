@@ -10,14 +10,14 @@ import java.util.*;
 import static org.bukkit.Bukkit.getPlayer;
 
 public class AntigravityBubble extends id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.Items.Electric.Abstracts.AMachine {
-    final Set<UUID> enabledPlayers = new HashSet<>();
     static final int[] BORDER = new int[]{1, 2, 6, 7, 9, 10, 11, 15, 16, 17, 19, 20, 24, 25};
     static final int[] BORDER_IN = new int[]{3, 4, 5, 12, 14, 21, 22, 23};
     static final int[] BORDER_OUT = new int[]{0, 8, 18, 26};
+    final Set<UUID> enabledPlayers = new HashSet<>();
 
     public AntigravityBubble(io.github.thebusybiscuit.slimefun4.api.items.ItemGroup itemGroup, io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack item, io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
-        addItemHandler(onBreak());
+        addItemHandler(onBlockBreak());
     }
 
     @Override
@@ -47,7 +47,6 @@ public class AntigravityBubble extends id.universenetwork.utilities.Bukkit.Hooks
                     removeCharge(b.getLocation(), getEnergyConsumption());
                 }
             }
-
         final Iterator<UUID> playerIterator = enabledPlayers.iterator();
         while (playerIterator.hasNext()) {
             final UUID uuid = playerIterator.next();
@@ -61,7 +60,7 @@ public class AntigravityBubble extends id.universenetwork.utilities.Bukkit.Hooks
         }
     }
 
-    io.github.thebusybiscuit.slimefun4.api.items.ItemHandler onBreak() {
+    io.github.thebusybiscuit.slimefun4.api.items.ItemHandler onBlockBreak() {
         return new io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler(false, false) {
             @Override
             public void onPlayerBreak(org.bukkit.event.block.BlockBreakEvent e, ItemStack tool, List<ItemStack> drops) {

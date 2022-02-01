@@ -9,16 +9,16 @@ import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 import static org.bukkit.Bukkit.getLogger;
 
 public class DynaTech implements org.bukkit.event.Listener {
-    static DynaTech instance;
-    public static boolean isExoticGardenInstalled;
+    public static boolean isExoticGardenEnabled;
     public static boolean isInfinityExpansionInstalled;
+    static DynaTech instance;
     int tickInterval;
 
     public DynaTech() {
         if (Enabled("DynaTech")) {
             instance = this;
             final int TICK_TIME = io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getTickerTask().getTickRate();
-            isExoticGardenInstalled = plugin.getServer().getPluginManager().isPluginEnabled("ExoticGarden");
+            isExoticGardenEnabled = plugin.getServer().getPluginManager().isPluginEnabled("ExoticGarden");
             isInfinityExpansionInstalled = Enabled("InfinityExpansion");
             if (!id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Settings("DynaTech").getBoolean("disable-dimensionalhome-world")) {
                 WorldCreator worldCreator = new WorldCreator("dimensionalhome");
@@ -39,14 +39,26 @@ public class DynaTech implements org.bukkit.event.Listener {
                 getLogger().warning(prefix + "§e           DynaTech will be switching to JAVA 11        ");
                 getLogger().warning(prefix + "§e                Please Update to JAVA 11                ");
             }
-            if (isExoticGardenInstalled && !isInfinityExpansionInstalled)
+            if (isExoticGardenEnabled && !isInfinityExpansionInstalled)
                 System.out.println(prefix + " §bSuccessfully Registered §dDynaTech §bAddon With §dExoticGarden §bSupport");
-            else if (!isExoticGardenInstalled && isInfinityExpansionInstalled)
+            else if (!isExoticGardenEnabled && isInfinityExpansionInstalled)
                 System.out.println(prefix + " §bSuccessfully Registered §dDynaTech §bAddon With §dInfinityExpansion §bSupport");
-            else if (isExoticGardenInstalled && isInfinityExpansionInstalled)
+            else if (isExoticGardenEnabled && isInfinityExpansionInstalled)
                 System.out.println(prefix + " §bSuccessfully Registered §dDynaTech §bAddon With §dExoticGarden & InfinityExpansion §bSupport");
             else System.out.println(prefix + " §bSuccessfully Registered §dDynaTech §bAddon");
         }
+    }
+
+    @NotNull
+    public static DynaTech getInstance() {
+        return instance;
+    }
+
+    @org.jetbrains.annotations.Nullable
+    public static org.bukkit.scheduler.BukkitTask runSync(@NotNull Runnable runnable) {
+        org.apache.commons.lang.Validate.notNull(runnable, "Cannot run null");
+        if (plugin == null || !plugin.isEnabled()) return null;
+        return plugin.getServer().getScheduler().runTask(plugin, runnable);
     }
 
     @org.bukkit.event.EventHandler
@@ -55,19 +67,7 @@ public class DynaTech implements org.bukkit.event.Listener {
         plugin.getServer().getScheduler().cancelTasks(plugin);
     }
 
-    @NotNull
-    public static DynaTech getInstance() {
-        return instance;
-    }
-
     public int getTickInterval() {
         return tickInterval;
-    }
-
-    @org.jetbrains.annotations.Nullable
-    public static org.bukkit.scheduler.BukkitTask runSync(@NotNull Runnable runnable) {
-        org.apache.commons.lang.Validate.notNull(runnable, "Cannot run null");
-        if (plugin == null || !plugin.isEnabled()) return null;
-        return plugin.getServer().getScheduler().runTask(plugin, runnable);
     }
 }

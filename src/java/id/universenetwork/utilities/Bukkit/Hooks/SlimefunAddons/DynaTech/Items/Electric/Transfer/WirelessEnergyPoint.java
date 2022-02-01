@@ -4,7 +4,6 @@ import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.DynaTec
 import io.github.thebusybiscuit.slimefun4.api.items.ItemHandler;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -12,6 +11,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 import java.util.Optional;
+
+import static me.mrCookieSlime.Slimefun.api.BlockStorage.*;
 
 public class WirelessEnergyPoint extends SlimefunItem implements io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetProvider {
     static final NamespacedKey WIRELESS_LOCATION_KEY = new NamespacedKey(id.universenetwork.utilities.Bukkit.UNUtilities.plugin, "wireless-location");
@@ -28,7 +29,7 @@ public class WirelessEnergyPoint extends SlimefunItem implements io.github.thebu
 
     @Override
     public int getGeneratedOutput(Location l, me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config data) {
-        String wirelessBankLocation = BlockStorage.getLocationInfo(l, "wireless-location");
+        String wirelessBankLocation = getLocationInfo(l, "wireless-location");
         int chargedNeeded = getCapacity() - getCharge(l);
         if (chargedNeeded != 0 && wirelessBankLocation != null) {
             Location wirelessEnergyBank = StringToLocation(wirelessBankLocation);
@@ -38,7 +39,7 @@ public class WirelessEnergyPoint extends SlimefunItem implements io.github.thebu
                 java.util.concurrent.CompletableFuture<org.bukkit.Chunk> chunkLoad = io.github.thebusybiscuit.slimefun4.libraries.paperlib.PaperLib.getChunkAtAsync(wirelessEnergyBank);
                 if (!chunkLoad.isDone()) return 0;
             }
-            if (wirelessEnergyBank != null && BlockStorage.checkID(wirelessEnergyBank) != null && BlockStorage.checkID(wirelessEnergyBank).equals(DynaTechItems.WIRELESS_ENERGY_BANK.getItemId())) {
+            if (wirelessEnergyBank != null && checkID(wirelessEnergyBank) != null && checkID(wirelessEnergyBank).equals(DynaTechItems.WIRELESS_ENERGY_BANK.getItemId())) {
                 int BankCharge = getCharge(wirelessEnergyBank);
                 if (BankCharge > chargedNeeded) {
                     if (chargedNeeded > getEnergyRate()) {
@@ -61,7 +62,7 @@ public class WirelessEnergyPoint extends SlimefunItem implements io.github.thebu
                 Location blockLoc = blockClicked.get().getLocation();
                 SlimefunItem sfBlock = sfBlockClicked.get();
                 ItemStack item = event.getItem();
-                if (sfBlock != null && sfBlock.getId().equals(DynaTechItems.WIRELESS_ENERGY_BANK.getItemId()) && blockLoc != null) {
+                if (sfBlock != null && io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getProtectionManager().hasPermission(event.getPlayer(), blockLoc, io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.INTERACT_BLOCK) && sfBlock.getId().equals(DynaTechItems.WIRELESS_ENERGY_BANK.getItemId()) && blockLoc != null) {
                     event.cancel();
                     ItemMeta im = item.getItemMeta();
                     String locationString = LocationToString(blockLoc);
@@ -81,7 +82,7 @@ public class WirelessEnergyPoint extends SlimefunItem implements io.github.thebu
                 ItemStack item = event.getItemInHand();
                 String locationString = PersistentDataAPI.getString(item.getItemMeta(), WIRELESS_LOCATION_KEY);
                 if (item != null && item.getType() == DynaTechItems.WIRELESS_ENERGY_POINT.getType() && item.hasItemMeta() && locationString != null)
-                    BlockStorage.addBlockInfo(blockLoc, "wireless-location", locationString);
+                    addBlockInfo(blockLoc, "wireless-location", locationString);
             }
         };
     }
@@ -90,7 +91,7 @@ public class WirelessEnergyPoint extends SlimefunItem implements io.github.thebu
         return new io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler(false, false) {
             @Override
             public void onPlayerBreak(org.bukkit.event.block.BlockBreakEvent event, ItemStack block, List<ItemStack> drops) {
-                BlockStorage.clearBlockInfo(event.getBlock().getLocation());
+                clearBlockInfo(event.getBlock().getLocation());
             }
         };
     }

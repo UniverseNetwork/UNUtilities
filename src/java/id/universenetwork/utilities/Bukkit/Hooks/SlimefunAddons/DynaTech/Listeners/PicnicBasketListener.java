@@ -3,7 +3,7 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.Listen
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.DynaTech;
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.Events.PicnicBasketFeedPlayerEvent;
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.Items.Backpacks.PicnicBasket;
-import io.github.thebusybiscuit.exoticgarden.items.CustomFood;
+import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.ExoticGarden.Items.CustomFood;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -66,7 +66,7 @@ public class PicnicBasketListener implements org.bukkit.event.Listener {
             if (!event.isCancelled()) {
                 boolean itemConsumed = false;
                 SlimefunItem sfItem = SlimefunItem.getByItem(item);
-                if (DynaTech.isExoticGardenInstalled && sfItem != null) {
+                if (DynaTech.isExoticGardenEnabled && sfItem != null) {
                     if (sfItem instanceof CustomFood) {
                         CustomFood cfItem = (CustomFood) sfItem;
                         if (cfItem.getFoodValue() + p.getFoodLevel() <= 20) {

@@ -175,6 +175,7 @@ Features:
       Bump: true
       DynaTech: true
       FlowerPower: true
+      ExoticGarden: true
 
       # !!! -> This addon contains some bugs and is not recommended being activated
       MoreTools: false
@@ -614,6 +615,16 @@ Features:
       ## DynaTech Addon Settings
       DynaTech:
         disable-dimensionalhome-world: false
+
+      ## ExoticGarden Addon Settings
+      ExoticGarden:
+        grass-drops: [ ]
+        world-blacklist:
+          - world_nether
+          - world_the_end
+        chances:
+          TREE: 22
+          BUSH: 16
 
   ## Villager Optimization Features
   VillagerOptimization:

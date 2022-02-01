@@ -1,14 +1,18 @@
 package id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Core;
 
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.Chunk;
+import org.bukkit.Location;
+import org.bukkit.Sound;
+import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 
@@ -164,5 +168,52 @@ public class YamlBuilder extends YamlConfiguration {
             set(path, value);
             return value;
         }
+    }
+
+    /**
+     * Sets the Value for the specified path
+     *
+     * @param path  The path in the Config File
+     * @param value The Value for that path
+     */
+    @Override
+    public void set(@NotNull String path, @Nullable Object value) {
+        if (value == null) super.set(path, value);
+        else if (value instanceof Optional) super.set(path, ((Optional<?>) value).orElse(null));
+        else if (value instanceof Inventory) {
+            super.set(path + ".size", ((Inventory) value).getSize());
+            for (int i = 0; i < ((Inventory) value).getSize(); i++)
+                super.set(path + "." + i, ((Inventory) value).getItem(i));
+        } else if (value instanceof Date) super.set(path, String.valueOf(((Date) value).getTime()));
+        else if (value instanceof Long) super.set(path, String.valueOf(value));
+        else if (value instanceof UUID) super.set(path, value.toString());
+        else if (value instanceof Sound) super.set(path, String.valueOf(value));
+        else if (value instanceof Location) {
+            super.set(path + ".x", ((Location) value).getX());
+            super.set(path + ".y", ((Location) value).getY());
+            super.set(path + ".z", ((Location) value).getZ());
+            super.set(path + ".pitch", ((Location) value).getPitch());
+            super.set(path + ".yaw", ((Location) value).getYaw());
+            super.set(path + ".world", ((Location) value).getWorld().getName());
+        } else if (value instanceof Chunk) {
+            super.set(path + ".x", ((Chunk) value).getX());
+            super.set(path + ".z", ((Chunk) value).getZ());
+            super.set(path + ".world", ((Chunk) value).getWorld().getName());
+        } else if (value instanceof World) {
+            super.set(path, ((World) value).getName());
+        } else
+            super.set(path, value);
+        save();
+    }
+
+    /**
+     * Sets the Value for the specified path
+     * (If the path does not yet exist)
+     *
+     * @param path  The path in the {@link YamlBuilder} file
+     * @param value The Value for that path
+     */
+    public void setDefaultValue(@NotNull String path, @Nullable Object value) {
+        if (!contains(path)) set(path, value);
     }
 }

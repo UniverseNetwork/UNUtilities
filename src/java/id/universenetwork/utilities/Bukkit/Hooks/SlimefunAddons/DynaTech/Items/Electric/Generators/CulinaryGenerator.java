@@ -1,6 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.Items.Electric.Generators;
 
-import io.github.thebusybiscuit.exoticgarden.items.CustomFood;
+import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.ExoticGarden.Items.CustomFood;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nonnull;
 import java.util.Map;
 
-import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.DynaTech.isExoticGardenInstalled;
+import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.DynaTech.isExoticGardenEnabled;
 
 public class CulinaryGenerator extends id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.Items.Electric.Abstracts.AMachineGenerator implements io.github.thebusybiscuit.slimefun4.core.attributes.NotHopperable {
     final ItemSetting<Boolean> exoticGardenIntegration = new ItemSetting<>(this, "exotic-garden-integration", true);
@@ -73,7 +73,7 @@ public class CulinaryGenerator extends id.universenetwork.utilities.Bukkit.Hooks
 
     @Override
     public MachineFuel findRecipe(BlockMenu inv, Map<Integer, Integer> found) {
-        if (isExoticGardenInstalled && exoticGardenIntegration.getValue()) for (int inputSlot : getInputSlots()) {
+        if (isExoticGardenEnabled && exoticGardenIntegration.getValue()) for (int inputSlot : getInputSlots()) {
             SlimefunItem sfItem = SlimefunItem.getByItem(inv.getItemInSlot(inputSlot));
             if (sfItem instanceof CustomFood) {
                 CustomFood cfItem = (CustomFood) sfItem;

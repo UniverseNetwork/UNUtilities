@@ -19,8 +19,9 @@ public class PicnicBasket extends io.github.thebusybiscuit.slimefun4.implementat
 
     @Override
     public boolean isItemAllowed(@org.jetbrains.annotations.NotNull ItemStack item, @org.jetbrains.annotations.Nullable io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem itemAsSlimefunItem) {
-        if (id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.DynaTech.isExoticGardenInstalled) {
-            if (itemAsSlimefunItem instanceof io.github.thebusybiscuit.exoticgarden.items.CustomFood) return true;
+        if (id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.DynaTech.isExoticGardenEnabled) {
+            if (itemAsSlimefunItem instanceof id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.ExoticGarden.Items.CustomFood)
+                return true;
             else
                 return item.getType().isEdible() && !blacklistedMaterials.getValue().contains(item.getType().toString());
         }
@@ -41,7 +42,6 @@ public class PicnicBasket extends io.github.thebusybiscuit.slimefun4.implementat
         defaultBlacklist.add(Material.MUSHROOM_STEW);
         defaultBlacklist.add(Material.RABBIT_STEW);
         defaultBlacklist.add(Material.HONEY_BOTTLE);
-        
         return defaultBlacklist;
     }
 

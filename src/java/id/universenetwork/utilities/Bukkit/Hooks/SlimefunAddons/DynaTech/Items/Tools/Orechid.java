@@ -1,24 +1,54 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.Items.Tools;
 
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.DynaTech;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.collections.RandomizedSet;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
-// I feel like this can somehow be much better :O
+// I feel like this can somehow be much better :O (review)
 public class Orechid extends id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.Items.Electric.Abstracts.AMachine implements io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem {
-    static RandomizedSet<Material> OVERWORLD_ORES = new RandomizedSet<>();
-    static RandomizedSet<Material> NETHER_ORES = new RandomizedSet<>();
+    static final Map<Material, RandomizedSet<ItemStack>> oreMap = new EnumMap<>(Material.class);
     // static List<Material> END_ORES = new ArrayList<>();
-    // Somehow setup a RecipeType for this for people to use in addons
-    // static RecipeType ORECHID = new RecipeType(new NamespacedKey(DynaTech.getInstance(), "dt_orechid"), new CustomItem(Material.WITHER_ROSE, "&bConverted with the Orechid"));
 
     public Orechid(io.github.thebusybiscuit.slimefun4.api.items.ItemGroup itemGroup, io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack item, io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
+        registerDefaultOres();
+    }
+
+    public static void registerOre(@NotNull Material from, @NotNull Material result, float weight) {
+        oreMap.computeIfAbsent(from, k -> new RandomizedSet<>()).add(new ItemStack(result), weight);
+    }
+
+    /**
+     * For Slimefun items
+     */
+    public static void registerOre(@NotNull Material from, @NotNull SlimefunItemStack result, float weight) {
+        oreMap.computeIfAbsent(from, k -> new RandomizedSet<>()).add(result, weight);
+    }
+
+    static void registerDefaultOres() {
+        registerOre(Material.STONE, Material.COAL_ORE, 3);
+        registerOre(Material.STONE, Material.IRON_ORE, 2);
+        registerOre(Material.STONE, Material.GOLD_ORE, 2);
+        registerOre(Material.STONE, Material.DIAMOND_ORE, 1);
+        registerOre(Material.STONE, Material.EMERALD_ORE, 1);
+        registerOre(Material.STONE, Material.REDSTONE_ORE, 3);
+        registerOre(Material.STONE, Material.LAPIS_ORE, 3);
+        registerOre(Material.STONE, Material.COPPER_ORE, 3);
+        registerOre(Material.NETHERRACK, Material.NETHER_QUARTZ_ORE, 3);
+        registerOre(Material.NETHERRACK, Material.NETHER_GOLD_ORE, 3);
+        registerOre(Material.NETHERRACK, Material.ANCIENT_DEBRIS, 1);
+        registerOre(Material.NETHERRACK, Material.BASALT, 5);
+        registerOre(Material.NETHERRACK, Material.BLACKSTONE, 5);
     }
 
     @Override
@@ -27,48 +57,27 @@ public class Orechid extends id.universenetwork.utilities.Bukkit.Hooks.SlimefunA
             if (getCharge(b.getLocation()) < getEnergyConsumption()) break;
             if (relative == BlockFace.UP || relative == BlockFace.DOWN) continue;
             Block relBlock = b.getRelative(relative);
-            if (relBlock.getType() == Material.STONE) {
-                DynaTech.runSync(() -> relBlock.setType(getOverWorldOres().getRandom()));
-                removeCharge(b.getLocation(), getEnergyConsumption());
-            } else if (relBlock.getType() == Material.NETHERRACK) {
-                DynaTech.runSync(() -> relBlock.setType(getNetherOres().getRandom()));
+            if (oreMap.containsKey(relBlock.getType())) {
+                ItemStack item = oreMap.get(relBlock.getType()).getRandom();
+                SlimefunItem sfi = SlimefunItem.getByItem(item);
+                DynaTech.runSync(() -> {
+                    relBlock.setType(item.getType());
+                    if (sfi != null)
+                        me.mrCookieSlime.Slimefun.api.BlockStorage.addBlockInfo(relBlock, "id", sfi.getId());
+                });
                 removeCharge(b.getLocation(), getEnergyConsumption());
             }
         }
     }
 
-
-    static RandomizedSet<Material> getOverWorldOres() {
-        OVERWORLD_ORES.add(Material.COAL_ORE, 3);
-        OVERWORLD_ORES.add(Material.IRON_ORE, 2);
-        OVERWORLD_ORES.add(Material.GOLD_ORE, 2);
-        OVERWORLD_ORES.add(Material.DIAMOND_ORE, 1);
-        OVERWORLD_ORES.add(Material.EMERALD_ORE, 1);
-        OVERWORLD_ORES.add(Material.REDSTONE_ORE, 3);
-        OVERWORLD_ORES.add(Material.LAPIS_ORE, 3);
-        return OVERWORLD_ORES;
-    }
-
-    static RandomizedSet<Material> getNetherOres() {
-        NETHER_ORES.add(Material.NETHER_QUARTZ_ORE, 3);
-        NETHER_ORES.add(Material.NETHER_GOLD_ORE, 3);
-        NETHER_ORES.add(Material.ANCIENT_DEBRIS, 1);
-        NETHER_ORES.add(Material.BASALT, 5);
-        NETHER_ORES.add(Material.BLACKSTONE, 5);
-        return NETHER_ORES;
-    }
-
     @Override
     public List<ItemStack> getDisplayRecipes() {
         List<ItemStack> displayList = new java.util.ArrayList<>();
-        for (Material m : getOverWorldOres()) {
-            displayList.add(new ItemStack(Material.STONE));
-            displayList.add(new ItemStack(m));
-        }
-        for (Material m : getNetherOres()) {
-            displayList.add(new ItemStack(Material.NETHERRACK));
-            displayList.add(new ItemStack(m));
-        }
+        for (Material m : oreMap.keySet())
+            for (ItemStack item : oreMap.get(m)) {
+                displayList.add(new ItemStack(m));
+                displayList.add(item);
+            }
         return displayList;
     }
 

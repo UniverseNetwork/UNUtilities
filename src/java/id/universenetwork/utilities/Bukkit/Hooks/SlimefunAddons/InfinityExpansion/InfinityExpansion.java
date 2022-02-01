@@ -11,6 +11,7 @@ import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.InfinityExpansio
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.InfinityExpansion.Items.Researches;
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.InfinityExpansion.Items.SlimefunExtension;
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.InfinityExpansion.Items.Storage.Storage;
+import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.InfinityExpansion.Items.Storage.StorageSaveFix;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.Plugin;
 
@@ -24,6 +25,7 @@ import static org.bukkit.Bukkit.getServer;
 public class InfinityExpansion {
     public InfinityExpansion() {
         if (id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.Enabled("InfinityExpansion")) {
+            StorageSaveFix.fixStuff();
             new Commands();
             Plugin lx = getServer().getPluginManager().getPlugin("LiteXpansion");
             if (lx != null && lx.getConfig().getBoolean("options.nerf-other-addons"))

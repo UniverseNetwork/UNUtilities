@@ -25,10 +25,10 @@ public class SeedPlucker extends id.universenetwork.utilities.Bukkit.Hooks.Slime
 
     @Override
     public MachineRecipe findNextRecipe(me.mrCookieSlime.Slimefun.api.inventory.BlockMenu inv) {
-        if (id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.DynaTech.isExoticGardenInstalled && exoticGardenIntegration.getValue()) {
+        if (id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.DynaTech.isExoticGardenEnabled && exoticGardenIntegration.getValue()) {
             for (int inputSlot : getInputSlots()) {
                 SlimefunItem item = SlimefunItem.getByItem(inv.getItemInSlot(inputSlot));
-                if (item instanceof io.github.thebusybiscuit.exoticgarden.items.ExoticGardenFruit) {
+                if (item instanceof id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.ExoticGarden.Items.ExoticGardenFruit) {
                     SlimefunItem out = SlimefunItem.getById(item.getId().concat("_BUSH"));
                     if (out != null) {
                         inv.consumeItem(inputSlot);

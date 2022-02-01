@@ -67,7 +67,7 @@ public class DynaTechItemsSetup {
         new WitherGolem(DT_TOOLS, WITHER_GOLEM).register(addon);
 
         // Machines
-        if (DynaTech.isExoticGardenInstalled)
+        if (DynaTech.isExoticGardenEnabled)
             new AutoKitchen(DT_MACHINES, AUTO_KITCHEN, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{new ItemStack(BRICK), ELECTRIC_FURNACE, new ItemStack(BRICK), STAINLESS_STEEL, GOLD_24K_BLOCK, STAINLESS_STEEL, new ItemStack(TERRACOTTA), new ItemStack(TERRACOTTA), new ItemStack(TERRACOTTA)}).setEnergyCapacity(512).setEnergyConsumption(16).setProcessingSpeed(1).register(addon);
         new GrowthChamber(DT_MACHINES, GROWTH_CHAMBER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{HARDENED_GLASS, TREE_GROWTH_ACCELERATOR, HARDENED_GLASS, new ItemStack(BONE_BLOCK), new ItemStack(GRASS_BLOCK), new ItemStack(BONE_BLOCK), STAINLESS_STEEL, CROP_GROWTH_ACCELERATOR_2, STAINLESS_STEEL}).setEnergyCapacity(512).setEnergyConsumption(32).setProcessingSpeed(1).register(addon);
         new GrowthChamberMK2(DT_MACHINES, GROWTH_CHAMBER_MK2, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{STEEL_PLATE, GROWTH_CHAMBER, STEEL_PLATE, new ItemStack(GRASS_BLOCK), new ItemStack(LIME_STAINED_GLASS), new ItemStack(SAND), STEEL_PLATE, GROWTH_CHAMBER, STEEL_PLATE}).setEnergyCapacity(1024).setEnergyConsumption(128).setProcessingSpeed(3).register(addon);
@@ -93,6 +93,7 @@ public class DynaTechItemsSetup {
         new WirelessItemInput(DT_MACHINES, 1024, WIRELESS_ITEM_INPUT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{CARGO_INPUT_NODE, GHOSTLY_ESSENCE, CARGO_INPUT_NODE, GHOSTLY_ESSENCE, ANCIENT_MACHINE_CORE, GHOSTLY_ESSENCE, CARGO_INPUT_NODE, GHOSTLY_ESSENCE, CARGO_INPUT_NODE}).register(addon);
         new WirelessItemOutput(DT_MACHINES, 1024, WIRELESS_ITEM_OUTPUT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{ADVANCED_MACHINE_SCRAP, GHOSTLY_ESSENCE, ADVANCED_MACHINE_SCRAP, GHOSTLY_ESSENCE, BIG_CAPACITOR, GHOSTLY_ESSENCE, CARGO_OUTPUT_NODE_2, GHOSTLY_ESSENCE, CARGO_OUTPUT_NODE_2}).register(addon);
         new Tesseract(DT_MACHINES, 65535, 1024, TESSERACT, RecipeType.MAGIC_WORKBENCH, new ItemStack[]{WIRELESS_ENERGY_BANK, TESSERACTING_OBJ, WIRELESS_ITEM_INPUT, TESSERACTING_OBJ, GHOSTLY_ESSENCE, TESSERACTING_OBJ, WIRELESS_ITEM_OUTPUT, TESSERACTING_OBJ, WIRELESS_ENERGY_POINT}).register(addon);
+        new FurnaceController(DT_MACHINES, EXTERNAL_HEATER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{STAINLESS_STEEL, HARDENED_METAL_INGOT, STAINLESS_STEEL, new ItemStack(OBSIDIAN), new ItemStack(OBSERVER), new ItemStack(OBSIDIAN), new ItemStack(OBSIDIAN), ENERGY_REGULATOR, new ItemStack(OBSIDIAN)}).register(addon);
         new LiquidTank(DT_TOOLS, LIQUID_TANK, 16000, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{STAINLESS_STEEL, new ItemStack(BUCKET), STAINLESS_STEEL, new ItemStack(BUCKET), new ItemStack(BUCKET), new ItemStack(BUCKET), STAINLESS_STEEL, new ItemStack(BUCKET), STAINLESS_STEEL,}).register(addon);
 
         // Generators

@@ -18,7 +18,6 @@ softdepend:
   - MVdWPlaceholderAPI
   - mcMMO
   - NoCheatPlus
-  - ExoticGarden
   - Votifier
   - ViaVersion
   - Citizens
@@ -73,6 +72,7 @@ provides:
   - ViaRewind-Legacy-Support
   - ViaPotions
   - Skream
+  - ExoticGarden
 
 
 permissions:

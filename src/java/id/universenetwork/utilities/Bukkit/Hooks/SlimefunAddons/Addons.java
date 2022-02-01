@@ -49,7 +49,16 @@ public class Addons implements SlimefunAddon {
         new id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Bump.Bump();
         new id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.DynaTech();
         new id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FlowerPower.FlowerPowerPlugin();
+        new id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.ExoticGarden.ExoticGarden();
         System.out.println(prefix + " §aSuccessfully Registered All Enabled Addons to Slimefun");
+    }
+
+    public static boolean Enabled(String AddonName) {
+        return Config.get().getBoolean(ADDONS.getConfigPath() + AddonName);
+    }
+
+    public static ConfigurationSection Settings(String AddonName) {
+        return Config.get().getConfigurationSection(ADDONSSETTINGS.getConfigPath() + AddonName);
     }
 
     @NotNull
@@ -61,13 +70,5 @@ public class Addons implements SlimefunAddon {
     @Override
     public String getBugTrackerURL() {
         return "https://github.com/UniverseNetwork/UNUtilities/issues";
-    }
-
-    public static boolean Enabled(String AddonName) {
-        return Config.get().getBoolean(ADDONS.getConfigPath() + AddonName);
-    }
-
-    public static ConfigurationSection Settings(String AddonName) {
-        return Config.get().getConfigurationSection(ADDONSSETTINGS.getConfigPath() + AddonName);
     }
 }

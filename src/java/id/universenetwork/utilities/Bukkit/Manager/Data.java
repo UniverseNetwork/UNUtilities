@@ -25,6 +25,5 @@ public class Data {
 
     public static void set(String path, Object value) {
         get().set(path, value);
-        data.save();
     }
 }

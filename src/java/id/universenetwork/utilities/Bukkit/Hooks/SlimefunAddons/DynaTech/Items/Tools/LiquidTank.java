@@ -26,6 +26,13 @@ public class LiquidTank extends SlimefunItem implements io.github.thebusybiscuit
         addItemHandler(onRightClick());
     }
 
+    public static List<String> getPlaceableFluids() {
+        List<String> PLACEABLE_FLUIDS = new java.util.ArrayList<>();
+        PLACEABLE_FLUIDS.add("WATER");
+        PLACEABLE_FLUIDS.add("LAVA");
+        return PLACEABLE_FLUIDS;
+    }
+
     io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler onRightClick() {
         return e -> {
             e.cancel();
@@ -38,7 +45,7 @@ public class LiquidTank extends SlimefunItem implements io.github.thebusybiscuit
                 LiquidTank liquidTank = (LiquidTank) item.get();
                 String fluidName = getLiquid(itemStack).getFirstValue();
                 int fluidAmount = getLiquid(itemStack).getSecondValue();
-                if (fluidName != null && e.getPlayer().isSneaking() && fluidAmount >= 1000) {
+                if (liquid.getType() == AIR && fluidName != null && e.getPlayer().isSneaking() && fluidAmount >= 1000) {
                     if (fluidName.equals("WATER")) {
                         removeLiquid(itemStack, fluidName, 1000);
                         liquidState.setType(WATER);
@@ -50,7 +57,7 @@ public class LiquidTank extends SlimefunItem implements io.github.thebusybiscuit
                         liquidState.update(true, true);
                         updateLore(itemStack);
                     }
-                } else if (fluidName != null && fluidAmount <= liquidTank.getMaxLiquidAmount() && liquid.isLiquid()) {
+                } else if ((liquid.getType() == LAVA || liquid.getType() == WATER) && fluidName != null && fluidAmount <= liquidTank.getMaxLiquidAmount() && liquid.isLiquid()) {
                     addLiquid(itemStack, liquid.getType().name(), 1000);
                     liquidState.setType(AIR);
                     liquidState.update(true, true);
@@ -62,13 +69,6 @@ public class LiquidTank extends SlimefunItem implements io.github.thebusybiscuit
 
     public int getMaxLiquidAmount() {
         return maxLiquidAmount;
-    }
-
-    public static List<String> getPlaceableFluids() {
-        List<String> PLACEABLE_FLUIDS = new java.util.ArrayList<>();
-        PLACEABLE_FLUIDS.add("WATER");
-        PLACEABLE_FLUIDS.add("LAVA");
-        return PLACEABLE_FLUIDS;
     }
 
     public void addLiquid(ItemStack item, String fluidName, int fluidAmount) {

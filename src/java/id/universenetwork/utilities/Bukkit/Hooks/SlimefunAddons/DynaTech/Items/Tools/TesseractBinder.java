@@ -25,13 +25,14 @@ public class TesseractBinder extends SlimefunItem {
                 org.bukkit.Location blockLocation = block.get().getLocation();
                 SlimefunItem sfItem = sfBlock.get();
                 ItemStack item = e.getItem();
+                boolean hasPermision = io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getProtectionManager().hasPermission(e.getPlayer(), blockLocation, io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.INTERACT_BLOCK);
                 if (e.getPlayer().isSneaking()) {
                     String locString = PersistentDataAPI.getString(item.getItemMeta(), WIRELESS_LOCATION_KEY);
-                    if (item != null && BlockStorage.checkID(blockLocation).equals(TESSERACT.getItemId()) && item.hasItemMeta() && locString != null) {
+                    if (item != null && hasPermision && BlockStorage.checkID(blockLocation).equals(TESSERACT.getItemId()) && item.hasItemMeta() && locString != null) {
                         BlockStorage.addBlockInfo(blockLocation, "tesseract-pair-location", locString);
                         e.getPlayer().spigot().sendMessage(net.md_5.bungee.api.ChatMessageType.ACTION_BAR, net.md_5.bungee.api.chat.TextComponent.fromLegacyText(org.bukkit.ChatColor.WHITE + "Tesseract Connected!"));
                     }
-                } else if (sfBlock.isPresent() && sfItem.getId().equals(TESSERACT.getItemId()) && blockLocation != null) {
+                } else if (hasPermision && sfItem.getId().equals(TESSERACT.getItemId()) && blockLocation != null) {
                     org.bukkit.inventory.meta.ItemMeta im = item.getItemMeta();
                     String locString = LocationToString(blockLocation);
                     PersistentDataAPI.setString(im, WIRELESS_LOCATION_KEY, locString);

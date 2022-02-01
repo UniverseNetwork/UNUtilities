@@ -68,10 +68,8 @@
 - [SlimyTreeTaps](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/SlimyTreeTaps/master)
 - [MoreTools](http://thebusybiscuit.github.io/builds/LinoxGH/MoreTools/build) `NOT Recommended to use`
 - [ChestTerminal](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/ChestTerminal/master)
-- [HeadLimiter](http://thebusybiscuit.github.io/builds/J3fftw1/HeadLimiter/master) (
-  Require [Paper](http://papermc.io/downloads) or All Forks of Paper)
-- [SoundMuffler](http://thebusybiscuit.github.io/builds/J3fftw1/SoundMuffler/master) (
-  Require [ProtocolLib](http://spigotmc.org/resources/1997))
+- [HeadLimiter](http://thebusybiscuit.github.io/builds/J3fftw1/HeadLimiter/master) (Require [Paper](http://papermc.io/downloads) or All Forks of Paper)
+- [SoundMuffler](http://thebusybiscuit.github.io/builds/J3fftw1/SoundMuffler/master) (Require [ProtocolLib](http://spigotmc.org/resources/1997))
 - [SFMobDrops](http://thebusybiscuit.github.io/builds/WalshyDev/SFMobDrops/main)
 - [FluffyMachines](http://thebusybiscuit.github.io/builds/NCBPFluffyBear/FluffyMachines/master)
 - [HotbarPets](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/HotbarPets/master)
@@ -79,12 +77,11 @@
 - [InfinityExpansion](http://thebusybiscuit.github.io/builds/Mooy1/InfinityExpansion/master)
 - [Bump](http://github.com/haiman233/Slimefun-Bump/releases)
 - [DynaTech](http://thebusybiscuit.github.io/builds/ProfElements/DynaTech/master)
+- [ExoticGarden](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/ExoticGarden/master)
 
 ## [Skript](http://github.com/SkriptLang/Skript/releases)
 
-- [SkriptPlaceholders](http://github.com/APickledWalrus/skript-placeholders/releases) (
-  Require [PlaceholderAPI](http://spigotmc.org/resources/6245)
-  or [MVdWPlaceholderAPI](http://spigotmc.org/resources/11182))
+- [SkriptPlaceholders](http://github.com/APickledWalrus/skript-placeholders/releases) (Require [PlaceholderAPI](http://spigotmc.org/resources/6245) or [MVdWPlaceholderAPI](http://spigotmc.org/resources/11182))
 - [SkQuery](http://github.com/SkQuery/SkQuery/releases) **[Under Construction]**
 - [SkBee](http://github.com/ShaneBeee/SkBee/releases) **[Under Construction]**
 - [SkWhitelist](http://github.com/tim740/skWhitelist/releases)

@@ -1,41 +1,31 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.InfinityExpansion.Items.Storage;
 
-import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Machines.MachineLore;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.common.ChatColors;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
-import lombok.Setter;
-import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
-import org.bukkit.block.data.type.WallSign;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataType;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.slimefunTickCount;
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Scheduler.run;
-import static me.mrCookieSlime.Slimefun.api.BlockStorage.addBlockInfo;
-import static me.mrCookieSlime.Slimefun.api.BlockStorage.getLocationInfo;
+import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Machines.MachineLore.format;
+import static io.github.thebusybiscuit.slimefun4.libraries.dough.common.ChatColors.color;
+import static io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils.getItemName;
+import static org.bukkit.persistence.PersistentDataType.BYTE;
 
-final class StorageCache {
+public final class StorageCache {
     /* Menu strings */
     static final String EMPTY_DISPLAY_NAME = ChatColor.WHITE + "Empty";
-    static final String VOID_EXCESS_TRUE = ChatColors.color("&7Void Excess:&e true");
-    static final String VOID_EXCESS_FALSE = ChatColors.color("&7Void Excess:&e false");
+    static final String VOID_EXCESS_TRUE = color("&7Void Excess:&e true");
+    static final String VOID_EXCESS_FALSE = color("&7Void Excess:&e false");
 
     /* BlockStorage keys */
     static final String STORED_AMOUNT = "stored"; // amount key in block data
@@ -44,7 +34,7 @@ final class StorageCache {
     /* Menu Items */
     static final ItemStack EMPTY_ITEM = new CustomItemStack(Material.BARRIER, meta -> {
         meta.setDisplayName(ChatColor.WHITE + "Empty");
-        meta.getPersistentDataContainer().set(StorageUnit.EMPTY_KEY, PersistentDataType.BYTE, (byte) 1);
+        meta.getPersistentDataContainer().set(StorageUnit.EMPTY_KEY, BYTE, (byte) 1);
     });
 
     /* Space Pattern for Sign Display Names */
@@ -60,7 +50,7 @@ final class StorageCache {
     Material material;
     ItemMeta meta;
     boolean voidExcess;
-    @Setter
+    @lombok.Setter
     int amount;
 
     StorageCache(StorageUnit storageUnit, BlockMenu menu) {
@@ -80,7 +70,7 @@ final class StorageCache {
             if (display != null) {
                 ItemMeta copy = display.getItemMeta();
                 // fix if they somehow store the empty item
-                if (copy.getPersistentDataContainer().has(StorageUnit.EMPTY_KEY, PersistentDataType.BYTE)) {
+                if (copy.getPersistentDataContainer().has(StorageUnit.EMPTY_KEY, BYTE)) {
                     // attempt to recover the correct item from output
                     ItemStack output = menu.getItemInSlot(StorageUnit.OUTPUT_SLOT);
                     if (output != null) {
@@ -100,7 +90,7 @@ final class StorageCache {
         // void excess handler
         menu.addMenuClickHandler(StorageUnit.STATUS_SLOT, (p, slot, item, action) -> {
             voidExcess = !voidExcess;
-            addBlockInfo(menu.getLocation(), VOID_EXCESS, voidExcess ? "true" : null);
+            BlockStorage.addBlockInfo(menu.getLocation(), VOID_EXCESS, voidExcess ? "true" : null);
             ItemMeta meta = item.getItemMeta();
             List<String> lore = meta.getLore();
             lore.set(1, voidExcess ? VOID_EXCESS_TRUE : VOID_EXCESS_FALSE);
@@ -128,6 +118,10 @@ final class StorageCache {
 
         // load status slot
         updateStatus();
+    }
+
+    static boolean checkWallSign(Block sign, Block block) {
+        return SlimefunTag.WALL_SIGNS.isTagged(sign.getType()) && sign.getRelative(((org.bukkit.block.data.type.WallSign) sign.getBlockData()).getFacing().getOppositeFace()).equals(block);
     }
 
     void setDisplayName(String name) {
@@ -176,7 +170,7 @@ final class StorageCache {
         signDisplay[1] = "";
     }
 
-    void destroy(Location l, BlockBreakEvent e, List<ItemStack> drops) {
+    void destroy(org.bukkit.event.block.BlockBreakEvent e, List<ItemStack> drops) {
         // add output slot
         ItemStack output = menu.getItemInSlot(StorageUnit.OUTPUT_SLOT);
         if (output != null && matches(output)) {
@@ -193,12 +187,9 @@ final class StorageCache {
     }
 
     void reloadData() {
-        Config config = getLocationInfo(menu.getLocation());
+        me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config config = BlockStorage.getLocationInfo(menu.getLocation());
         String amt = config.getString(STORED_AMOUNT);
-        if (amt == null) {
-            amount = 0;
-            run(() -> addBlockInfo(menu.getLocation(), STORED_AMOUNT, "0"));
-        } else amount = Integer.parseInt(amt);
+        amount = amt == null ? 0 : Integer.parseInt(amt);
         voidExcess = "true".equals(config.getString(VOID_EXCESS));
     }
 
@@ -209,9 +200,9 @@ final class StorageCache {
         copy.getPersistentDataContainer().remove(StorageUnit.DISPLAY_KEY);
 
         // check if the copy has anything besides the display key
-        if (copy.equals(Bukkit.getItemFactory().getItemMeta(stored.getType()))) meta = null;
+        if (copy.equals(org.bukkit.Bukkit.getItemFactory().getItemMeta(stored.getType()))) meta = null;
         else meta = copy;
-        setDisplayName(ItemUtils.getItemName(stored));
+        setDisplayName(getItemName(stored));
         material = stored.getType();
     }
 
@@ -270,12 +261,12 @@ final class StorageCache {
         output();
 
         // store amount
-        addBlockInfo(menu.getLocation(), STORED_AMOUNT, String.valueOf(amount));
+        BlockStorage.addBlockInfo(menu.getLocation(), STORED_AMOUNT, String.valueOf(amount));
 
         // status
         if (menu.hasViewer()) updateStatus();
 
-        // sings
+        // signs
         if (slimefunTickCount % 20 == 0) {
             Block check = block.getRelative(0, 1, 0);
             if (SlimefunTag.SIGNS.isTagged(check.getType()) || checkWallSign(check = block.getRelative(1, 0, 0), block) || checkWallSign(check = block.getRelative(-1, 0, 0), block) || checkWallSign(check = block.getRelative(0, 0, 1), block) || checkWallSign(check = block.getRelative(0, 0, -1), block)) {
@@ -292,29 +283,25 @@ final class StorageCache {
     void updateStatus() {
         menu.replaceExistingItem(StorageUnit.STATUS_SLOT, new CustomItemStack(Material.CYAN_STAINED_GLASS_PANE, meta -> {
             meta.setDisplayName(ChatColor.AQUA + "Status");
-            List<String> lore = new ArrayList<>();
+            List<String> lore = new java.util.ArrayList<>();
             if (amount == 0)
-                lore.add(ChatColors.color("&6Stored: &e0 / " + MachineLore.format(storageUnit.max) + " &7(0%)"));
+                lore.add(color("&6Stored: &e0 / " + format(storageUnit.max) + " &7(0%)"));
             else
-                lore.add(ChatColors.color("&6Stored: &e" + MachineLore.format(amount) + " / " + MachineLore.format(storageUnit.max) + " &7(" + MachineLore.format((double) amount * 100.D / storageUnit.max) + "%)"));
+                lore.add(color("&6Stored: &e" + format(amount) + " / " + format(storageUnit.max) + " &7(" + format((double) amount * 100.D / storageUnit.max) + "%)"));
             lore.add(voidExcess ? VOID_EXCESS_TRUE : VOID_EXCESS_FALSE);
             lore.add(ChatColor.GRAY + "(Click to toggle)");
             meta.setLore(lore);
         }), false);
     }
 
-    static boolean checkWallSign(Block sign, Block block) {
-        return SlimefunTag.WALL_SIGNS.isTagged(sign.getType()) && sign.getRelative(((WallSign) sign.getBlockData()).getFacing().getOppositeFace()).equals(block);
-    }
-
     void setStored(ItemStack input) {
         meta = input.hasItemMeta() ? input.getItemMeta() : null;
-        setDisplayName(ItemUtils.getItemName(input));
+        setDisplayName(getItemName(input));
         material = input.getType();
 
         // add the display key to the display input and set amount 1
         ItemMeta meta = input.getItemMeta();
-        meta.getPersistentDataContainer().set(StorageUnit.DISPLAY_KEY, PersistentDataType.BYTE, (byte) 1);
+        meta.getPersistentDataContainer().set(StorageUnit.DISPLAY_KEY, BYTE, (byte) 1);
         input.setItemMeta(meta);
         input.setAmount(1);
         menu.replaceExistingItem(StorageUnit.DISPLAY_SLOT, input);
@@ -350,7 +337,7 @@ final class StorageCache {
             } else amount -= withdraw;
             return;
         }
-        Inventory inv = p.getInventory();
+        org.bukkit.inventory.Inventory inv = p.getInventory();
         int toWithdraw = withdraw;
         do {
             int amt = Math.min(material.getMaxStackSize(), toWithdraw);
@@ -368,17 +355,26 @@ final class StorageCache {
     }
 
     void depositAll(Player p) {
-        if (amount < storageUnit.max) for (ItemStack item : p.getInventory().getStorageContents())
+        depositAll(p.getInventory().getStorageContents());
+    }
+
+    public void depositAll(ItemStack[] itemStacks) {
+        depositAll(itemStacks, false);
+    }
+
+    public void depositAll(ItemStack[] itemStacks, boolean observeVoiding) {
+        if (amount < storageUnit.max) for (ItemStack item : itemStacks)
             if (item != null && matches(item)) {
                 if (item.getAmount() + amount >= storageUnit.max) {
                     // last item
                     item.setAmount(item.getAmount() - (storageUnit.max - amount));
                     amount = storageUnit.max;
-                    break;
                 } else {
                     amount += item.getAmount();
                     item.setAmount(0);
                 }
             }
+        if (observeVoiding && this.voidExcess) for (ItemStack item : itemStacks)
+            if (item != null && matches(item)) item.setAmount(0);
     }
 }

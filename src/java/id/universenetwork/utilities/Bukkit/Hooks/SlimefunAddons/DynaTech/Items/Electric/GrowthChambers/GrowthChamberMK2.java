@@ -73,7 +73,7 @@ public class GrowthChamberMK2 extends id.universenetwork.utilities.Bukkit.Hooks.
 
     @Override
     public MachineRecipe findNextRecipe(me.mrCookieSlime.Slimefun.api.inventory.BlockMenu inv) {
-        if (id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.DynaTech.isExoticGardenInstalled && exoticGardenIntegration.getValue()) {
+        if (id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.DynaTech.isExoticGardenEnabled && exoticGardenIntegration.getValue()) {
             for (int inputSlot : getInputSlots()) {
                 ItemStack item = inv.getItemInSlot(inputSlot);
                 if (item != null && SlimefunItem.getByItem(item) != null) {

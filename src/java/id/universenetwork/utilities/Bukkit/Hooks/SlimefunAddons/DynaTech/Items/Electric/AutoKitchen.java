@@ -16,8 +16,8 @@ import java.util.List;
  * @author NCBPFluffyBear https://github.com/NCBPFluffyBear
  */
 public class AutoKitchen extends id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DynaTech.Items.Electric.Abstracts.AMachine implements io.github.thebusybiscuit.slimefun4.core.attributes.NotHopperable {
-    static final MultiBlockMachine mblock = (MultiBlockMachine) io.github.thebusybiscuit.exoticgarden.ExoticGardenRecipeTypes.KITCHEN.getMachine();
     public static final int[] BORDER = {4, 5, 6, 7, 8, 13, 31, 40, 41, 42, 43, 44};
+    static final MultiBlockMachine mblock = (MultiBlockMachine) id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.ExoticGarden.ExoticGardenRecipeTypes.KITCHEN.getMachine();
     static final int[] BORDER_IN = {0, 1, 2, 3, 12, 21, 30, 36, 37, 38, 39};
     static final int[] BORDER_OUT = {14, 15, 16, 17, 23, 26, 32, 33, 34, 35};
 
