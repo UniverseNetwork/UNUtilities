@@ -43,7 +43,8 @@ public class Orechid extends id.universenetwork.utilities.Bukkit.Hooks.SlimefunA
         registerOre(Material.STONE, Material.EMERALD_ORE, 1);
         registerOre(Material.STONE, Material.REDSTONE_ORE, 3);
         registerOre(Material.STONE, Material.LAPIS_ORE, 3);
-        registerOre(Material.STONE, Material.COPPER_ORE, 3);
+        if (io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getMinecraftVersion().isAtLeast(io.github.thebusybiscuit.slimefun4.api.MinecraftVersion.MINECRAFT_1_17))
+            registerOre(Material.STONE, Material.COPPER_ORE, 3);
         registerOre(Material.NETHERRACK, Material.NETHER_QUARTZ_ORE, 3);
         registerOre(Material.NETHERRACK, Material.NETHER_GOLD_ORE, 3);
         registerOre(Material.NETHERRACK, Material.ANCIENT_DEBRIS, 1);

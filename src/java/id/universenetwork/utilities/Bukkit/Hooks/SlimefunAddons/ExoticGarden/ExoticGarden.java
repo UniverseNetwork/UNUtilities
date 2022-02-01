@@ -145,7 +145,7 @@ public class ExoticGarden {
             }
             for (Tree tree : ExoticGarden.getTrees()) treeFruits.add(tree.getFruitID());
             id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(new AndroidListener(), new PlantsListener(cfg));
-            System.out.println(UNUtilities.prefix + " §bSuccessfully Registered §dBump §bAddon");
+            System.out.println(UNUtilities.prefix + " §bSuccessfully Registered §dExoticGarden §bAddon");
         }
     }
 
@@ -205,7 +205,7 @@ public class ExoticGarden {
     }
 
     void saveSchematic(@NotNull String id) {
-        try (InputStream input = getClass().getResourceAsStream("/schematics/" + id + ".schematic")) {
+        try (InputStream input = getClass().getResourceAsStream("/Schematics/" + id + ".schematic")) {
             try (FileOutputStream output = new FileOutputStream(new File(schematicsFolder, id + ".schematic"))) {
                 byte[] buffer = new byte[1024];
                 int len;
