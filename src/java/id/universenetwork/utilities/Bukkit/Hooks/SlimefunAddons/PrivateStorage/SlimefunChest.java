@@ -1,34 +1,22 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PrivateStorage;
 
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
-import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Objects;
 
-import static io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getProtectionManager;
-import static io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.INTERACT_BLOCK;
+import static me.mrCookieSlime.Slimefun.api.BlockStorage.*;
 
-public class SlimeFunChest extends SlimefunItem {
-    public SlimeFunChest(ChestProtectionLevel level, int size, boolean canExplode, ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+public class SlimefunChest extends io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem {
+    public SlimefunChest(ChestProtectionLevel level, int size, boolean canExplode, io.github.thebusybiscuit.slimefun4.api.items.ItemGroup itemGroup, io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack item, io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
         int[] slots = getSlotsArray(size);
-        new BlockMenuPreset(getId(), item.getItemMeta().getDisplayName()) {
+        new me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset(getId(), item.getItemMeta().getDisplayName()) {
             @Override
             public void init() {
                 setSize(size);
@@ -37,16 +25,16 @@ public class SlimeFunChest extends SlimefunItem {
             }
 
             @Override
-            public boolean canOpen(@NotNull Block b, @NotNull Player p) {
+            public boolean canOpen(Block b, Player p) {
                 if (p.hasPermission("PrivateStorage.bypass")) return true;
                 if (level == ChestProtectionLevel.PRIVATE) {
-                    return BlockStorage.getLocationInfo(b.getLocation(), "owner").equals(p.getUniqueId().toString());
+                    return getLocationInfo(b.getLocation(), "owner").equals(p.getUniqueId().toString());
                 }
-                return getProtectionManager().hasPermission(p, b, INTERACT_BLOCK);
+                return io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getProtectionManager().hasPermission(p, b, io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.INTERACT_BLOCK);
             }
 
             @Override
-            public int[] getSlotsAccessedByItemTransport(ItemTransportFlow flow) {
+            public int[] getSlotsAccessedByItemTransport(me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow flow) {
                 if (level.equals(ChestProtectionLevel.PUBLIC)) {
                     return slots;
                 } else return new int[0];
@@ -58,8 +46,8 @@ public class SlimeFunChest extends SlimefunItem {
     BlockPlaceHandler onBlockPlace() {
         return new BlockPlaceHandler(false) {
             @Override
-            public void onPlayerPlace(@NotNull BlockPlaceEvent e) {
-                BlockStorage.addBlockInfo(e.getBlock().getLocation(), "owner", e.getPlayer().getUniqueId().toString());
+            public void onPlayerPlace(org.bukkit.event.block.BlockPlaceEvent e) {
+                addBlockInfo(e.getBlock().getLocation(), "owner", e.getPlayer().getUniqueId().toString());
             }
         };
     }
@@ -67,14 +55,14 @@ public class SlimeFunChest extends SlimefunItem {
     BlockBreakHandler onBlockBreak(int size, boolean canExplode) {
         return new BlockBreakHandler(false, canExplode) {
             @Override
-            public void onPlayerBreak(@NotNull BlockBreakEvent e, @NotNull ItemStack item, @NotNull List<ItemStack> drops) {
+            public void onPlayerBreak(org.bukkit.event.block.BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
                 boolean allow = true;
                 Player p = e.getPlayer();
                 Block b = e.getBlock();
                 if (!p.hasPermission("PrivateStorage.bypass"))
-                    allow = Objects.equals(BlockStorage.getLocationInfo(b.getLocation(), "owner"), p.getUniqueId().toString());
+                    allow = java.util.Objects.equals(getLocationInfo(b.getLocation(), "owner"), p.getUniqueId().toString());
                 if (allow) {
-                    BlockMenu inv = BlockStorage.getInventory(b);
+                    BlockMenu inv = getInventory(b);
                     for (int slot = 0; slot < size; slot++) {
                         ItemStack stack = inv.getItemInSlot(slot);
                         if (stack != null && !stack.getType().isAir())
@@ -84,8 +72,8 @@ public class SlimeFunChest extends SlimefunItem {
             }
 
             @Override
-            public void onExplode(@NotNull Block b, @NotNull List<ItemStack> drops) {
-                BlockMenu inv = BlockStorage.getInventory(b);
+            public void onExplode(Block b, List<ItemStack> drops) {
+                BlockMenu inv = getInventory(b);
                 for (int slot = 0; slot < size; slot++) {
                     ItemStack stack = inv.getItemInSlot(slot);
                     if (stack != null && !stack.getType().isAir()) drops.add(stack);

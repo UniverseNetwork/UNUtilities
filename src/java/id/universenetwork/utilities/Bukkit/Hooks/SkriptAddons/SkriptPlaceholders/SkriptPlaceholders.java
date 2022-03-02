@@ -5,13 +5,10 @@ import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Addons;
 import static ch.njol.skript.Skript.classExists;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 
+@id.universenetwork.utilities.Bukkit.Annotations.AddonName("SkriptPlaceholders")
 public class SkriptPlaceholders extends Addons {
     public static final boolean hasMVdW = classExists("be.maximvdw.placeholderapi.PlaceholderAPI");
     public static final boolean hasPAPI = classExists("me.clip.placeholderapi.expansion.PlaceholderExpansion");
-
-    public SkriptPlaceholders() {
-        super("SkriptPlaceholders");
-    }
 
     @Override
     public void Load() {

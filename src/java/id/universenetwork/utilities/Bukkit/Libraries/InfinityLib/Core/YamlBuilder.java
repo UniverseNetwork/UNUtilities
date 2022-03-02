@@ -160,7 +160,6 @@ public class YamlBuilder extends YamlConfiguration {
         return yamlBuilder.toString();
     }
 
-    @SuppressWarnings("unchecked")
     public <T> T getOrSetDefault(@NotNull String path, T value) {
         Object val = get(path);
         if (value.getClass().isInstance(val)) return (T) val;

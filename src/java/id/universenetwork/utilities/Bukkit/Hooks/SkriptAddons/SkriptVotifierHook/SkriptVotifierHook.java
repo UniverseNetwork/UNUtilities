@@ -3,11 +3,8 @@ package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptVotifierHoo
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 import static org.bukkit.Bukkit.getServer;
 
+@id.universenetwork.utilities.Bukkit.Annotations.AddonName("SkriptVotifierHook")
 public class SkriptVotifierHook extends id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Addons implements org.bukkit.event.Listener {
-    public SkriptVotifierHook() {
-        super("SkriptVotifierHook");
-    }
-
     @Override
     public void Load() {
         if (getServer().getPluginManager().isPluginEnabled("Votifier")) {

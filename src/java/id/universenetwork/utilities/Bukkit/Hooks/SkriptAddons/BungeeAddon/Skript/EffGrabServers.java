@@ -5,13 +5,13 @@ import ch.njol.skript.lang.TriggerItem;
 import ch.njol.util.Kleenean;
 import com.google.common.io.ByteStreams;
 import id.universenetwork.utilities.Bukkit.UNUtilities;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 import java.lang.reflect.Field;
 
 import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.BungeeAddon.BungeeAddon.CHANNEL;
+import static org.bukkit.Bukkit.*;
 
 public class EffGrabServers extends ch.njol.skript.lang.Effect implements org.bukkit.plugin.messaging.PluginMessageListener {
     static final Field DELAYED;
@@ -32,7 +32,7 @@ public class EffGrabServers extends ch.njol.skript.lang.Effect implements org.bu
     Event event;
 
     public EffGrabServers() {
-        org.bukkit.plugin.messaging.Messenger messenger = Bukkit.getServer().getMessenger();
+        org.bukkit.plugin.messaging.Messenger messenger = getServer().getMessenger();
         messenger.registerIncomingPluginChannel(UNUtilities.plugin, CHANNEL, this);
         messenger.registerOutgoingPluginChannel(UNUtilities.plugin, CHANNEL);
     }
@@ -45,10 +45,10 @@ public class EffGrabServers extends ch.njol.skript.lang.Effect implements org.bu
 
     @Override
     protected void execute(Event e) {
-        Bukkit.getScheduler().runTaskAsynchronously(UNUtilities.plugin, () -> {
-            java.util.Optional<? extends Player> player = Bukkit.getOnlinePlayers().stream().findAny();
+        getScheduler().runTaskAsynchronously(UNUtilities.plugin, () -> {
+            java.util.Optional<? extends Player> player = getOnlinePlayers().stream().findAny();
             if (!player.isPresent()) {
-                Bukkit.getLogger().warning(UNUtilities.prefix + " §eTried to grab all bungeecord servers, but no players were online.");
+                getLogger().warning(UNUtilities.prefix + " §eTried to grab all bungeecord servers, but no players were online.");
                 return;
             }
             event = e;
@@ -80,7 +80,7 @@ public class EffGrabServers extends ch.njol.skript.lang.Effect implements org.bu
         com.google.common.io.ByteArrayDataInput in = ByteStreams.newDataInput(message);
         if ("GetServers".equals(in.readUTF())) {
             servers = in.readUTF().split(", ");
-            Bukkit.getScheduler().runTask(UNUtilities.plugin, () -> TriggerItem.walk(getNext(), event));
+            getScheduler().runTask(UNUtilities.plugin, () -> TriggerItem.walk(getNext(), event));
         }
     }
 }

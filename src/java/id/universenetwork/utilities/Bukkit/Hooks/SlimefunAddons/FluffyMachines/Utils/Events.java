@@ -1,40 +1,29 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Utils;
 
-import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Items.Barrel;
-import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Items.FireproofRune;
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Items.HelicopterHat;
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Items.Tools.WateringCan;
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Machines.AlternateElevatorPlate;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockBurnEvent;
-import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.jetbrains.annotations.NotNull;
 
 import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Utils.FluffyItems.*;
-import static me.mrCookieSlime.Slimefun.api.BlockStorage.check;
+import static me.mrCookieSlime.Slimefun.api.BlockStorage.*;
+import static org.bukkit.block.BlockFace.UP;
 
-public class Events implements Listener {
+public class Events implements org.bukkit.event.Listener {
     final HelicopterHat helicopterHat = (HelicopterHat) HELICOPTER_HAT.getItem();
     final WateringCan wateringCan = (WateringCan) WATERING_CAN.getItem();
 
@@ -81,7 +70,7 @@ public class Events implements Listener {
 
     // This is used to make the non clickable GUI items non clickable
     @EventHandler(ignoreCancelled = true)
-    public void onNonClickableClick(InventoryClickEvent e) {
+    public void onNonClickableClick(org.bukkit.event.inventory.InventoryClickEvent e) {
         ItemStack item = e.getCurrentItem();
         if (item != null && item.getType() != Material.AIR && item.getItemMeta().hasCustomModelData() && item.getItemMeta().getCustomModelData() == 6969)
             e.setCancelled(true);
@@ -98,7 +87,7 @@ public class Events implements Listener {
         Entity en = e.getEntity();
         if (en instanceof Item) {
             ItemStack item = ((Item) en).getItemStack();
-            if (FireproofRune.isFireproof(item) && (e.getCause() == EntityDamageEvent.DamageCause.FIRE || e.getCause() == EntityDamageEvent.DamageCause.FIRE_TICK || e.getCause() == EntityDamageEvent.DamageCause.LAVA || e.getCause() == EntityDamageEvent.DamageCause.LIGHTNING) && !en.isDead()) {
+            if (id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Items.FireproofRune.isFireproof(item) && (e.getCause() == EntityDamageEvent.DamageCause.FIRE || e.getCause() == EntityDamageEvent.DamageCause.FIRE_TICK || e.getCause() == EntityDamageEvent.DamageCause.LAVA || e.getCause() == EntityDamageEvent.DamageCause.LIGHTNING) && !en.isDead()) {
                 en.remove();
                 en.getLocation().getWorld().dropItem(en.getLocation(), item);
             }
@@ -110,26 +99,26 @@ public class Events implements Listener {
         if (e.isSneaking()) {
             Player p = e.getPlayer();
             Block b = p.getLocation().subtract(0, 1, 0).getBlock();
-            if (BlockStorage.hasBlockInfo(b) && check(b) == FluffyItems.WARP_PAD.getItem() && BlockStorage.getLocationInfo(b.getLocation(), "type").equals("origin")) {
+            if (hasBlockInfo(b) && check(b) == FluffyItems.WARP_PAD.getItem() && getLocationInfo(b.getLocation(), "type").equals("origin")) {
                 Location l = b.getLocation();
-                Location destination = new Location(b.getWorld(), Integer.parseInt(BlockStorage.getLocationInfo(l, "x")), Integer.parseInt(BlockStorage.getLocationInfo(l, "y")), Integer.parseInt(BlockStorage.getLocationInfo(l, "z")));
+                Location destination = new Location(b.getWorld(), Integer.parseInt(getLocationInfo(l, "x")), Integer.parseInt(getLocationInfo(l, "y")), Integer.parseInt(getLocationInfo(l, "z")));
                 float yaw = p.getLocation().getYaw();
                 float pitch = p.getLocation().getPitch();
-                if (BlockStorage.hasBlockInfo(destination) && BlockStorage.getLocationInfo(destination, "type") != null && BlockStorage.getLocationInfo(destination, "type").equals("destination") && destination.getBlock().getRelative(BlockFace.UP).getType() == Material.AIR && destination.getBlock().getRelative(BlockFace.UP, 2).getType() == Material.AIR) {
+                if (hasBlockInfo(destination) && getLocationInfo(destination, "type") != null && getLocationInfo(destination, "type").equals("destination") && destination.getBlock().getRelative(UP).getType() == Material.AIR && destination.getBlock().getRelative(UP, 2).getType() == Material.AIR) {
                     destination.setPitch(pitch);
                     destination.setYaw(yaw);
                     p.teleport(destination.add(0.5, 1, 0.5));
-                    p.playSound(p.getLocation(), Sound.ITEM_CHORUS_FRUIT_TELEPORT, 0.5F, 0.5F);
-                    p.spawnParticle(Particle.DRAGON_BREATH, p.getLocation(), 10);
+                    p.playSound(p.getLocation(), org.bukkit.Sound.ITEM_CHORUS_FRUIT_TELEPORT, 0.5F, 0.5F);
+                    p.spawnParticle(org.bukkit.Particle.DRAGON_BREATH, p.getLocation(), 10);
                 } else Utils.send(p, "&cMissing destination Warp Pad!");
             }
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = org.bukkit.event.EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPressurePlateEnter(PlayerInteractEvent e) {
         if (e.getAction() != Action.PHYSICAL || e.getClickedBlock() == null) return;
-        String id = BlockStorage.checkID(e.getClickedBlock());
+        String id = checkID(e.getClickedBlock());
         if (id != null && id.equals(FluffyItems.ALTERNATE_ELEVATOR_PLATE.getItemId())) {
             AlternateElevatorPlate elevator = ((AlternateElevatorPlate) FluffyItems.ALTERNATE_ELEVATOR_PLATE.getItem());
             elevator.openInterface(e.getPlayer(), e.getClickedBlock());
@@ -145,17 +134,18 @@ public class Events implements Listener {
     }
 
     @EventHandler(ignoreCancelled = true)
-    public void onDollyDispense(BlockDispenseEvent e) {
+    public void onDollyDispense(org.bukkit.event.block.BlockDispenseEvent e) {
         SlimefunItem sfItem = SlimefunItem.getByItem(e.getItem());
         if (sfItem != null && sfItem.getId().equals(FluffyItems.DOLLY.getItemId())) e.setCancelled(true);
     }
 
     @EventHandler(ignoreCancelled = true)
-    public void onBarrelBurn(BlockBurnEvent e) {
-        if (check(e.getBlock()) instanceof Barrel) e.setCancelled(true);
+    public void onBarrelBurn(org.bukkit.event.block.BlockBurnEvent e) {
+        if (check(e.getBlock()) instanceof id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Items.Barrel)
+            e.setCancelled(true);
     }
 
-    boolean isExtractionNode(@NotNull ItemStack item) {
+    boolean isExtractionNode(ItemStack item) {
         SlimefunItem sfItem = SlimefunItem.getByItem(item);
         if (sfItem == null) return false;
         return sfItem.getId().equals(ENDER_CHEST_EXTRACTION_NODE.getItemId()) || sfItem.getId().equals(ENDER_CHEST_INSERTION_NODE.getItemId());

@@ -66,7 +66,7 @@ Features:
 
     # The message if a player doesn't join over the whitelisted address
     # You can use %enter% to go to a new line
-    kickMessage: '&cHarap menggunakan ip &aplay.&buniverse&enetwork&6.id &cuntuk bergabung'
+    kickMessage: '&cHarap menggunakan ip &buniv&eerse&amc.id &cuntuk bergabung'
 
   ## Anti Zero Tick Farm Features
   AntiZeroTickFarm:

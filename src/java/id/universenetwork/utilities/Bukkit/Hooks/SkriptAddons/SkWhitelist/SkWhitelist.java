@@ -2,11 +2,8 @@ package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkWhitelist;
 
 import static ch.njol.skript.Skript.*;
 
+@id.universenetwork.utilities.Bukkit.Annotations.AddonName("SkWhitelist")
 public class SkWhitelist extends id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Addons {
-    public SkWhitelist() {
-        super("SkWhitelist");
-    }
-
     @Override
     public void Load() {
         registerEffect(EffReloadWhitelist.class, "reload whitelist");

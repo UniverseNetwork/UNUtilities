@@ -16,10 +16,6 @@ public abstract class Commands {
         UNUtilities.plugin.getProxy().getPluginManager().registerCommand(UNUtilities.plugin, new Build(p.Name()));
     }
 
-    public abstract void Execute(CommandSender Sender, String[] Args);
-
-    public abstract Iterable<String> TabComplete(CommandSender Sender, String[] Args);
-
     public static void Register() {
         System.out.println(UNUtilities.prefix + " §eRegistering Commands...");
         new UniverseUtilitiesBungee();
@@ -28,6 +24,10 @@ public abstract class Commands {
         new WhitelistBungee();
         System.out.println(UNUtilities.prefix + " §aAll Commands Successfully Registered");
     }
+
+    public abstract void Execute(CommandSender Sender, String[] Args);
+
+    public abstract Iterable<String> TabComplete(CommandSender Sender, String[] Args);
 
     protected class Build extends net.md_5.bungee.api.plugin.Command implements net.md_5.bungee.api.plugin.TabExecutor {
         public Build(String Name) {

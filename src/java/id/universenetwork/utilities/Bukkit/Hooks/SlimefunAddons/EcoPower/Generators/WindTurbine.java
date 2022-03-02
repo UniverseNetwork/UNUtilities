@@ -1,49 +1,31 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.EcoPower.Generators;
 
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetProvider;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
-import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
 import static org.bukkit.Tag.WOODEN_FENCES;
-import static org.bukkit.block.BlockFace.*;
 
-public class WindTurbine extends SlimefunItem implements EnergyNetProvider {
-    static final BlockFace[] airFaces = {NORTH, EAST, SOUTH, WEST};
-    final Set<Location> validTurbines = ConcurrentHashMap.newKeySet();
+public class WindTurbine extends io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem implements io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetProvider {
+    static final BlockFace[] airFaces = {BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST};
+    final java.util.Set<Location> validTurbines = java.util.concurrent.ConcurrentHashMap.newKeySet();
     final int generatedPower;
 
-    public WindTurbine(ItemGroup itemGroup, SlimefunItemStack item, int generatedPower, RecipeType recipeType, ItemStack[] recipe) {
+    public WindTurbine(io.github.thebusybiscuit.slimefun4.api.items.ItemGroup itemGroup, io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack item, int generatedPower, io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType recipeType, org.bukkit.inventory.ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
         this.generatedPower = generatedPower;
     }
 
-    @NotNull
     @Override
     public EnergyNetComponentType getEnergyComponentType() {
         return EnergyNetComponentType.GENERATOR;
     }
 
     @Override
-    @ParametersAreNonnullByDefault
-    public int getGeneratedOutput(Location l, Config config) {
+    public int getGeneratedOutput(Location l, me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config config) {
         int power = validTurbines.remove(l) ? generatedPower : 0;
-        Bukkit.getScheduler().runTask(plugin, () -> {
+        org.bukkit.Bukkit.getScheduler().runTask(id.universenetwork.utilities.Bukkit.UNUtilities.plugin, () -> {
             // Mark the turbine as valid (if valid)
             if (validateLocation(l)) validTurbines.add(l);
         });
@@ -62,7 +44,7 @@ public class WindTurbine extends SlimefunItem implements EnergyNetProvider {
         if (!WOODEN_FENCES.isTagged(fence1.getType()) || !WOODEN_FENCES.isTagged(fence2.getType()))
             return false;
         for (BlockFace face : airFaces) if (!b.getRelative(face).isEmpty()) return false;
-        l.getWorld().spawnParticle(Particle.SPELL, l.getX() + 0.5, l.getY(), l.getZ() + 0.5, 4, 0, 0.4, 0, 0.01);
+        l.getWorld().spawnParticle(org.bukkit.Particle.SPELL, l.getX() + 0.5, l.getY(), l.getZ() + 0.5, 4, 0, 0.4, 0, 0.01);
         return true;
     }
 }

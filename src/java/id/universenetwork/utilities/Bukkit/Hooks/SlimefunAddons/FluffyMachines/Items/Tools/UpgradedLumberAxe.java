@@ -1,97 +1,30 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Items.Tools;
 
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
-import io.github.thebusybiscuit.slimefun4.core.handlers.ToolUseHandler;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
-import org.bukkit.Axis;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Orientable;
-import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import static io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getProtectionManager;
+import static io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.BREAK_BLOCK;
 import static me.mrCookieSlime.Slimefun.api.BlockStorage.checkID;
-import static org.bukkit.Bukkit.getPluginManager;
+import static org.bukkit.Tag.LOGS;
 
-public class UpgradedLumberAxe extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
+public class UpgradedLumberAxe extends io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem<ItemUseHandler> implements io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable {
     static final int MAX_BROKEN = 200;
     static final int MAX_STRIPPED = 200;
     static final int RANGE = 2;
     final ItemSetting<Boolean> triggerOtherPlugins = new ItemSetting<>(this, "trigger-other-plugins", true);
 
-    public UpgradedLumberAxe(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public UpgradedLumberAxe(io.github.thebusybiscuit.slimefun4.api.items.ItemGroup itemGroup, io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack item, io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType recipeType, org.bukkit.inventory.ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
 
-    @Override
-    public void preRegister() {
-        super.preRegister();
-        addItemHandler(onBlockBreak());
-        addItemSetting(triggerOtherPlugins);
-    }
-
-    ToolUseHandler onBlockBreak() {
-        return (e, tool, fortune, drops) -> {
-            if (Tag.LOGS.getValues().contains(e.getBlock().getType())) {
-                // Prevent use on Slimefun blocks
-                if (checkID(e.getBlock()) != null) return;
-                List<Block> logs = find(e.getBlock(), MAX_BROKEN, b -> Tag.LOGS.isTagged(b.getType()));
-                logs.remove(e.getBlock());
-                for (Block b : logs)
-                    if (Slimefun.getProtectionManager().hasPermission(e.getPlayer(), b, Interaction.BREAK_BLOCK)) {
-                        b.breakNaturally(tool);
-                        if (triggerOtherPlugins.getValue())
-                            getPluginManager().callEvent(new AlternateBreakEvent(b, e.getPlayer()));
-                    }
-            }
-        };
-    }
-
-    @NotNull
-    @Override
-    public ItemUseHandler getItemHandler() {
-        return e -> {
-            if (e.getClickedBlock().isPresent()) {
-                Block block = e.getClickedBlock().get();
-                if (isUnstrippedLog(block)) {
-                    List<Block> logs = find(block, MAX_STRIPPED, this::isUnstrippedLog);
-                    logs.remove(block);
-                    for (Block b : logs)
-                        if (Slimefun.getProtectionManager().hasPermission(e.getPlayer(), b, Interaction.BREAK_BLOCK))
-                            stripLog(b);
-                }
-            }
-        };
-    }
-
-    boolean isUnstrippedLog(Block block) {
-        return Tag.LOGS.isTagged(block.getType()) && !block.getType().name().startsWith("STRIPPED_");
-    }
-
-    void stripLog(Block b) {
-        b.getWorld().playSound(b.getLocation(), Sound.ITEM_AXE_STRIP, 1, 1);
-        Axis axis = ((Orientable) b.getBlockData()).getAxis();
-        b.setType(Material.valueOf("STRIPPED_" + b.getType().name()));
-        Orientable orientable = (Orientable) b.getBlockData();
-        orientable.setAxis(axis);
-        b.setBlockData(orientable);
-    }
-
     public static List<Block> find(Block b, int limit, Predicate<Block> predicate) {
-        List<Block> list = new LinkedList<>();
+        List<Block> list = new java.util.LinkedList<>();
         expand(b, list, limit, predicate);
         return list;
     }
@@ -106,5 +39,58 @@ public class UpgradedLumberAxe extends SimpleSlimefunItem<ItemUseHandler> implem
                         if (!list.contains(next) && predicate.test(next)) expand(next, list, limit, predicate);
                     }
         }
+    }
+
+    @Override
+    public void preRegister() {
+        super.preRegister();
+        addItemHandler(onBlockBreak());
+        addItemSetting(triggerOtherPlugins);
+    }
+
+    io.github.thebusybiscuit.slimefun4.core.handlers.ToolUseHandler onBlockBreak() {
+        return (e, tool, fortune, drops) -> {
+            if (LOGS.getValues().contains(e.getBlock().getType())) {
+                // Prevent use on Slimefun blocks
+                if (checkID(e.getBlock()) != null) return;
+                List<Block> logs = find(e.getBlock(), MAX_BROKEN, b -> LOGS.isTagged(b.getType()));
+                logs.remove(e.getBlock());
+                for (Block b : logs)
+                    if (getProtectionManager().hasPermission(e.getPlayer(), b, BREAK_BLOCK) && checkID(b) == null) {
+                        b.breakNaturally(tool);
+                        if (triggerOtherPlugins.getValue())
+                            org.bukkit.Bukkit.getPluginManager().callEvent(new AlternateBreakEvent(b, e.getPlayer()));
+                    }
+            }
+        };
+    }
+
+    @Override
+    public ItemUseHandler getItemHandler() {
+        return e -> {
+            if (e.getClickedBlock().isPresent()) {
+                Block block = e.getClickedBlock().get();
+                if (isUnstrippedLog(block)) {
+                    List<Block> logs = find(block, MAX_STRIPPED, this::isUnstrippedLog);
+                    logs.remove(block);
+                    for (Block b : logs)
+                        if (getProtectionManager().hasPermission(e.getPlayer(), b, BREAK_BLOCK) && checkID(b) == null)
+                            stripLog(b);
+                }
+            }
+        };
+    }
+
+    boolean isUnstrippedLog(Block block) {
+        return LOGS.isTagged(block.getType()) && !block.getType().name().startsWith("STRIPPED_");
+    }
+
+    void stripLog(Block b) {
+        b.getWorld().playSound(b.getLocation(), org.bukkit.Sound.ITEM_AXE_STRIP, 1, 1);
+        org.bukkit.Axis axis = ((Orientable) b.getBlockData()).getAxis();
+        b.setType(org.bukkit.Material.valueOf("STRIPPED_" + b.getType().name()));
+        Orientable orientable = (Orientable) b.getBlockData();
+        orientable.setAxis(axis);
+        b.setBlockData(orientable);
     }
 }

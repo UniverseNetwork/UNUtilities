@@ -1,10 +1,7 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Skream;
 
+@id.universenetwork.utilities.Bukkit.Annotations.AddonName("Skream")
 public class Skream extends id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Addons {
-    public Skream() {
-        super("Skream");
-    }
-
     @Override
     public void Load() {
         try {

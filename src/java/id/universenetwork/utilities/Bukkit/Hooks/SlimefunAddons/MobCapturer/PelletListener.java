@@ -1,32 +1,20 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer;
 
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Snowball;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.inventory.ItemStack;
 
-import java.util.Optional;
-
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static org.bukkit.event.EventPriority.HIGH;
-
-public class PelletListener implements Listener {
+public class PelletListener implements org.bukkit.event.Listener {
     final MobCapturer Main;
 
     public PelletListener(MobCapturer Main) {
         this.Main = Main;
-        registerListeners(this);
     }
 
-    @EventHandler(ignoreCancelled = true, priority = HIGH)
-    public void onProjectileHit(EntityDamageByEntityEvent e) {
-        if (e.getDamager() instanceof Snowball && e.getEntity() instanceof LivingEntity && e.getDamager().hasMetadata("mob_capturing_cannon")) {
-            Optional<ItemStack> optional = Main.capture((LivingEntity) e.getEntity());
+    @org.bukkit.event.EventHandler(ignoreCancelled = true, priority = org.bukkit.event.EventPriority.HIGH)
+    public void onProjectileHit(org.bukkit.event.entity.EntityDamageByEntityEvent e) {
+        if (e.getDamager() instanceof org.bukkit.entity.Snowball && e.getEntity() instanceof LivingEntity && e.getDamager().hasMetadata("mob_capturing_cannon")) {
+            java.util.Optional<org.bukkit.inventory.ItemStack> optional = Main.capture((LivingEntity) e.getEntity());
             if (optional.isPresent()) {
-                e.getDamager().removeMetadata("mob_capturing_cannon", plugin);
+                e.getDamager().removeMetadata("mob_capturing_cannon", id.universenetwork.utilities.Bukkit.UNUtilities.plugin);
                 e.getEntity().remove();
                 e.getEntity().getWorld().dropItemNaturally(((LivingEntity) e.getEntity()).getEyeLocation(), optional.get());
             }

@@ -3,24 +3,19 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.HotbarPets.List
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.HotbarPets.HotbarPet;
 import org.bukkit.entity.Phantom;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
 import static io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem.getById;
-import static org.bukkit.entity.EntityType.PHANTOM;
 
 public class PhantomListener implements org.bukkit.event.Listener {
     final HotbarPet panda;
 
     public PhantomListener() {
         panda = (HotbarPet) getById("HOTBAR_PET_PANDA");
-        registerListeners(this);
     }
 
-    @EventHandler
-    public void onPhantomSpawn(EntityTargetLivingEntityEvent e) {
-        if (e.getEntityType().equals(PHANTOM) && ((Phantom) e.getEntity()).getTarget() instanceof Player) {
+    @org.bukkit.event.EventHandler
+    public void onPhantomSpawn(org.bukkit.event.entity.EntityTargetLivingEntityEvent e) {
+        if (e.getEntityType().equals(org.bukkit.entity.EntityType.PHANTOM) && ((Phantom) e.getEntity()).getTarget() instanceof Player) {
             Player p = (Player) ((Phantom) e.getEntity()).getTarget();
             if (!hasPandaPet(p) || !panda.checkAndConsumeFood(p)) return;
             e.getEntity().remove();

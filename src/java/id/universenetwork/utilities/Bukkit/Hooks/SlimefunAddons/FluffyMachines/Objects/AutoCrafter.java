@@ -1,18 +1,12 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.FluffyMachines.Objects;
 
-import io.github.thebusybiscuit.slimefun4.api.events.BlockPlacerPlaceEvent;
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlockMachine;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
-import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
@@ -23,25 +17,12 @@ import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import static io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType.getRecipeInputList;
-import static io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType.getRecipeOutputList;
-import static io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getProtectionManager;
-import static io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.INTERACT_BLOCK;
-import static io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils.isItemSimilar;
-import static me.mrCookieSlime.Slimefun.api.BlockStorage.getLocationInfo;
-import static org.bukkit.Material.*;
-
-public class AutoCrafter extends SlimefunItem implements EnergyNetComponent {
+public class AutoCrafter extends SlimefunItem implements io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent {
     public static final int ENERGY_CONSUMPTION = 128;
     public static final int CAPACITY = ENERGY_CONSUMPTION * 3;
     final int[] border = {0, 1, 3, 4, 5, 7, 8, 13, 14, 15, 16, 17, 50, 51, 52, 53};
@@ -53,11 +34,26 @@ public class AutoCrafter extends SlimefunItem implements EnergyNetComponent {
     final Material material;
     final MultiBlockMachine mblock;
 
-    public AutoCrafter(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, String displayName, Material material, String machineName, RecipeType machineRecipes) {
+    public AutoCrafter(io.github.thebusybiscuit.slimefun4.api.items.ItemGroup itemGroup, io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, String displayName, Material material, String machineName, RecipeType machineRecipes) {
         super(itemGroup, item, recipeType, recipe);
         this.machineName = machineName;
         this.material = material;
         this.mblock = (MultiBlockMachine) machineRecipes.getMachine();
+        constructMenu(displayName);
+        addItemHandler(onPlace());
+        addItemHandler(onBreak());
+    }
+
+    static void borders(BlockMenuPreset preset, int[] border, int[] inputBorder, int[] outputBorder) {
+        for (int i : border)
+            preset.addItem(i, new CustomItemStack(new ItemStack(Material.GRAY_STAINED_GLASS_PANE), " "), (p, slot, item, action) -> false);
+        for (int i : inputBorder)
+            preset.addItem(i, new CustomItemStack(new ItemStack(Material.CYAN_STAINED_GLASS_PANE), " "), (p, slot, item, action) -> false);
+        for (int i : outputBorder)
+            preset.addItem(i, new CustomItemStack(new ItemStack(Material.ORANGE_STAINED_GLASS_PANE), " "), (p, slot, item, action) -> false);
+    }
+
+    void constructMenu(String displayName) {
         new BlockMenuPreset(getId(), displayName) {
             @Override
             public void init() {
@@ -65,9 +61,9 @@ public class AutoCrafter extends SlimefunItem implements EnergyNetComponent {
             }
 
             @Override
-            public void newInstance(@NotNull BlockMenu menu, @NotNull Block b) {
-                if (!BlockStorage.hasBlockInfo(b) || getLocationInfo(b.getLocation(), "enabled") == null || getLocationInfo(b.getLocation(), "enabled").equals(String.valueOf(false))) {
-                    menu.replaceExistingItem(6, new CustomItemStack(GUNPOWDER, "&7Enabled: &4\u2718", "", "&e> Click to enable this Machine"));
+            public void newInstance(BlockMenu menu, Block b) {
+                if (!BlockStorage.hasBlockInfo(b) || BlockStorage.getLocationInfo(b.getLocation(), "enabled") == null || BlockStorage.getLocationInfo(b.getLocation(), "enabled").equals(String.valueOf(false))) {
+                    menu.replaceExistingItem(6, new CustomItemStack(Material.GUNPOWDER, "&7Enabled: &4\u2718", "", "&e> Click to enable this Machine"));
                     menu.addMenuClickHandler(6, (p, slot, item, action) -> {
                         BlockStorage.addBlockInfo(b, "enabled", String.valueOf(true));
                         newInstance(menu, b);
@@ -84,8 +80,8 @@ public class AutoCrafter extends SlimefunItem implements EnergyNetComponent {
             }
 
             @Override
-            public boolean canOpen(@NotNull Block b, @NotNull Player p) {
-                return p.hasPermission("slimefun.inventory.bypass") || getProtectionManager().hasPermission(p, b.getLocation(), INTERACT_BLOCK);
+            public boolean canOpen(Block b, Player p) {
+                return p.hasPermission("slimefun.inventory.bypass") || io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getProtectionManager().hasPermission(p, b.getLocation(), io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.INTERACT_BLOCK);
             }
 
             @Override
@@ -95,28 +91,30 @@ public class AutoCrafter extends SlimefunItem implements EnergyNetComponent {
 
             @Override
             public int[] getSlotsAccessedByItemTransport(DirtyChestMenu menu, ItemTransportFlow flow, ItemStack item) {
-                if (flow == ItemTransportFlow.WITHDRAW) return getOutputSlots();
-                List<Integer> slots = new ArrayList<>();
-                for (int slot : getInputSlots()) if (menu.getItemInSlot(slot) != null) slots.add(slot);
-                slots.sort(compareSlots(menu));
-                int[] array = new int[slots.size()];
-                for (int i = 0; i < slots.size(); i++) array[i] = slots.get(i);
-                return array;
+                return getCustomItemTransport(menu, flow, item);
             }
         };
-        addItemHandler(onPlace());
-        addItemHandler(onBreak());
+    }
+
+    protected int[] getCustomItemTransport(DirtyChestMenu menu, ItemTransportFlow flow, ItemStack item) {
+        if (flow == ItemTransportFlow.WITHDRAW) return getOutputSlots();
+        List<Integer> slots = new java.util.ArrayList<>();
+        for (int slot : getInputSlots()) if (menu.getItemInSlot(slot) != null) slots.add(slot);
+        slots.sort(compareSlots(menu));
+        int[] array = new int[slots.size()];
+        for (int i = 0; i < slots.size(); i++) array[i] = slots.get(i);
+        return array;
     }
 
     BlockPlaceHandler onPlace() {
         return new BlockPlaceHandler(true) {
             @Override
-            public void onPlayerPlace(@NotNull BlockPlaceEvent e) {
+            public void onPlayerPlace(org.bukkit.event.block.BlockPlaceEvent e) {
                 BlockStorage.addBlockInfo(e.getBlock(), "enabled", String.valueOf(false));
             }
 
             @Override
-            public void onBlockPlacerPlace(@NotNull BlockPlacerPlaceEvent e) {
+            public void onBlockPlacerPlace(io.github.thebusybiscuit.slimefun4.api.events.BlockPlacerPlaceEvent e) {
                 BlockStorage.addBlockInfo(e.getBlock(), "enabled", String.valueOf(false));
             }
         };
@@ -125,7 +123,7 @@ public class AutoCrafter extends SlimefunItem implements EnergyNetComponent {
     BlockBreakHandler onBreak() {
         return new BlockBreakHandler(false, false) {
             @Override
-            public void onPlayerBreak(@NotNull BlockBreakEvent e, @NotNull ItemStack i, @NotNull List<ItemStack> list) {
+            public void onPlayerBreak(org.bukkit.event.block.BlockBreakEvent e, ItemStack i, List<ItemStack> list) {
                 Block b = e.getBlock();
                 BlockMenu inv = BlockStorage.getInventory(b);
                 if (inv != null) {
@@ -136,26 +134,25 @@ public class AutoCrafter extends SlimefunItem implements EnergyNetComponent {
         };
     }
 
-    Comparator<Integer> compareSlots(DirtyChestMenu menu) {
+    protected Comparator<Integer> compareSlots(DirtyChestMenu menu) {
         return Comparator.comparingInt(slot -> menu.getItemInSlot(slot).getAmount());
     }
 
     protected void constructMenu(BlockMenuPreset preset) {
         borders(preset, border, inputBorder, outputBorder);
-        for (int i : getOutputSlots()) {
-            preset.addMenuClickHandler(i, new ChestMenu.AdvancedMenuClickHandler() {
+        for (int i : getOutputSlots())
+            preset.addMenuClickHandler(i, new me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.AdvancedMenuClickHandler() {
                 @Override
                 public boolean onClick(Player p, int slot, ItemStack cursor, ClickAction action) {
                     return false;
                 }
 
                 @Override
-                public boolean onClick(InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action) {
+                public boolean onClick(org.bukkit.event.inventory.InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action) {
                     if (cursor == null) return true;
-                    return cursor.getType() == AIR;
+                    return cursor.getType() == Material.AIR;
                 }
             });
-        }
         preset.addItem(2, new CustomItemStack(new ItemStack(material), "&eRecipe", "", "&bPut in the Recipe you want to craft", machineName + " Recipes ONLY"), (p, slot, item, action) -> false);
     }
 
@@ -176,7 +173,6 @@ public class AutoCrafter extends SlimefunItem implements EnergyNetComponent {
         return outputSlots;
     }
 
-    @NotNull
     @Override
     public EnergyNetComponentType getEnergyComponentType() {
         return EnergyNetComponentType.CONSUMER;
@@ -186,7 +182,7 @@ public class AutoCrafter extends SlimefunItem implements EnergyNetComponent {
     public void preRegister() {
         addItemHandler(new BlockTicker() {
             @Override
-            public void tick(Block b, SlimefunItem sf, Config data) {
+            public void tick(Block b, SlimefunItem sf, me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config data) {
                 AutoCrafter.this.tick(b);
             }
 
@@ -198,7 +194,7 @@ public class AutoCrafter extends SlimefunItem implements EnergyNetComponent {
     }
 
     protected void tick(Block block) {
-        if (getLocationInfo(block.getLocation(), "enabled").equals(String.valueOf(false))) return;
+        if (BlockStorage.getLocationInfo(block.getLocation(), "enabled").equals(String.valueOf(false))) return;
         if (getCharge(block.getLocation()) < getEnergyConsumption()) return;
         craftIfValid(block);
     }
@@ -214,9 +210,9 @@ public class AutoCrafter extends SlimefunItem implements EnergyNetComponent {
         }
 
         // Find matching recipe
-        for (ItemStack[] input : getRecipeInputList(mblock))
+        for (ItemStack[] input : RecipeType.getRecipeInputList(mblock))
             if (isCraftable(menu, input)) {
-                ItemStack output = getRecipeOutputList(mblock, input).clone();
+                ItemStack output = RecipeType.getRecipeOutputList(mblock, input).clone();
                 craft(output, menu);
                 removeCharge(block.getLocation(), getEnergyConsumption());
                 return;
@@ -229,7 +225,7 @@ public class AutoCrafter extends SlimefunItem implements EnergyNetComponent {
     boolean isCraftable(BlockMenu inv, ItemStack[] recipe) {
         for (int j = 0; j < 9; j++) {
             ItemStack item = inv.getItemInSlot(getInputSlots()[j]);
-            if ((item != null && item.getAmount() == 1) || !isItemSimilar(inv.getItemInSlot(getInputSlots()[j]), recipe[j], true))
+            if ((item != null && item.getAmount() == 1 && item.getType().getMaxStackSize() != 1) || !io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils.isItemSimilar(inv.getItemInSlot(getInputSlots()[j]), recipe[j], true))
                 return false;
         }
         return true;
@@ -238,17 +234,8 @@ public class AutoCrafter extends SlimefunItem implements EnergyNetComponent {
     void craft(ItemStack output, BlockMenu inv) {
         for (int j = 0; j < 9; j++) {
             ItemStack item = inv.getItemInSlot(getInputSlots()[j]);
-            if (item != null && item.getType() != AIR) inv.consumeItem(getInputSlots()[j]);
+            if (item != null && item.getType() != Material.AIR) inv.consumeItem(getInputSlots()[j]);
         }
         inv.pushItem(output, outputSlots);
-    }
-
-    static void borders(BlockMenuPreset preset, int[] border, int[] inputBorder, int[] outputBorder) {
-        for (int i : border)
-            preset.addItem(i, new CustomItemStack(new ItemStack(GRAY_STAINED_GLASS_PANE), " "), (p, slot, item, action) -> false);
-        for (int i : inputBorder)
-            preset.addItem(i, new CustomItemStack(new ItemStack(CYAN_STAINED_GLASS_PANE), " "), (p, slot, item, action) -> false);
-        for (int i : outputBorder)
-            preset.addItem(i, new CustomItemStack(new ItemStack(ORANGE_STAINED_GLASS_PANE), " "), (p, slot, item, action) -> false);
     }
 }

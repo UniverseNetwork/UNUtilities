@@ -1,48 +1,29 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.EcoPower.Generators;
 
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetProvider;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
-import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import org.bukkit.*;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-
-public class SteamTurbine extends SlimefunItem implements EnergyNetProvider {
-    final Set<Location> validTurbines = ConcurrentHashMap.newKeySet();
+public class SteamTurbine extends io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem implements io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetProvider {
+    final java.util.Set<Location> validTurbines = java.util.concurrent.ConcurrentHashMap.newKeySet();
     final int generatedPower;
 
-    public SteamTurbine(ItemGroup itemGroup, SlimefunItemStack item, int generatedPower, RecipeType recipeType, ItemStack[] recipe) {
+    public SteamTurbine(io.github.thebusybiscuit.slimefun4.api.items.ItemGroup itemGroup, io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack item, int generatedPower, io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType recipeType, org.bukkit.inventory.ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
         this.generatedPower = generatedPower;
     }
 
-    @NotNull
     @Override
     public EnergyNetComponentType getEnergyComponentType() {
         return EnergyNetComponentType.GENERATOR;
     }
 
     @Override
-    @ParametersAreNonnullByDefault
-    public int getGeneratedOutput(Location l, Config config) {
+    public int getGeneratedOutput(Location l, me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config config) {
         int power = validTurbines.remove(l) ? generatedPower : 0;
-        Bukkit.getScheduler().runTask(plugin, () -> {
+        Bukkit.getScheduler().runTask(id.universenetwork.utilities.Bukkit.UNUtilities.plugin, () -> {
             // Mark the turbine as valid (if valid)
             if (validateLocation(l)) validTurbines.add(l);
         });
-
         return power;
     }
 
@@ -52,7 +33,7 @@ public class SteamTurbine extends SlimefunItem implements EnergyNetProvider {
     }
 
     boolean validateLocation(Location l) {
-        Block water = l.getBlock().getRelative(BlockFace.DOWN);
+        org.bukkit.block.Block water = l.getBlock().getRelative(org.bukkit.block.BlockFace.DOWN);
         // A Bubble Column is water above a Magma Block
         if (water.getType() != Material.BUBBLE_COLUMN) return false;
         water.setType(Material.AIR);

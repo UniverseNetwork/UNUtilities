@@ -9,12 +9,9 @@ import static ch.njol.skript.Skript.*;
 import static ch.njol.skript.lang.ExpressionType.PROPERTY;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
 
+@id.universenetwork.utilities.Bukkit.Annotations.AddonName("SkMusic")
 public class SkMusic extends id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Addons {
     public static java.util.Map<org.bukkit.entity.Player, com.xxmicloxx.NoteBlockAPI.songplayer.SongPlayer> songPlayers = new java.util.HashMap();
-
-    public SkMusic() {
-        super("SkMusic");
-    }
 
     @Override
     public void Load() {

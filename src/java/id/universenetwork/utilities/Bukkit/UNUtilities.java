@@ -3,16 +3,13 @@ package id.universenetwork.utilities.Bukkit;
 import id.universenetwork.utilities.Bukkit.Enums.MaxPlayerChangerCommand;
 import id.universenetwork.utilities.Bukkit.Enums.VillagerOptimization;
 import id.universenetwork.utilities.Bukkit.Manager.*;
+import org.bukkit.NamespacedKey;
 
 import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Properties;
-
-import static id.universenetwork.utilities.Bukkit.Manager.API.*;
-import static id.universenetwork.utilities.Bukkit.Manager.Config.*;
-import static id.universenetwork.utilities.Bukkit.Manager.Hooks.*;
 
 public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
     // I could replace this with a LongSet but for some reason craftbukkit won't import
@@ -24,11 +21,28 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
     public static Boolean aweHook = false;
     org.bukkit.scheduler.BukkitTask task;
 
+    public static boolean isInVanilla(org.bukkit.entity.Entity villager) {
+        org.bukkit.Location loc = villager.getLocation();
+        return VANILLA_CHUNKS.contains(new Point(loc.getBlockX() >> 4, loc.getBlockZ() >> 4));
+    }
+
+    public static long from(Point p) {
+        return (long) p.x << 32 | p.y & 0xFFFFFFFFL;
+    }
+
+    public static Point to(long l) {
+        return new Point((int) (l >> 32), (int) l);
+    }
+
+    public static NamespacedKey createKey(String Key) {
+        return new NamespacedKey(plugin, Key);
+    }
+
     @Override
     public void onLoad() {
         // Plugin loaded logic
         plugin = this;
-        setup();
+        Config.setup();
         System.out.println("\n\n\n" +
                 "§b██╗░░░██╗§e███╗░░██╗§9██╗░░░██╗████████╗██╗██╗░░░░░██╗████████╗██╗███████╗░██████╗\n" +
                 "§b██║░░░██║§e████╗░██║§9██║░░░██║╚══██╔══╝██║██║░░░░░██║╚══██╔══╝██║██╔════╝██╔════╝\n" +
@@ -47,20 +61,20 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
         Proxy.setup();
         new id.universenetwork.utilities.Bukkit.Handlers.BookExploitHandler();
         id.universenetwork.utilities.Bukkit.NMS.ETF.setup();
-        ActionBarAPISetup();
-        NoteBlockAPISetup("enabling");
-        HamsterAPISetup("enabling");
+        API.ActionBarAPISetup();
+        API.NoteBlockAPISetup("enabling");
+        API.HamsterAPISetup("enabling");
         Listeners.register();
         Commands.Register();
-        AsyncWorldEditBossBarDisplay("enabling");
-        ShopGUIPlusSilkSpawnersConnector();
-        SlimefunAddons();
-        SkriptAddons();
-        ViaLegacy();
-        if (VOEnabled() && new id.universenetwork.utilities.Bukkit.Tasks.CompatibilityCheckTask().passedCheck()) {
-            maxChunks = VOLong(VillagerOptimization.VCPP);
+        Hooks.AsyncWorldEditBossBarDisplay("enabling");
+        Hooks.ShopGUIPlusSilkSpawnersConnector();
+        Hooks.SlimefunAddons();
+        Hooks.SkriptAddons();
+        Hooks.ViaLegacy();
+        if (Config.VOEnabled() && new id.universenetwork.utilities.Bukkit.Tasks.CompatibilityCheckTask().passedCheck()) {
+            maxChunks = Config.VOLong(VillagerOptimization.VCPP);
             if (task != null) task.cancel();
-            task = getServer().getScheduler().runTaskTimer(this, new id.universenetwork.utilities.Bukkit.Tasks.MainTask(), 0L, VOLong(VillagerOptimization.TPAS) <= 0 ? 600 : VOLong(VillagerOptimization.TPAS));
+            task = getServer().getScheduler().runTaskTimer(this, new id.universenetwork.utilities.Bukkit.Tasks.MainTask(), 0L, Config.VOLong(VillagerOptimization.TPAS) <= 0 ? 600 : Config.VOLong(VillagerOptimization.TPAS));
             loadAAVLP();
         }
         System.out.println("\n\n\n" +
@@ -78,12 +92,12 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
         getServer().getPluginManager().callEvent(new id.universenetwork.utilities.Bukkit.Events.UNUtilitiesDisableEvent());
-        NoteBlockAPISetup("disabling");
-        HamsterAPISetup("disabling");
+        API.NoteBlockAPISetup("disabling");
+        API.HamsterAPISetup("disabling");
         if (Config.MPCCBoolean(MaxPlayerChangerCommand.SOR) && Config.MPCCBoolean(MaxPlayerChangerCommand.ENABLED))
             updateServerProperties();
         saveAAVLP();
-        AsyncWorldEditBossBarDisplay("disabling");
+        Hooks.AsyncWorldEditBossBarDisplay("disabling");
         plugin = null;
         System.out.println("\n\n\n" +
                 "§b██╗░░░██╗§e███╗░░██╗§9██╗░░░██╗████████╗██╗██╗░░░░░██╗████████╗██╗███████╗░██████╗\n" +
@@ -115,11 +129,6 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
         }
     }
 
-    public static boolean isInVanilla(org.bukkit.entity.Entity villager) {
-        org.bukkit.Location loc = villager.getLocation();
-        return VANILLA_CHUNKS.contains(new Point(loc.getBlockX() >> 4, loc.getBlockZ() >> 4));
-    }
-
     public void loadAAVLP() {
         @org.jetbrains.annotations.NotNull java.util.List<Long> chunk = Data.get().getLongList("chunks");
         if (chunk == null) saveAAVLP();
@@ -128,13 +137,5 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
 
     public void saveAAVLP() {
         Data.set("chunks", VANILLA_CHUNKS.stream().mapToLong(UNUtilities::from).boxed().collect(java.util.stream.Collectors.toList()));
-    }
-
-    public static long from(Point p) {
-        return (long) p.x << 32 | p.y & 0xFFFFFFFFL;
-    }
-
-    public static Point to(long l) {
-        return new Point((int) (l >> 32), (int) l);
     }
 }
