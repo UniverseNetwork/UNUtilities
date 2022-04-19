@@ -4,9 +4,10 @@ import id.universenetwork.utilities.Bukkit.Enums.AsyncWorldEditBossBarDisplay;
 import id.universenetwork.utilities.Bukkit.Enums.ShopGUIPlusSilkSpawnersConnector;
 import id.universenetwork.utilities.Bukkit.Enums.ViaLegacy;
 import id.universenetwork.utilities.Bukkit.Hooks.ShopGUIPlusSilkSpawnersConnector.Connector;
-import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons;
+import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.SFInstance;
 import id.universenetwork.utilities.Bukkit.UNUtilities;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.ConfigurationSection;
 
 import static id.universenetwork.utilities.Bukkit.Hooks.AsyncWorldEditBossBarDisplay.hooks;
 import static id.universenetwork.utilities.Bukkit.Hooks.AsyncWorldEditBossBarDisplay.unhooks;
@@ -23,9 +24,8 @@ public class Hooks {
                 } else
                     System.out.println(UNUtilities.prefix + " §cAsyncWorldEdit not found. You need AsyncWorldEdit to use AsyncWorldEdit BossBar Display Features");
             }
-        } else if (Mode.equalsIgnoreCase("disabling") && UNUtilities.aweHook) {
-            unhooks();
-        } else if (Mode.equalsIgnoreCase("reloading")) {
+        } else if (Mode.equalsIgnoreCase("disabling") && UNUtilities.aweHook) unhooks();
+        else if (Mode.equalsIgnoreCase("reloading"))
             if (AWEBDBoolean(AsyncWorldEditBossBarDisplay.ENABLED) && !UNUtilities.aweHook) {
                 System.out.println(UNUtilities.prefix + " §6AsyncWorldEdit BossBar Display Features is enabled on config.yml. Searching AsyncWorldEdit...");
                 if (Bukkit.getPluginManager().isPluginEnabled("AsyncWorldEdit")) {
@@ -40,7 +40,6 @@ public class Hooks {
                 unhooks();
                 UNUtilities.aweHook = false;
             }
-        }
     }
 
     public static void ShopGUIPlusSilkSpawnersConnector() {
@@ -60,9 +59,20 @@ public class Hooks {
 
     public static void SlimefunAddons() {
         if (SFABoolean()) {
-            System.out.println(UNUtilities.prefix + " §6SlimeFun Addons Features is enabled on config.yml. Searching SlimeFun...");
-            if (Bukkit.getPluginManager().isPluginEnabled("Slimefun")) Addons.setup();
-            else
+            System.out.println(UNUtilities.prefix + " §6Slimefun Addons Features is enabled on config.yml. Searching Slimefun...");
+            if (Bukkit.getPluginManager().isPluginEnabled("Slimefun")) {
+                ConfigurationSection a = config.getConfigurationSection(id.universenetwork.utilities.Bukkit.Enums.SlimefunAddons.ADDONS.getConfigPath());
+                for (String s : a.getKeys(false))
+                    if (a.getBoolean(s + ".enabled")) try {
+                        Class<?> c = Class.forName("id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons." + s + "." + s);
+                        if (SFInstance.class.isAssignableFrom(c)) {
+                            ((SFInstance) c.getConstructor().newInstance()).Load();
+                            System.out.println(UNUtilities.prefix + " §bSuccessfully Registered §d" + s + " §bAddon");
+                        }
+                    } catch (Exception ignore) {
+                    }
+                System.out.println(UNUtilities.prefix + " §aSuccessfully Registered All Enabled Addons to Slimefun");
+            } else
                 Bukkit.getLogger().severe(UNUtilities.prefix + " §6Slimefun not found. §cYou need Slimefun to use Slimefun Addons Features");
         }
     }

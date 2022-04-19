@@ -1,9 +1,7 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.Mobs;
 
 import com.google.gson.JsonObject;
-import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import org.bukkit.ChatColor;
-import org.bukkit.DyeColor;
 import org.bukkit.entity.Sheep;
 
 import java.util.List;
@@ -16,7 +14,7 @@ public class SheepAdapter extends AnimalsAdapter<Sheep> {
     @Override
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
-        lore.add(ChatColor.GRAY + "Color: " + ChatColor.WHITE + ChatUtils.humanize(json.get("woolColor").getAsString()));
+        lore.add(ChatColor.GRAY + "Color: " + ChatColor.WHITE + io.github.thebusybiscuit.slimefun4.utils.ChatUtils.humanize(json.get("woolColor").getAsString()));
         return lore;
     }
 
@@ -24,7 +22,7 @@ public class SheepAdapter extends AnimalsAdapter<Sheep> {
     public void apply(Sheep entity, JsonObject json) {
         super.apply(entity, json);
         entity.setSheared(json.get("sheared").getAsBoolean());
-        entity.setColor(DyeColor.valueOf(json.get("woolColor").getAsString()));
+        entity.setColor(org.bukkit.DyeColor.valueOf(json.get("woolColor").getAsString()));
     }
 
     @Override

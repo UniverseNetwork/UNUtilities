@@ -1,7 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.Mobs;
 
 import com.google.gson.JsonObject;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Pig;
 
 import java.util.List;
@@ -14,9 +13,7 @@ public class PigAdapter extends AnimalsAdapter<Pig> {
     @Override
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
-        if (json.get("saddle").getAsBoolean()) {
-            lore.add(ChatColor.GRAY + "+ Saddle");
-        }
+        if (json.get("saddle").getAsBoolean()) lore.add(org.bukkit.ChatColor.GRAY + "+ Saddle");
         return lore;
     }
 

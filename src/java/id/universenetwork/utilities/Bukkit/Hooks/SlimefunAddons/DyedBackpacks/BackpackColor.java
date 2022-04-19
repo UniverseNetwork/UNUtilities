@@ -1,12 +1,20 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.DyedBackpacks;
 
 import org.bukkit.ChatColor;
+import org.bukkit.DyeColor;
 import org.bukkit.Material;
-import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
-enum BackpackColor {
+/**
+ * This enum holds the different colors of a {@link DyedBackpack}.
+ * It is similar to the {@link DyeColor} enum, as this is based off of the different colors
+ * of wool.
+ *
+ * @author TheBusyBiscuit
+ * @author ARVIN3108 ID
+ * @see DyedBackpack
+ * @see DyeColor
+ */
+public enum BackpackColor {
     WHITE(ChatColor.WHITE + "White", Material.WHITE_WOOL, "ebdf8d53bdb932c223c627bbb8c1e0c5e351a616cd8056929c66e6dce44433db"),
     ORANGE(ChatColor.GOLD + "Orange", Material.ORANGE_WOOL, "a37a35522f67b2af92345592846b702b9afb9d7c8dbad5ea150673c9e44de3"),
     MAGENTA(ChatColor.LIGHT_PURPLE + "Magenta", Material.MAGENTA_WOOL, "36575fcccadae87c0842f53de5e0ffa75851696866d81e1b72828348db5256"),
@@ -28,25 +36,21 @@ enum BackpackColor {
     final Material wool;
     final String texture;
 
-    @ParametersAreNonnullByDefault
     BackpackColor(String name, Material wool, String texture) {
         this.name = name;
         this.wool = wool;
         this.texture = texture;
     }
 
-    @NotNull
     public String getName() {
-        return this.name;
+        return name;
     }
 
-    @NotNull
     public String getTexture() {
-        return this.texture;
+        return texture;
     }
 
-    @NotNull
     public Material getWoolMaterial() {
-        return this.wool;
+        return wool;
     }
 }

@@ -1,17 +1,13 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.Mobs;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.InventoryAdapter;
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.MobAdapter;
-import org.bukkit.entity.Monster;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.HashMap;
 import java.util.Map;
 
-class AbstractHumanoidAdapter<T extends Monster> implements MobAdapter<T>, InventoryAdapter<T> {
+class AbstractHumanoidAdapter<T extends org.bukkit.entity.Monster> implements MobAdapter<T>, id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.InventoryAdapter<T> {
     final Class<T> entityClass;
 
     public AbstractHumanoidAdapter(Class<T> entityClass) {
@@ -21,7 +17,7 @@ class AbstractHumanoidAdapter<T extends Monster> implements MobAdapter<T>, Inven
     @Override
     public void apply(T entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
-        JsonElement element = json.get("canPickupItems");
+        com.google.gson.JsonElement element = json.get("canPickupItems");
         if (!element.isJsonNull()) entity.setCanPickupItems(element.getAsBoolean());
         EntityEquipment equipment = entity.getEquipment();
         if (equipment != null) {
@@ -65,7 +61,7 @@ class AbstractHumanoidAdapter<T extends Monster> implements MobAdapter<T>, Inven
 
     @Override
     public Map<String, ItemStack> saveInventory(T entity) {
-        Map<String, ItemStack> inv = new HashMap<>();
+        Map<String, ItemStack> inv = new java.util.HashMap<>();
         EntityEquipment equipment = entity.getEquipment();
         if (equipment != null) {
             inv.put("mainHand", equipment.getItemInMainHand());

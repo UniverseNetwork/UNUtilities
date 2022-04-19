@@ -1,10 +1,8 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.Mobs;
 
 import com.google.gson.JsonObject;
-import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Llama;
-import org.bukkit.entity.Llama.Color;
 
 import java.util.List;
 
@@ -16,14 +14,14 @@ public class LlamaAdapter<T extends Llama> extends ChestedHorseAdapter<T> {
     @Override
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
-        lore.add(ChatColor.GRAY + "Color: " + ChatColor.WHITE + ChatUtils.humanize(json.get("color").getAsString()));
+        lore.add(ChatColor.GRAY + "Color: " + ChatColor.WHITE + io.github.thebusybiscuit.slimefun4.utils.ChatUtils.humanize(json.get("color").getAsString()));
         return lore;
     }
 
     @Override
     public void apply(T entity, JsonObject json) {
         super.apply(entity, json);
-        entity.setColor(Color.valueOf(json.get("color").getAsString()));
+        entity.setColor(Llama.Color.valueOf(json.get("color").getAsString()));
         entity.setStrength(json.get("spitStrength").getAsInt());
     }
 

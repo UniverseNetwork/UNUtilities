@@ -8,7 +8,6 @@ import org.bukkit.entity.Vex;
 import java.util.List;
 
 public class VexAdapter implements MobAdapter<Vex> {
-
     @Override
     public List<String> getLore(JsonObject json) {
         List<String> lore = MobAdapter.super.getLore(json);

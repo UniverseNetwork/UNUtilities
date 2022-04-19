@@ -135,6 +135,7 @@ Features:
 
   ## ShopGUI+ SilkSpawners Connector Features
   ShopGUI+SilkSpawnersConnector:
+    
     # Enable ShopGUI+ SilkSpawners Connector Features?
     # !!! -> You need ShopGUI+ and SilkSpawners to use this features
     # !!! -> You must restart the server after change this settings
@@ -150,481 +151,75 @@ Features:
     # Default: false
     enabled: false
 
-    ## Addons List
-    # !!! -> You have to restart the server after enabling or disabling addons
-    Addons:
-      ExtraGear: true
-      PrivateStorage: true
-      DyedBackpacks: true
-      SlimefunOreChunks: true
-      ExtraHeads: true
-      MobCapturer: true
-      ExtraTools: true
-      SMG: true
-      PotionExpansion: true
-      SoulJars: true
-      ColoredEnderChests: true
-      EcoPower: true
-      SlimyTreeTaps: true
-      ChestTerminal: true
-      SFMobDrops: true
-      FluffyMachines: true
-      HotbarPets: true
-      ElectricSpawners: true
-      InfinityExpansion: true
-      Bump: true
-      DynaTech: true
-      FlowerPower: true
-      ExoticGarden: true
-
-      # !!! -> This addon contains some bugs and is not recommended being activated
-      MoreTools: false
-
-      # !!! -> This addon can only be used on paper or all forks of paper
-      HeadLimiter: false
-
-      # !!! -> You need ProtocolLib to use this addon
-      SoundMuffler: true
-
     ## Addons Settings
-    # Some addons may have settings that can be changed.
+    # !!! -> You have to restart the server after enabling or disabling addons
     # !!! -> Some addon settings can only be applied after the server is restarted
-    Settings:
+    Addons:
 
+      ## ExtraGear Addon Settings
+      ExtraGear:
+
+        # Enable ExtraHeads Addon?
+        # Default: true
+        enabled: true
+
+      ## PrivateStorage Addon Settings
+      PrivateStorage:
+
+        # Enable PrivateStorage Addon?
+        # Default: true
+        enabled: true
+      
       ## DyedBackpacks Addon Settings
       DyedBackpacks:
-        Backpacks:
-          Small: true
-          Medium: true
-          Large: true
-          Woven: true
-          Gilded: true
-          Radiant: true
+        
+        # Enable DyedBackpacks Addon?
+        # Default: true
+        enabled: true
+        
+        backpacks:
+          small: true
+          normal: true
+          large: true
+          woven: true
+          gilded: true
+          radiant: true
+
+      ## SlimefunOreChunks Addon Settings
+      SlimefunOreChunks:
+
+        # Enable SlimefunOreChunks Addon?
+        # Default: true
+        enabled: true
 
       ## ExtraHeads Addon Settings
       ExtraHeads:
+
+        # Enable ExtraHeads Addon?
+        # Default: true
+        enabled: true
         sword-of-beheading-multiplier: 1.8
 
-        Chances:
-          BAT: 5.0
-          BEE: 5.0
-          BLAZE: 5.0
-          CAVE_SPIDER: 5.0
-          CHICKEN: 5.0
-          COW: 5.0
-          DOLPHIN: 5.0
-          DROWNED: 5.0
-          ELDER_GUARDIAN: 5.0
-          ENDERMAN: 5.0
-          EVOKER: 5.0
-          GHAST: 5.0
-          GUARDIAN: 5.0
-          HOGLIN: 5.0
-          HORSE: 5.0
-          HUSK: 5.0
-          ILLUSIONER: 5.0
-          IRON_GOLEM: 5.0
-          LLAMA: 5.0
-          MAGMA_CUBE: 5.0
-          MUSHROOM_COW: 5.0
-          OCELOT: 5.0
-          PARROT: 5.0
-          PIG: 5.0
-          PIGLIN: 5.0
-          PIGLIN_BRUTE: 5.0
-          POLAR_BEAR: 5.0
-          RABBIT: 5.0
-          SHEEP: 5.0
-          SHULKER: 5.0
-          SLIME: 5.0
-          STRIDER: 5.0
-          SPIDER: 5.0
-          SQUID: 5.0
-          STRAY: 5.0
-          TURTLE: 5.0
-          VEX: 5.0
-          VILLAGER: 5.0
-          VINDICATOR: 5.0
-          WITCH: 5.0
-          WITHER: 5.0
-          ZOMBIE_VILLAGER: 5.0
-          RAVAGER: 5.0
-          PILLAGER: 5.0
-          FOX: 5.0
-          PANDA: 5.0
-          WANDERING_TRADER: 5.0
-          ZOGLIN: 5.0
-          ZOMBIFIED_PIGLIN: 5.0
+      ## MobCapturer Addon Settings
+      MobCapturer:
 
-      ## PotionExpansion Addon Settings
-      PotionExpansion:
-        Potions-Sight:
+        # Enable MobCapturer Addon?
+        # Default: true
+        enabled: true
 
-          # Duration of potion (in seconds).
-          Duration: 120
+      ## ExtraTools Addon Settings
+      ExtraTools:
 
-          # Radius of detecting ores (in blocks).
-          Radius: 10
+        # Enable ExtraTools Addon?
+        # Default: true
+        enabled: true
 
-      ## SoulJars Addon Settings
-      SoulJars:
-        Mobs:
-          - BAT
-          - BEE
-          - BLAZE
-          - CAVE_SPIDER
-          - CHICKEN
-          - COW
-          - CREEPER
-          - DROWNED
-          - ENDER_DRAGON
-          - ENDERMAN
-          - ENDERMITE
-          - EVOKER
-          - FOX
-          - GHAST
-          - GUARDIAN
-          - HOGLIN
-          - HORSE
-          - HUSK
-          - ILLUSIONER
-          - IRON_GOLEM
-          - LLAMA
-          - MAGMA_CUBE
-          - MUSHROOM_COW
-          - OCELOT
-          - PANDA
-          - PARROT
-          - PHANTOM
-          - PIG
-          - PIGLIN
-          - PIGLIN_BRUTE
-          - PILLAGER
-          - POLAR_BEAR
-          - RABBIT
-          - RAVAGER
-          - SHEEP
-          - SILVERFISH
-          - SKELETON
-          - SLIME
-          - SPIDER
-          - SQUID
-          - STRAY
-          - STRIDER
-          - VILLAGER
-          - VINDICATOR
-          - WITCH
-          - WANDERING_TRADER
-          - WITHER
-          - WITHER_SKELETON
-          - WOLF
-          - ZOGLIN
-          - ZOMBIE
-          - ZOMBIFIED_PIGLIN
-          - ZOMBIE_VILLAGER
+      ## SMG Addon Settings
+      SMG:
 
-        Souls-Required:
-          BAT: 128
-          BEE: 128
-          BLAZE: 128
-          CAVE_SPIDER: 128
-          CHICKEN: 128
-          COW: 128
-          CREEPER: 128
-          DROWNED: 128
-          ENDER_DRAGON: 128
-          ENDERMAN: 128
-          ENDERMITE: 128
-          EVOKER: 128
-          FOX: 128
-          GHAST: 128
-          GUARDIAN: 128
-          HOGLIN: 128
-          HORSE: 128
-          HUSK: 128
-          ILLUSIONER: 128
-          IRON_GOLEM: 128
-          LLAMA: 128
-          MAGMA_CUBE: 128
-          MUSHROOM_COW: 128
-          OCELOT: 128
-          PANDA: 128
-          PARROT: 128
-          PHANTOM: 128
-          PIG: 128
-          PIGLIN: 128
-          PIGLIN_BRUTE: 128
-          PILLAGER: 128
-          POLAR_BEAR: 128
-          RABBIT: 128
-          RAVAGER: 128
-          SHEEP: 128
-          SILVERFISH: 128
-          SKELETON: 128
-          SLIME: 128
-          SPIDER: 128
-          SQUID: 128
-          STRAY: 128
-          STRIDER: 120
-          VILLAGER: 128
-          VINDICATOR: 128
-          WANDERING_TRADER: 128
-          WITCH: 128
-          WITHER: 128
-          WITHER_SKELETON: 128
-          WOLF: 128
-          ZOGLIN: 128
-          ZOMBIE: 128
-          ZOMBIFIED_PIGLIN: 128
-          ZOMBIE_VILLAGER: 128
-
-      ## ColoredEnderChests Addon Settings
-      ColoredEnderChests:
-        Chests:
-          Small: true
-          Big: true
-
-      ## SlimyTreeTaps Addon Settings
-      SlimyTreeTaps:
-        Amber-Chance: 16
-        Resin-Chance:
-          Standard: 12
-          Reinforced: 24
-          Diamond: 32
-
-      ## MoreTools Addon Settings
-      MoreTools:
-        Item-Settings:
-          Crescent-Hammer:
-
-            # This is the cooldown length players need to wait to use the crescent hammer again.
-            # This value must be in milliseconds.
-            # Do not set this to negative OR to zero. This will cause dupe bugs to occur.
-            Cooldown: 500
-
-            Damageable: true
-
-            # Changes made in this may cause issues.
-            # When these features are enabled, lores about them are added to the item.
-            # This may cause items crafted in the past to no longer be recognized.
-            # Meaning those items may no longer work.
-            Features:
-              Enable-Rotation: true
-              Enable-Channel-Change: true
-
-            # You have got to find the materials to whitelist from:
-            # https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
-            # Do not enter anything that isn't Directional or anything that's flagged as LEGACY.
-            Rotation-Whitelist:
-              - PLAYER_WALL_HEAD
-
-        Messages:
-          Items:
-            Crescent-Hammer:
-              Block-Breaking: "&cYou cannot break blocks with this!"
-              Cooldown: "&cYou cannot do that now. You need to wait &e{left-cooldown} &cmore milliseconds!"
-              Dismantle-Fail: "&cYou cannot dismantle this block!"
-              Rotate-Fail: "&cYou cannot rotate this block!"
-              Channel-Change-Fail: "&cThis is not a cargo node!"
-              Channel-Change-Success: "&aChanged the channel. New channel: {channel}"
-
-      ## HeadLimiter Addon Settings
-      HeadLimiter:
-
-        # Amount of Cargo machines per chunk
-        # Default: 20
-        Amount: 20
-
-        # Size of the thread pool
-        # !!! -> Only touch this setting when you know what you are doing!
-        # Default: 4
-        Thread-Pool-Size: 4
-
-      # SFMobDrops Addon Settings
-      SFMobDrops:
-        Drops:
-          # This is a basic example
-          - entity: ZOMBIE
-            slimefunItem: MAGICAL_ZOMBIE_PILLS
-            chance: 4.20
-
-          # More complex example
-          - entity: ENDER_DRAGON
-            slimefunItem: ANCIENT_RUNE_SOULBOUND
-            chance: 100
-            name: '&cAmazing Dragon'
-            nbtTag: 'plugin_name:awesome_mob'
-            amount: 6
-
-      ## ElectricSpawners Addon Settings
-      ElectricSpawners:
-        Mobs:
-          - BAT
-          - BEE
-          - BLAZE
-          - CAVE_SPIDER
-          - CHICKEN
-          - COW
-          - CREEPER
-          - ENDER_DRAGON
-          - ENDERMAN
-          - ENDERMITE
-          - EVOKER
-          - GHAST
-          - GUARDIAN
-          - HOGLIN
-          - HORSE
-          - IRON_GOLEM
-          - MAGMA_CUBE
-          - MUSHROOM_COW
-          - OCELOT
-          - PIG
-          - PIGLIN
-          - PIGLIN_BRUTE
-          - RABBIT
-          - SHEEP
-          - SILVERFISH
-          - SKELETON
-          - SLIME
-          - SPIDER
-          - SQUID
-          - STRIDER
-          - VILLAGER
-          - WANDERING_TRADER
-          - WITHER
-          - WITHER_SKELETON
-          - WITCH
-          - WOLF
-          - ZOGLIN
-          - ZOMBIE
-          - ZOMBIFIED_PIGLIN
-          - ZOMBIE_VILLAGER
-
-      ## InfinityExpansion Addon Settings
-      InfinityExpansion:
-        balance-options:
-
-          # Increases or decreases the cost of infinity singularities
-          singularity-cost-multiplier: 1.0
-
-          # Will allow the gear transformer to change slimefun gear's material. Diamond tools can already be upgraded to netherite, 
-          # but some addon developers do not want there gear to be transformable so change this at your own risk.
-          allow-sf-item-transform: false
-
-          # Enables/Disables Researches which requires players to spend xp to unlock items
-          enable-researches: false
-
-        mob-simulation-options:
-
-          # The number of slimefun ticks it takes to output xp and drops. 1 slimefun tick = .5 seconds by default
-          ticks-per-output: 20
-
-          # Multiplies amount of xp gained from mob simulation
-          xp-multiplier: 1.0
-
-        quarry-options:
-
-          # The number of slimefun ticks it takes to mine 1 block. 1 slimefun ticks = .6 seconds by default
-          ticks-per-output: 10
-
-          # Allow quarries to mine quartz, netherite, netherrack in any world
-          output-nether-materials-in-overworld: false
-
-          # Enable/Disable resources from being produced
-          resources:
-
-            coal: true
-            iron: true
-            gold: true
-            lapis: true
-
-            # Vanilla Copper (1.17+)
-            copper: true
-            quartz: true
-            diamond: true
-            emerald: true
-            redstone: true
-            netherite: true
-            netherrack: true
-
-        # These are the maximum level of enchants that can be obtained by combining 2 of the same enchant of the same level.
-        advanced-anvil-max-levels:
-          sharpness: 9
-          bane-of-arthropods: 9
-          smite: 9
-          protection: 10
-          fortune: 6
-          efficiency: 7
-          fire-aspect: 6
-          power: 7
-          thorns: 13
-          looting: 6
-          unbreaking: 13
-
-        # levels of infinity gear. this will not affect existing items. adding more enchants wont have any effect, only change levels. 
-        # protection caps out at 20 levels across all 4 pieces of gear. So 10+10+10+10 is still the same as 5+5+5+5.
-        infinity-enchant-levels:
-          blade:
-            unbreakable: true
-            sharpness: 20
-            looting: 10
-            fire-aspect: 10
-          pickaxe:
-            unbreakable: true
-            efficiency: 40
-            fortune: 20
-          shovel:
-            unbreakable: true
-            efficiency: 40
-            silk-touch: 10
-          axe:
-            unbreakable: true
-            efficiency: 40
-            sharpness: 20
-            fire-aspect: 10
-            looting: 0
-            silk-touch: 0
-          bow:
-            unbreakable: true
-            power: 10
-            flame: 10
-            infinity: 10
-            punch: 0
-          crown:
-            unbreakable: true
-            protection: 20
-            aqua-affinity: 10
-          chestplate:
-            unbreakable: true
-            protection: 20
-            thorns: 10
-          leggings:
-            unbreakable: true
-            protection: 20
-            thorns: 10
-          boots:
-            unbreakable: true
-            protection: 20
-            feather-falling: 0
-            thorns: 0
-          shield:
-            unbreakable: true
-            protection: 20
-            thorns: 10
-
-      ## DynaTech Addon Settings
-      DynaTech:
-        disable-dimensionalhome-world: false
-
-      ## ExoticGarden Addon Settings
-      ExoticGarden:
-        grass-drops: [ ]
-        world-blacklist:
-          - world_nether
-          - world_the_end
-        chances:
-          TREE: 22
-          BUSH: 16
+        # Enable SMG Addon?
+        # Default: true
+        enabled: true
 
   ## Villager Optimization Features
   VillagerOptimization:

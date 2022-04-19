@@ -1,9 +1,8 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.Mobs;
 
 import com.google.gson.JsonObject;
-import org.bukkit.entity.Raider;
 
-public class RaiderAdapter<T extends Raider> extends AbstractHumanoidAdapter<T> {
+public class RaiderAdapter<T extends org.bukkit.entity.Raider> extends AbstractHumanoidAdapter<T> {
     public RaiderAdapter(Class<T> entityClass) {
         super(entityClass);
     }

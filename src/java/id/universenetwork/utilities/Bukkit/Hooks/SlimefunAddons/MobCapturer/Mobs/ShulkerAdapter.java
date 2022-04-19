@@ -3,7 +3,6 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.Mob
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.MobAdapter;
-import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.entity.Shulker;
@@ -16,7 +15,7 @@ public class ShulkerAdapter implements MobAdapter<Shulker> {
         List<String> lore = MobAdapter.super.getLore(json);
         JsonElement color = json.get("color");
         if (!color.isJsonNull())
-            lore.add(ChatColor.GRAY + "Color: " + ChatColor.WHITE + ChatUtils.humanize(color.getAsString()));
+            lore.add(ChatColor.GRAY + "Color: " + ChatColor.WHITE + io.github.thebusybiscuit.slimefun4.utils.ChatUtils.humanize(color.getAsString()));
         return lore;
     }
 

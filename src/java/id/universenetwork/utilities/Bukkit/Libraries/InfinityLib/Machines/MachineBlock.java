@@ -19,8 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.Addons.slimefunTickCount;
-
 @ParametersAreNonnullByDefault
 public final class MachineBlock extends AbstractMachineBlock {
     @Setter
@@ -80,7 +78,7 @@ public final class MachineBlock extends AbstractMachineBlock {
 
     @Override
     protected boolean process(Block b, BlockMenu menu) {
-        if (slimefunTickCount % ticksPerOutput != 0) return true;
+        //if (slimefunTickCount % ticksPerOutput != 0) return true;
         int[] slots = layout.inputSlots();
         ItemStack[] input = new ItemStack[slots.length];
         for (int i = 0; i < slots.length; i++) input[i] = menu.getItemInSlot(slots[i]);

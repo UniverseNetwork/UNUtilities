@@ -1,19 +1,13 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.Mobs;
 
 import com.google.gson.JsonObject;
-import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.InventoryAdapter;
-import org.bukkit.entity.AbstractHorse;
+import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static io.github.thebusybiscuit.slimefun4.utils.NumberUtils.roundDecimalNumber;
-import static org.bukkit.ChatColor.GRAY;
-import static org.bukkit.ChatColor.WHITE;
-
-class AbstractHorseAdapter<T extends AbstractHorse> extends AbstractTameableAdapter<T> implements InventoryAdapter<T> {
+class AbstractHorseAdapter<T extends org.bukkit.entity.AbstractHorse> extends AbstractTameableAdapter<T> implements id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.InventoryAdapter<T> {
     public AbstractHorseAdapter(Class<T> entityClass) {
         super(entityClass);
     }
@@ -21,7 +15,7 @@ class AbstractHorseAdapter<T extends AbstractHorse> extends AbstractTameableAdap
     @Override
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
-        lore.add(GRAY + "Jump Strength: " + WHITE + roundDecimalNumber(json.get("jumpStrength").getAsDouble()));
+        lore.add(ChatColor.GRAY + "Jump Strength: " + ChatColor.WHITE + io.github.thebusybiscuit.slimefun4.utils.NumberUtils.roundDecimalNumber(json.get("jumpStrength").getAsDouble()));
         return lore;
     }
 
@@ -49,7 +43,7 @@ class AbstractHorseAdapter<T extends AbstractHorse> extends AbstractTameableAdap
 
     @Override
     public Map<String, ItemStack> saveInventory(T entity) {
-        Map<String, ItemStack> inventory = new HashMap<>();
+        Map<String, ItemStack> inventory = new java.util.HashMap<>();
         inventory.put("saddle", entity.getInventory().getSaddle());
         return inventory;
     }

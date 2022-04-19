@@ -1,7 +1,9 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.ExtraTools.Implementation.Interfaces;
 
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
+import org.bukkit.entity.Player;
 
 public interface ETInventoryBlock {
     int[] getInputSlots();
@@ -22,8 +24,8 @@ public interface ETInventoryBlock {
             }
 
             @Override
-            public boolean canOpen(org.bukkit.block.Block b, org.bukkit.entity.Player p) {
-                return p.hasPermission("slimefun.inventory.bypass") || io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getProtectionManager().hasPermission(p, b.getLocation(), io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.INTERACT_BLOCK) && io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getPermissionsService().hasPermission(p, item);
+            public boolean canOpen(org.bukkit.block.Block b, Player p) {
+                return p.hasPermission("slimefun.inventory.bypass") || Slimefun.getProtectionManager().hasPermission(p, b.getLocation(), io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.INTERACT_BLOCK) && Slimefun.getPermissionsService().hasPermission(p, item);
             }
         };
     }

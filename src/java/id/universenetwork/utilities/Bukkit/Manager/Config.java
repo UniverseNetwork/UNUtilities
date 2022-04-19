@@ -16,7 +16,7 @@ import static org.bukkit.Bukkit.getLogger;
 import static org.bukkit.Bukkit.getPluginManager;
 
 public class Config {
-    static YamlBuilder config;
+    public static YamlBuilder config;
 
     // Finds and Generates the config file
     public static void setup() {

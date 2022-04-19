@@ -2,28 +2,23 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.ExtraTools.List
 
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import io.github.thebusybiscuit.slimefun4.core.attributes.MachineTier;
-import io.github.thebusybiscuit.slimefun4.core.attributes.MachineType;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static io.github.thebusybiscuit.slimefun4.core.attributes.MachineTier.ADVANCED;
+import static io.github.thebusybiscuit.slimefun4.core.attributes.MachineType.MACHINE;
+import static io.github.thebusybiscuit.slimefun4.utils.LoreBuilder.*;
+import static org.bukkit.Material.*;
 
-public class ETItems {
-    /* ItemGroup */
-    public static final ItemGroup extra_tools = new ItemGroup(new NamespacedKey(plugin, "extra_tools"), new CustomItemStack(Material.DIAMOND_AXE, "&4Extra Tools"));
-
+public final class ETItems {
+    /* Category */
+    public static final ItemGroup extra_tools = new ItemGroup(id.universenetwork.utilities.Bukkit.UNUtilities.createKey("extra_tools"), new io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack(DIAMOND_AXE, "&4Extra Tools"));
     /* Items */
-    public static final SlimefunItemStack HAMMER = new SlimefunItemStack("HAMMER", Material.IRON_PICKAXE, "&cHammer", "", "&9Pulverizes blocks");
-
+    public static final SlimefunItemStack HAMMER = new SlimefunItemStack("HAMMER", IRON_PICKAXE, "&cHammer", "", "&9Pulverizes blocks");
     /* Machines */
-    public static final SlimefunItemStack GOLD_TRANSMUTER = new SlimefunItemStack("GOLD_TRANSMUTER", Material.YELLOW_TERRACOTTA, "&6Gold Transmuter", "", LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), LoreBuilder.powerBuffer(256), LoreBuilder.powerPerSecond(18));
-    public static final SlimefunItemStack ELECTRIC_COMPOSTER = new SlimefunItemStack("ELECTRIC_COMPOSTER", Material.MAGENTA_TERRACOTTA, "&cElectric Composter", "", LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), "&8\u21E8 &7Speed: 1x", LoreBuilder.powerBuffer(256), LoreBuilder.powerPerSecond(18));
-    public static final SlimefunItemStack ELECTRIC_COMPOSTER_2 = new SlimefunItemStack("ELECTRIC_COMPOSTER_2", Material.MAGENTA_TERRACOTTA, "&cElectric Composter &7(&eII&7)", "", LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), "&8\u21E8 &7Speed: 4x", LoreBuilder.powerBuffer(256), LoreBuilder.powerPerSecond(50));
-    public static final SlimefunItemStack COBBLESTONE_GENERATOR = new SlimefunItemStack("COBBLESTONE_GENERATOR", Material.POLISHED_ANDESITE, "&cCobblestone Generator", "", LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), LoreBuilder.powerBuffer(256), LoreBuilder.powerPerSecond(36));
-    public static final SlimefunItemStack VAPORIZER = new SlimefunItemStack("VAPORIZER", Material.RED_STAINED_GLASS, "&cVaporizer", "", LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), LoreBuilder.powerBuffer(256), LoreBuilder.powerPerSecond(32));
-    public static final SlimefunItemStack CONCRETE_FACTORY = new SlimefunItemStack("CONCRETE_FACTORY", Material.BLACK_CONCRETE, "&4Concrete Factory", "", LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), LoreBuilder.powerBuffer(256), LoreBuilder.powerPerSecond(16));
-    public static final SlimefunItemStack PULVERIZER = new SlimefunItemStack("PULVERIZER", Material.ORANGE_TERRACOTTA, "&cPulverizer", "", LoreBuilder.machine(MachineTier.ADVANCED, MachineType.MACHINE), "&8\u21E8 &7Speed: 1x", LoreBuilder.powerBuffer(256), LoreBuilder.powerPerSecond(18));
+    public static final SlimefunItemStack GOLD_TRANSMUTER = new SlimefunItemStack("GOLD_TRANSMUTER", YELLOW_TERRACOTTA, "&6Gold Transmuter", "", machine(ADVANCED, MACHINE), powerBuffer(256), powerPerSecond(18));
+    public static final SlimefunItemStack ELECTRIC_COMPOSTER = new SlimefunItemStack("ELECTRIC_COMPOSTER", MAGENTA_TERRACOTTA, "&cElectric Composter", "", machine(ADVANCED, MACHINE), "&8\u21E8 &7Speed: 1x", powerBuffer(256), powerPerSecond(18));
+    public static final SlimefunItemStack ELECTRIC_COMPOSTER_2 = new SlimefunItemStack("ELECTRIC_COMPOSTER_2", MAGENTA_TERRACOTTA, "&cElectric Composter &7(&eII&7)", "", machine(ADVANCED, MACHINE), "&8\u21E8 &7Speed: 4x", powerBuffer(256), powerPerSecond(50));
+    public static final SlimefunItemStack COBBLESTONE_GENERATOR = new SlimefunItemStack("COBBLESTONE_GENERATOR", POLISHED_ANDESITE, "&cCobblestone Generator", "", machine(ADVANCED, MACHINE), powerBuffer(256), powerPerSecond(36));
+    public static final SlimefunItemStack VAPORIZER = new SlimefunItemStack("VAPORIZER", RED_STAINED_GLASS, "&cVaporizer", "", machine(ADVANCED, MACHINE), powerBuffer(256), powerPerSecond(32));
+    public static final SlimefunItemStack CONCRETE_FACTORY = new SlimefunItemStack("CONCRETE_FACTORY", BLACK_CONCRETE, "&4Concrete Factory", "", machine(ADVANCED, MACHINE), powerBuffer(256), powerPerSecond(16));
+    public static final SlimefunItemStack PULVERIZER = new SlimefunItemStack("PULVERIZER", ORANGE_TERRACOTTA, "&cPulverizer", "", machine(ADVANCED, MACHINE), "&8\u21E8 &7Speed: 1x", powerBuffer(256), powerPerSecond(18));
 }

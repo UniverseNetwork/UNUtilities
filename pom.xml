@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>id.universenetwork.utilities</groupId>
     <artifactId>UNUtilities</artifactId>
     <version>1.8.5</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>UNUtilities</name>
     <description>Utilities Features for UniverseNetwork</description>
     <url>https://universenetwork.id</url>
-
-    <organization>
-        <name>UniverseNetwork</name>
-        <url>https://github.com/UniverseNetwork</url>
-    </organization>
-
     <scm>
         <url>https://github.com/UniverseNetwork/UNUtilities</url>
         <connection>scm:git:git://UniverseNetwork/UNUtilities.git</connection>
@@ -29,14 +23,26 @@
     </issueManagement>
 
     <properties>
-        <java.version>8</java.version>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
+    <modules>
+        <module>Core</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
     <build>
-        <finalName>${project.name} ${project.version}</finalName>
-        <defaultGoal>clean package</defaultGoal>
-        <sourceDirectory>src/java</sourceDirectory>
+        <defaultGoal>install</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -48,296 +54,18 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
-                <configuration>
-                    <minimizeJar>true</minimizeJar>
-                    <relocations>
-                        <relocation>
-                            <pattern>dev.j3fftw.extrautils</pattern>
-                            <shadedPattern>id.universenetwork.utilities.Bukkit.Libraries.ExtraUtils</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>io.github.seggan.errorreporter</pattern>
-                            <shadedPattern>id.universenetwork.utilities.Bukkit.Libraries.ErrorReporter</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>com.google.gson</pattern>
-                            <shadedPattern>id.universenetwork.utilities.Universal.Libraries.Gson</shadedPattern>
-                        </relocation>
-                    </relocations>
-                    <filters>
-                        <filter>
-                            <artifact>*:*</artifact>
-                            <excludes>
-                                <exclude>META-INF/*</exclude>
-                            </excludes>
-                        </filter>
-                    </filters>
-                </configuration>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
                 <executions>
                     <execution>
-                        <phase>package</phase>
+                        <id>deploy</id>
+                        <phase>deploy</phase>
                         <goals>
-                            <goal>shade</goal>
+                            <goal>deploy</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>*</include>
-                    <include>*/*</include>
-                </includes>
-                <excludes>
-                    <exclude>icon.png</exclude>
-                </excludes>
-            </resource>
-        </resources>
     </build>
-
-    <repositories>
-        <repository>
-            <id>Purpur Repository</id>
-            <url>https://repo.purpurmc.org/snapshots</url>
-        </repository>
-        <repository>
-            <id>PaperMC Repository</id>
-            <url>https://papermc.io/repo/repository/maven-public/</url>
-        </repository>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-        <repository>
-            <id>SilkSpawners-Repo</id>
-            <url>https://repo.dustplanet.de/artifactory/libs-release-local</url>
-        </repository>
-        <repository>
-            <id>dmulloy2-repo</id>
-            <url>https://repo.dmulloy2.net/repository/public/</url>
-        </repository>
-        <repository>
-            <id>destroystokyo-repo</id>
-            <url>https://repo.destroystokyo.com/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>placeholderapi</id>
-            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
-        </repository>
-        <repository>
-            <id>md_5-snapshots</id>
-            <url>https://repo.md-5.net/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>md_5-releases</id>
-            <url>https://repo.md-5.net/content/repositories/releases/</url>
-        </repository>
-        <repository>
-            <id>CodeMC</id>
-            <url>https://repo.codemc.org/repository/maven-public</url>
-        </repository>
-        <repository>
-            <id>shanebeestudios-repo</id>
-            <url>https://shanebeestudios.com/maven/</url>
-        </repository>
-        <repository>
-            <id>ViaVersion Reporitory</id>
-            <url>https://repo.viaversion.com</url>
-        </repository>
-        <repository>
-            <id>Citizens Repository</id>
-            <url>https://repo.citizensnpcs.co/</url>
-        </repository>
-    </repositories>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.purpurmc.purpur</groupId>
-            <artifactId>purpur-api</artifactId>
-            <version>1.17.1-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.github.waterfallmc</groupId>
-            <artifactId>waterfall-api</artifactId>
-            <version>1.18-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.brcdev-minecraft</groupId>
-            <artifactId>shopgui-api</artifactId>
-            <version>2.2.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>de.dustplanet</groupId>
-            <artifactId>silkspawners</artifactId>
-            <version>6.2.0</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>*</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.github.Slimefun</groupId>
-            <artifactId>Slimefun4</artifactId>
-            <version>RC-30</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.primesoft.asyncworldedit</groupId>
-            <artifactId>AsyncWorldEdit</artifactId>
-            <version>3.9.4</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/libs/AsyncWorldEdit 3.9.4.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.comphenix.protocol</groupId>
-            <artifactId>ProtocolLib</artifactId>
-            <version>LATEST</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.SkriptLang</groupId>
-            <artifactId>Skript</artifactId>
-            <version>2.6.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>me.clip</groupId>
-            <artifactId>placeholderapi</artifactId>
-            <version>2.10.10</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>be.maximvdw</groupId>
-            <artifactId>MVdWPlaceholderAPI</artifactId>
-            <version>3.1.1</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/libs/MVdWPlaceholderAPI 3.1.1.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.github.Slimefun-Addon-Community</groupId>
-            <artifactId>extrautils</artifactId>
-            <version>73e76ac</version>
-        </dependency>
-        <dependency>
-            <groupId>fr.neatmonster</groupId>
-            <artifactId>nocheatplus</artifactId>
-            <version>3.16.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.22</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.gmail.nossr50.mcMMO</groupId>
-            <artifactId>mcMMO</artifactId>
-            <version>2.2.0-SNAPSHOT</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.jetbrains</groupId>
-                    <artifactId>annotations</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.sk89q.worldguard</groupId>
-                    <artifactId>worldguard-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.sk89q.worldguard</groupId>
-                    <artifactId>worldguard-legacy</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.github.seggan</groupId>
-            <artifactId>ErrorReporter-Java</artifactId>
-            <version>8d1bdef</version>
-        </dependency>
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>Spigot-1.14.4</artifactId>
-            <version>1.14.4</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/libs/Spigot 1.14.4.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>Spigot-1.15.2</artifactId>
-            <version>1.15.2</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/libs/Spigot 1.15.2.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>Spigot-1.16.1</artifactId>
-            <version>1.16.1</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/libs/Spigot 1.16.1.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>Spigot-1.16.2</artifactId>
-            <version>1.16.2</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/libs/Spigot 1.16.2.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>Spigot-1.16.5</artifactId>
-            <version>1.16.5</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/libs/Spigot 1.16.5.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>Spigot-1.17.1</artifactId>
-            <version>1.17.1</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/libs/Spigot 1.17.1.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>com.github.NuVotifier</groupId>
-            <artifactId>NuVotifier</artifactId>
-            <version>master</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.DevLeoko</groupId>
-            <artifactId>AdvancedBan</artifactId>
-            <version>143d044</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.viaversion</groupId>
-            <artifactId>viaversion-api</artifactId>
-            <version>LATEST</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.citizensnpcs</groupId>
-            <artifactId>citizens-main</artifactId>
-            <version>2.0.29-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
 </project>

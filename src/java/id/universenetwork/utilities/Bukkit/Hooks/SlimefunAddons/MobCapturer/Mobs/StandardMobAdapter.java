@@ -1,9 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.Mobs;
 
-import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.MobAdapter;
-import org.bukkit.entity.Mob;
-
-public class StandardMobAdapter<T extends Mob> implements MobAdapter<T> {
+public class StandardMobAdapter<T extends org.bukkit.entity.Mob> implements id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.MobAdapter<T> {
     final Class<T> entityClass;
 
     public StandardMobAdapter(Class<T> entityClass) {

@@ -1,8 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.Mobs;
 
-import org.bukkit.entity.AbstractHorse;
-
-public class UndeadHorseAdapter<T extends AbstractHorse> extends AbstractHorseAdapter<T> {
+public class UndeadHorseAdapter<T extends org.bukkit.entity.AbstractHorse> extends AbstractHorseAdapter<T> {
     public UndeadHorseAdapter(Class<T> entityClass) {
         super(entityClass);
     }

@@ -3,37 +3,48 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
-import org.bukkit.attribute.AttributeModifier.Operation;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-import static io.github.thebusybiscuit.slimefun4.utils.NumberUtils.roundDecimalNumber;
 import static org.bukkit.ChatColor.*;
 
+/**
+ * This is a simple Adapter that allows conversion between a {@link LivingEntity} and
+ * a {@link JsonObject}.
+ * <p>
+ * It also requires the implementation of {@link PersistentDataType}.
+ *
+ * @author TheBusyBiscuit
+ * @author ARVIN3108 ID
+ */
 public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<String, JsonObject> {
+    /**
+     * This returns the {@link Class} of the captured {@link Entity}.
+     *
+     * @return The {@link Class} of the {@link Entity} handled by this {@link MobAdapter}
+     */
     Class<T> getEntityClass();
 
     default List<String> getLore(JsonObject json) {
-        List<String> l = new LinkedList<>();
-        l.add("");
-        l.add(GRAY + "Health: " + GREEN + roundDecimalNumber(json.get("_health").getAsDouble()));
+        List<String> lore = new LinkedList<>();
+        lore.add("");
+        lore.add(GRAY + "Health: " + GREEN + io.github.thebusybiscuit.slimefun4.utils.NumberUtils.roundDecimalNumber(json.get("_health").getAsDouble()));
         if (!json.get("_customName").isJsonNull())
-            l.add(GRAY + "Name: " + RESET + json.get("_customName").getAsString());
+            lore.add(GRAY + "Name: " + RESET + json.get("_customName").getAsString());
         int fireTicks = json.get("_fireTicks").getAsInt();
-        if (fireTicks > 0) l.add(GRAY + "On Fire: " + RESET + "true");
-        return l;
+        if (fireTicks > 0) lore.add(GRAY + "On Fire: " + RESET + "true");
+        return lore;
     }
-    
+
     @Override
     default Class<String> getPrimitiveType() {
         return String.class;
@@ -45,13 +56,13 @@ public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<S
     }
 
     @Override
-    default String toPrimitive(JsonObject json, @NotNull PersistentDataAdapterContext context) {
+    default String toPrimitive(JsonObject json, PersistentDataAdapterContext context) {
         return json.toString();
     }
 
     @Override
     default JsonObject fromPrimitive(String primitive, PersistentDataAdapterContext context) {
-        return new JsonParser().parse(primitive).getAsJsonObject();
+        return com.google.gson.JsonParser.parseString(primitive).getAsJsonObject();
     }
 
     default void apply(T entity, JsonObject json) {
@@ -71,12 +82,11 @@ public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<S
                     String name = obj.get("name").getAsString();
                     double amount = obj.get("amount").getAsDouble();
                     int operation = obj.get("operation").getAsInt();
-                    AttributeModifier mod = new AttributeModifier(UUID.fromString(uuid), name, amount, Operation.values()[operation]);
+                    AttributeModifier mod = new AttributeModifier(UUID.fromString(uuid), name, amount, org.bukkit.attribute.AttributeModifier.Operation.values()[operation]);
                     instance.addModifier(mod);
                 }
             }
         }
-
         entity.setHealth(json.get("_health").getAsDouble());
         entity.setAbsorptionAmount(json.get("_absorption").getAsDouble());
         entity.setRemoveWhenFarAway(json.get("_removeWhenFarAway").getAsBoolean());

@@ -2,14 +2,11 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.Mob
 
 import com.google.gson.JsonObject;
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.MobAdapter;
-import org.bukkit.entity.Animals;
+import org.bukkit.ChatColor;
 
 import java.util.List;
 
-import static org.bukkit.ChatColor.GRAY;
-import static org.bukkit.ChatColor.WHITE;
-
-public class AnimalsAdapter<T extends Animals> implements MobAdapter<T> {
+public class AnimalsAdapter<T extends org.bukkit.entity.Animals> implements MobAdapter<T> {
     final Class<T> entityClass;
 
     public AnimalsAdapter(Class<T> entityClass) {
@@ -18,20 +15,20 @@ public class AnimalsAdapter<T extends Animals> implements MobAdapter<T> {
 
     @Override
     public List<String> getLore(JsonObject json) {
-        List<String> l = MobAdapter.super.getLore(json);
-        l.add(GRAY + "Baby: " + WHITE + json.get("baby").getAsBoolean());
-        return l;
+        List<String> lore = MobAdapter.super.getLore(json);
+        lore.add(ChatColor.GRAY + "Baby: " + ChatColor.WHITE + json.get("baby").getAsBoolean());
+        return lore;
     }
 
     @Override
     public JsonObject saveData(T entity) {
-        JsonObject j = MobAdapter.super.saveData(entity);
-        j.addProperty("baby", !entity.isAdult());
-        j.addProperty("_age", entity.getAge());
-        j.addProperty("_ageLock", entity.getAgeLock());
-        j.addProperty("_breedable", entity.canBreed());
-        j.addProperty("_loveModeTicks", entity.getLoveModeTicks());
-        return j;
+        JsonObject json = MobAdapter.super.saveData(entity);
+        json.addProperty("baby", !entity.isAdult());
+        json.addProperty("_age", entity.getAge());
+        json.addProperty("_ageLock", entity.getAgeLock());
+        json.addProperty("_breedable", entity.canBreed());
+        json.addProperty("_loveModeTicks", entity.getLoveModeTicks());
+        return json;
     }
 
     @Override

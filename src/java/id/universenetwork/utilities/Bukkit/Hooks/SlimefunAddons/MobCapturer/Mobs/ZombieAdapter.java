@@ -2,11 +2,10 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.Mob
 
 import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Zombie;
 
 import java.util.List;
 
-public class ZombieAdapter<T extends Zombie> extends AbstractHumanoidAdapter<T> {
+public class ZombieAdapter<T extends org.bukkit.entity.Zombie> extends AbstractHumanoidAdapter<T> {
     public ZombieAdapter(Class<T> entityClass) {
         super(entityClass);
     }
@@ -22,9 +21,7 @@ public class ZombieAdapter<T extends Zombie> extends AbstractHumanoidAdapter<T> 
     public JsonObject saveData(T entity) {
         JsonObject json = super.saveData(entity);
         json.addProperty("baby", entity.isBaby());
-        if (entity.isConverting()) {
-            json.addProperty("conversionTime", entity.getConversionTime());
-        }
+        if (entity.isConverting()) json.addProperty("conversionTime", entity.getConversionTime());
         return json;
     }
 
@@ -32,8 +29,6 @@ public class ZombieAdapter<T extends Zombie> extends AbstractHumanoidAdapter<T> 
     public void apply(T entity, JsonObject json) {
         super.apply(entity, json);
         entity.setBaby(json.get("baby").getAsBoolean());
-        if (json.has("conversionTime")) {
-            entity.setConversionTime(json.get("conversionTime").getAsInt());
-        }
+        if (json.has("conversionTime")) entity.setConversionTime(json.get("conversionTime").getAsInt());
     }
 }

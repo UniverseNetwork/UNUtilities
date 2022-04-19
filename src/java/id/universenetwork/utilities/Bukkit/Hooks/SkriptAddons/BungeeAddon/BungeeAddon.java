@@ -1,11 +1,8 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.BungeeAddon;
 
+@id.universenetwork.utilities.Bukkit.Annotations.AddonName("BungeeAddon")
 public class BungeeAddon extends id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Addons {
     public static final String CHANNEL = "BungeeCord";
-
-    public BungeeAddon() {
-        super("BungeeAddon");
-    }
 
     @Override
     public void Load() {

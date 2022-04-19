@@ -1,8 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.Mobs;
 
-import org.bukkit.entity.Skeleton;
-
-public class SkeletonAdapter<T extends Skeleton> extends AbstractHumanoidAdapter<T> {
+public class SkeletonAdapter<T extends org.bukkit.entity.AbstractSkeleton> extends AbstractHumanoidAdapter<T> {
     public SkeletonAdapter(Class<T> entityClass) {
         super(entityClass);
     }

@@ -3,11 +3,10 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.Mob
 import com.google.gson.JsonObject;
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.MobCapturer.MobAdapter;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Slime;
 
 import java.util.List;
 
-public class SlimeAdapter<T extends Slime> implements MobAdapter<T> {
+public class SlimeAdapter<T extends org.bukkit.entity.Slime> implements MobAdapter<T> {
     final Class<T> entityClass;
 
     public SlimeAdapter(Class<T> entityClass) {

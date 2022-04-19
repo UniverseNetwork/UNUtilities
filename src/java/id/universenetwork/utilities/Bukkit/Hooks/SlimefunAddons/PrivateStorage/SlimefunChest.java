@@ -2,6 +2,7 @@ package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.PrivateStorage;
 
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
@@ -9,8 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
-
-import static me.mrCookieSlime.Slimefun.api.BlockStorage.*;
 
 public class SlimefunChest extends io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem {
     public SlimefunChest(ChestProtectionLevel level, int size, boolean canExplode, io.github.thebusybiscuit.slimefun4.api.items.ItemGroup itemGroup, io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack item, io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType recipeType, ItemStack[] recipe) {
@@ -27,17 +26,15 @@ public class SlimefunChest extends io.github.thebusybiscuit.slimefun4.api.items.
             @Override
             public boolean canOpen(Block b, Player p) {
                 if (p.hasPermission("PrivateStorage.bypass")) return true;
-                if (level == ChestProtectionLevel.PRIVATE) {
-                    return getLocationInfo(b.getLocation(), "owner").equals(p.getUniqueId().toString());
-                }
+                if (level == ChestProtectionLevel.PRIVATE)
+                    return BlockStorage.getLocationInfo(b.getLocation(), "owner").equals(p.getUniqueId().toString());
                 return io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getProtectionManager().hasPermission(p, b, io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.INTERACT_BLOCK);
             }
 
             @Override
             public int[] getSlotsAccessedByItemTransport(me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow flow) {
-                if (level.equals(ChestProtectionLevel.PUBLIC)) {
-                    return slots;
-                } else return new int[0];
+                if (level.equals(ChestProtectionLevel.PUBLIC)) return slots;
+                else return new int[0];
             }
         };
         addItemHandler(onBlockPlace(), onBlockBreak(size, canExplode));
@@ -47,7 +44,7 @@ public class SlimefunChest extends io.github.thebusybiscuit.slimefun4.api.items.
         return new BlockPlaceHandler(false) {
             @Override
             public void onPlayerPlace(org.bukkit.event.block.BlockPlaceEvent e) {
-                addBlockInfo(e.getBlock().getLocation(), "owner", e.getPlayer().getUniqueId().toString());
+                BlockStorage.addBlockInfo(e.getBlock().getLocation(), "owner", e.getPlayer().getUniqueId().toString());
             }
         };
     }
@@ -60,9 +57,9 @@ public class SlimefunChest extends io.github.thebusybiscuit.slimefun4.api.items.
                 Player p = e.getPlayer();
                 Block b = e.getBlock();
                 if (!p.hasPermission("PrivateStorage.bypass"))
-                    allow = java.util.Objects.equals(getLocationInfo(b.getLocation(), "owner"), p.getUniqueId().toString());
+                    allow = java.util.Objects.equals(BlockStorage.getLocationInfo(b.getLocation(), "owner"), p.getUniqueId().toString());
                 if (allow) {
-                    BlockMenu inv = getInventory(b);
+                    BlockMenu inv = BlockStorage.getInventory(b);
                     for (int slot = 0; slot < size; slot++) {
                         ItemStack stack = inv.getItemInSlot(slot);
                         if (stack != null && !stack.getType().isAir())
@@ -73,7 +70,7 @@ public class SlimefunChest extends io.github.thebusybiscuit.slimefun4.api.items.
 
             @Override
             public void onExplode(Block b, List<ItemStack> drops) {
-                BlockMenu inv = getInventory(b);
+                BlockMenu inv = BlockStorage.getInventory(b);
                 for (int slot = 0; slot < size; slot++) {
                     ItemStack stack = inv.getItemInSlot(slot);
                     if (stack != null && !stack.getType().isAir()) drops.add(stack);

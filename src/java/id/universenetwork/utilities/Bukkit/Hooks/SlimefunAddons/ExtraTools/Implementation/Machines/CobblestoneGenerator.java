@@ -1,38 +1,24 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.ExtraTools.Implementation.Machines;
 
-import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.ExtraTools.Implementation.Interfaces.ETInventoryBlock;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
+import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.ExtraTools.Lists.ETItems;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
-import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
-import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
-import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.ExtraTools.Lists.ETItems.COBBLESTONE_GENERATOR;
-import static id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.ExtraTools.Lists.ETItems.extra_tools;
-import static io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType.ENHANCED_CRAFTING_TABLE;
 import static io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems.*;
+import static io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils.getEmptyClickHandler;
 import static org.bukkit.Material.*;
 
-
-public class CobblestoneGenerator extends SimpleSlimefunItem<BlockTicker> implements ETInventoryBlock, EnergyNetComponent {
+public class CobblestoneGenerator extends io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem<BlockTicker> implements id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.ExtraTools.Implementation.Interfaces.ETInventoryBlock, io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent {
     static final int ENERGY_CONSUMPTION = 32;
     final int[] border = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 18, 19, 20, 21, 22, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42, 43, 44, 22};
     final int[] inputBorder = {};
@@ -40,31 +26,30 @@ public class CobblestoneGenerator extends SimpleSlimefunItem<BlockTicker> implem
     int decrement = 2;
 
     public CobblestoneGenerator() {
-        super(extra_tools, COBBLESTONE_GENERATOR, ENHANCED_CRAFTING_TABLE, new ItemStack[]{PROGRAMMABLE_ANDROID_MINER, MAGNESIUM_INGOT, PROGRAMMABLE_ANDROID_MINER, new ItemStack(WATER_BUCKET), BLISTERING_INGOT_3, new ItemStack(LAVA_BUCKET), PROGRAMMABLE_ANDROID_MINER, BIG_CAPACITOR, PROGRAMMABLE_ANDROID_MINER});
+        super(ETItems.extra_tools, ETItems.COBBLESTONE_GENERATOR, io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{PROGRAMMABLE_ANDROID_MINER, MAGNESIUM_INGOT, PROGRAMMABLE_ANDROID_MINER, new ItemStack(WATER_BUCKET), BLISTERING_INGOT_3, new ItemStack(LAVA_BUCKET), PROGRAMMABLE_ANDROID_MINER, BIG_CAPACITOR, PROGRAMMABLE_ANDROID_MINER});
         createPreset(this, this::constructMenu);
         addItemHandler(onBreak());
     }
 
-    void constructMenu(BlockMenuPreset preset) {
+    void constructMenu(me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset preset) {
         for (int i : border)
-            preset.addItem(i, new CustomItemStack(new ItemStack(GRAY_STAINED_GLASS_PANE), " "), ChestMenuUtils.getEmptyClickHandler());
+            preset.addItem(i, new CustomItemStack(new ItemStack(GRAY_STAINED_GLASS_PANE), " "), getEmptyClickHandler());
         for (int i : inputBorder)
-            preset.addItem(i, new CustomItemStack(new ItemStack(Material.CYAN_STAINED_GLASS_PANE), " "), ChestMenuUtils.getEmptyClickHandler());
+            preset.addItem(i, new CustomItemStack(new ItemStack(CYAN_STAINED_GLASS_PANE), " "), getEmptyClickHandler());
         for (int i : outputBorder)
-            preset.addItem(i, new CustomItemStack(new ItemStack(Material.ORANGE_STAINED_GLASS_PANE), " "), ChestMenuUtils.getEmptyClickHandler());
-        for (int i : getOutputSlots()) {
-            preset.addMenuClickHandler(i, new ChestMenu.AdvancedMenuClickHandler() {
+            preset.addItem(i, new CustomItemStack(new ItemStack(ORANGE_STAINED_GLASS_PANE), " "), getEmptyClickHandler());
+        for (int i : getOutputSlots())
+            preset.addMenuClickHandler(i, new me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.AdvancedMenuClickHandler() {
                 @Override
                 public boolean onClick(Player p, int slot, ItemStack cursor, ClickAction action) {
                     return false;
                 }
 
                 @Override
-                public boolean onClick(InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action) {
-                    return cursor == null || cursor.getType() == Material.AIR;
+                public boolean onClick(org.bukkit.event.inventory.InventoryClickEvent e, Player p, int slot, ItemStack cursor, ClickAction action) {
+                    return cursor == null || cursor.getType() == AIR;
                 }
             });
-        }
     }
 
     @Override
@@ -77,7 +62,6 @@ public class CobblestoneGenerator extends SimpleSlimefunItem<BlockTicker> implem
         return new int[]{24, 25};
     }
 
-    @NotNull
     @Override
     public EnergyNetComponentType getEnergyComponentType() {
         return EnergyNetComponentType.CONSUMER;
@@ -91,7 +75,7 @@ public class CobblestoneGenerator extends SimpleSlimefunItem<BlockTicker> implem
     public BlockBreakHandler onBreak() {
         return new BlockBreakHandler(false, false) {
             @Override
-            public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
+            public void onPlayerBreak(org.bukkit.event.block.BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
                 Block b = e.getBlock();
                 BlockMenu inv = BlockStorage.getInventory(b);
                 if (inv != null) {
@@ -102,7 +86,6 @@ public class CobblestoneGenerator extends SimpleSlimefunItem<BlockTicker> implem
         };
     }
 
-    @NotNull
     @Override
     public BlockTicker getItemHandler() {
         return new BlockTicker() {
@@ -120,11 +103,11 @@ public class CobblestoneGenerator extends SimpleSlimefunItem<BlockTicker> implem
             }
 
             @Override
-            public void tick(Block b, SlimefunItem sf, Config data) {
+            public void tick(Block b, io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem sf, me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config data) {
                 // We only act once per decrement cycle, when decrement got to
                 // lowest and has been reset
                 if (decrement != 2) return;
-                ItemStack output = new ItemStack(Material.COBBLESTONE);
+                ItemStack output = new ItemStack(COBBLESTONE);
                 if (getCharge(b.getLocation()) >= ENERGY_CONSUMPTION) {
                     BlockMenu menu = BlockStorage.getInventory(b);
                     if (!menu.fits(output, getOutputSlots())) return;

@@ -7,8 +7,7 @@ import org.bukkit.NamespacedKey;
 
 import java.awt.*;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.nio.file.Files;
 import java.util.Properties;
 
 public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
@@ -114,14 +113,14 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
         Properties properties = new Properties();
         File propertiesFile = new File("server.properties");
         try {
-            try (java.io.InputStream is = new FileInputStream(propertiesFile)) {
+            try (java.io.InputStream is = Files.newInputStream(propertiesFile.toPath())) {
                 properties.load(is);
             }
             String maxPlayers = Integer.toString(getServer().getMaxPlayers());
             if (properties.getProperty("max-players").equals(maxPlayers)) return;
             System.out.println(prefix + " §eSaving max players to server.properties...");
             properties.setProperty("max-players", maxPlayers);
-            try (java.io.OutputStream os = new FileOutputStream(propertiesFile)) {
+            try (java.io.OutputStream os = Files.newOutputStream(propertiesFile.toPath())) {
                 properties.store(os, "Minecraft server properties");
             }
         } catch (java.io.IOException e) {

@@ -1,28 +1,18 @@
 package id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.ExtraTools.Implementation.Machines;
 
 import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.ExtraTools.Lists.ETItems;
-import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import org.bukkit.block.Block;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.ArrayList;
 import java.util.List;
 
-import static io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType.ENHANCED_CRAFTING_TABLE;
+import static io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems.*;
 import static org.bukkit.Material.*;
 
-public class ConcreteFactory extends AContainer implements RecipeDisplayItem {
+public class ConcreteFactory extends me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer implements io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem {
     public ConcreteFactory() {
-        super(ETItems.extra_tools, ETItems.CONCRETE_FACTORY, ENHANCED_CRAFTING_TABLE, new ItemStack[]{new ItemStack(WATER_BUCKET), SlimefunItems.GILDED_IRON, new ItemStack(WATER_BUCKET), SlimefunItems.ADVANCED_CIRCUIT_BOARD, SlimefunItems.ELECTRIC_MOTOR, SlimefunItems.ADVANCED_CIRCUIT_BOARD, new ItemStack(WATER_BUCKET), SlimefunItems.SMALL_CAPACITOR, new ItemStack(WATER_BUCKET)});
+        super(ETItems.extra_tools, ETItems.CONCRETE_FACTORY, io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{new ItemStack(WATER_BUCKET), GILDED_IRON, new ItemStack(WATER_BUCKET), ADVANCED_CIRCUIT_BOARD, ELECTRIC_MOTOR, ADVANCED_CIRCUIT_BOARD, new ItemStack(WATER_BUCKET), SMALL_CAPACITOR, new ItemStack(WATER_BUCKET)});
         addItemHandler(onBreak());
     }
 
@@ -46,10 +36,9 @@ public class ConcreteFactory extends AContainer implements RecipeDisplayItem {
         registerRecipe(4, new ItemStack[]{new ItemStack(BLACK_CONCRETE_POWDER, 8)}, new ItemStack[]{new ItemStack(BLACK_CONCRETE, 8)});
     }
 
-    @NotNull
     @Override
     public List<ItemStack> getDisplayRecipes() {
-        List<ItemStack> displayRecipes = new ArrayList<>(recipes.size() * 2);
+        List<ItemStack> displayRecipes = new java.util.ArrayList<>(recipes.size() * 2);
         for (MachineRecipe recipe : recipes) {
             displayRecipes.add(recipe.getInput()[0]);
             displayRecipes.add(recipe.getOutput()[recipe.getOutput().length - 1]);
@@ -62,13 +51,11 @@ public class ConcreteFactory extends AContainer implements RecipeDisplayItem {
         return new ItemStack(IRON_SHOVEL);
     }
 
-    @NotNull
     @Override
     public String getInventoryTitle() {
         return "&cConcrete Factory";
     }
 
-    @NotNull
     @Override
     public String getMachineIdentifier() {
         return "CONCRETE_FACTORY";
@@ -92,10 +79,9 @@ public class ConcreteFactory extends AContainer implements RecipeDisplayItem {
     public BlockBreakHandler onBreak() {
         return new BlockBreakHandler(false, false) {
             @Override
-            @ParametersAreNonnullByDefault
-            public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
-                Block b = e.getBlock();
-                BlockMenu inv = BlockStorage.getInventory(b);
+            public void onPlayerBreak(org.bukkit.event.block.BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
+                org.bukkit.block.Block b = e.getBlock();
+                me.mrCookieSlime.Slimefun.api.inventory.BlockMenu inv = me.mrCookieSlime.Slimefun.api.BlockStorage.getInventory(b);
                 if (inv != null) {
                     inv.dropItems(b.getLocation(), getInputSlots());
                     inv.dropItems(b.getLocation(), getOutputSlots());

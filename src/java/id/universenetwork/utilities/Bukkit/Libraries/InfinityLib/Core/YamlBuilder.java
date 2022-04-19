@@ -22,7 +22,7 @@ import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
  * @author Mooy1
  * @author ARVIN3108 ID
  */
-public class YamlBuilder extends YamlConfiguration {
+public class YamlBuilder extends YamlConfiguration implements ConfigSchema {
     final YamlConfiguration defaults = new YamlConfiguration();
     final Map<String, String> comments = new HashMap<>();
     final File file;
@@ -39,12 +39,14 @@ public class YamlBuilder extends YamlConfiguration {
         loadDefaults(Name);
     }
 
+    @Override
     public int getInt(String path, int min, int max) {
         int val = getInt(path);
         if (val < min || val > max) set(path, val = getDefaults().getInt(path));
         return val;
     }
 
+    @Override
     public double getDouble(String path, double min, double max) {
         double val = getDouble(path);
         if (val < min || val > max) set(path, val = getDefaults().getDouble(path));
@@ -160,6 +162,7 @@ public class YamlBuilder extends YamlConfiguration {
         return yamlBuilder.toString();
     }
 
+    @Override
     public <T> T getOrSetDefault(@NotNull String path, T value) {
         Object val = get(path);
         if (value.getClass().isInstance(val)) return (T) val;
@@ -198,20 +201,13 @@ public class YamlBuilder extends YamlConfiguration {
             super.set(path + ".x", ((Chunk) value).getX());
             super.set(path + ".z", ((Chunk) value).getZ());
             super.set(path + ".world", ((Chunk) value).getWorld().getName());
-        } else if (value instanceof World) {
-            super.set(path, ((World) value).getName());
-        } else
+        } else if (value instanceof World) super.set(path, ((World) value).getName());
+        else
             super.set(path, value);
         save();
     }
 
-    /**
-     * Sets the Value for the specified path
-     * (If the path does not yet exist)
-     *
-     * @param path  The path in the {@link YamlBuilder} file
-     * @param value The Value for that path
-     */
+    @Override
     public void setDefaultValue(@NotNull String path, @Nullable Object value) {
         if (!contains(path)) set(path, value);
     }
