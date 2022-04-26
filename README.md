@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="http://github.com/UniverseNetwork/UNUtilities">
-    <img src="src/resources/icon.png" alt="Logo" width="663" height="95">
+    <img src="Plugin/src/resources/icon.png" alt="Logo" width="663" height="95">
   </a>
   <h3 align="center">Utilities Features For UniverseNetwork</h3>
   <p align="center">
