@@ -24,7 +24,6 @@
 - Anti Zero Tick Farm (Fork of [Zero Tick Farm Blocker](http://spigotmc.org/resources/72737))
 - Hat Command (Fork of [Hat](http://spigotmc.org/resources/33980))
 - Max Player Changer Command (Fork of [ChangeSlots](http://spigotmc.org/resources/49648))
-- AsyncWorldEdit BossBar Display (Fork of [AsyncWorldEdit - Boss Bar](http://spigotmc.org/resources/76600))
 - ShopGUI+ SilkSpawners Connector (Fork of [ShopGUI+ bridge for SilkSpawners](http://spigotmc.org/resources/73949))
 - Slimefun Addons ([See below for more info](#slimefun))
 - Villager Optimization (Fork of [Villager Optimizer Plus](http://spigotmc.org/resources/73933) & some patches
@@ -45,7 +44,6 @@
 
 # API Included
 
-- [ActionBarAPI](http://spigotmc.org/resources/1315)
 - [NoteBlockAPI](http://ci.haprosgames.com/job/NoteBlockAPI-2.0/lastSuccessfulBuild)
 - [HamsterAPI](http://spigotmc.org/resources/78831)
 
@@ -75,15 +73,12 @@
 - [HotbarPets](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/HotbarPets/master)
 - [ElectricSpawners](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/ElectricSpawners/master)
 - [InfinityExpansion](http://thebusybiscuit.github.io/builds/Mooy1/InfinityExpansion/master)
-- [Bump](http://github.com/haiman233/Slimefun-Bump/releases)
 - [DynaTech](http://thebusybiscuit.github.io/builds/ProfElements/DynaTech/master)
 - [ExoticGarden](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/ExoticGarden/master)
 
 ## [Skript](http://github.com/SkriptLang/Skript/releases)
 
 - [SkriptPlaceholders](http://github.com/APickledWalrus/skript-placeholders/releases) (Require [PlaceholderAPI](http://spigotmc.org/resources/6245) or [MVdWPlaceholderAPI](http://spigotmc.org/resources/11182))
-- [SkQuery](http://github.com/SkQuery/SkQuery/releases) **[Under Construction]**
-- [SkBee](http://github.com/ShaneBeee/SkBee/releases) **[Under Construction]**
 - [SkWhitelist](http://github.com/tim740/skWhitelist/releases)
 - [BungeeAddon](http://github.com/Pikachu920/BungeeAddon/releases)
 - [SkUniversal](http://spigotmc.org/resources/45392) **[Under Construction]**
