@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.translateColor;
 import static org.bukkit.Bukkit.getLogger;
 
+@lombok.experimental.UtilityClass
 public class Logger {
     public static void log(Level lvl, String msg, Object param1) {
         if (lvl == Level.WARNING) getLogger().log(lvl, translateColor(translateColor("%p% §e" + msg)), param1);
