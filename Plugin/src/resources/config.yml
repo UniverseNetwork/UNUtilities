@@ -4,13 +4,25 @@ Settings:
   prefix: "&bU&eN&9Utilities &8&l>"
 
   # Message if player don't have permission to use command
-  denyMessage: 'Unknown command. Type "/help" for help.'
+  no-perm: 'Unknown command. Type "/help" for help.'
 
   # Message if configuration is reloaded
-  reloadMessage: "%p% &aKonfigurasi berhasil dimuat ulang!"
+  reload: "%p% &aKonfigurasi berhasil dimuat ulang!"
 
-  # Message if command cannot be executed in console
-  denyConsoleMessage: "%p% &cCommand ini hanya dapat dijalankan oleh player"
+  # Message if command can only be executed by player
+  player-only: "%p% &cCommand ini hanya dapat dijalankan oleh player!"
+
+  # Message if player is not found
+  player-not-found: "%p% &cPlayer tidak ditemukan!"
+
+  # Message if someone can only check one player at a time
+  check-only-one-player: "%p% &cKamu hanya dapat memeriksa satu player!"
+
+  # Message if someone forgot to add specified player
+  no-player-specified: "%p% &cMohon masukkan player yang ingin ditarget!"
+
+  # Message if someone too many arguments specified for command
+  too-many-args: "%p% &cKamu terlalu banyak mengisi argumen!"
 
 Features:
 

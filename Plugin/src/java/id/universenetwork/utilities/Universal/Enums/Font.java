@@ -1,6 +1,6 @@
-package id.universenetwork.utilities.Universal.API.Enums;
+package id.universenetwork.utilities.Universal.Enums;
 
-public enum FontEnum {
+public enum Font {
     A('A', 5),
     a('a', 5),
     B('B', 5),
@@ -100,26 +100,26 @@ public enum FontEnum {
     final char character;
     final int length;
 
-    FontEnum(char character, int length) {
+    Font(char character, int length) {
         this.character = character;
         this.length = length;
     }
 
-    public static FontEnum getFontInfo(char c) {
-        for (FontEnum FI : FontEnum.values()) if (FI.getCharacter() == c) return FI;
-        return FontEnum.DEFAULT;
+    public static Font getFontInfo(char c) {
+        for (Font FI : Font.values()) if (FI.getCharacter() == c) return FI;
+        return Font.DEFAULT;
     }
 
     public char getCharacter() {
-        return this.character;
+        return character;
     }
 
     public int getLength() {
-        return this.length;
+        return length;
     }
 
     public int getBoldLength() {
-        if (this == FontEnum.SPACE) return this.getLength();
-        return this.length + 1;
+        if (this == Font.SPACE) return getLength();
+        return length + 1;
     }
 }
