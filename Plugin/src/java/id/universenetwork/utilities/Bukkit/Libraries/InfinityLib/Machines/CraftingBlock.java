@@ -19,7 +19,7 @@ public class CraftingBlock extends MenuBlock {
     }
 
     protected void craft(Block b, BlockMenu menu, org.bukkit.entity.Player p) {
-        int[] slots = layout.inputSlots;
+        int[] slots = layout.inputSlots();
         ItemStack[] input = new ItemStack[slots.length];
         for (int i = 0; i < slots.length; i++) input[i] = menu.getItemInSlot(slots[i]);
         CraftingBlockRecipe recipe = getOutput(input);
