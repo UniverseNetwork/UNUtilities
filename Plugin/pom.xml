@@ -52,6 +52,11 @@
             <artifactId>adventure-platform-bukkit</artifactId>
             <version>LATEST</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>LATEST</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -93,8 +98,12 @@
                             <shadedPattern>id.universenetwork.utilities.Bukkit.Libraries.ExtraUtils</shadedPattern>
                         </relocation>
                         <relocation>
-                            <pattern>io.github.seggan.errorreporter</pattern>
-                            <shadedPattern>id.universenetwork.utilities.Bukkit.Libraries.ErrorReporter</shadedPattern>
+                            <pattern>cloud.commandframework</pattern>
+                            <shadedPattern>id.universenetwork.utilities.Universal.Libraries.Cloud</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>net.kyori</pattern>
+                            <shadedPattern>id.universenetwork.utilities.Bukkit.Libraries.Kyori</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>com.google.gson</pattern>

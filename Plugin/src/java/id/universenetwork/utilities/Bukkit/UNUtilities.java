@@ -2,6 +2,9 @@ package id.universenetwork.utilities.Bukkit;
 
 import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Core.YamlBuilder;
 import id.universenetwork.utilities.Bukkit.Manager.API;
+import id.universenetwork.utilities.Bukkit.Manager.Commands;
+import id.universenetwork.utilities.Bukkit.Manager.Features;
+import id.universenetwork.utilities.Bukkit.Utils.TookTimer;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.HumanEntity;
@@ -28,6 +31,7 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
     public void onLoad() {
         plugin = this;
         getLogger().info("§eInitializing Config & Data Manager...");
+        TookTimer t = new TookTimer();
         try {
             cfg = new YamlBuilder("config.yml");
             data = new YamlBuilder("data.yml");
@@ -35,19 +39,42 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
             e.printStackTrace();
         }
         prefix = translateColor(cfg.getString("Settings.prefix"));
-        info("&aConfig & Data Manager has been initialized!");
+        info("&aConfig & Data Manager has been initialized! &bTook " + t.get() + "ms");
     }
 
     @Override
     public void onEnable() {
+        TookTimer t = new TookTimer();
         API.init();
-        info("UNUtilities has been enabled!");
+        Commands.init();
+        Commands.register(new MainCommand());
+        Features.init();
+        System.out.println("§b __    __  §e.__   __.  §9__    __  .___________. __   __       __  .___________. __   _______     _______.\n" +
+                "§b|  |  |  | §e|  \\ |  | §9|  |  |  | |           ||  | |  |     |  | |           ||  | |   ____|   /       |\n" +
+                "§b|  |  |  | §e|   \\|  | §9|  |  |  | `---|  |----`|  | |  |     |  | `---|  |----`|  | |  |__     |   (----`\n" +
+                "§b|  |  |  | §e|  . `  | §9|  |  |  |     |  |     |  | |  |     |  |     |  |     |  | |   __|     \\   \\    \n" +
+                "§b|  `--'  | §e|  |\\   | §9|  `--'  |     |  |     |  | |  `----.|  |     |  |     |  | |  |____.----)   |   \n" +
+                "§b \\______/  §e|__| \\__|  §9\\______/      |__|     |__| |_______||__|     |__|     |__| |_______|_______/    \n" +
+                "§a             _  _ ____ ____    ___  ____ ____ _  _    ____ _  _ ____ ___  _    ____ ___\n" +
+                "§a             |__| |__| [__     |__] |___ |___ |\\ |    |___ |\\ | |__| |__] |    |___ |  \\ \n" +
+                "§a             |  | |  | ___]    |__] |___ |___ | \\|    |___ | \\| |  | |__] |___ |___ |__/\n");
+        info("&bTook " + t.get() + "ms to &aenable&b!");
     }
 
     @Override
     public void onDisable() {
+        TookTimer t = new TookTimer();
         API.declare();
-        info("UNUtilities has been disabled!");
+        System.out.println("§b __    __  §e.__   __.  §9__    __  .___________. __   __       __  .___________. __   _______     _______.\n" +
+                "§b|  |  |  | §e|  \\ |  | §9|  |  |  | |           ||  | |  |     |  | |           ||  | |   ____|   /       |\n" +
+                "§b|  |  |  | §e|   \\|  | §9|  |  |  | `---|  |----`|  | |  |     |  | `---|  |----`|  | |  |__     |   (----`\n" +
+                "§b|  |  |  | §e|  . `  | §9|  |  |  |     |  |     |  | |  |     |  |     |  |     |  | |   __|     \\   \\    \n" +
+                "§b|  `--'  | §e|  |\\   | §9|  `--'  |     |  |     |  | |  `----.|  |     |  |     |  | |  |____.----)   |   \n" +
+                "§b \\______/  §e|__| \\__|  §9\\______/      |__|     |__| |_______||__|     |__|     |__| |_______|_______/    \n" +
+                "§c           _  _ ____ ____    ___  ____ ____ _  _    ___  _ ____ ____ ___  _    ____ ___\n" +
+                "§c           |__| |__| [__     |__] |___ |___ |\\ |    |  \\ | [__  |__| |__] |    |___ |  \\\n" +
+                "§c           |  | |  | ___]    |__] |___ |___ | \\|    |__/ | ___] |  | |__] |___ |___ |__/\n");
+        info("&bTook " + t.get() + "ms to &cdisable&b!");
     }
 
     /**
@@ -68,11 +95,12 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
      * Reload config & data and calling Reload Event
      */
     public static void reloadCfg() {
+        TookTimer t = new TookTimer();
         info("&eReloading Configuration & Data...");
         cfg.reload();
         data.reload();
-        prefix = cfg.getString("Settings.prefix");
-        info("&aConfiguration & Data has been reloaded!");
+        prefix = translateColor(cfg.getString("Settings.prefix"));
+        info("&aConfiguration & Data has been reloaded! &bTook " + t.get() + "ms");
     }
 
     public static List<String> getOnlinePlayers(String partialName) {

@@ -188,7 +188,6 @@ Features:
         # Enable DyedBackpacks Addon?
         # Default: true
         enabled: true
-        
         backpacks:
           small: true
           normal: true

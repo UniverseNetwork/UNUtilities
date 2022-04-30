@@ -7,21 +7,21 @@ import static org.bukkit.Bukkit.getLogger;
 
 @lombok.experimental.UtilityClass
 public class Logger {
-    public static void log(Level lvl, String msg, Object param1) {
-        if (lvl == Level.WARNING) getLogger().log(lvl, translateColor(translateColor("%p% §e" + msg)), param1);
-        if (lvl == Level.SEVERE) getLogger().log(lvl, translateColor(translateColor("%p% §c" + msg)), param1);
-        getLogger().log(lvl, translateColor(translateColor("%p% §f" + msg)), param1);
+    public static void log(Level Level, String Message, Exception Exception) {
+        if (Level == Level.WARNING) getLogger().log(Level, Exception, () -> translateColor("%p% &e" + Message));
+        if (Level == Level.SEVERE) getLogger().log(Level, Exception, () -> translateColor("%p% &c" + Message));
+        getLogger().log(Level, Exception, () -> translateColor("%p% &f" + Message));
     }
 
-    public static void info(String msg) {
-        getLogger().info(translateColor("%p% &f" + msg));
+    public static void info(String Message) {
+        getLogger().info(translateColor("%p% &f" + Message));
     }
 
-    public static void warning(String msg) {
-        getLogger().warning(translateColor("%p% &e" + msg));
+    public static void warning(String Message) {
+        getLogger().warning(translateColor("%p% &e" + Message));
     }
 
-    public static void severe(String msg) {
-        getLogger().severe(translateColor("%p% &c" + msg));
+    public static void severe(String Message) {
+        getLogger().severe(translateColor("%p% &c" + Message));
     }
 }

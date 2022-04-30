@@ -117,8 +117,8 @@ public class YamlBuilder extends YamlConfiguration {
 
     void loadDefaults(String name) {
         InputStream stream = plugin.getResource(name);
-        if (stream == null) throw new IllegalStateException("No default config for " + name + "!");
-        else try {
+        //if (stream == null) throw new IllegalStateException("No default config for " + name + "!");
+        if (stream != null) try {
             defaults.loadFromString(readDefaults(stream));
         } catch (Throwable e) {
             e.printStackTrace();

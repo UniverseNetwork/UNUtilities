@@ -63,6 +63,34 @@ public class Text {
      * Send a center-aligned message to {@link CommandSender} with a translated prefix and color codes
      */
     public static void sendCentered(org.bukkit.command.CommandSender Sender, String Text) {
-        sendCentered((Player) Sender, Text);
+        if (Text == null || Text.equals("")) {
+            Sender.sendMessage("");
+            return;
+        }
+        Text = translateColor(Text);
+        int messagePxSize = 0;
+        boolean previousCode = false;
+        boolean isBold = false;
+        for (char c : Text.toCharArray())
+            if (c == '§') previousCode = true;
+            else if (previousCode) {
+                previousCode = false;
+                isBold = c == 'l' || c == 'L';
+            } else {
+                Font FI = Font.getFontInfo(c);
+                messagePxSize += isBold ? FI.getBoldLength() : FI.getLength();
+                messagePxSize++;
+            }
+        int CENTER_PX = 154;
+        int halvedMessageSize = messagePxSize / 2;
+        int toCompensate = CENTER_PX - halvedMessageSize;
+        int spaceLength = Font.SPACE.getLength() + 1;
+        int compensated = 0;
+        StringBuilder sb = new StringBuilder();
+        while (compensated < toCompensate) {
+            sb.append(" ");
+            compensated += spaceLength;
+        }
+        Sender.sendMessage(sb + Text);
     }
 }
