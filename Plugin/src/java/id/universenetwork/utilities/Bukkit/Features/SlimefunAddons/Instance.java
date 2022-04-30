@@ -11,7 +11,7 @@ public class Instance extends id.universenetwork.utilities.Bukkit.ClassInstance.
     @Override
     public void Load() {
         if (cfg.getBoolean(configPath + "enabled")) {
-            info("&eSlimefun Addons Features is enabled on config.yml. Searching Slimefun...");
+            info("&eSlimefun Addons feature is enabled on config.yml. Searching Slimefun...");
             if (getPluginManager().isPluginEnabled("Slimefun")) {
                 info("&aSlimefun found, &eregistring enabled addons...");
                 TookTimer t = new TookTimer();

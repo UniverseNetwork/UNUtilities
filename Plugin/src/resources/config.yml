@@ -26,29 +26,25 @@ Settings:
 
 Features:
 
-  ## Anti Redstone Features
-  AntiRedstone:
+  ## Block Blocker Features
+  BlockBlocker:
 
-    # Enable Anti Redstone Features?
+    # Enable Block Blocker Features?
     # Default: true
     enabled: true
 
-    # The message if player don't have permission to use redstone
-    denyMessage: "&bUniv&eerse &cSecurity &8&l> &cKamu tidak bisa menggunakan &4Redstone &cdisini!"
+    # Message if player don't have permission to place block
+    msg: "&bUniv&eerse &cSecurity &8&l> &cKamu tidak bisa menggunakan &4Redstone &cdisini!"
 
-    # All redstone components you want to turn on or off
-    redstone: true
-    repeater: true
-    comparator: true
-    redstone_torch:
-      # Redstone torch has 2 categories, namely land and wall
-      # You can disable any or all of them
-      wall: true
-      land: true
-
-    observer: true
-    redstone_block: false
-    redstone_lamp: false
+    # List of blocks that players can't place if they don't have permission "unutilities.redstone"
+    # If you don't know what the block id's name is, see https://purpurmc.org/javadoc/org/bukkit/Material.html
+    blocks:
+      - REDSTONE_WIRE
+      - REPEATER
+      - COMPARATOR
+      - REDSTONE_TORCH
+      - REDSTONE_WALL_TORCH
+      - OBSERVER
 
   ## Armor Stand Arms Adder Features
   ArmorStandArmsAdder:
@@ -56,10 +52,6 @@ Features:
     # Enable Armor Stand Arms Adder Features?
     # Default: true
     enabled: true
-
-    # Enable log to console?
-    # Default: true
-    log: true
 
   ## Address Whitelister Features
   AddressWhitelister:
