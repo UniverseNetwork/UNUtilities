@@ -3,17 +3,16 @@ package id.universenetwork.utilities.Bukkit;
 import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Core.YamlBuilder;
 import id.universenetwork.utilities.Bukkit.Manager.API;
 import id.universenetwork.utilities.Bukkit.Manager.Commands;
-import id.universenetwork.utilities.Bukkit.Manager.Features;
 import id.universenetwork.utilities.Bukkit.Utils.TookTimer;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
-import org.bukkit.entity.HumanEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static id.universenetwork.utilities.Bukkit.Utils.Logger.info;
+import static id.universenetwork.utilities.Bukkit.Utils.Text.translateColor;
 
 /**
  * UNUtilities - Bukkit
@@ -48,7 +47,7 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
         API.init();
         Commands.init();
         Commands.register(new MainCommand());
-        Features.init();
+        id.universenetwork.utilities.Bukkit.Manager.Features.init();
         System.out.println("§b __    __  §e.__   __.  §9__    __  .___________. __   __       __  .___________. __   _______     _______.\n" +
                 "§b|  |  |  | §e|  \\ |  | §9|  |  |  | |           ||  | |  |     |  | |           ||  | |   ____|   /       |\n" +
                 "§b|  |  |  | §e|   \\|  | §9|  |  |  | `---|  |----`|  | |  |     |  | `---|  |----`|  | |  |__     |   (----`\n" +
@@ -85,13 +84,6 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
     }
 
     /**
-     * Translate color codes to actual color using Bukkit API and replace %p% with prefix
-     */
-    public static String translateColor(String txt) {
-        return org.apache.commons.lang.StringUtils.replace(org.bukkit.ChatColor.translateAlternateColorCodes('&', txt), "%p%", prefix);
-    }
-
-    /**
      * Reload config & data and calling Reload Event
      */
     public static void reloadCfg() {
@@ -99,12 +91,13 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
         info("&eReloading Configuration & Data...");
         cfg.reload();
         data.reload();
+        Bukkit.getPluginManager().callEvent(new id.universenetwork.utilities.Bukkit.Events.ReloadConfigEvent());
         prefix = translateColor(cfg.getString("Settings.prefix"));
         info("&aConfiguration & Data has been reloaded! &bTook " + t.get() + "ms");
     }
 
     public static List<String> getOnlinePlayers(String partialName) {
-        return filterStartingWith(partialName, Bukkit.getOnlinePlayers().stream().map(HumanEntity::getName));
+        return filterStartingWith(partialName, Bukkit.getOnlinePlayers().stream().map(org.bukkit.entity.HumanEntity::getName));
     }
 
     public static List<String> filterStartingWith(String prefix, Stream<String> stream) {

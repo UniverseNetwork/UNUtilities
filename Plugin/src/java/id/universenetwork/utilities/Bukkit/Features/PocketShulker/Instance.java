@@ -1,45 +1,40 @@
-package id.universenetwork.utilities.Bukkit.Listeners;
+package id.universenetwork.utilities.Bukkit.Features.PocketShulker;
 
+import id.universenetwork.utilities.Bukkit.UNUtilities;
+import id.universenetwork.utilities.Bukkit.Utils.Text;
+import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.block.ShulkerBox;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.inventory.*;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 
 import java.util.*;
 
-import static id.universenetwork.utilities.Bukkit.Enums.PocketShulker.*;
-import static id.universenetwork.utilities.Bukkit.Manager.Config.*;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static id.universenetwork.utilities.Bukkit.Utils.Color.Translate;
-import static org.bukkit.Bukkit.createInventory;
-import static org.bukkit.Bukkit.getScheduler;
-import static org.bukkit.ChatColor.*;
+import static org.bukkit.ChatColor.stripColor;
 import static org.bukkit.Material.AIR;
-import static org.bukkit.Sound.BLOCK_SHULKER_BOX_CLOSE;
-import static org.bukkit.Sound.BLOCK_SHULKER_BOX_OPEN;
-import static org.bukkit.event.block.Action.RIGHT_CLICK_AIR;
-import static org.bukkit.event.inventory.ClickType.RIGHT;
 
-public class PocketShulkerListener implements Listener {
+public class Instance extends id.universenetwork.utilities.Bukkit.ClassInstance.Feature implements org.bukkit.event.Listener {
     final Map<Player, ItemStack> openshulkers = new HashMap<>();
     final Map<Player, Boolean> fromhand = new HashMap<>();
     final Map<UUID, Inventory> openinventories = new HashMap<>();
     final Map<Player, Inventory> opencontainer = new HashMap<>();
     final Map<Player, Long> pvp_timer = new HashMap<>();
-    String defaultname = DARK_PURPLE + "Shulker Box";
+    String name;
 
-    public PocketShulkerListener() {
-        if (PSString(DEFNAME) != null) defaultname = Translate(PSString(DEFNAME));
-        getScheduler().scheduleSyncRepeatingTask(plugin, () -> {
+    @EventHandler
+    public void onConfigReload(id.universenetwork.utilities.Bukkit.Events.ReloadConfigEvent e) {
+        name = Text.translateColor(UNUtilities.cfg.getString(configPath + "defaultname", "&5Shulker Box"));
+    }
+
+    @Override
+    public void Load() {
+        if (!UNUtilities.cfg.getBoolean(configPath + "enabled")) return;
+        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this);
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(UNUtilities.plugin, () -> {
             for (Player p : openshulkers.keySet()) {
                 if (openshulkers.get(p).getType() == AIR) p.closeInventory();
                 if (opencontainer.containsKey(p)) if (opencontainer.get(p).getLocation() != null)
@@ -57,7 +52,7 @@ public class PocketShulkerListener implements Listener {
     public void onInventoryDrag(InventoryDragEvent e) {
         if (e.getWhoClicked() instanceof Player) {
             Player p = (Player) e.getWhoClicked();
-            getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+            Bukkit.getScheduler().scheduleSyncDelayedTask(UNUtilities.plugin, () -> {
                 if (!saveShulker(p, e.getView().getTitle())) e.setCancelled(true);
             }, 1);
         }
@@ -79,7 +74,7 @@ public class PocketShulkerListener implements Listener {
     public void onInventoryClick(InventoryClickEvent e) {
         if (e.isCancelled()) return;
         Player p = (Player) e.getWhoClicked();
-
+        boolean c = UNUtilities.cfg.getBoolean(configPath + "canopeninchests");
         if (openshulkers.containsKey(p)) if (openshulkers.get(p).getType() == AIR) {
             e.setCancelled(true);
             p.closeInventory();
@@ -87,7 +82,7 @@ public class PocketShulkerListener implements Listener {
         }
 
         // Cancels the event if the player is trying to remove an open shulker
-        if (checkIfOpen(e.getCurrentItem())) if (e.getClick() != RIGHT) {
+        if (checkIfOpen(e.getCurrentItem()) && e.getClick() != org.bukkit.event.inventory.ClickType.RIGHT) {
             e.setCancelled(true);
             return;
         }
@@ -97,33 +92,26 @@ public class PocketShulkerListener implements Listener {
                 e.setCancelled(true);
                 return;
             }
-
             if (e.getClickedInventory() != null && (e.getClickedInventory().getType() == InventoryType.CHEST))
-                if (!PSBoolean(CHESTOPEN) || (PSBoolean(CHESTOPEN) && !p.hasPermission("shulkerpacks.open_in_chests")))
+                if (!c || (c && !p.hasPermission("unutilities.pocketshulker.open_in_chests")))
                     return;
-
             InventoryType type = e.getClickedInventory().getType();
             String typeStr = type.toString();
             if (typeStr.equals("WORKBENCH") || typeStr.equals("ANVIL") || typeStr.equals("BEACON") || typeStr.equals("MERCHANT") || typeStr.equals("ENCHANTING") || typeStr.equals("GRINDSTONE") || typeStr.equals("CARTOGRAPHY") || typeStr.equals("LOOM") || typeStr.equals("STONECUTTER"))
                 return;
-
             if (type == InventoryType.CRAFTING && e.getRawSlot() >= 1 && e.getRawSlot() <= 4) return;
-
             if ((p.getInventory() == e.getClickedInventory()))
-                if (!PSBoolean(INVOPEN) || !p.hasPermission("shulkerpacks.open_in_inventory")) return;
-
-            if (e.getSlotType() == InventoryType.SlotType.RESULT) return;
-
-            if (e.getClickedInventory() != null && e.getClickedInventory().getHolder() != null && e.getClickedInventory().getHolder().getClass().toString().endsWith(".CraftBarrel") && !PSBoolean(BARRELOPEN))
-                return;
-
-            if (!PSBoolean(ECOPEN) && type == InventoryType.ENDER_CHEST) return;
-
-            for (String str : PSStringList(BLACKLISTINV))
-                if (stripColor(p.getOpenInventory().getTitle()).contains(stripColor(translateAlternateColorCodes('&', str))))
+                if (!UNUtilities.cfg.getBoolean(configPath + "canopenininventory") || !p.hasPermission("unutilities.pocketshulker.open_in_inventory"))
                     return;
-
-            if (!PSBoolean(SHIFTOPEN) || e.isShiftClick()) {
+            if (e.getSlotType() == InventoryType.SlotType.RESULT) return;
+            if (e.getClickedInventory() != null && e.getClickedInventory().getHolder() != null && e.getClickedInventory().getHolder().getClass().toString().endsWith(".CraftBarrel") && !UNUtilities.cfg.getBoolean(configPath + "canopeninbarrels"))
+                return;
+            if (!UNUtilities.cfg.getBoolean(configPath + "canopeninenderchest") && type == InventoryType.ENDER_CHEST)
+                return;
+            for (String s : UNUtilities.cfg.getStringList(configPath + "blacklistedinventories"))
+                if (stripColor(p.getOpenInventory().getTitle()).contains(stripColor(Text.translateColor(s))))
+                    return;
+            if (!UNUtilities.cfg.getBoolean(configPath + "shiftclicktoopen") || e.isShiftClick()) {
                 e.setCancelled(true);
                 if (e.isRightClick() && openInventoryIfShulker(e.getCurrentItem(), p)) {
                     fromhand.remove(p);
@@ -131,8 +119,7 @@ public class PocketShulkerListener implements Listener {
                 }
                 e.setCancelled(false);
             }
-
-            getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+            Bukkit.getScheduler().scheduleSyncDelayedTask(UNUtilities.plugin, () -> {
                 if (!saveShulker(p, e.getView().getTitle())) e.setCancelled(true);
             }, 1);
         }
@@ -152,7 +139,7 @@ public class PocketShulkerListener implements Listener {
         if (e.getPlayer() instanceof Player) {
             Player p = (Player) e.getPlayer();
             if (saveShulker(p, p.getOpenInventory().getTitle()))
-                p.playSound(p.getLocation(), BLOCK_SHULKER_BOX_CLOSE, PSFloat(SHULKERVOL), 1);
+                p.playSound(p.getLocation(), Sound.BLOCK_SHULKER_BOX_CLOSE, (float) UNUtilities.cfg.getDouble(configPath + "shulkervolume"), 1);
             openshulkers.remove(p);
         }
     }
@@ -161,25 +148,27 @@ public class PocketShulkerListener implements Listener {
      * Opens the shulker if the air was clicked with one
      */
     @EventHandler
-    public void onClickAir(PlayerInteractEvent e) {
-        Player player = e.getPlayer();
-        if (PSBoolean(AIROPEN) && (e.getClickedBlock() == null || e.getClickedBlock().getType() == AIR))
-            if ((!PSBoolean(SHIFTOPEN) || player.isSneaking())) if (e.getAction() == RIGHT_CLICK_AIR)
-                if (PSBoolean(AIROPEN) && player.hasPermission("shulkerpacks.open_in_air")) {
-                    ItemStack item = e.getItem();
-                    openInventoryIfShulker(item, e.getPlayer());
-                    fromhand.put(player, true);
-                }
+    public void onClickAir(org.bukkit.event.player.PlayerInteractEvent e) {
+        Player p = e.getPlayer();
+        boolean a = UNUtilities.cfg.getBoolean(configPath + "canopeninair");
+        if (a && (e.getClickedBlock() == null || e.getClickedBlock().getType() == AIR))
+            if ((!UNUtilities.cfg.getBoolean(configPath + "shiftclicktoopen") || p.isSneaking()))
+                if (e.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_AIR)
+                    if (a && p.hasPermission("unutilities.pocketshulker.open_in_air")) {
+                        ItemStack item = e.getItem();
+                        openInventoryIfShulker(item, e.getPlayer());
+                        fromhand.put(p, true);
+                    }
     }
 
     @EventHandler
-    public void onShulkerPlace(BlockPlaceEvent e) {
+    public void onShulkerPlace(org.bukkit.event.block.BlockPlaceEvent e) {
         if (e.getBlockPlaced().getType().toString().contains("SHULKER_BOX"))
-            if (!PSBoolean(SHULKERPLACE)) e.setCancelled(true);
+            if (!UNUtilities.cfg.getBoolean(configPath + "canplaceshulker")) e.setCancelled(true);
     }
 
     @EventHandler
-    public void onPlayerHit(EntityDamageByEntityEvent e) {
+    public void onPlayerHit(org.bukkit.event.entity.EntityDamageByEntityEvent e) {
         if (e.getDamager() instanceof Player && e.getEntity() instanceof Player) {
             setPvpTimer((Player) e.getDamager());
             setPvpTimer((Player) e.getEntity());
@@ -187,7 +176,7 @@ public class PocketShulkerListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerShoot(ProjectileHitEvent e) {
+    public void onPlayerShoot(org.bukkit.event.entity.ProjectileHitEvent e) {
         if (e.getHitEntity() instanceof Player && e.getEntity().getShooter() instanceof Player) {
             setPvpTimer((Player) e.getEntity().getShooter());
             setPvpTimer((Player) e.getHitEntity());
@@ -197,10 +186,10 @@ public class PocketShulkerListener implements Listener {
     /*
      * Saves the shulker data in the itemmeta
      */
-    boolean saveShulker(Player p, String title) {
+    boolean saveShulker(Player p, String t) {
         try {
-            if (openshulkers.containsKey(p)) {
-                if (title.equals(defaultname) || (openshulkers.get(p).hasItemMeta() && openshulkers.get(p).getItemMeta().hasDisplayName() && (openshulkers.get(p).getItemMeta().getDisplayName().equals(title)))) {
+            if (openshulkers.containsKey(p))
+                if (t.equals(name) || (openshulkers.get(p).hasItemMeta() && openshulkers.get(p).getItemMeta().hasDisplayName() && (openshulkers.get(p).getItemMeta().getDisplayName().equals(t)))) {
                     ItemStack item = openshulkers.get(p);
                     if (item != null) {
                         BlockStateMeta meta = (BlockStateMeta) item.getItemMeta();
@@ -213,7 +202,6 @@ public class PocketShulkerListener implements Listener {
                         return true;
                     }
                 }
-            }
         } catch (Exception e) {
             openshulkers.remove(p);
             p.closeInventory();
@@ -236,35 +224,32 @@ public class PocketShulkerListener implements Listener {
      * Opens the shulker inventory with the contents of the shulker
      */
     boolean openInventoryIfShulker(ItemStack i, Player p) {
-        if (p.hasPermission("shulkerpacks.use")) {
-            if (i != null) {
-                if (i.getAmount() == 1 && i.getType().toString().contains("SHULKER")) {
-                    if (getPvpTimer(p)) {
-                        p.sendMessage(Translate(PSString(DISABLECOMBATMSG)));
-                        return false;
-                    }
-                    if (i.getItemMeta() instanceof BlockStateMeta) {
-                        BlockStateMeta meta = (BlockStateMeta) i.getItemMeta();
-                        if (meta != null && meta.getBlockState() instanceof ShulkerBox) {
-                            ShulkerBox shulker = (ShulkerBox) meta.getBlockState();
-                            Inventory inv;
-                            if (meta.hasDisplayName())
-                                inv = createInventory(new ShulkerHolder(), InventoryType.SHULKER_BOX, meta.getDisplayName());
-                            else inv = createInventory(new ShulkerHolder(), InventoryType.SHULKER_BOX, defaultname);
-                            inv.setContents(shulker.getInventory().getContents());
-                            opencontainer.put(p, p.getOpenInventory().getTopInventory());
-                            getScheduler().scheduleSyncDelayedTask(plugin, () -> {
-                                p.openInventory(inv);
-                                p.playSound(p.getLocation(), BLOCK_SHULKER_BOX_OPEN, PSFloat(SHULKERVOL), 1);
-                                openshulkers.put(p, i);
-                                openinventories.put(p.getUniqueId(), p.getOpenInventory().getTopInventory());
-                            }, 1);
-                            return true;
-                        }
+        if (p.hasPermission("unutilities.pocketshulker.use") && i != null)
+            if (i.getAmount() == 1 && i.getType().toString().contains("SHULKER")) {
+                if (getPvpTimer(p)) {
+                    Text.send(p, UNUtilities.cfg.getString(configPath + "disable-in-combat-message"));
+                    return false;
+                }
+                if (i.getItemMeta() instanceof BlockStateMeta) {
+                    BlockStateMeta meta = (BlockStateMeta) i.getItemMeta();
+                    if (meta != null && meta.getBlockState() instanceof ShulkerBox) {
+                        ShulkerBox shulker = (ShulkerBox) meta.getBlockState();
+                        Inventory inv;
+                        if (meta.hasDisplayName())
+                            inv = Bukkit.createInventory(new ShulkerHolder(), InventoryType.SHULKER_BOX, meta.getDisplayName());
+                        else inv = Bukkit.createInventory(new ShulkerHolder(), InventoryType.SHULKER_BOX, name);
+                        inv.setContents(shulker.getInventory().getContents());
+                        opencontainer.put(p, p.getOpenInventory().getTopInventory());
+                        Bukkit.getScheduler().scheduleSyncDelayedTask(UNUtilities.plugin, () -> {
+                            p.openInventory(inv);
+                            p.playSound(p.getLocation(), Sound.BLOCK_SHULKER_BOX_OPEN, (float) UNUtilities.cfg.getDouble(configPath + "shulkervolume"), 1);
+                            openshulkers.put(p, i);
+                            openinventories.put(p.getUniqueId(), p.getOpenInventory().getTopInventory());
+                        }, 1);
+                        return true;
                     }
                 }
             }
-        }
         return false;
     }
 
@@ -274,10 +259,10 @@ public class PocketShulkerListener implements Listener {
     }
 
     void setPvpTimer(Player p) {
-        if (PSBoolean(DISABLECOMBAT)) pvp_timer.put(p, System.currentTimeMillis());
+        if (UNUtilities.cfg.getBoolean(configPath + "disable-in-combat")) pvp_timer.put(p, System.currentTimeMillis());
     }
 
-    static class ShulkerHolder implements InventoryHolder {
+    protected static class ShulkerHolder implements org.bukkit.inventory.InventoryHolder {
         @Override
         public Inventory getInventory() {
             return null;

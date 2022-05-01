@@ -344,6 +344,7 @@ Features:
     # Default: true
     enabled: true
 
+    # List of blacklisted inventory name
     blacklistedinventories: [ "&4&lMineXChange", "test inventory" ]
 
     # False will prevent users from opening shulkerboxes by clicking the air
@@ -370,6 +371,7 @@ Features:
     # This message will be send to player when "disable-in-combat" is true
     disable-in-combat-message: '%p% &cKamu tidak dapat membuka Shulker Box dalam pertempuran!'
 
+    # Name of Shulker Inventory Menu
     defaultname: "&5Shulker Box"
 
     # Shift click to open applies to both ingame and in inventory
