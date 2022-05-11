@@ -1,12 +1,13 @@
 package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools;
 
 import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Implementation.Machines.*;
+import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SfAddon;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 
 import static id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Lists.ETItems.*;
 import static id.universenetwork.utilities.Bukkit.UNUtilities.createKey;
 
-public class ExtraTools extends id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SFInstance {
+public class ExtraTools extends SfAddon {
     int researchId = 4100;
 
     @Override

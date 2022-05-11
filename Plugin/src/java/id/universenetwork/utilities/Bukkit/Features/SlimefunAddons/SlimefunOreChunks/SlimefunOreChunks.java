@@ -1,11 +1,12 @@
 package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SlimefunOreChunks;
 
+import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SfAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 
 import static io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType.SMELTERY;
 import static io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems.*;
 
-public class SlimefunOreChunks extends id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SFInstance {
+public class SlimefunOreChunks extends SfAddon {
     @Override
     public void Load() {
         ItemGroup itemGroup = new ItemGroup(id.universenetwork.utilities.Bukkit.UNUtilities.createKey("ore_chunks"), new io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack(io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead.getItemStack(io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin.fromHashCode("dde8f949bbf3a42782c531fbf8de9dc2d8cd84dd7cb8f5d5328eeda83956aac8")), "&6Ore Chunks"));

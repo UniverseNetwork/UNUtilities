@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.ClassInstance;
+package id.universenetwork.utilities.Bukkit.Templates;
 
 public class Feature {
     String n = getClass().getPackage().getName();

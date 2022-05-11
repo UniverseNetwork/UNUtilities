@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.*;
 
-public class MainCommand extends id.universenetwork.utilities.Bukkit.ClassInstance.Command {
+public class MainCommand extends id.universenetwork.utilities.Bukkit.Templates.Command {
     @CommandMethod("universeutilities|unutilities|unu|uu")
     @CommandDescription("Main command of UNUtilities")
     public void cmd(CommandSender sender) {

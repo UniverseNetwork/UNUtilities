@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.ClassInstance;
+package id.universenetwork.utilities.Bukkit.Templates;
 
 import cloud.commandframework.annotations.suggestions.Suggestions;
 import cloud.commandframework.context.CommandContext;

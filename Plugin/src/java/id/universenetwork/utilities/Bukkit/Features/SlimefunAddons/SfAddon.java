@@ -1,6 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons;
 
-public class SFInstance implements io.github.thebusybiscuit.slimefun4.api.SlimefunAddon {
+public class SfAddon implements io.github.thebusybiscuit.slimefun4.api.SlimefunAddon {
     public final String configPath = "Features.SlimefunAddons.Addons." + getClass().getSimpleName() + ".";
 
     @Override

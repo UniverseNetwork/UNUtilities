@@ -1,57 +1,48 @@
-package id.universenetwork.utilities.Bukkit.Listeners;
+package id.universenetwork.utilities.Bukkit.Features.AntiZeroTickFarm;
 
-import id.universenetwork.utilities.Bukkit.Enums.AntiZeroTickFarm;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.block.data.Ageable;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockPistonExtendEvent;
-import org.bukkit.event.block.BlockPistonRetractEvent;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.Manager.Config.AZTFBoolean;
+import static id.universenetwork.utilities.Bukkit.UNUtilities.cfg;
+import static org.bukkit.event.EventPriority.HIGH;
 
-public class AntiZeroTickFarmListener implements Listener {
-    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
-    public void onPistonOut(BlockPistonExtendEvent e) {
-        if (AZTFBoolean(AntiZeroTickFarm.ENABLED)) {
+public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature implements org.bukkit.event.Listener {
+    @Override
+    public void Load() {
+        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this);
+    }
+
+    @EventHandler(ignoreCancelled = true, priority = HIGH)
+    public void onPistonOut(org.bukkit.event.block.BlockPistonExtendEvent e) {
+        if (cfg.getBoolean(configPath + "enabled")) {
             breakPlantsBeside(e.getBlock(), e.getDirection());
             breakPlantsAbove(e.getBlocks());
         }
     }
 
-    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
-    public void onPistonIn(BlockPistonRetractEvent e) {
-        if (AZTFBoolean(AntiZeroTickFarm.ENABLED)) breakPlantsAbove(e.getBlocks());
+    @EventHandler(ignoreCancelled = true, priority = HIGH)
+    public void onPistonIn(org.bukkit.event.block.BlockPistonRetractEvent e) {
+        if (cfg.getBoolean(configPath + "enabled")) breakPlantsAbove(e.getBlocks());
     }
 
     void breakPlantsBeside(Block block, BlockFace direction) {
-
-        for (Block b : getNearbyBlocks(block, direction)) {
-            if (b.getType() == Material.CACTUS) {
-                b.breakNaturally();
-            }
-        }
-
+        for (Block b : getNearbyBlocks(block, direction))
+            if (b.getType() == org.bukkit.Material.CACTUS) b.breakNaturally();
     }
 
     void breakPlantsAbove(List<Block> blockList) {
         for (Block block : blockList) {
             Block target = block.getRelative(BlockFace.UP);
-            if (target.getBlockData() instanceof Ageable) {
-                target.breakNaturally();
-            }
+            if (target.getBlockData() instanceof org.bukkit.block.data.Ageable) target.breakNaturally();
         }
 
     }
 
     List<Block> getNearbyBlocks(Block block, BlockFace direction) {
-        List<Block> blocks = new ArrayList();
+        List<Block> blocks = new java.util.ArrayList();
         blocks.add(block.getRelative(direction).getRelative(direction));
         switch (direction) {
             case NORTH:

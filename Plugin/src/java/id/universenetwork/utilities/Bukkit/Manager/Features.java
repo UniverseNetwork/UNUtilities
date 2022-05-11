@@ -1,6 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Manager;
 
-import id.universenetwork.utilities.Bukkit.ClassInstance.Feature;
+import id.universenetwork.utilities.Bukkit.Templates.Feature;
 import id.universenetwork.utilities.Bukkit.Utils.Logger;
 import id.universenetwork.utilities.Bukkit.Utils.TookTimer;
 import org.bukkit.configuration.ConfigurationSection;
@@ -15,7 +15,7 @@ public class Features {
         ConfigurationSection s = cfg.getConfigurationSection("Features");
         for (String k : s.getKeys(false))
             try {
-                Class<?> c = Class.forName("id.universenetwork.utilities.Bukkit.Features." + k + ".Instance");
+                Class<?> c = Class.forName("id.universenetwork.utilities.Bukkit.Features." + k + ".Main");
                 if (Feature.class.isAssignableFrom(c)) {
                     ((Feature) c.getConstructor().newInstance()).Load();
                     a++;

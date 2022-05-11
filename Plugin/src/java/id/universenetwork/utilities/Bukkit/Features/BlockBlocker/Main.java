@@ -2,7 +2,7 @@ package id.universenetwork.utilities.Bukkit.Features.BlockBlocker;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.cfg;
 
-public class Instance extends id.universenetwork.utilities.Bukkit.ClassInstance.Feature implements org.bukkit.event.Listener {
+public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature implements org.bukkit.event.Listener {
     @Override
     public void Load() {
         id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this);

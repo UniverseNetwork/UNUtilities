@@ -48,7 +48,7 @@ public final class Commands {
         Logger.info("&aCommand Manager has been initialized!");
     }
 
-    public static void register(id.universenetwork.utilities.Bukkit.ClassInstance.Command cmd) {
+    public static void register(id.universenetwork.utilities.Bukkit.Templates.Command cmd) {
         try {
             annotationParser.parse(cmd);
         } catch (Exception e) {

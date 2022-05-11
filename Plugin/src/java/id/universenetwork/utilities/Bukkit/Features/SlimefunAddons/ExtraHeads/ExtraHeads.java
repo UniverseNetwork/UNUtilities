@@ -1,5 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraHeads;
 
+import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SfAddon;
 import id.universenetwork.utilities.Bukkit.UNUtilities;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -13,7 +14,7 @@ import java.util.Map;
 import static io.github.thebusybiscuit.slimefun4.api.MinecraftVersion.*;
 import static io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getMinecraftVersion;
 
-public class ExtraHeads extends id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SFInstance {
+public class ExtraHeads extends SfAddon {
     final Map<EntityType, ItemStack> mobs = new java.util.EnumMap<>(EntityType.class);
     ItemGroup itemGroup;
     RecipeType recipeType;

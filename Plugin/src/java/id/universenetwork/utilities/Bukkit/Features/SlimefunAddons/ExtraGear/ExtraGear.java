@@ -1,5 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraGear;
 
+import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SfAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -17,7 +18,7 @@ import static io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems.*;
 import static io.github.thebusybiscuit.slimefun4.utils.ChatUtils.humanize;
 import static java.util.Arrays.asList;
 
-public class ExtraGear extends id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SFInstance {
+public class ExtraGear extends SfAddon {
     int researchId = 3300;
     ItemGroup itemGroup;
 

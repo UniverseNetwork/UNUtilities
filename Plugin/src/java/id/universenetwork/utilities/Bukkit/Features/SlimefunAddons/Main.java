@@ -7,7 +7,7 @@ import static id.universenetwork.utilities.Bukkit.UNUtilities.cfg;
 import static id.universenetwork.utilities.Bukkit.Utils.Logger.*;
 import static org.bukkit.Bukkit.getPluginManager;
 
-public class Instance extends id.universenetwork.utilities.Bukkit.ClassInstance.Feature {
+public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature {
     @Override
     public void Load() {
         if (cfg.getBoolean(configPath + "enabled")) {
@@ -19,8 +19,8 @@ public class Instance extends id.universenetwork.utilities.Bukkit.ClassInstance.
                 for (String k : s.getKeys(false))
                     if (s.getBoolean(k + ".enabled")) try {
                         Class<?> c = Class.forName("id.universenetwork.utilities.Bukkit.Features.SlimefunAddons." + k + "." + k);
-                        if (SFInstance.class.isAssignableFrom(c)) {
-                            ((SFInstance) c.getConstructor().newInstance()).Load();
+                        if (SfAddon.class.isAssignableFrom(c)) {
+                            ((SfAddon) c.getConstructor().newInstance()).Load();
                             info("&bSuccessfully registered &d" + k + " &baddon!");
                         }
                     } catch (Exception e) {

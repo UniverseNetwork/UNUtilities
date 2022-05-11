@@ -4,6 +4,7 @@ import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.MobCapturer.I
 import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.MobCapturer.Items.MobEgg;
 import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.MobCapturer.Items.MobPellet;
 import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.MobCapturer.Mobs.*;
+import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SfAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -21,7 +22,7 @@ import static io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHea
 import static io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin.fromHashCode;
 import static org.bukkit.Material.*;
 
-public class MobCapturer extends id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SFInstance {
+public class MobCapturer extends SfAddon {
     final NamespacedKey dataKey = createKey("captured_mob");
     final NamespacedKey inventoryKey = createKey("mob_inventory");
     final java.util.Map<EntityType, MobEgg<?>> adapters = new java.util.EnumMap<>(EntityType.class);

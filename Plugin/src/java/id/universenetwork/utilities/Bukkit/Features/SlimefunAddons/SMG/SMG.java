@@ -2,6 +2,7 @@ package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SMG;
 
 import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SMG.Items.BrokenGenerator;
 import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SMG.Items.MaterialGenerator;
+import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SfAddon;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import org.bukkit.inventory.ItemStack;
 
@@ -9,7 +10,7 @@ import static io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems.CO
 import static io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems.*;
 import static org.bukkit.Material.*;
 
-public final class SMG extends id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SFInstance {
+public final class SMG extends SfAddon {
     @Override
     public void Load() {
         new id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SMG.Items.GeneratorMultiblock(SMGItems.SMG_ITEM_CATEGORY, SMGItems.SMG_GENERATOR_MULTIBLOCK).register(this);

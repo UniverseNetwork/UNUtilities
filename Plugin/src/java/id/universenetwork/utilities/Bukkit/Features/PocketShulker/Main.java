@@ -17,7 +17,7 @@ import java.util.*;
 import static org.bukkit.ChatColor.stripColor;
 import static org.bukkit.Material.AIR;
 
-public class Instance extends id.universenetwork.utilities.Bukkit.ClassInstance.Feature implements org.bukkit.event.Listener {
+public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature implements org.bukkit.event.Listener {
     final Map<Player, ItemStack> openshulkers = new HashMap<>();
     final Map<Player, Boolean> fromhand = new HashMap<>();
     final Map<UUID, Inventory> openinventories = new HashMap<>();

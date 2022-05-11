@@ -1,6 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.DyedBackpacks;
 
-import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SFInstance;
+import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SfAddon;
 import id.universenetwork.utilities.Bukkit.UNUtilities;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -16,7 +16,7 @@ import static io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems.*;
  * @author ARVIN3108 ID
  * @see DyedBackpack
  */
-public class DyedBackpacks extends SFInstance {
+public class DyedBackpacks extends SfAddon {
     @Override
     public void Load() {
         Research research = new Research(UNUtilities.createKey("dyed_backpacks"), 17200, "Dyed Backpacks", 24);
