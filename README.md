@@ -18,7 +18,7 @@
 
 ## Bukkit
 
-- Anti Redstone
+- Block Blocker
 - Armor Stand Arms Adder
 - Address Whitelister (Fork of [PreventPortBypass](http://spigotmc.org/resources/54934))
 - Anti Zero Tick Farm (Fork of [Zero Tick Farm Blocker](http://spigotmc.org/resources/72737))

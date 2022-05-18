@@ -43,6 +43,10 @@
             <id>Jitpack</id>
             <url>https://jitpack.io</url>
         </repository>
+        <repository>
+            <id>dmulloy2 Repository</id>
+            <url>https://repo.dmulloy2.net/repository/public</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -68,6 +72,12 @@
             <groupId>com.github.Slimefun</groupId>
             <artifactId>Slimefun4</artifactId>
             <version>RC-31</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.comphenix.protocol</groupId>
+            <artifactId>ProtocolLib</artifactId>
+            <version>LATEST</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

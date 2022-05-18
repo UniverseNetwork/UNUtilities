@@ -224,6 +224,14 @@ Features:
         # Default: true
         enabled: true
 
+      ## SoundMuffler Addon Settings
+      SoundMuffler:
+
+        # Enable SoundMuffler Addon?
+        # !!! -> You need ProtocolLib to use this addon
+        # Default: true
+        enabled: true
+
   ## Villager Optimization Features
   VillagerOptimization:
 
