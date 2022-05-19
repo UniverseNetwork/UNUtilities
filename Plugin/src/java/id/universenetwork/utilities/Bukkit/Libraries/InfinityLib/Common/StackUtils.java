@@ -2,12 +2,17 @@ package id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import lombok.experimental.UtilityClass;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 
-@lombok.experimental.UtilityClass
+@UtilityClass
 public final class StackUtils {
-    static final org.bukkit.NamespacedKey ID_KEY = io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getItemDataService().getKey();
+    private static final NamespacedKey ID_KEY = Slimefun.getItemDataService().getKey();
 
     public static String getId(ItemStack item) {
         if (item instanceof SlimefunItemStack) return ((SlimefunItemStack) item).getItemId();
@@ -16,7 +21,7 @@ public final class StackUtils {
     }
 
     public static String getId(ItemMeta meta) {
-        return meta.getPersistentDataContainer().get(ID_KEY, org.bukkit.persistence.PersistentDataType.STRING);
+        return meta.getPersistentDataContainer().get(ID_KEY, PersistentDataType.STRING);
     }
 
     public static String getIdOrType(ItemStack item) {
@@ -34,7 +39,7 @@ public final class StackUtils {
 
     public static ItemStack itemByIdOrType(String idOrType) {
         SlimefunItem item = SlimefunItem.getById(idOrType);
-        return item == null ? new ItemStack(org.bukkit.Material.valueOf(idOrType)) : item.getItem().clone();
+        return item == null ? new ItemStack(Material.valueOf(idOrType)) : item.getItem().clone();
     }
 
     /**

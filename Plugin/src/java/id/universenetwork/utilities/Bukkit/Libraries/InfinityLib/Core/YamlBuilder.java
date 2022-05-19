@@ -1,5 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Core;
 
+import id.universenetwork.utilities.Bukkit.UNUtilities;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -13,8 +14,6 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-
 /**
  * A config which is able to save all of its comments and has some additional utility methods
  *
@@ -27,7 +26,7 @@ public class YamlBuilder extends YamlConfiguration {
     final File file;
 
     public YamlBuilder(String Name) {
-        file = new File(plugin.getDataFolder(), Name);
+        file = new File(UNUtilities.plugin.getDataFolder(), Name);
         super.defaults = defaults;
         loadDefaults(Name);
     }
@@ -116,8 +115,7 @@ public class YamlBuilder extends YamlConfiguration {
     }
 
     void loadDefaults(String name) {
-        InputStream stream = plugin.getResource(name);
-        //if (stream == null) throw new IllegalStateException("No default config for " + name + "!");
+        InputStream stream = UNUtilities.plugin.getResource(name);
         if (stream != null) try {
             defaults.loadFromString(readDefaults(stream));
         } catch (Throwable e) {

@@ -1,21 +1,26 @@
 package id.universenetwork.utilities.Bukkit.Features.BlockBlocker;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.cfg;
+import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events;
+import id.universenetwork.utilities.Bukkit.Templates.Feature;
+import id.universenetwork.utilities.Bukkit.UNUtilities;
+import id.universenetwork.utilities.Bukkit.Utils.Text;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockPlaceEvent;
 
-public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature implements org.bukkit.event.Listener {
+public class Main extends Feature implements Listener {
     @Override
     public void Load() {
-        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this);
+        Events.registerListeners(this);
     }
 
     @org.bukkit.event.EventHandler
-    public void onBlockPlace(org.bukkit.event.block.BlockPlaceEvent e) {
+    public void onBlockPlace(BlockPlaceEvent e) {
         java.util.List<String> f = new java.util.ArrayList<>();
-        for (String s : cfg.getStringList(configPath + "blocks")) f.add(s.toUpperCase());
-        if (cfg.getBoolean(configPath + "enabled")
+        for (String s : UNUtilities.cfg.getStringList(configPath + "blocks")) f.add(s.toUpperCase());
+        if (UNUtilities.cfg.getBoolean(configPath + "enabled")
                 && !e.getPlayer().hasPermission("unutilities.redstone")
                 && f.contains(e.getBlock().getType().toString())) {
-            e.getPlayer().sendMessage(id.universenetwork.utilities.Bukkit.Utils.Text.translateColor(cfg.getString(configPath + "msg")));
+            e.getPlayer().sendMessage(Text.translateColor(UNUtilities.cfg.getString(configPath + "msg")));
             e.setCancelled(true);
         }
     }

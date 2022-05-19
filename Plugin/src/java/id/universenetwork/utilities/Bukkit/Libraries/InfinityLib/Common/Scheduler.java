@@ -1,9 +1,10 @@
 package id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common;
 
+import id.universenetwork.utilities.Bukkit.UNUtilities;
 import lombok.experimental.UtilityClass;
+import org.bukkit.Bukkit;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static org.bukkit.Bukkit.getScheduler;
 
 /**
  * A class for scheduling tasks
@@ -13,19 +14,19 @@ import static org.bukkit.Bukkit.getScheduler;
 @UtilityClass
 public class Scheduler {
     public static void run(Runnable runnable) {
-        getScheduler().runTask(plugin, runnable);
+        Bukkit.getScheduler().runTask(UNUtilities.plugin, runnable);
     }
 
     public static void runAsync(Runnable runnable) {
-        getScheduler().runTaskAsynchronously(plugin, runnable);
+        Bukkit.getScheduler().runTaskAsynchronously(UNUtilities.plugin, runnable);
     }
 
     public static void run(int delayTicks, Runnable runnable) {
-        getScheduler().runTaskLater(plugin, runnable, delayTicks);
+        Bukkit.getScheduler().runTaskLater(plugin, runnable, delayTicks);
     }
 
     public static void runAsync(int delayTicks, Runnable runnable) {
-        getScheduler().runTaskLaterAsynchronously(plugin, runnable, delayTicks);
+        Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, runnable, delayTicks);
     }
 
     public static void repeat(int intervalTicks, Runnable runnable) {
@@ -37,10 +38,10 @@ public class Scheduler {
     }
 
     public static void repeat(int intervalTicks, int delayTicks, Runnable runnable) {
-        getScheduler().runTaskTimer(plugin, runnable, delayTicks, Math.max(1, intervalTicks));
+        Bukkit.getScheduler().runTaskTimer(plugin, runnable, delayTicks, Math.max(1, intervalTicks));
     }
 
     public static void repeatAsync(int intervalTicks, int delayTicks, Runnable runnable) {
-        getScheduler().runTaskTimerAsynchronously(plugin, runnable, delayTicks, Math.max(1, intervalTicks));
+        Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, runnable, delayTicks, Math.max(1, intervalTicks));
     }
 }

@@ -4,25 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 final class PathBuilder {
-    final List<String> path = new ArrayList<>();
+    private final List<String> path = new ArrayList<>();
 
     public PathBuilder append(String line) {
         // count indent
         int indent = 0;
-        for (char c : line.toCharArray()) {
+        for (char c : line.toCharArray())
             if (c == ' ') indent++;
             else break;
-        }
         String key = line.substring(indent, line.indexOf(':'));
         indent /= 2;
 
         // change path
         int size = path.size();
         if (indent == 0) path.clear();
-        else if (indent < size) {
-            if (indent + 1 == size) path.remove(indent);
-            else path.subList(indent, size).clear();
-        }
+        else if (indent < size) if (indent + 1 == size) path.remove(indent);
+        else path.subList(indent, size).clear();
         path.add(key);
         return this;
     }

@@ -1,23 +1,23 @@
 package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons;
 
 import id.universenetwork.utilities.Bukkit.Annotations.Dependency;
+import id.universenetwork.utilities.Bukkit.Templates.Feature;
+import id.universenetwork.utilities.Bukkit.UNUtilities;
+import id.universenetwork.utilities.Bukkit.Utils.Logger;
 import id.universenetwork.utilities.Bukkit.Utils.TookTimer;
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.cfg;
-import static id.universenetwork.utilities.Bukkit.Utils.Logger.*;
-import static org.bukkit.Bukkit.getPluginManager;
-
-public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature {
+public class Main extends Feature {
     @Override
     public void Load() {
-        if (cfg.getBoolean(configPath + "enabled")) {
-            info("&eSlimefun Addons feature is enabled on config.yml. Searching Slimefun...");
-            if (getPluginManager().isPluginEnabled("Slimefun")) {
-                info("&aSlimefun found, &eregistring enabled addons...");
+        if (UNUtilities.cfg.getBoolean(configPath + "enabled")) {
+            Logger.info("&eSlimefun Addons feature is enabled on config.yml. Searching Slimefun...");
+            if (Bukkit.getPluginManager().isPluginEnabled("Slimefun")) {
+                Logger.info("&aSlimefun found, &eregistring enabled addons...");
                 TookTimer t = new TookTimer();
-                ConfigurationSection s = cfg.getConfigurationSection(configPath + "Addons");
+                ConfigurationSection s = UNUtilities.cfg.getConfigurationSection(configPath + "Addons");
                 for (String k : s.getKeys(false))
                     if (s.getBoolean(k + ".enabled")) try {
                         Class<?> c = Class.forName("id.universenetwork.utilities.Bukkit.Features.SlimefunAddons." + k + "." + k);
@@ -27,7 +27,7 @@ public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature 
                             if (d != null) {
                                 l = 1;
                                 for (String v : d.value())
-                                    if (!org.bukkit.Bukkit.getPluginManager().isPluginEnabled(v)) {
+                                    if (!Bukkit.getPluginManager().isPluginEnabled(v)) {
                                         l = 2;
                                         break;
                                     }
@@ -35,21 +35,21 @@ public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature 
                             if (l == 0 || l == 1) ((SfAddon) c.getConstructor().newInstance()).Load();
                             switch (l) {
                                 case 0:
-                                    info("&bSuccessfully registered &d" + k + " &baddon!");
+                                    Logger.info("&bSuccessfully registered &d" + k + " &baddon!");
                                     break;
                                 case 1:
-                                    info("&a" + convertArraysToString(d.value()) + " found. &bSuccessfully registered &d" + k + " &baddon!");
+                                    Logger.info("&a" + convertArraysToString(d.value()) + " found. &bSuccessfully registered &d" + k + " &baddon!");
                                     break;
                                 case 2:
-                                    severe("&e" + convertArraysToString(d.value()) + " not found. &cYou need " + convertArraysToString(d.value()) + " to use &d" + k + " &caddon!");
+                                    Logger.severe("&e" + convertArraysToString(d.value()) + " not found. &cYou need " + convertArraysToString(d.value()) + " to use &d" + k + " &caddon!");
                             }
                         }
                     } catch (Exception e) {
                         if (e instanceof ClassNotFoundException) continue;
-                        log(java.util.logging.Level.SEVERE, "Failed to register Slimefun addon class:", e);
+                        Logger.log(java.util.logging.Level.SEVERE, "Failed to register Slimefun addon class:", e);
                     }
-                info("&bTook " + t.get() + "ms &ato register all enabled addons to Slimefun!");
-            } else severe("&eSlimefun not found. &cYou need Slimefun to use Slimefun Addons Features!");
+                Logger.info("&bTook " + t.get() + "ms &ato register all enabled addons to Slimefun!");
+            } else Logger.severe("&eSlimefun not found. &cYou need Slimefun to use Slimefun Addons Features!");
         }
     }
 

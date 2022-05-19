@@ -1,5 +1,7 @@
 package id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Groups;
 
+import id.universenetwork.utilities.Bukkit.UNUtilities;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -8,13 +10,13 @@ import org.bukkit.inventory.ItemStack;
  * @author Mooy1
  * @author ARVIN3108 ID
  */
-public final class SubGroup extends io.github.thebusybiscuit.slimefun4.api.items.ItemGroup {
+public final class SubGroup extends ItemGroup {
     public SubGroup(String key, ItemStack item) {
         this(key, item, 3);
     }
 
     public SubGroup(String key, ItemStack item, int tier) {
-        super(id.universenetwork.utilities.Bukkit.UNUtilities.createKey(key), item, tier);
+        super(UNUtilities.createKey(key), item, tier);
     }
 
     @Override

@@ -1,7 +1,10 @@
 package id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common;
 
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import lombok.RequiredArgsConstructor;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataAdapterContext;
@@ -15,15 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-import static org.bukkit.Material.STONE;
-
 /**
  * A class with some persistent data types
  *
  * @author Mooy1
  * @author ARVIN3108 ID
  */
-@lombok.RequiredArgsConstructor
+@RequiredArgsConstructor
 public final class PersistentType<T, Z> implements PersistentDataType<T, Z> {
     public static final PersistentDataType<byte[], ItemStack> ITEM_STACK = new PersistentType<>(byte[].class, ItemStack.class, itemStack -> {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
@@ -39,7 +40,7 @@ public final class PersistentType<T, Z> implements PersistentDataType<T, Z> {
             return (ItemStack) input.readObject();
         } catch (Exception e) {
             e.printStackTrace();
-            return new CustomItemStack(STONE, "&cERROR");
+            return new CustomItemStack(Material.STONE, "&cERROR");
         }
     });
 
@@ -115,12 +116,12 @@ public final class PersistentType<T, Z> implements PersistentDataType<T, Z> {
         YamlConfiguration config = new YamlConfiguration();
         try {
             config.loadFromString(string);
-        } catch (org.bukkit.configuration.InvalidConfigurationException e) {
+        } catch (InvalidConfigurationException e) {
             e.printStackTrace();
-            return new CustomItemStack(STONE, "&cERROR");
+            return new CustomItemStack(Material.STONE, "&cERROR");
         }
         ItemStack item = config.getItemStack("item");
-        return item != null ? item : new CustomItemStack(STONE, "&cERROR");
+        return item != null ? item : new CustomItemStack(Material.STONE, "&cERROR");
     });
 
     final Class<T> primitive;

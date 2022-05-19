@@ -1,31 +1,34 @@
 package id.universenetwork.utilities.Bukkit.Features.AntiZeroTickFarm;
 
+import id.universenetwork.utilities.Bukkit.Templates.Feature;
+import id.universenetwork.utilities.Bukkit.UNUtilities;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockPistonExtendEvent;
+import org.bukkit.event.block.BlockPistonRetractEvent;
 
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.cfg;
-import static org.bukkit.event.EventPriority.HIGH;
-
-public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature implements org.bukkit.event.Listener {
+public class Main extends Feature implements Listener {
     @Override
     public void Load() {
         id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this);
     }
 
-    @EventHandler(ignoreCancelled = true, priority = HIGH)
-    public void onPistonOut(org.bukkit.event.block.BlockPistonExtendEvent e) {
-        if (cfg.getBoolean(configPath + "enabled")) {
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
+    public void onPistonOut(BlockPistonExtendEvent e) {
+        if (UNUtilities.cfg.getBoolean(configPath + "enabled")) {
             breakPlantsBeside(e.getBlock(), e.getDirection());
             breakPlantsAbove(e.getBlocks());
         }
     }
 
-    @EventHandler(ignoreCancelled = true, priority = HIGH)
-    public void onPistonIn(org.bukkit.event.block.BlockPistonRetractEvent e) {
-        if (cfg.getBoolean(configPath + "enabled")) breakPlantsAbove(e.getBlocks());
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
+    public void onPistonIn(BlockPistonRetractEvent e) {
+        if (UNUtilities.cfg.getBoolean(configPath + "enabled")) breakPlantsAbove(e.getBlocks());
     }
 
     void breakPlantsBeside(Block block, BlockFace direction) {

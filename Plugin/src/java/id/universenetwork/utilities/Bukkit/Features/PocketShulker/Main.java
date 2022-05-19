@@ -2,15 +2,21 @@ package id.universenetwork.utilities.Bukkit.Features.PocketShulker;
 
 import id.universenetwork.utilities.Bukkit.Events.ReloadConfigEvent;
 import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events;
+import id.universenetwork.utilities.Bukkit.Templates.Feature;
 import id.universenetwork.utilities.Bukkit.UNUtilities;
 import id.universenetwork.utilities.Bukkit.Utils.Text;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.ShulkerBox;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.*;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -18,10 +24,7 @@ import org.bukkit.inventory.meta.BlockStateMeta;
 
 import java.util.*;
 
-import static org.bukkit.ChatColor.stripColor;
-import static org.bukkit.Material.AIR;
-
-public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature implements org.bukkit.event.Listener {
+public class Main extends Feature implements Listener {
     final Map<Player, ItemStack> openshulkers = new HashMap<>();
     final Map<Player, Boolean> fromhand = new HashMap<>();
     final Map<UUID, Inventory> openinventories = new HashMap<>();
@@ -40,7 +43,7 @@ public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature 
         Events.registerListeners(this);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(UNUtilities.plugin, () -> {
             for (Player p : openshulkers.keySet()) {
-                if (openshulkers.get(p).getType() == AIR) p.closeInventory();
+                if (openshulkers.get(p).getType() == Material.AIR) p.closeInventory();
                 if (opencontainer.containsKey(p)
                         && opencontainer.get(p).getLocation() != null
                         && opencontainer.get(p).getLocation().getWorld() == p.getWorld())
@@ -80,7 +83,7 @@ public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature 
         if (e.isCancelled()) return;
         Player p = (Player) e.getWhoClicked();
         boolean c = UNUtilities.cfg.getBoolean(configPath + "canopeninchests");
-        if (openshulkers.containsKey(p)) if (openshulkers.get(p).getType() == AIR) {
+        if (openshulkers.containsKey(p)) if (openshulkers.get(p).getType() == Material.AIR) {
             e.setCancelled(true);
             p.closeInventory();
             return;
@@ -93,7 +96,8 @@ public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature 
         }
 
         if (e.getWhoClicked() instanceof Player && e.getClickedInventory() != null) {
-            if (e.getCurrentItem() != null && (openshulkers.containsKey(p) && e.getCurrentItem().equals(openshulkers.get(p)))) {
+            if (e.getCurrentItem() != null && (openshulkers.containsKey(p)
+                    && e.getCurrentItem().equals(openshulkers.get(p)))) {
                 e.setCancelled(true);
                 return;
             }
@@ -102,19 +106,26 @@ public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature 
                     return;
             InventoryType type = e.getClickedInventory().getType();
             String typeStr = type.toString();
-            if (typeStr.equals("WORKBENCH") || typeStr.equals("ANVIL") || typeStr.equals("BEACON") || typeStr.equals("MERCHANT") || typeStr.equals("ENCHANTING") || typeStr.equals("GRINDSTONE") || typeStr.equals("CARTOGRAPHY") || typeStr.equals("LOOM") || typeStr.equals("STONECUTTER"))
+            if (typeStr.equals("WORKBENCH") || typeStr.equals("ANVIL") || typeStr.equals("BEACON")
+                    || typeStr.equals("MERCHANT") || typeStr.equals("ENCHANTING") || typeStr.equals("GRINDSTONE")
+                    || typeStr.equals("CARTOGRAPHY") || typeStr.equals("LOOM") || typeStr.equals("STONECUTTER"))
                 return;
             if (type == InventoryType.CRAFTING && e.getRawSlot() >= 1 && e.getRawSlot() <= 4) return;
             if ((p.getInventory() == e.getClickedInventory()))
-                if (!UNUtilities.cfg.getBoolean(configPath + "canopenininventory") || !p.hasPermission("unutilities.pocketshulker.open_in_inventory"))
+                if (!UNUtilities.cfg.getBoolean(configPath + "canopenininventory")
+                        || !p.hasPermission("unutilities.pocketshulker.open_in_inventory"))
                     return;
             if (e.getSlotType() == InventoryType.SlotType.RESULT) return;
-            if (e.getClickedInventory() != null && e.getClickedInventory().getHolder() != null && e.getClickedInventory().getHolder().getClass().toString().endsWith(".CraftBarrel") && !UNUtilities.cfg.getBoolean(configPath + "canopeninbarrels"))
+            if (e.getClickedInventory() != null && e.getClickedInventory().getHolder() != null
+                    && e.getClickedInventory().getHolder().getClass().toString().endsWith(".CraftBarrel")
+                    && !UNUtilities.cfg.getBoolean(configPath + "canopeninbarrels"))
                 return;
-            if (!UNUtilities.cfg.getBoolean(configPath + "canopeninenderchest") && type == InventoryType.ENDER_CHEST)
+            if (!UNUtilities.cfg.getBoolean(configPath + "canopeninenderchest")
+                    && type == InventoryType.ENDER_CHEST)
                 return;
             for (String s : UNUtilities.cfg.getStringList(configPath + "blacklistedinventories"))
-                if (stripColor(p.getOpenInventory().getTitle()).contains(stripColor(Text.translateColor(s))))
+                if (ChatColor.stripColor(p.getOpenInventory().getTitle())
+                        .contains(ChatColor.stripColor(Text.translateColor(s))))
                     return;
             if (!UNUtilities.cfg.getBoolean(configPath + "shiftclicktoopen") || e.isShiftClick()) {
                 e.setCancelled(true);
@@ -144,7 +155,8 @@ public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature 
         if (e.getPlayer() instanceof Player) {
             Player p = (Player) e.getPlayer();
             if (saveShulker(p, p.getOpenInventory().getTitle()))
-                p.playSound(p.getLocation(), Sound.BLOCK_SHULKER_BOX_CLOSE, (float) UNUtilities.cfg.getDouble(configPath + "shulkervolume"), 1);
+                p.playSound(p.getLocation(), Sound.BLOCK_SHULKER_BOX_CLOSE,
+                        (float) UNUtilities.cfg.getDouble(configPath + "shulkervolume"), 1);
             openshulkers.remove(p);
         }
     }
@@ -153,10 +165,10 @@ public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature 
      * Opens the shulker if the air was clicked with one
      */
     @EventHandler
-    public void onClickAir(org.bukkit.event.player.PlayerInteractEvent e) {
+    public void onClickAir(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         boolean a = UNUtilities.cfg.getBoolean(configPath + "canopeninair");
-        if (a && (e.getClickedBlock() == null || e.getClickedBlock().getType() == AIR))
+        if (a && (e.getClickedBlock() == null || e.getClickedBlock().getType() == Material.AIR))
             if ((!UNUtilities.cfg.getBoolean(configPath + "shiftclicktoopen") || p.isSneaking()))
                 if (e.getAction() == Action.RIGHT_CLICK_AIR)
                     if (p.hasPermission("unutilities.pocketshulker.open_in_air")) {
@@ -167,7 +179,7 @@ public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature 
     }
 
     @EventHandler
-    public void onShulkerPlace(org.bukkit.event.block.BlockPlaceEvent e) {
+    public void onShulkerPlace(BlockPlaceEvent e) {
         if (e.getBlockPlaced().getType().toString().contains("SHULKER_BOX"))
             if (!UNUtilities.cfg.getBoolean(configPath + "canplaceshulker")) e.setCancelled(true);
     }
@@ -194,7 +206,9 @@ public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature 
     boolean saveShulker(Player p, String t) {
         try {
             if (openshulkers.containsKey(p))
-                if (t.equals(name) || (openshulkers.get(p).hasItemMeta() && openshulkers.get(p).getItemMeta().hasDisplayName() && (openshulkers.get(p).getItemMeta().getDisplayName().equals(t)))) {
+                if (t.equals(name) || (openshulkers.get(p).hasItemMeta()
+                        && openshulkers.get(p).getItemMeta().hasDisplayName()
+                        && (openshulkers.get(p).getItemMeta().getDisplayName().equals(t)))) {
                     ItemStack item = openshulkers.get(p);
                     if (item != null) {
                         BlockStateMeta meta = (BlockStateMeta) item.getItemMeta();
@@ -247,7 +261,8 @@ public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature 
                         opencontainer.put(p, p.getOpenInventory().getTopInventory());
                         Bukkit.getScheduler().scheduleSyncDelayedTask(UNUtilities.plugin, () -> {
                             p.openInventory(inv);
-                            p.playSound(p.getLocation(), Sound.BLOCK_SHULKER_BOX_OPEN, (float) UNUtilities.cfg.getDouble(configPath + "shulkervolume"), 1);
+                            p.playSound(p.getLocation(), Sound.BLOCK_SHULKER_BOX_OPEN,
+                                    (float) UNUtilities.cfg.getDouble(configPath + "shulkervolume"), 1);
                             openshulkers.put(p, i);
                             openinventories.put(p.getUniqueId(), p.getOpenInventory().getTopInventory());
                         }, 1);
@@ -264,7 +279,8 @@ public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature 
     }
 
     void setPvpTimer(Player p) {
-        if (UNUtilities.cfg.getBoolean(configPath + "disable-in-combat")) pvp_timer.put(p, System.currentTimeMillis());
+        if (UNUtilities.cfg.getBoolean(configPath + "disable-in-combat"))
+            pvp_timer.put(p, System.currentTimeMillis());
     }
 
     protected static class ShulkerHolder implements InventoryHolder {
