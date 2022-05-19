@@ -5,6 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Pillager;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class LimitPillagers extends id.universenetwork.utilities.Bukkit.Manager.
 
     @Override
     public List<String> TabComplete(CommandSender sender, String str, String[] args) {
-        List<String> arg = new java.util.ArrayList();
+        List<String> arg = new ArrayList();
         if (args.length == 1 && PLBoolean(ENABLED)) {
             arg.add("count");
             arg.add("remove");

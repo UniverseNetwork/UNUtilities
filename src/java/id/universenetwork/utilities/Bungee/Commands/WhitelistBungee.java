@@ -1,18 +1,22 @@
 package id.universenetwork.utilities.Bungee.Commands;
 
 import id.universenetwork.utilities.Bungee.Manager.Settings;
+import id.universenetwork.utilities.Bungee.Utils.Color;
+import id.universenetwork.utilities.Universal.Annotations.CommandProperties;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static id.universenetwork.utilities.Bungee.Enums.Whitelister.*;
 import static id.universenetwork.utilities.Bungee.UNUtilities.data;
 
-@id.universenetwork.utilities.Universal.Annotations.CommandProperties(Name = "WhitelistBungee", Permission = "unutilities.command.whitelistbungee", PlayerOnly = false, Aliases = {"whitelistb", "bwhitelist", "bungeewhitelist"})
+@CommandProperties(Name = "WhitelistBungee", Permission = "unutilities.command.whitelistbungee", PlayerOnly = false, Aliases = {"whitelistb", "bwhitelist", "bungeewhitelist"})
 public class WhitelistBungee extends id.universenetwork.utilities.Bungee.Manager.Commands {
     List<String> p;
 
@@ -59,7 +63,7 @@ public class WhitelistBungee extends id.universenetwork.utilities.Bungee.Manager
 
     @Override
     public Iterable<String> TabComplete(CommandSender Sender, String[] Args) {
-        java.util.List<String> arg = new java.util.ArrayList<>();
+        java.util.List<String> arg = new ArrayList<>();
         if (Settings.WBoolean(ENABLED)) {
             if (Args.length == 1) {
                 boolean enabled = data.getBoolean("whitelist.enabled");
@@ -72,7 +76,7 @@ public class WhitelistBungee extends id.universenetwork.utilities.Bungee.Manager
                 p = data.getStringList("whitelist.players");
                 if (Args[0].equalsIgnoreCase("add")) {
                     Collection<ProxiedPlayer> listPlayers = ProxyServer.getInstance().getPlayers();
-                    return listPlayers.stream().map(ProxiedPlayer::getName).collect(java.util.stream.Collectors.toList());
+                    return listPlayers.stream().map(ProxiedPlayer::getName).collect(Collectors.toList());
                 } else if (Args[0].equalsIgnoreCase("remove")) arg.addAll(p);
             }
         }
@@ -81,6 +85,6 @@ public class WhitelistBungee extends id.universenetwork.utilities.Bungee.Manager
 
     void sendUsage(CommandSender Sender) {
         List<String> l = Settings.WStringList(UM);
-        for (String s : l) Sender.sendMessage(id.universenetwork.utilities.Bungee.Utils.Color.Translator(s));
+        for (String s : l) Sender.sendMessage(Color.Translator(s));
     }
 }

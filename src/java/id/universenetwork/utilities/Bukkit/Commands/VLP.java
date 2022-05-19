@@ -1,8 +1,10 @@
 package id.universenetwork.utilities.Bukkit.Commands;
 
+import id.universenetwork.utilities.Bukkit.Manager.Commands;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 
+import java.util.Collections;
 import java.util.List;
 
 import static id.universenetwork.utilities.Bukkit.Enums.VillagerOptimization.DISABLEDMSG;
@@ -12,7 +14,7 @@ import static id.universenetwork.utilities.Bukkit.Utils.Color.sendTranslated;
 import static org.bukkit.ChatColor.DARK_GREEN;
 import static org.bukkit.ChatColor.GREEN;
 
-public class VLP extends id.universenetwork.utilities.Bukkit.Manager.Commands {
+public class VLP extends Commands {
     final boolean Enabled;
 
     public VLP(boolean Enabled) {
@@ -30,6 +32,6 @@ public class VLP extends id.universenetwork.utilities.Bukkit.Manager.Commands {
 
     @Override
     public List<String> TabComplete(CommandSender sender, String str, String[] args) {
-        return java.util.Collections.emptyList();
+        return Collections.emptyList();
     }
 }

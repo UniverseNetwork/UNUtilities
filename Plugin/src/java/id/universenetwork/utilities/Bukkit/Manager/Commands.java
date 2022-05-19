@@ -10,7 +10,9 @@ import cloud.commandframework.meta.CommandMeta;
 import cloud.commandframework.minecraft.extras.MinecraftExceptionHandler;
 import cloud.commandframework.minecraft.extras.MinecraftHelp;
 import cloud.commandframework.paper.PaperCommandManager;
+import id.universenetwork.utilities.Bukkit.Templates.Command;
 import id.universenetwork.utilities.Bukkit.Utils.Logger;
+import id.universenetwork.utilities.Bukkit.Utils.Text;
 import lombok.Getter;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.command.CommandSender;
@@ -42,13 +44,13 @@ public final class Commands {
         if (manager.queryCapability(CloudBukkitCapabilities.BRIGADIER)) manager.registerBrigadier();
         if (manager.queryCapability(CloudBukkitCapabilities.ASYNCHRONOUS_COMPLETION))
             manager.registerAsynchronousCompletions();
-        new MinecraftExceptionHandler<CommandSender>().withNoPermissionHandler().withDecorator(component -> text().append(text(id.universenetwork.utilities.Bukkit.Utils.Text.translateColor(cfg.getString("Settings.no-perm")))).build()).apply(manager, bukkitAudiences::sender);
+        new MinecraftExceptionHandler<CommandSender>().withNoPermissionHandler().withDecorator(component -> text().append(text(Text.translateColor(cfg.getString("Settings.no-perm")))).build()).apply(manager, bukkitAudiences::sender);
         new MinecraftExceptionHandler<CommandSender>().withInvalidSyntaxHandler().withInvalidSenderHandler().withNoPermissionHandler().withArgumentParsingHandler().withCommandExecutionHandler().withDecorator(component -> text().append(text(prefix)).append(component).build()).apply(manager, bukkitAudiences::sender);
         minecraftHelp.setHelpColors(MinecraftHelp.HelpColors.of(color(5592405), color(16777045), color(11184810), color(5635925), color(5592405)));
         Logger.info("&aCommand Manager has been initialized!");
     }
 
-    public static void register(id.universenetwork.utilities.Bukkit.Templates.Command cmd) {
+    public static void register(Command cmd) {
         try {
             annotationParser.parse(cmd);
         } catch (Exception e) {

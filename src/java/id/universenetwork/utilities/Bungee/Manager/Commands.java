@@ -7,12 +7,16 @@ import id.universenetwork.utilities.Bungee.Commands.WhitelistBungee;
 import id.universenetwork.utilities.Bungee.UNUtilities;
 import id.universenetwork.utilities.Universal.Annotations.CommandProperties;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.plugin.Command;
+import net.md_5.bungee.api.plugin.TabExecutor;
+
+import java.util.Objects;
 
 public abstract class Commands {
     final CommandProperties p;
 
     public Commands() {
-        p = java.util.Objects.requireNonNull(getClass().getDeclaredAnnotation(CommandProperties.class), "Commands must be have CommandProperties Annotation");
+        p = Objects.requireNonNull(getClass().getDeclaredAnnotation(CommandProperties.class), "Commands must be have CommandProperties Annotation");
         UNUtilities.plugin.getProxy().getPluginManager().registerCommand(UNUtilities.plugin, new Build(p.Name()));
     }
 
@@ -29,7 +33,7 @@ public abstract class Commands {
 
     public abstract Iterable<String> TabComplete(CommandSender Sender, String[] Args);
 
-    protected class Build extends net.md_5.bungee.api.plugin.Command implements net.md_5.bungee.api.plugin.TabExecutor {
+    protected class Build extends Command implements TabExecutor {
         public Build(String Name) {
             super(Name);
         }

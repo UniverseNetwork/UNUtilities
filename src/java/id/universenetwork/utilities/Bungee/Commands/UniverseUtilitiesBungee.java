@@ -1,14 +1,19 @@
 package id.universenetwork.utilities.Bungee.Commands;
 
+import id.universenetwork.utilities.Bungee.Manager.Commands;
 import id.universenetwork.utilities.Bungee.UNUtilities;
 import id.universenetwork.utilities.Bungee.Utils.YamlBuilder;
+import id.universenetwork.utilities.Universal.Annotations.CommandProperties;
 import id.universenetwork.utilities.Universal.Enums.Settings;
 import net.md_5.bungee.api.CommandSender;
 
+import java.util.Collections;
+import java.util.List;
+
 import static id.universenetwork.utilities.Bungee.Utils.Color.sendTranslate;
 
-@id.universenetwork.utilities.Universal.Annotations.CommandProperties(Name = "UniverseUtilitiesBungee", Permission = "unutilities.command.reload", PlayerOnly = false, Aliases = {"unub", "uub"})
-public class UniverseUtilitiesBungee extends id.universenetwork.utilities.Bungee.Manager.Commands {
+@CommandProperties(Name = "UniverseUtilitiesBungee", Permission = "unutilities.command.reload", PlayerOnly = false, Aliases = {"unub", "uub"})
+public class UniverseUtilitiesBungee extends Commands {
     @Override
     public void Execute(CommandSender Sender, String[] Args) {
         if (Args.length == 1 && (Args[0].equalsIgnoreCase("reload") || Args[0].equalsIgnoreCase("rl"))) {
@@ -30,11 +35,11 @@ public class UniverseUtilitiesBungee extends id.universenetwork.utilities.Bungee
     @Override
     public Iterable<String> TabComplete(CommandSender Sender, String[] Args) {
         if (Args.length == 1) {
-            java.util.List<String> arg = new java.util.ArrayList<>();
+            List<String> arg = new java.util.ArrayList<>();
             arg.add("reload");
             arg.add("rl");
             return arg;
         }
-        return java.util.Collections.emptyList();
+        return Collections.emptyList();
     }
 }

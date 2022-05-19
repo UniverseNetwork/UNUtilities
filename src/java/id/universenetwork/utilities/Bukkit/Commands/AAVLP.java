@@ -1,11 +1,11 @@
 package id.universenetwork.utilities.Bukkit.Commands;
 
 import id.universenetwork.utilities.Bukkit.Manager.Commands;
+import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
+import it.unimi.dsi.fastutil.longs.LongSet;
 import org.bukkit.Chunk;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.libs.it.unimi.dsi.fastutil.longs.LongOpenHashSet;
-import org.bukkit.craftbukkit.libs.it.unimi.dsi.fastutil.longs.LongSet;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;

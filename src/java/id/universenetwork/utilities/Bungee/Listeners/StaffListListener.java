@@ -3,14 +3,17 @@ package id.universenetwork.utilities.Bungee.Listeners;
 import id.universenetwork.utilities.Bungee.Enums.StaffList;
 import id.universenetwork.utilities.Bungee.Manager.Settings;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.event.PlayerDisconnectEvent;
+import net.md_5.bungee.api.event.PostLoginEvent;
+import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
 import static net.md_5.bungee.api.ProxyServer.getInstance;
-import static org.apache.commons.lang3.StringUtils.replace;
+import static org.apache.commons.lang.StringUtils.replace;
 
-public class StaffListListener implements net.md_5.bungee.api.plugin.Listener {
+public class StaffListListener implements Listener {
     @EventHandler
-    public void onJoin(net.md_5.bungee.api.event.PostLoginEvent e) {
+    public void onJoin(PostLoginEvent e) {
         if (Settings.SLBoolean(StaffList.ENABLED) && e.getPlayer().hasPermission("unutilities.command.stafflist"))
             for (ProxiedPlayer p : getInstance().getPlayers())
                 if (p.hasPermission("unutilities.command.stafflist"))
@@ -18,7 +21,7 @@ public class StaffListListener implements net.md_5.bungee.api.plugin.Listener {
     }
 
     @EventHandler
-    public void onLeave(net.md_5.bungee.api.event.PlayerDisconnectEvent e) {
+    public void onLeave(PlayerDisconnectEvent e) {
         if (Settings.SLBoolean(StaffList.ENABLED) && e.getPlayer().hasPermission("unutilities.command.stafflist"))
             for (ProxiedPlayer p : getInstance().getPlayers())
                 if (p.hasPermission("unutilities.command.stafflist"))

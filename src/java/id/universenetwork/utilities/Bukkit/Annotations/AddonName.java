@@ -1,7 +1,10 @@
 package id.universenetwork.utilities.Bukkit.Annotations;
 
-@java.lang.annotation.Target(java.lang.annotation.ElementType.TYPE)
-@java.lang.annotation.Retention(java.lang.annotation.RetentionPolicy.RUNTIME)
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
+@Target(java.lang.annotation.ElementType.TYPE)
+@Retention(java.lang.annotation.RetentionPolicy.RUNTIME)
 public @interface AddonName {
     String value();
 }

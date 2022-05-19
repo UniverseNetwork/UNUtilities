@@ -7,12 +7,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.List;
 
 import static net.md_5.bungee.config.ConfigurationProvider.getProvider;
 
 public class YamlBuilder {
-    final net.md_5.bungee.config.Configuration c;
+    final Configuration c;
     final String n;
 
     public YamlBuilder(String Name) {
@@ -21,8 +23,8 @@ public class YamlBuilder {
             if (!UNUtilities.plugin.getDataFolder().exists()) UNUtilities.plugin.getDataFolder().mkdir();
             File f = new File(UNUtilities.plugin.getDataFolder(), Name);
             if (!f.exists())
-                try (java.io.InputStream in = UNUtilities.plugin.getResourceAsStream(Name)) {
-                    java.nio.file.Files.copy(in, f.toPath());
+                try (InputStream in = UNUtilities.plugin.getResourceAsStream(Name)) {
+                    Files.copy(in, f.toPath());
                 }
             c = getProvider(YamlConfiguration.class).load(f);
         } catch (IOException e) {

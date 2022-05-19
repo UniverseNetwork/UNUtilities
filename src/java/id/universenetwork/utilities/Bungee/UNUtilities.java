@@ -1,5 +1,8 @@
 package id.universenetwork.utilities.Bungee;
 
+import id.universenetwork.utilities.Bungee.Manager.Commands;
+import id.universenetwork.utilities.Bungee.Manager.Listeners;
+import id.universenetwork.utilities.Bungee.Manager.Settings;
 import id.universenetwork.utilities.Bungee.Utils.YamlBuilder;
 
 public class UNUtilities extends net.md_5.bungee.api.plugin.Plugin {
@@ -13,7 +16,7 @@ public class UNUtilities extends net.md_5.bungee.api.plugin.Plugin {
         plugin = this;
         getLogger().info("§ePreparing Settings Manager...");
         settings = new YamlBuilder("settings.yml");
-        prefix = id.universenetwork.utilities.Bungee.Manager.Settings.Settings(id.universenetwork.utilities.Universal.Enums.Settings.PREFIX);
+        prefix = Settings.Settings(id.universenetwork.utilities.Universal.Enums.Settings.PREFIX);
         System.out.println(UNUtilities.prefix + " §aSettings Manager have been prepared");
         data = new YamlBuilder("data.yml");
         System.out.println("\n\n\n" +
@@ -30,8 +33,8 @@ public class UNUtilities extends net.md_5.bungee.api.plugin.Plugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        new id.universenetwork.utilities.Bungee.Manager.Listeners();
-        id.universenetwork.utilities.Bungee.Manager.Commands.Register();
+        new Listeners();
+        Commands.Register();
         System.out.println("\n\n\n" +
                 "§b██╗░░░██╗§e███╗░░██╗§9██╗░░░██╗████████╗██╗██╗░░░░░██╗████████╗██╗███████╗░██████╗\n" +
                 "§b██║░░░██║§e████╗░██║§9██║░░░██║╚══██╔══╝██║██║░░░░░██║╚══██╔══╝██║██╔════╝██╔════╝\n" +

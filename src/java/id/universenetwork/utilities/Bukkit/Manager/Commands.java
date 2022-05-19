@@ -6,6 +6,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,7 +27,7 @@ public abstract class Commands extends org.bukkit.command.Command {
         this.PlayerOnly = PlayerOnly;
         this.Aliases = Aliases;
         try {
-            java.lang.reflect.Field commandMapField = Bukkit.getServer().getClass().getDeclaredField("commandMap");
+            Field commandMapField = Bukkit.getServer().getClass().getDeclaredField("commandMap");
             commandMapField.setAccessible(true);
             CommandMap commandMap = (CommandMap) commandMapField.get(Bukkit.getServer());
             commandMap.register(getLabel(), this);
@@ -78,7 +80,7 @@ public abstract class Commands extends org.bukkit.command.Command {
     @Override
     public List<String> getAliases() {
         if (Aliases == null) return Collections.emptyList();
-        List<String> alias = new java.util.ArrayList<>();
+        List<String> alias = new ArrayList<>();
         Collections.addAll(alias, Aliases);
         return alias;
     }
