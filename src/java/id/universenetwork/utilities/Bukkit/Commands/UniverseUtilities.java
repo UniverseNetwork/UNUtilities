@@ -3,6 +3,7 @@ package id.universenetwork.utilities.Bukkit.Commands;
 import id.universenetwork.utilities.Bukkit.Manager.Config;
 import org.bukkit.command.CommandSender;
 
+import java.util.Collections;
 import java.util.List;
 
 import static id.universenetwork.utilities.Bukkit.Utils.Color.sendTranslated;
@@ -32,6 +33,6 @@ public class UniverseUtilities extends id.universenetwork.utilities.Bukkit.Manag
             arg.add("rl");
             return arg;
         }
-        return java.util.Collections.emptyList();
+        return Collections.emptyList();
     }
 }

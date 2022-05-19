@@ -8,7 +8,8 @@ public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature 
 
     @org.bukkit.event.EventHandler
     public void onEntityPlace(org.bukkit.event.entity.EntityPlaceEvent e) {
-        if (e.getEntityType() == org.bukkit.entity.EntityType.ARMOR_STAND && id.universenetwork.utilities.Bukkit.UNUtilities.cfg.getBoolean(configPath + "enabled"))
+        if (e.getEntityType() == org.bukkit.entity.EntityType.ARMOR_STAND
+                && id.universenetwork.utilities.Bukkit.UNUtilities.cfg.getBoolean(configPath + "enabled"))
             ((org.bukkit.entity.ArmorStand) e.getEntity()).setArms(true);
     }
 }

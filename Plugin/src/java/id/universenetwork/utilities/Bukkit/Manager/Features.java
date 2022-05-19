@@ -5,6 +5,8 @@ import id.universenetwork.utilities.Bukkit.Utils.Logger;
 import id.universenetwork.utilities.Bukkit.Utils.TookTimer;
 import org.bukkit.configuration.ConfigurationSection;
 
+import java.util.logging.Level;
+
 import static id.universenetwork.utilities.Bukkit.UNUtilities.cfg;
 
 public class Features {
@@ -22,7 +24,7 @@ public class Features {
                 }
             } catch (Exception e) {
                 if (e instanceof ClassNotFoundException) continue;
-                Logger.log(java.util.logging.Level.SEVERE, "Failed to register feature class:", e);
+                Logger.log(Level.SEVERE, "Failed to register feature class:", e);
             }
         Logger.info("&bTook " + t.get() + "ms &ato load &b" + a + " &aFeatures!");
     }

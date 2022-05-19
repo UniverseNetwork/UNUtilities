@@ -1,10 +1,14 @@
 package id.universenetwork.utilities.Bukkit.Utils;
 
+import id.universenetwork.utilities.Bukkit.UNUtilities;
 import id.universenetwork.utilities.Universal.Enums.Font;
+import lombok.experimental.UtilityClass;
+import org.apache.commons.lang.StringUtils;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@lombok.experimental.UtilityClass
+@UtilityClass
 public class Text {
     final static int CENTER_PX = 154;
 
@@ -96,6 +100,6 @@ public class Text {
      * Translate color codes to actual color using Bukkit API and replace %p% with prefix
      */
     public static String translateColor(String txt) {
-        return org.apache.commons.lang.StringUtils.replace(org.bukkit.ChatColor.translateAlternateColorCodes('&', txt), "%p%", id.universenetwork.utilities.Bukkit.UNUtilities.prefix);
+        return StringUtils.replace(ChatColor.translateAlternateColorCodes('&', txt), "%p%", UNUtilities.prefix);
     }
 }

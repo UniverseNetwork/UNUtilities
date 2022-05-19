@@ -6,6 +6,7 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
+import java.util.Iterator;
 import java.util.List;
 
 import static id.universenetwork.utilities.Bukkit.Enums.PillagersLimiter.*;
@@ -65,8 +66,8 @@ public class PillagersLimiterListener implements org.bukkit.event.Listener {
             if (Config.PLBoolean(STOPPER_USE_HARD_LIMIT)) {
                 int pillagerCount = 0;
                 World world;
-                for (java.util.Iterator i = org.bukkit.Bukkit.getWorlds().iterator(); i.hasNext(); pillagerCount += world.getEntitiesByClasses(new Class[]{Pillager.class}).size())
-                    world = (World) i.next();
+                for (Iterator<World> i = org.bukkit.Bukkit.getWorlds().iterator(); i.hasNext(); pillagerCount += world.getEntitiesByClasses(new Class[]{Pillager.class}).size())
+                    world = i.next();
                 if (pillagerCount <= Config.PLInt(STOPPER_HARD_LIMIT_AMOUNT)) return;
                 e.setCancelled(true);
             }

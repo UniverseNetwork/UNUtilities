@@ -5,7 +5,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 public class UNUtilitiesDisableEvent extends Event {
-    static final HandlerList handler = new HandlerList();
+    private static final HandlerList handler = new HandlerList();
 
     @NotNull
     @Override

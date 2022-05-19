@@ -4,21 +4,27 @@ import id.universenetwork.utilities.Bukkit.Enums.MaxPlayerChangerCommand;
 import id.universenetwork.utilities.Bukkit.Enums.VillagerOptimization;
 import id.universenetwork.utilities.Bukkit.Manager.*;
 import org.bukkit.NamespacedKey;
+import org.bukkit.scheduler.BukkitTask;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.io.File;
+import java.io.OutputStream;
 import java.nio.file.Files;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
     // I could replace this with a LongSet but for some reason craftbukkit won't import
     // it's micro optimizations anyways :P
-    public static final java.util.Set<Point> VANILLA_CHUNKS = new java.util.HashSet<>();
+    public static final Set<Point> VANILLA_CHUNKS = new HashSet<>();
     public static long maxChunks;
     public static UNUtilities plugin;
     public static String prefix;
     public static Boolean aweHook = false;
-    org.bukkit.scheduler.BukkitTask task;
+    BukkitTask task;
 
     public static boolean isInVanilla(org.bukkit.entity.Entity villager) {
         org.bukkit.Location loc = villager.getLocation();
@@ -120,7 +126,7 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
             if (properties.getProperty("max-players").equals(maxPlayers)) return;
             System.out.println(prefix + " §eSaving max players to server.properties...");
             properties.setProperty("max-players", maxPlayers);
-            try (java.io.OutputStream os = Files.newOutputStream(propertiesFile.toPath())) {
+            try (OutputStream os = Files.newOutputStream(propertiesFile.toPath())) {
                 properties.store(os, "Minecraft server properties");
             }
         } catch (java.io.IOException e) {
@@ -129,8 +135,8 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
     }
 
     public void loadAAVLP() {
-        @org.jetbrains.annotations.NotNull java.util.List<Long> chunk = Data.get().getLongList("chunks");
-        if (chunk == null) saveAAVLP();
+        @NotNull List<Long> chunk = Data.get().getLongList("chunks");
+        saveAAVLP();
         chunk.stream().mapToLong(Long::longValue).mapToObj(UNUtilities::to).forEach(VANILLA_CHUNKS::add);
     }
 

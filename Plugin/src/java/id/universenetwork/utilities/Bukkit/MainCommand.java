@@ -3,12 +3,14 @@ package id.universenetwork.utilities.Bukkit;
 import cloud.commandframework.annotations.CommandDescription;
 import cloud.commandframework.annotations.CommandMethod;
 import cloud.commandframework.annotations.CommandPermission;
+import id.universenetwork.utilities.Bukkit.Templates.Command;
 import id.universenetwork.utilities.Bukkit.Utils.Text;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import static id.universenetwork.utilities.Bukkit.UNUtilities.*;
 
-public class MainCommand extends id.universenetwork.utilities.Bukkit.Templates.Command {
+public class MainCommand extends Command {
     @CommandMethod("universeutilities|unutilities|unu|uu")
     @CommandDescription("Main command of UNUtilities")
     public void cmd(CommandSender sender) {
@@ -22,7 +24,7 @@ public class MainCommand extends id.universenetwork.utilities.Bukkit.Templates.C
     @CommandPermission("unutilities.command.reload")
     public void cmdReload(CommandSender sender) {
         reloadCfg();
-        if (sender instanceof org.bukkit.entity.Player)
+        if (sender instanceof Player)
             Text.send(sender, cfg.getString("Settings.reload"));
     }
 }

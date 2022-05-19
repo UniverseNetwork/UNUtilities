@@ -1,5 +1,7 @@
 package id.universenetwork.utilities.Bukkit.Features.PocketShulker;
 
+import id.universenetwork.utilities.Bukkit.Events.ReloadConfigEvent;
+import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events;
 import id.universenetwork.utilities.Bukkit.UNUtilities;
 import id.universenetwork.utilities.Bukkit.Utils.Text;
 import org.bukkit.Bukkit;
@@ -7,8 +9,10 @@ import org.bukkit.Sound;
 import org.bukkit.block.ShulkerBox;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.*;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 
@@ -26,21 +30,22 @@ public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature 
     String name;
 
     @EventHandler
-    public void onConfigReload(id.universenetwork.utilities.Bukkit.Events.ReloadConfigEvent e) {
+    public void onConfigReload(ReloadConfigEvent e) {
         name = Text.translateColor(UNUtilities.cfg.getString(configPath + "defaultname", "&5Shulker Box"));
     }
 
     @Override
     public void Load() {
         if (!UNUtilities.cfg.getBoolean(configPath + "enabled")) return;
-        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this);
+        Events.registerListeners(this);
         Bukkit.getScheduler().scheduleSyncRepeatingTask(UNUtilities.plugin, () -> {
             for (Player p : openshulkers.keySet()) {
                 if (openshulkers.get(p).getType() == AIR) p.closeInventory();
-                if (opencontainer.containsKey(p)) if (opencontainer.get(p).getLocation() != null)
-                    if (opencontainer.get(p).getLocation() != null && opencontainer.get(p).getLocation().getWorld() == p.getWorld())
-                        if (opencontainer.get(p).getLocation().distance(p.getLocation()) > 6)
-                            p.closeInventory();
+                if (opencontainer.containsKey(p)
+                        && opencontainer.get(p).getLocation() != null
+                        && opencontainer.get(p).getLocation().getWorld() == p.getWorld())
+                    if (opencontainer.get(p).getLocation().distance(p.getLocation()) > 6)
+                        p.closeInventory();
             }
         }, 1L, 1L);
     }
@@ -93,7 +98,7 @@ public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature 
                 return;
             }
             if (e.getClickedInventory() != null && (e.getClickedInventory().getType() == InventoryType.CHEST))
-                if (!c || (c && !p.hasPermission("unutilities.pocketshulker.open_in_chests")))
+                if (!c || !p.hasPermission("unutilities.pocketshulker.open_in_chests"))
                     return;
             InventoryType type = e.getClickedInventory().getType();
             String typeStr = type.toString();
@@ -153,8 +158,8 @@ public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature 
         boolean a = UNUtilities.cfg.getBoolean(configPath + "canopeninair");
         if (a && (e.getClickedBlock() == null || e.getClickedBlock().getType() == AIR))
             if ((!UNUtilities.cfg.getBoolean(configPath + "shiftclicktoopen") || p.isSneaking()))
-                if (e.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_AIR)
-                    if (a && p.hasPermission("unutilities.pocketshulker.open_in_air")) {
+                if (e.getAction() == Action.RIGHT_CLICK_AIR)
+                    if (p.hasPermission("unutilities.pocketshulker.open_in_air")) {
                         ItemStack item = e.getItem();
                         openInventoryIfShulker(item, e.getPlayer());
                         fromhand.put(p, true);
@@ -262,7 +267,7 @@ public class Main extends id.universenetwork.utilities.Bukkit.Templates.Feature 
         if (UNUtilities.cfg.getBoolean(configPath + "disable-in-combat")) pvp_timer.put(p, System.currentTimeMillis());
     }
 
-    protected static class ShulkerHolder implements org.bukkit.inventory.InventoryHolder {
+    protected static class ShulkerHolder implements InventoryHolder {
         @Override
         public Inventory getInventory() {
             return null;

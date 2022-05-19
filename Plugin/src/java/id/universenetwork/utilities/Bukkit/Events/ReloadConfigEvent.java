@@ -1,12 +1,13 @@
 package id.universenetwork.utilities.Bukkit.Events;
 
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 public class ReloadConfigEvent extends org.bukkit.event.Event {
-    static final HandlerList handler = new HandlerList();
+    private static final HandlerList handler = new HandlerList();
 
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return handler;
     }
 
