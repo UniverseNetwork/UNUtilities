@@ -4,9 +4,9 @@ import java.text.DecimalFormat;
 
 @lombok.experimental.UtilityClass
 public final class MachineLore {
-    static final DecimalFormat FORMAT = new DecimalFormat("###,###,###,###,###,###.#");
-    static final double TPS = 20D / io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getTickerTask().getTickRate();
-    static final String PREFIX = "&8\u21E8 &e\u26A1 &7";
+    private static final DecimalFormat FORMAT = new DecimalFormat("###,###,###,###,###,###.#");
+    private static final double TPS = 20D / io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getTickerTask().getTickRate();
+    private static final String PREFIX = "&8\u21E8 &e\u26A1 &7";
 
     public static String energyPerSecond(int energy) {
         return PREFIX + formatEnergy(energy) + " J/s";

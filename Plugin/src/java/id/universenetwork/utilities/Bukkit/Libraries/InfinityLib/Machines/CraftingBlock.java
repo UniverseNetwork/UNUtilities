@@ -1,24 +1,37 @@
 package id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Machines;
 
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemStackSnapshot;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
+import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import static org.bukkit.ChatColor.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CraftingBlock extends MenuBlock {
-    public static final ItemStack CLICK_TO_CRAFT = new io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack(org.bukkit.Material.LIME_STAINED_GLASS_PANE, "&aClick To Craft!");
+    public static final ItemStack CLICK_TO_CRAFT =
+            new CustomItemStack(Material.LIME_STAINED_GLASS_PANE, "&aClick To Craft!");
 
     @lombok.Setter
     protected MachineLayout layout = MachineLayout.CRAFTING_DEFAULT;
-    final java.util.List<CraftingBlockRecipe> recipes = new java.util.ArrayList<>();
+    private final List<CraftingBlockRecipe> recipes = new ArrayList<>();
 
-    public CraftingBlock(io.github.thebusybiscuit.slimefun4.api.items.ItemGroup category, io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack item, io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType recipeType, ItemStack[] recipe) {
-        super(category, item, recipeType, recipe);
+    public CraftingBlock(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        super(itemGroup, item, recipeType, recipe);
     }
 
-    protected void craft(Block b, BlockMenu menu, org.bukkit.entity.Player p) {
+    protected void craft(Block b, BlockMenu menu, Player p) {
         int[] slots = layout.inputSlots();
         ItemStack[] input = new ItemStack[slots.length];
         for (int i = 0; i < slots.length; i++) input[i] = menu.getItemInSlot(slots[i]);
@@ -29,20 +42,20 @@ public class CraftingBlock extends MenuBlock {
                 onSuccessfulCraft(menu, output);
                 menu.pushItem(output, layout.outputSlots());
                 recipe.consume(input);
-                p.sendMessage(GREEN + "Successfully Crafted: " + io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils.getItemName(output));
-            } else p.sendMessage(GOLD + "Not Enough Room!");
-        } else p.sendMessage(RED + "Invalid Recipe!");
+                p.sendMessage(ChatColor.GREEN + "Successfully Crafted: " + ItemUtils.getItemName(output));
+            } else p.sendMessage(ChatColor.GOLD + "Not Enough Room!");
+        } else p.sendMessage(ChatColor.RED + "Invalid Recipe!");
     }
 
     protected void onSuccessfulCraft(BlockMenu menu, ItemStack toOutput) {
     }
 
     @Override
-    protected void setup(me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset preset) {
+    protected void setup(BlockMenuPreset preset) {
         preset.drawBackground(OUTPUT_BORDER, layout.outputBorder());
         preset.drawBackground(INPUT_BORDER, layout.inputBorder());
         preset.drawBackground(BACKGROUND_ITEM, layout.background());
-        preset.addItem(layout.statusSlot(), CLICK_TO_CRAFT, io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils.getEmptyClickHandler());
+        preset.addItem(layout.statusSlot(), CLICK_TO_CRAFT, ChestMenuUtils.getEmptyClickHandler());
     }
 
     @Override
@@ -72,7 +85,7 @@ public class CraftingBlock extends MenuBlock {
     }
 
     @Override
-    protected final int[] getInputSlots(me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu menu, ItemStack input) {
+    protected final int[] getInputSlots(DirtyChestMenu menu, ItemStack input) {
         return new int[0];
     }
 

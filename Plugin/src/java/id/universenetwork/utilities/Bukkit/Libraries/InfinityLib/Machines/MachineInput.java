@@ -2,8 +2,11 @@ package id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Machines;
 
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 final class MachineInput {
-    final java.util.List<ItemStack> items = new java.util.ArrayList<>(2);
+    final List<ItemStack> items = new ArrayList<>(2);
     int amount;
 
     MachineInput(ItemStack item) {

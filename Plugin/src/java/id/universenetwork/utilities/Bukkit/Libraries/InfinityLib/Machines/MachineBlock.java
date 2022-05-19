@@ -1,15 +1,26 @@
 package id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Machines;
 
+import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.StackUtils;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class MachineBlock extends AbstractMachineBlock {
     @lombok.Setter
     protected MachineLayout layout = MachineLayout.MACHINE_DEFAULT;
-    final java.util.List<MachineBlockRecipe> recipes = new java.util.ArrayList<>();
+    final List<MachineBlockRecipe> recipes = new ArrayList<>();
     int ticksPerOutput = -1;
 
-    public MachineBlock(io.github.thebusybiscuit.slimefun4.api.items.ItemGroup category, io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack item, io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType recipeType, ItemStack[] recipe) {
-        super(category, item, recipeType, recipe);
+    public MachineBlock(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        super(itemGroup, item, recipeType, recipe);
     }
 
     public MachineBlock addRecipe(ItemStack output, ItemStack... inputs) {
@@ -31,11 +42,11 @@ public final class MachineBlock extends AbstractMachineBlock {
     }
 
     @Override
-    protected void setup(me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset preset) {
+    protected void setup(BlockMenuPreset preset) {
         preset.drawBackground(OUTPUT_BORDER, layout.outputBorder());
         preset.drawBackground(INPUT_BORDER, layout.inputBorder());
         preset.drawBackground(BACKGROUND_ITEM, layout.background());
-        preset.addItem(layout.statusSlot(), IDLE_ITEM, io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils.getEmptyClickHandler());
+        preset.addItem(layout.statusSlot(), IDLE_ITEM, ChestMenuUtils.getEmptyClickHandler());
     }
 
     @Override
@@ -56,7 +67,7 @@ public final class MachineBlock extends AbstractMachineBlock {
     }
 
     @Override
-    protected boolean process(org.bukkit.block.Block b, me.mrCookieSlime.Slimefun.api.inventory.BlockMenu menu) {
+    protected boolean process(Block b, BlockMenu menu) {
         //if (slimefunTickCount % ticksPerOutput != 0) return true;
         int[] slots = layout.inputSlots();
         ItemStack[] input = new ItemStack[slots.length];
@@ -81,7 +92,7 @@ public final class MachineBlock extends AbstractMachineBlock {
         java.util.Map<String, MachineInput> map = new java.util.HashMap<>(2, 1F);
         for (ItemStack item : items)
             if (item != null) {
-                String string = id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.StackUtils.getId(item);
+                String string = StackUtils.getId(item);
                 if (string == null) string = item.getType().name();
                 map.compute(string, (str, input) -> input == null ? new MachineInput(item) : input.add(item));
             }

@@ -1,28 +1,40 @@
 package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SMG.Items;
 
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.items.settings.IntRangeSetting;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.blocks.BlockPosition;
+import io.github.thebusybiscuit.slimefun4.libraries.paperlib.PaperLib;
+import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
+import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MaterialGenerator extends SlimefunItem {
-    static final java.util.Map<BlockPosition, Integer> generatorProgress = new java.util.HashMap<>();
-    final io.github.thebusybiscuit.slimefun4.api.items.ItemSetting<Integer> rate;
+    private static final Map<BlockPosition, Integer> generatorProgress = new HashMap<>();
+    final ItemSetting<Integer> rate;
     ItemStack item;
 
-    public MaterialGenerator(io.github.thebusybiscuit.slimefun4.api.items.ItemGroup itemGroup, io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack item, io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType recipeType, ItemStack[] recipe, int defaultRate) {
+    public MaterialGenerator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe,
+                             int defaultRate) {
         super(itemGroup, item, recipeType, recipe);
-        rate = new io.github.thebusybiscuit.slimefun4.api.items.settings.IntRangeSetting(this, "rate", 2, defaultRate, 1000);
+        rate = new IntRangeSetting(this, "rate", 2, defaultRate, 1000);
         addItemSetting(rate);
     }
 
     @Override
     public void preRegister() {
-        addItemHandler(new me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker() {
+        addItemHandler(new BlockTicker() {
             @Override
-            public void tick(Block b, SlimefunItem sf, me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config data) {
+            public void tick(Block b, SlimefunItem sf, Config data) {
                 MaterialGenerator.this.tick(b);
             }
 
@@ -36,7 +48,7 @@ public class MaterialGenerator extends SlimefunItem {
     public void tick(Block b) {
         Block targetBlock = b.getRelative(org.bukkit.block.BlockFace.UP);
         if (targetBlock.getType() == Material.CHEST) {
-            org.bukkit.block.BlockState state = io.github.thebusybiscuit.slimefun4.libraries.paperlib.PaperLib.getBlockState(targetBlock, false).getState();
+            org.bukkit.block.BlockState state = PaperLib.getBlockState(targetBlock, false).getState();
             if (state instanceof InventoryHolder) {
                 org.bukkit.inventory.Inventory inv = ((InventoryHolder) state).getInventory();
                 if (inv.firstEmpty() != -1) {

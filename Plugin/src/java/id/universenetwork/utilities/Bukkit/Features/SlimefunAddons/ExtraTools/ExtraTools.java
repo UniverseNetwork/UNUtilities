@@ -8,7 +8,7 @@ import static id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraT
 import static id.universenetwork.utilities.Bukkit.UNUtilities.createKey;
 
 public class ExtraTools extends SfAddon {
-    int researchId = 4100;
+    private int researchId = 4100;
 
     @Override
     public void Load() {

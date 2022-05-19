@@ -1,16 +1,23 @@
 package id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Machines;
 
+import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
+import lombok.Setter;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.block.Block;
+import org.bukkit.inventory.ItemStack;
 
-@lombok.Setter
-public abstract class AbstractMachineBlock extends TickingMenuBlock implements io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent {
+@Setter
+public abstract class AbstractMachineBlock extends TickingMenuBlock implements EnergyNetComponent {
     protected int energyPerTick = -1;
     protected int energyCapacity = -1;
 
-    public AbstractMachineBlock(io.github.thebusybiscuit.slimefun4.api.items.ItemGroup category, io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack item, io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType recipeType, org.bukkit.inventory.ItemStack[] recipe) {
-        super(category, item, recipeType, recipe);
+    public AbstractMachineBlock(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+        super(itemGroup, item, recipeType, recipe);
     }
 
     @Override
@@ -35,7 +42,7 @@ public abstract class AbstractMachineBlock extends TickingMenuBlock implements i
     }
 
     @Override
-    public final void register(io.github.thebusybiscuit.slimefun4.api.SlimefunAddon addon) {
+    public final void register(SlimefunAddon addon) {
         if (energyPerTick == -1) throw new IllegalStateException("You must call .energyPerTick() before registering!");
         if (energyCapacity == -1) energyCapacity = energyPerTick * 2;
         super.register(addon);

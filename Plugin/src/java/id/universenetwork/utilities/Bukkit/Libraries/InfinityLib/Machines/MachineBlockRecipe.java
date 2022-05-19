@@ -1,5 +1,7 @@
 package id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Machines;
 
+import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.StackUtils;
+import org.apache.commons.lang.ArrayUtils;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Map;
@@ -17,12 +19,12 @@ final class MachineBlockRecipe {
         Map<String, Integer> strings = new java.util.HashMap<>();
         for (ItemStack item : input)
             if (item != null && !item.getType().isAir()) {
-                String string = id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.StackUtils.getId(item);
+                String string = StackUtils.getId(item);
                 if (string == null) string = item.getType().name();
                 strings.compute(string, (k, v) -> v == null ? item.getAmount() : v + item.getAmount());
             }
         this.strings = strings.keySet().toArray(new String[0]);
-        amounts = org.apache.commons.lang.ArrayUtils.toPrimitive(strings.values().toArray(new Integer[0]));
+        amounts = ArrayUtils.toPrimitive(strings.values().toArray(new Integer[0]));
     }
 
     boolean check(Map<String, MachineInput> map) {

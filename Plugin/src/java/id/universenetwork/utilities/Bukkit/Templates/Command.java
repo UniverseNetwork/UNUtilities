@@ -3,24 +3,23 @@ package id.universenetwork.utilities.Bukkit.Templates;
 import cloud.commandframework.annotations.suggestions.Suggestions;
 import cloud.commandframework.context.CommandContext;
 import id.universenetwork.utilities.Bukkit.UNUtilities;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toList;
-import static org.bukkit.Bukkit.getOnlinePlayers;
 
 public class Command {
     @Suggestions("players")
     public List<String> player(CommandContext<CommandSender> sender, String context) {
         List<String> players = new ArrayList<>();
-        getOnlinePlayers().forEach(player -> players.add(player.getName()));
+        Bukkit.getOnlinePlayers().forEach(player -> players.add(player.getName()));
         players.add("*");
         players.add("@a");
         players.add("@all");
-        return players.stream().filter(s -> s.startsWith(context)).collect(toList());
+        return players.stream().filter(s -> s.startsWith(context)).collect(Collectors.toList());
     }
 
     @Suggestions("player")
@@ -30,6 +29,6 @@ public class Command {
 
     @Suggestions("toggles")
     public List<String> toggle(CommandContext<CommandSender> sender, String context) {
-        return Stream.of("on", "off", "toggle").filter(s -> s.toLowerCase().startsWith(context.toLowerCase())).collect(toList());
+        return Stream.of("on", "off", "toggle").filter(s -> s.toLowerCase().startsWith(context.toLowerCase())).collect(Collectors.toList());
     }
 }

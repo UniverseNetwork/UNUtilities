@@ -13,10 +13,13 @@ import static me.mrCookieSlime.Slimefun.api.BlockStorage.*;
 import static org.bukkit.Material.*;
 
 public class SoundMufflerMachine extends SlimefunItem implements io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent {
-    static final String ITEM_NAME = "&3Sound Muffler";
-    static final String ITEM_ID = "SOUND_MUFFLER";
+    private static final String
+            ITEM_NAME = "&3Sound Muffler";
+    private static final String
+            ITEM_ID = "SOUND_MUFFLER";
     public static final int DISTANCE = 8;
-    static final int[] border = {1, 2, 3, 4, 5, 6, 7};
+    private static final
+    int[] border = {1, 2, 3, 4, 5, 6, 7};
 
     public SoundMufflerMachine() {
         super(SoundMuffler.SOUND_MUFFLER, new io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack(ITEM_ID, WHITE_CONCRETE, ITEM_NAME, "", "&7Muffles all sound in a", "&78 block radius", "", "&e\u26A1 Requires power to use"), ITEM_ID, io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{new ItemStack(WHITE_WOOL), SlimefunItems.STEEL_PLATE, new ItemStack(WHITE_WOOL), SlimefunItems.STEEL_PLATE, SlimefunItems.ELECTRIC_MOTOR, SlimefunItems.STEEL_PLATE, new ItemStack(WHITE_WOOL), SlimefunItems.STEEL_PLATE, new ItemStack(WHITE_WOOL)});
