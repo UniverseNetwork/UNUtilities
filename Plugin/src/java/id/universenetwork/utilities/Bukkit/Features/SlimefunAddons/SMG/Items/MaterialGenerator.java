@@ -12,6 +12,9 @@ import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.BlockState;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
@@ -20,11 +23,11 @@ import java.util.Map;
 
 public class MaterialGenerator extends SlimefunItem {
     private static final Map<BlockPosition, Integer> generatorProgress = new HashMap<>();
-    final ItemSetting<Integer> rate;
-    ItemStack item;
+    private final ItemSetting<Integer> rate;
+    private ItemStack item;
 
-    public MaterialGenerator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe,
-                             int defaultRate) {
+
+    public MaterialGenerator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, int defaultRate) {
         super(itemGroup, item, recipeType, recipe);
         rate = new IntRangeSetting(this, "rate", 2, defaultRate, 1000);
         addItemSetting(rate);
@@ -46,11 +49,11 @@ public class MaterialGenerator extends SlimefunItem {
     }
 
     public void tick(Block b) {
-        Block targetBlock = b.getRelative(org.bukkit.block.BlockFace.UP);
+        Block targetBlock = b.getRelative(BlockFace.UP);
         if (targetBlock.getType() == Material.CHEST) {
-            org.bukkit.block.BlockState state = PaperLib.getBlockState(targetBlock, false).getState();
+            BlockState state = PaperLib.getBlockState(targetBlock, false).getState();
             if (state instanceof InventoryHolder) {
-                org.bukkit.inventory.Inventory inv = ((InventoryHolder) state).getInventory();
+                Inventory inv = ((InventoryHolder) state).getInventory();
                 if (inv.firstEmpty() != -1) {
                     BlockPosition pos = new BlockPosition(b);
                     int progress = generatorProgress.getOrDefault(pos, 0);

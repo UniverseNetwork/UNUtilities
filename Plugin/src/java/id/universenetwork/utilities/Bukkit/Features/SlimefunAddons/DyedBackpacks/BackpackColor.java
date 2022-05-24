@@ -32,9 +32,9 @@ public enum BackpackColor {
     RED(ChatColor.DARK_RED + "Red", Material.RED_WOOL, "85e4f9da68c81fa481eecdca48a138cecde2cddffeeae84ab1afd24a363e028"),
     BLACK(ChatColor.DARK_GRAY + "Black", Material.BLACK_WOOL, "a9ab1fdcbe878d1e55bdd43cebc5e43836a6da69541f4a233fe88f1305668");
 
-    final String name;
-    final Material wool;
-    final String texture;
+    private final String name;
+    private final Material wool;
+    private final String texture;
 
     BackpackColor(String name, Material wool, String texture) {
         this.name = name;

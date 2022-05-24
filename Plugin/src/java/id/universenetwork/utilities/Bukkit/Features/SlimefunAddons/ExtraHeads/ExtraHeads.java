@@ -1,28 +1,35 @@
 package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraHeads;
 
 import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SfAddon;
+import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events;
 import id.universenetwork.utilities.Bukkit.UNUtilities;
+import id.universenetwork.utilities.Bukkit.Utils.Logger;
+import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
+import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
+import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.EnumMap;
 import java.util.Map;
-
-import static io.github.thebusybiscuit.slimefun4.api.MinecraftVersion.*;
-import static io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getMinecraftVersion;
+import java.util.logging.Level;
 
 public class ExtraHeads extends SfAddon {
-    final Map<EntityType, ItemStack> mobs = new java.util.EnumMap<>(EntityType.class);
-    ItemGroup itemGroup;
-    RecipeType recipeType;
+    private final Map<EntityType, ItemStack> mobs = new EnumMap<>(EntityType.class);
+    private ItemGroup itemGroup;
+    private RecipeType recipeType;
 
     @Override
     public void Load() {
-        itemGroup = new ItemGroup(UNUtilities.createKey("heads"), new CustomItemStack(io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead.getItemStack(io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin.fromHashCode("5f1379a82290d7abe1efaabbc70710ff2ec02dd34ade386bc00c930c461cf932")), "&7Extra Heads", "", "&a> Click to open"), 1);
-        recipeType = new RecipeType(UNUtilities.createKey("decapitation"), new CustomItemStack(org.bukkit.Material.IRON_SWORD, "&6Kill the specified Mob"));
+        itemGroup = new ItemGroup(UNUtilities.createKey("heads"), new CustomItemStack(PlayerHead.getItemStack(PlayerSkin.fromHashCode("5f1379a82290d7abe1efaabbc70710ff2ec02dd34ade386bc00c930c461cf932")), "&7Extra Heads", "", "&a> Click to open"), 1);
+        recipeType = new RecipeType(UNUtilities.createKey("decapitation"), new CustomItemStack(Material.IRON_SWORD, "&6Kill the specified Mob"));
         registerHead("Bat Head", EntityType.BAT, "2796aa6d18edc5b724bd89e983bc3215a41bf775d112635e9b5835d1b8ad20cb");
         registerHead("Blaze Head", EntityType.BLAZE, "b78ef2e4cf2c41a2d14bfde9caff10219f5b1bf5b35a49eb51c6467882cb5f0");
         registerHead("Cave Spider Head", EntityType.CAVE_SPIDER, "41645dfd77d09923107b3496e94eeb5c30329f97efc96ed76e226e98224");
@@ -60,37 +67,37 @@ public class ExtraHeads extends SfAddon {
         registerHead("Witch Head", EntityType.WITCH, "ddedbee42be472e3eb791e7dbdfaf18c8fe593c638ba1396c9ef68f555cbce");
         registerHead("Wither Head", EntityType.WITHER, "cdf74e323ed41436965f5c57ddf2815d5332fe999e68fbb9d6cf5c8bd4139f");
         registerHead("Zombie Villager Head", EntityType.ZOMBIE_VILLAGER, "a6224941314bca2ebbb66b10ffd94680cc98c3435eeb71a228a08fd42c24db");
-        if (getMinecraftVersion().isAtLeast(MINECRAFT_1_14)) {
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_14)) {
             registerHead("Ravager Head", EntityType.RAVAGER, "1cb9f139f9489d86e410a06d8cbc670c8028137508e3e4bef612fe32edd60193");
             registerHead("Pillager Head", EntityType.PILLAGER, "4aee6bb37cbfc92b0d86db5ada4790c64ff4468d68b84942fde04405e8ef5333");
             registerHead("Fox Head", EntityType.FOX, "46cff7a19e683a08e4587ea1457880313d5f341f346ceb5b0551195d810e3");
             registerHead("Panda Head", EntityType.PANDA, "7818b681cace1c641919f53edadecb142330d089a826b56219138c33b7a5e0db");
             registerHead("Wandering Trader Head", EntityType.WANDERING_TRADER, "5f1379a82290d7abe1efaabbc70710ff2ec02dd34ade386bc00c930c461cf932");
         }
-        if (getMinecraftVersion().isAtLeast(MINECRAFT_1_15))
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_15))
             registerHead("Bee Head", EntityType.BEE, "4420c9c43e095880dcd2e281c81f47b163b478f58a584bb61f93e6e10a155f31");
-        if (getMinecraftVersion().isBefore(MINECRAFT_1_16))
+        if (Slimefun.getMinecraftVersion().isBefore(MinecraftVersion.MINECRAFT_1_16))
             registerHead("Zombie Pigman Head", EntityType.valueOf("PIG_ZOMBIE"), "74e9c6e98582ffd8ff8feb3322cd1849c43fb16b158abb11ca7b42eda7743eb");
         else {
             registerHead("Piglin Head", EntityType.PIGLIN, "11d18bbd0d795b9ac8efaad655e3d0c59fcbb9b964c2a9948ef537f4a3fbbf87");
             registerHead("Zombified Piglin Head", EntityType.ZOMBIFIED_PIGLIN, "e935842af769380f78e8b8a88d1ea6ca2807c1e5693c2cf797456620833e936f");
             registerHead("Strider", EntityType.STRIDER, "18a9adf780ec7dd4625c9c0779052e6a15a451866623511e4c82e9655714b3c1");
         }
-        if (getMinecraftVersion().isAtLeast(MINECRAFT_1_17)) {
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
             registerHead("Axolotl Head", EntityType.AXOLOTL, "5c138f401c67fc2e1e387d9c90a9691772ee486e8ddbf2ed375fc8348746f936");
             registerHead("Glow Squid Head", EntityType.GLOW_SQUID, "57327ee11812b764c7ade70b282cce4c58e635b2015244081d1490543da7280e");
             registerHead("Goat Head", EntityType.GOAT, "457a0d538fa08a7affe312903468861720f9fa34e86d44b89dcec5639265f03");
         }
-        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(new HeadListener(this));
+        Events.registerListeners(new HeadListener(this));
     }
 
-    void registerHead(String name, EntityType type, String texture) {
+    private void registerHead(String name, EntityType type, String texture) {
         try {
             double chance = UNUtilities.cfg.getOrSetDefault(configPath + "chances." + type.toString(), 5.0);
             SlimefunItemStack item = new SlimefunItemStack(type + "_HEAD", texture, "&r" + name);
-            new MobHead(itemGroup, item, recipeType, new CustomItemStack(item, "&rKill 1 " + io.github.thebusybiscuit.slimefun4.utils.ChatUtils.humanize(type.name()), "&7Chance: &e" + chance + "%")).register(this, () -> mobs.put(type, item));
+            new MobHead(itemGroup, item, recipeType, new CustomItemStack(item, "&rKill 1 " + ChatUtils.humanize(type.name()), "&7Chance: &e" + chance + "%")).register(this, () -> mobs.put(type, item));
         } catch (Exception x) {
-            getLogger().log(java.util.logging.Level.WARNING, x, () -> UNUtilities.prefix + " §eCould not load Mob Head for Entity: " + type);
+            Logger.log(Level.WARNING, "Could not load Mob Head for Entity: " + type, x);
         }
     }
 

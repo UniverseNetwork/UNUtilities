@@ -1,19 +1,19 @@
 package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.PrivateStorage.Storage;
 
+import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.PrivateStorage.ChestProtectionLevel;
 import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.PrivateStorage.PrivateStorage;
 import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.PrivateStorage.SlimefunChest;
+import id.universenetwork.utilities.Bukkit.UNUtilities;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-import static id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.PrivateStorage.ChestProtectionLevel.PRIVATE;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.createKey;
-import static io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType.ENHANCED_CRAFTING_TABLE;
-import static io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems.*;
-import static org.bukkit.Material.*;
-
 public class PrivateChests {
-    public PrivateChests(PrivateStorage addon, io.github.thebusybiscuit.slimefun4.api.items.ItemGroup itemGroup) {
+    public PrivateChests(PrivateStorage addon, ItemGroup itemGroup) {
         SlimefunItemStack safeOak = new SlimefunItemStack("PRIVATE_SAFE_OAK", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNThjMTk4OGUzM2RjZGZlZmZkNjE5YjkyYWI5ZjQ3Y2Y1YzNjNmQ3ZGRhZDQyNjM3ZDNlYWFhYjI3NTcifX19", "&6Oak Safe", getLore(2, false));
         SlimefunItemStack safeBirch = new SlimefunItemStack("PRIVATE_SAFE_BIRCH", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjdmN2NiMmQ0ZWMwZTBjNjFlNzlhMDZjZjA0YjBkMTYxMDVmNzdkYTk2OTEzYTY4OWE0ZGM5NTI3N2I5MzczYiJ9fX0=", "&6Birch Safe", getLore(2, false));
         SlimefunItemStack safeSpruce = new SlimefunItemStack("PRIVATE_SAFE_SPRUCE", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmVmNWIwYTQ1MzA1MTE1N2JkNjRiY2Q4YzcyMGQwNmZlNzhlYmM0ODU1M2M0YzBlNWI5OTMxMjY1YjFhZTc1YyJ9fX0=", "&6Spruce Safe", getLore(2, false));
@@ -26,27 +26,59 @@ public class PrivateChests {
         SlimefunItemStack safeEmerald = new SlimefunItemStack("PRIVATE_SAFE_EMERALD", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmFkMzVlYmRiMTI1ZmJhNDIxMjk4ZDQyYzIwMmM3N2M3NWI0MmNjOTljOTQ5MzlmNjM3NjQwYWMxODFmIn19fQ==", "&6Emerald Safe", getLore(6, false));
         SlimefunItemStack safeObsidian = new SlimefunItemStack("PRIVATE_SAFE_OBSIDIAN", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODU1YmU4NzM2NTJjYmZkZjRkODhmYTgxMjc2ZDI0OGQyYjdlZWY3YTZkNGYzZWRjYzkyZmU1NzU4NWJmNGQifX19", "&6Obsidian Safe", getLore(4, true));
         SlimefunItemStack safeSteel = new SlimefunItemStack("PRIVATE_SAFE_STEEL", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjljYjNkMTlkYjUyOWEyMTVjZjYyNjk3NTkxY2MxM2ZiOGM3ODZhOGYyN2I3NTI4YzMyYWMyOTg2Yjk2NzBjNCJ9fX0=", "&6Steel Safe", getLore(5, true));
-        new SlimefunChest(PRIVATE, 18, true, itemGroup, safeOak, ENHANCED_CRAFTING_TABLE, new ItemStack[]{new ItemStack(GOLD_NUGGET), new ItemStack(OAK_LOG), new ItemStack(GOLD_NUGGET), new ItemStack(OAK_LOG), MAGIC_LUMP_3, new ItemStack(OAK_LOG), new ItemStack(GOLD_NUGGET), new ItemStack(OAK_LOG), new ItemStack(GOLD_NUGGET)}).register(addon);
-        new SlimefunChest(PRIVATE, 18, true, itemGroup, safeBirch, ENHANCED_CRAFTING_TABLE, new ItemStack[]{new ItemStack(GOLD_NUGGET), new ItemStack(BIRCH_LOG), new ItemStack(GOLD_NUGGET), new ItemStack(BIRCH_LOG), MAGIC_LUMP_3, new ItemStack(BIRCH_LOG), new ItemStack(GOLD_NUGGET), new ItemStack(BIRCH_LOG), new ItemStack(GOLD_NUGGET)}).register(addon);
-        new SlimefunChest(PRIVATE, 18, true, itemGroup, safeSpruce, ENHANCED_CRAFTING_TABLE, new ItemStack[]{new ItemStack(GOLD_NUGGET), new ItemStack(SPRUCE_LOG), new ItemStack(GOLD_NUGGET), new ItemStack(SPRUCE_LOG), MAGIC_LUMP_3, new ItemStack(SPRUCE_LOG), new ItemStack(GOLD_NUGGET), new ItemStack(SPRUCE_LOG), new ItemStack(GOLD_NUGGET)}).register(addon);
-        new SlimefunChest(PRIVATE, 18, true, itemGroup, safeJungle, ENHANCED_CRAFTING_TABLE, new ItemStack[]{new ItemStack(GOLD_NUGGET), new ItemStack(JUNGLE_LOG), new ItemStack(GOLD_NUGGET), new ItemStack(JUNGLE_LOG), MAGIC_LUMP_3, new ItemStack(JUNGLE_LOG), new ItemStack(GOLD_NUGGET), new ItemStack(JUNGLE_LOG), new ItemStack(GOLD_NUGGET)}).register(addon);
-        new SlimefunChest(PRIVATE, 18, true, itemGroup, safeAcacia, ENHANCED_CRAFTING_TABLE, new ItemStack[]{new ItemStack(GOLD_NUGGET), new ItemStack(ACACIA_LOG), new ItemStack(GOLD_NUGGET), new ItemStack(ACACIA_LOG), MAGIC_LUMP_3, new ItemStack(ACACIA_LOG), new ItemStack(GOLD_NUGGET), new ItemStack(ACACIA_LOG), new ItemStack(GOLD_NUGGET)}).register(addon);
-        new SlimefunChest(PRIVATE, 18, true, itemGroup, safeDarkOak, ENHANCED_CRAFTING_TABLE, new ItemStack[]{new ItemStack(GOLD_NUGGET), new ItemStack(DARK_OAK_LOG), new ItemStack(GOLD_NUGGET), new ItemStack(DARK_OAK_LOG), MAGIC_LUMP_3, new ItemStack(DARK_OAK_LOG), new ItemStack(GOLD_NUGGET), new ItemStack(DARK_OAK_LOG), new ItemStack(GOLD_NUGGET)}).register(addon);
-        new SlimefunChest(PRIVATE, 27, true, itemGroup, safeIron, ENHANCED_CRAFTING_TABLE, new ItemStack[]{new ItemStack(GOLD_NUGGET), new ItemStack(IRON_INGOT), new ItemStack(GOLD_NUGGET), new ItemStack(IRON_INGOT), new ItemStack(CHEST), new ItemStack(IRON_INGOT), new ItemStack(GOLD_NUGGET), new ItemStack(IRON_INGOT), new ItemStack(GOLD_NUGGET)}).register(addon);
-        new SlimefunChest(PRIVATE, 36, true, itemGroup, safeGold, ENHANCED_CRAFTING_TABLE, new ItemStack[]{new ItemStack(GOLD_NUGGET), GOLD_10K, new ItemStack(GOLD_NUGGET), GOLD_10K, safeIron, GOLD_10K, new ItemStack(GOLD_NUGGET), GOLD_10K, new ItemStack(GOLD_NUGGET)}).register(addon);
-        new SlimefunChest(PRIVATE, 45, true, itemGroup, safeDiamond, ENHANCED_CRAFTING_TABLE, new ItemStack[]{new ItemStack(GOLD_NUGGET), new ItemStack(GLASS), new ItemStack(GOLD_NUGGET), new ItemStack(DIAMOND), safeGold, new ItemStack(DIAMOND), new ItemStack(GOLD_NUGGET), new ItemStack(GLASS), new ItemStack(GOLD_NUGGET)}).register(addon);
-        new SlimefunChest(PRIVATE, 54, true, itemGroup, safeEmerald, ENHANCED_CRAFTING_TABLE, new ItemStack[]{new ItemStack(GOLD_NUGGET), new ItemStack(GLASS), new ItemStack(GOLD_NUGGET), new ItemStack(EMERALD), safeDiamond, new ItemStack(EMERALD), new ItemStack(GOLD_NUGGET), new ItemStack(GLASS), new ItemStack(GOLD_NUGGET)}).register(addon);
-        new SlimefunChest(PRIVATE, 36, false, itemGroup, safeObsidian, ENHANCED_CRAFTING_TABLE, new ItemStack[]{new ItemStack(GOLD_NUGGET), new ItemStack(OBSIDIAN), new ItemStack(GOLD_NUGGET), new ItemStack(OBSIDIAN), safeIron, new ItemStack(OBSIDIAN), new ItemStack(GOLD_NUGGET), new ItemStack(OBSIDIAN), new ItemStack(GOLD_NUGGET)}).register(addon);
-        new SlimefunChest(PRIVATE, 45, false, itemGroup, safeSteel, ENHANCED_CRAFTING_TABLE, new ItemStack[]{new ItemStack(GOLD_NUGGET), STEEL_INGOT, new ItemStack(GOLD_NUGGET), STEEL_INGOT, safeObsidian, STEEL_INGOT, new ItemStack(GOLD_NUGGET), STEEL_INGOT, new ItemStack(GOLD_NUGGET)}).register(addon);
-        new Research(createKey("wooden_safes"), 609, "Magical Storage", 8).addItems(safeOak, safeBirch, safeSpruce, safeJungle, safeAcacia, safeDarkOak).register();
-        new Research(createKey("metal_safes"), 610, "Upgraded Storage", 16).addItems(safeIron, safeGold, safeDiamond).register();
-        new Research(createKey("gem_safes"), 611, "Top Tier Storage", 20).addItems(safeEmerald).register();
-        new Research(createKey("hardened_safes"), 612, "Hardened Storage", 24).addItems(safeObsidian, safeSteel).register();
+        new SlimefunChest(ChestProtectionLevel.PRIVATE, 18, true, itemGroup, safeOak, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.OAK_LOG), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.OAK_LOG), SlimefunItems.MAGIC_LUMP_3, new ItemStack(Material.OAK_LOG), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.OAK_LOG), new ItemStack(Material.GOLD_NUGGET)})
+                .register(addon);
+        new SlimefunChest(ChestProtectionLevel.PRIVATE, 18, true, itemGroup, safeBirch, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.BIRCH_LOG), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.BIRCH_LOG), SlimefunItems.MAGIC_LUMP_3, new ItemStack(Material.BIRCH_LOG), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.BIRCH_LOG), new ItemStack(Material.GOLD_NUGGET)})
+                .register(addon);
+        new SlimefunChest(ChestProtectionLevel.PRIVATE, 18, true, itemGroup, safeSpruce, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.SPRUCE_LOG), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.SPRUCE_LOG), SlimefunItems.MAGIC_LUMP_3, new ItemStack(Material.SPRUCE_LOG), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.SPRUCE_LOG), new ItemStack(Material.GOLD_NUGGET)})
+                .register(addon);
+        new SlimefunChest(ChestProtectionLevel.PRIVATE, 18, true, itemGroup, safeJungle, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.JUNGLE_LOG), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.JUNGLE_LOG), SlimefunItems.MAGIC_LUMP_3, new ItemStack(Material.JUNGLE_LOG), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.JUNGLE_LOG), new ItemStack(Material.GOLD_NUGGET)})
+                .register(addon);
+        new SlimefunChest(ChestProtectionLevel.PRIVATE, 18, true, itemGroup, safeAcacia, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.ACACIA_LOG), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.ACACIA_LOG), SlimefunItems.MAGIC_LUMP_3, new ItemStack(Material.ACACIA_LOG), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.ACACIA_LOG), new ItemStack(Material.GOLD_NUGGET)})
+                .register(addon);
+        new SlimefunChest(ChestProtectionLevel.PRIVATE, 18, true, itemGroup, safeDarkOak, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.DARK_OAK_LOG), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.DARK_OAK_LOG), SlimefunItems.MAGIC_LUMP_3, new ItemStack(Material.DARK_OAK_LOG), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.DARK_OAK_LOG), new ItemStack(Material.GOLD_NUGGET)})
+                .register(addon);
+        new SlimefunChest(ChestProtectionLevel.PRIVATE, 27, true, itemGroup, safeIron, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.IRON_INGOT), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.IRON_INGOT), new ItemStack(Material.CHEST), new ItemStack(Material.IRON_INGOT), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.IRON_INGOT), new ItemStack(Material.GOLD_NUGGET)})
+                .register(addon);
+        new SlimefunChest(ChestProtectionLevel.PRIVATE, 36, true, itemGroup, safeGold, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{new ItemStack(Material.GOLD_NUGGET), SlimefunItems.GOLD_10K, new ItemStack(Material.GOLD_NUGGET), SlimefunItems.GOLD_10K, safeIron, SlimefunItems.GOLD_10K, new ItemStack(Material.GOLD_NUGGET), SlimefunItems.GOLD_10K, new ItemStack(Material.GOLD_NUGGET)})
+                .register(addon);
+        new SlimefunChest(ChestProtectionLevel.PRIVATE, 45, true, itemGroup, safeDiamond, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.GLASS), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.DIAMOND), safeGold, new ItemStack(Material.DIAMOND), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.GLASS), new ItemStack(Material.GOLD_NUGGET)})
+                .register(addon);
+        new SlimefunChest(ChestProtectionLevel.PRIVATE, 54, true, itemGroup, safeEmerald, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.GLASS), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.EMERALD), safeDiamond, new ItemStack(Material.EMERALD), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.GLASS), new ItemStack(Material.GOLD_NUGGET)})
+                .register(addon);
+        new SlimefunChest(ChestProtectionLevel.PRIVATE, 36, false, itemGroup, safeObsidian, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.OBSIDIAN), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.OBSIDIAN), safeIron, new ItemStack(Material.OBSIDIAN), new ItemStack(Material.GOLD_NUGGET), new ItemStack(Material.OBSIDIAN), new ItemStack(Material.GOLD_NUGGET)})
+                .register(addon);
+        new SlimefunChest(ChestProtectionLevel.PRIVATE, 45, false, itemGroup, safeSteel, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{new ItemStack(Material.GOLD_NUGGET), SlimefunItems.STEEL_INGOT, new ItemStack(Material.GOLD_NUGGET), SlimefunItems.STEEL_INGOT, safeObsidian, SlimefunItems.STEEL_INGOT, new ItemStack(Material.GOLD_NUGGET), SlimefunItems.STEEL_INGOT, new ItemStack(Material.GOLD_NUGGET)})
+                .register(addon);
+        new Research(UNUtilities.createKey("wooden_safes"), 609, "Magical Storage", 8).addItems(safeOak, safeBirch, safeSpruce, safeJungle, safeAcacia, safeDarkOak).register();
+        new Research(UNUtilities.createKey("metal_safes"), 610, "Upgraded Storage", 16).addItems(safeIron, safeGold, safeDiamond).register();
+        new Research(UNUtilities.createKey("gem_safes"), 611, "Top Tier Storage", 20).addItems(safeEmerald).register();
+        new Research(UNUtilities.createKey("hardened_safes"), 612, "Hardened Storage", 24).addItems(safeObsidian, safeSteel).register();
     }
 
-    String[] getLore(int size, boolean explosions) {
-        if (explosions)
-            return new String[]{"&7Size: &e" + size + "x9", "&bWithstands Explosions", "", "&rThis Chest can only be opened by you"};
-        else return new String[]{"&7Size: &e" + size + "x9", "", "&rThis Chest can only be opened by you"};
+    private String[] getLore(int size, boolean explosions) {
+        if (explosions) return new String[]{
+                "&7Size: &e" + size + "x9",
+                "&bWithstands Explosions",
+                "",
+                "&rThis Chest can only be opened by you"
+        };
+        else return new String[]{
+                "&7Size: &e" + size + "x9",
+                "",
+                "&rThis Chest can only be opened by you"
+        };
     }
 }

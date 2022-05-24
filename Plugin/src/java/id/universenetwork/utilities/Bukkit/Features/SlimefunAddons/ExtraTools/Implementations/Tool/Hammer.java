@@ -1,22 +1,28 @@
-package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Implementation.Tools;
+package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Implementations.Tool;
 
-import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Lists.ETItems;
+import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.ETItems;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ToolUseHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 
-import static io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems.*;
-
-public class Hammer extends io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem<ToolUseHandler> {
+public class Hammer extends SimpleSlimefunItem<ToolUseHandler> {
     public Hammer() {
-        super(ETItems.extra_tools, ETItems.HAMMER, io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType.MAGIC_WORKBENCH, new ItemStack[]{new ItemStack(Material.IRON_INGOT), new ItemStack(Material.IRON_INGOT), new ItemStack(Material.IRON_INGOT), new ItemStack(Material.IRON_INGOT), new ItemStack(Material.STICK), new ItemStack(Material.IRON_INGOT), null, new ItemStack(Material.STICK), null});
+        super(ETItems.extra_tools, ETItems.HAMMER, RecipeType.MAGIC_WORKBENCH,
+                new ItemStack[]{new ItemStack(Material.IRON_INGOT), new ItemStack(Material.IRON_INGOT),
+                        new ItemStack(Material.IRON_INGOT),
+                        new ItemStack(Material.IRON_INGOT), new ItemStack(Material.STICK), new ItemStack(Material.IRON_INGOT),
+                        null, new ItemStack(Material.STICK), null});
     }
 
     @Override
     public ToolUseHandler getItemHandler() {
         return (e, tool, fortune, drops) -> {
-            if (io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getPermissionsService().hasPermission(e.getPlayer(), Hammer.this)) {
+            if (Slimefun.getPermissionsService().hasPermission(e.getPlayer(), Hammer.this)) {
                 Block b = e.getBlock();
                 ItemStack drop = getDrop(b);
                 if (drop != null) {
@@ -47,15 +53,15 @@ public class Hammer extends io.github.thebusybiscuit.slimefun4.implementation.it
             }
             case IRON_ORE:
             case DEEPSLATE_IRON_ORE: {
-                return IRON_DUST;
+                return SlimefunItems.IRON_DUST;
             }
             case GOLD_ORE:
             case DEEPSLATE_GOLD_ORE: {
-                return GOLD_DUST;
+                return SlimefunItems.GOLD_DUST;
             }
             case COPPER_ORE:
             case DEEPSLATE_COPPER_ORE: {
-                return COPPER_DUST;
+                return SlimefunItems.COPPER_DUST;
             }
             case NETHERRACK: {
                 return new ItemStack(Material.SOUL_SAND);

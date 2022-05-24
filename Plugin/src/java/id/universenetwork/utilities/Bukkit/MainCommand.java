@@ -22,7 +22,6 @@ public class MainCommand extends Command {
     @CommandPermission("unutilities.command.reload")
     public void cmdReload(CommandSender sender) {
         UNUtilities.reloadCfg();
-        if (sender instanceof Player)
-            Text.send(sender, UNUtilities.cfg.getString("Settings.reload"));
+        if (sender instanceof Player) Text.send(sender, UNUtilities.cfg.getString("Settings.reload"));
     }
 }

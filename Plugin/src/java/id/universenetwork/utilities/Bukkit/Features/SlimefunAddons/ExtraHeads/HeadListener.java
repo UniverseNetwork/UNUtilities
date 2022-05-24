@@ -1,21 +1,27 @@
 package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraHeads;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.cfg;
+import id.universenetwork.utilities.Bukkit.UNUtilities;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDeathEvent;
 
-public class HeadListener implements org.bukkit.event.Listener {
+public class HeadListener implements Listener {
     final ExtraHeads addon;
 
     public HeadListener(ExtraHeads addon) {
         this.addon = addon;
     }
 
-    @org.bukkit.event.EventHandler(ignoreCancelled = true)
-    public void onKill(org.bukkit.event.entity.EntityDeathEvent e) {
+    @EventHandler(ignoreCancelled = true)
+    public void onKill(EntityDeathEvent e) {
         if (!addon.getMobDrops().containsKey(e.getEntityType())) return;
-        double chance = cfg.getDouble(addon.configPath + "chances." + e.getEntityType());
-        org.bukkit.entity.Player killer = e.getEntity().getKiller();
-        if (killer != null && io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils.isItemSimilar(killer.getInventory().getItemInMainHand(), io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems.SWORD_OF_BEHEADING, true))
-            chance *= cfg.getDouble(addon.configPath + "sword-of-beheading-multiplier");
+        double chance = UNUtilities.cfg.getDouble(addon.configPath + "chances." + e.getEntityType());
+        Player killer = e.getEntity().getKiller();
+        if (killer != null && SlimefunUtils.isItemSimilar(killer.getInventory().getItemInMainHand(), SlimefunItems.SWORD_OF_BEHEADING, true))
+            chance *= UNUtilities.cfg.getDouble(addon.configPath + "sword-of-beheading-multiplier");
         if (Math.random() * 100 < chance)
             e.getEntity().getWorld().dropItemNaturally(e.getEntity().getLocation(), addon.getMobDrops().get(e.getEntityType()));
     }

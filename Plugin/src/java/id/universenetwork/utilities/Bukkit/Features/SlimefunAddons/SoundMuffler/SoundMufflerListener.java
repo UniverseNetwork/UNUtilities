@@ -1,49 +1,72 @@
 package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SoundMuffler;
 
-import com.comphenix.protocol.PacketType.Play.Server;
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.events.ListenerPriority;
+import com.comphenix.protocol.events.PacketAdapter;
+import com.comphenix.protocol.events.PacketEvent;
+import id.universenetwork.utilities.Bukkit.UNUtilities;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
+import org.bukkit.event.Listener;
 
-public class SoundMufflerListener extends com.comphenix.protocol.events.PacketAdapter implements org.bukkit.event.Listener, io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent {
+public class SoundMufflerListener extends PacketAdapter implements Listener, EnergyNetComponent {
     public SoundMufflerListener() {
-        super(id.universenetwork.utilities.Bukkit.UNUtilities.plugin, com.comphenix.protocol.events.ListenerPriority.NORMAL, Server.NAMED_SOUND_EFFECT, Server.ENTITY_SOUND);
-        com.comphenix.protocol.ProtocolLibrary.getProtocolManager().addPacketListener(this);
+        super(UNUtilities.plugin, ListenerPriority.NORMAL,
+                PacketType.Play.Server.NAMED_SOUND_EFFECT, PacketType.Play.Server.ENTITY_SOUND
+        );
+        ProtocolLibrary.getProtocolManager().addPacketListener(this);
     }
 
     @Override
-    public void onPacketSending(com.comphenix.protocol.events.PacketEvent event) {
-        if (event.getPacketType() == Server.NAMED_SOUND_EFFECT || event.getPacketType() == Server.ENTITY_SOUND) {
+    public void onPacketSending(PacketEvent p) {
+        if (p.getPacketType() == PacketType.Play.Server.NAMED_SOUND_EFFECT
+                || p.getPacketType() == PacketType.Play.Server.ENTITY_SOUND
+        ) {
             Location l;
-            if (event.getPacketType() == Server.NAMED_SOUND_EFFECT) {
-                int x = event.getPacket().getIntegers().read(0) >> 3;
-                int y = event.getPacket().getIntegers().read(1) >> 3;
-                int z = event.getPacket().getIntegers().read(2) >> 3;
-                l = new Location(event.getPlayer().getWorld(), x, y, z);
-            } else if (event.getPacketType() == Server.ENTITY_SOUND)
-                l = event.getPlayer().getWorld().getEntities().stream().filter(e -> e.getEntityId() == event.getPacket().getIntegers().read(1)).map(org.bukkit.entity.Entity::getLocation).findAny().orElse(null);
+            if (p.getPacketType() == PacketType.Play.Server.NAMED_SOUND_EFFECT) {
+                int x = p.getPacket().getIntegers().read(0) >> 3;
+                int y = p.getPacket().getIntegers().read(1) >> 3;
+                int z = p.getPacket().getIntegers().read(2) >> 3;
+                l = new Location(p.getPlayer().getWorld(), x, y, z);
+            } else if (p.getPacketType() == PacketType.Play.Server.ENTITY_SOUND)
+                l = p.getPlayer().getWorld().getEntities().stream()
+                        .filter(e -> e.getEntityId() == p.getPacket().getIntegers().read(1))
+                        .map(Entity::getLocation)
+                        .findAny().orElse(null);
             else return;
-            if (l == null) return;
-            Block soundMuff = findSoundMuffler(l);
-            if (soundMuff != null && BlockStorage.getLocationInfo(soundMuff.getLocation(), "enabled") != null && BlockStorage.getLocationInfo(soundMuff.getLocation(), "enabled").equals("true") && getCharge(soundMuff.getLocation()) > 8) {
-                int volume = Integer.parseInt(BlockStorage.getLocationInfo(soundMuff.getLocation(), "volume"));
-                if (volume == 0) event.setCancelled(true);
+            if (l == null)
+                return;
+            Block b = findSoundMuffler(l);
+            if (b != null
+                    && BlockStorage.getLocationInfo(b.getLocation(), "enabled") != null
+                    && BlockStorage.getLocationInfo(b.getLocation(), "enabled").equals("true")
+                    && getCharge(b.getLocation()) > 8
+            ) {
+                int volume = Integer.parseInt(BlockStorage.getLocationInfo(b.getLocation(), "volume"));
+                if (volume == 0) p.setCancelled(true);
                 else
-                    event.getPacket().getFloat().write(0, (float) volume / 100.0f);
+                    p.getPacket().getFloat().write(0, (float) volume / 100.0f);
             }
         }
     }
 
-    Block findSoundMuffler(Location l) {
-        final int dis = SoundMufflerMachine.DISTANCE;
-        for (int x = l.getBlockX() - dis; x < l.getBlockX() + dis; x++)
-            for (int y = l.getBlockY() - dis; y < l.getBlockY() + dis; y++)
-                for (int z = l.getBlockZ() - dis; z < l.getBlockZ() + dis; z++) {
-                    if (!l.getWorld().isChunkLoaded(x >> 4, z >> 4)) continue;
+    private Block findSoundMuffler(Location l) {
+        final int d = SoundMufflerMachine.DISTANCE;
+        for (int x = l.getBlockX() - d; x < l.getBlockX() + d; x++)
+            for (int y = l.getBlockY() - d; y < l.getBlockY() + d; y++)
+                for (int z = l.getBlockZ() - d; z < l.getBlockZ() + d; z++) {
+                    if (!l.getWorld().isChunkLoaded(x >> 4, z >> 4))
+                        continue;
                     Block b = l.getWorld().getBlockAt(x, y, z);
-                    if (b.getType() == org.bukkit.Material.WHITE_CONCRETE && BlockStorage.hasBlockInfo(b)) {
-                        io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem item = BlockStorage.check(b);
+                    if (b.getType() == Material.WHITE_CONCRETE && BlockStorage.hasBlockInfo(b)) {
+                        SlimefunItem item = BlockStorage.check(b);
                         if (item.getId().equals("SOUND_MUFFLER")) return b;
                     }
                 }

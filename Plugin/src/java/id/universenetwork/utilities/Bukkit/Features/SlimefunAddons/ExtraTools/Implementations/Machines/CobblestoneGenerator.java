@@ -1,7 +1,7 @@
-package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Implementation.Machines;
+package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Implementations.Machines;
 
-import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Implementation.Interfaces.ETInventoryBlock;
-import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Lists.ETItems;
+import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.ETItems;
+import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Implementations.Interface.ETInventoryBlock;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
@@ -44,9 +44,7 @@ public class CobblestoneGenerator extends SimpleSlimefunItem<BlockTicker> implem
                         new ItemStack(Material.LAVA_BUCKET),
                         SlimefunItems.PROGRAMMABLE_ANDROID_MINER, SlimefunItems.BIG_CAPACITOR,
                         SlimefunItems.PROGRAMMABLE_ANDROID_MINER});
-
         createPreset(this, this::constructMenu);
-
         addItemHandler(onBreak());
     }
 
@@ -130,9 +128,7 @@ public class CobblestoneGenerator extends SimpleSlimefunItem<BlockTicker> implem
                 // We only act once per decrement cycle, when decrement got to
                 // lowest and has been reset
                 if (decrement != 2) return;
-
                 ItemStack output = new ItemStack(Material.COBBLESTONE);
-
                 if (getCharge(b.getLocation()) >= ENERGY_CONSUMPTION) {
                     BlockMenu menu = BlockStorage.getInventory(b);
                     if (!menu.fits(output, getOutputSlots())) return;

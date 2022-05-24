@@ -5,8 +5,10 @@ import id.universenetwork.utilities.Bukkit.UNUtilities;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
-
-import static io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems.*;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
 
 /**
  * This is the main class of the {@link DyedBackpacks} addon.
@@ -20,19 +22,19 @@ public class DyedBackpacks extends SfAddon {
     @Override
     public void Load() {
         Research research = new Research(UNUtilities.createKey("dyed_backpacks"), 17200, "Dyed Backpacks", 24);
-        ItemGroup itemGroup = new ItemGroup(UNUtilities.createKey("dyed_backpacks"), new io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack(io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead.getItemStack(io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin.fromHashCode(BackpackColor.RED.getTexture())), "&4Dyed Backpacks"), 2);
+        ItemGroup itemGroup = new ItemGroup(UNUtilities.createKey("dyed_backpacks"), new CustomItemStack(PlayerHead.getItemStack(PlayerSkin.fromHashCode(BackpackColor.RED.getTexture())), "&4Dyed Backpacks"), 2);
         if (UNUtilities.cfg.getBoolean(configPath + "backpacks.small"))
-            createBackpacks(itemGroup, research, BACKPACK_SMALL, 9);
+            createBackpacks(itemGroup, research, SlimefunItems.BACKPACK_SMALL, 9);
         if (UNUtilities.cfg.getBoolean(configPath + "backpacks.normal"))
-            createBackpacks(itemGroup, research, BACKPACK_MEDIUM, 18);
+            createBackpacks(itemGroup, research, SlimefunItems.BACKPACK_MEDIUM, 18);
         if (UNUtilities.cfg.getBoolean(configPath + "backpacks.large"))
-            createBackpacks(itemGroup, research, BACKPACK_LARGE, 27);
+            createBackpacks(itemGroup, research, SlimefunItems.BACKPACK_LARGE, 27);
         if (UNUtilities.cfg.getBoolean(configPath + "backpacks.woven"))
-            createBackpacks(itemGroup, research, WOVEN_BACKPACK, 36);
+            createBackpacks(itemGroup, research, SlimefunItems.WOVEN_BACKPACK, 36);
         if (UNUtilities.cfg.getBoolean(configPath + "backpacks.gilded"))
-            createBackpacks(itemGroup, research, GILDED_BACKPACK, 45);
+            createBackpacks(itemGroup, research, SlimefunItems.GILDED_BACKPACK, 45);
         if (UNUtilities.cfg.getBoolean(configPath + "backpacks.radiant"))
-            createBackpacks(itemGroup, research, RADIANT_BACKPACK, 54);
+            createBackpacks(itemGroup, research, SlimefunItems.RADIANT_BACKPACK, 54);
         research.register();
     }
 

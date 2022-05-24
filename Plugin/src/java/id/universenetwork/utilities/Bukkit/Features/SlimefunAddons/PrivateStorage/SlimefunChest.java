@@ -1,21 +1,33 @@
 package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.PrivateStorage;
 
-import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
-import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import java.util.List;
+import java.util.Objects;
+
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.List;
+import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
+import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 
-public class SlimefunChest extends io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem {
-    public SlimefunChest(ChestProtectionLevel level, int size, boolean canExplode, io.github.thebusybiscuit.slimefun4.api.items.ItemGroup itemGroup, io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack item, io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType recipeType, ItemStack[] recipe) {
+public class SlimefunChest extends SlimefunItem {
+    public SlimefunChest(ChestProtectionLevel level, int size, boolean canExplode, ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
         int[] slots = getSlotsArray(size);
-        new me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset(getId(), item.getItemMeta().getDisplayName()) {
+        new BlockMenuPreset(getId(), item.getItemMeta().getDisplayName()) {
             @Override
             public void init() {
                 setSize(size);
@@ -28,36 +40,38 @@ public class SlimefunChest extends io.github.thebusybiscuit.slimefun4.api.items.
                 if (p.hasPermission("PrivateStorage.bypass")) return true;
                 if (level == ChestProtectionLevel.PRIVATE)
                     return BlockStorage.getLocationInfo(b.getLocation(), "owner").equals(p.getUniqueId().toString());
-                return io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getProtectionManager().hasPermission(p, b, io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction.INTERACT_BLOCK);
+                return Slimefun.getProtectionManager().hasPermission(p, b, Interaction.INTERACT_BLOCK);
             }
 
             @Override
-            public int[] getSlotsAccessedByItemTransport(me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow flow) {
+            public int[] getSlotsAccessedByItemTransport(ItemTransportFlow flow) {
                 if (level.equals(ChestProtectionLevel.PUBLIC)) return slots;
                 else return new int[0];
             }
         };
+
         addItemHandler(onBlockPlace(), onBlockBreak(size, canExplode));
     }
 
-    BlockPlaceHandler onBlockPlace() {
+    private BlockPlaceHandler onBlockPlace() {
         return new BlockPlaceHandler(false) {
             @Override
-            public void onPlayerPlace(org.bukkit.event.block.BlockPlaceEvent e) {
+            public void onPlayerPlace(BlockPlaceEvent e) {
                 BlockStorage.addBlockInfo(e.getBlock().getLocation(), "owner", e.getPlayer().getUniqueId().toString());
             }
+
         };
     }
 
-    BlockBreakHandler onBlockBreak(int size, boolean canExplode) {
+    private BlockBreakHandler onBlockBreak(int size, boolean canExplode) {
         return new BlockBreakHandler(false, canExplode) {
             @Override
-            public void onPlayerBreak(org.bukkit.event.block.BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
+            public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
                 boolean allow = true;
                 Player p = e.getPlayer();
                 Block b = e.getBlock();
                 if (!p.hasPermission("PrivateStorage.bypass"))
-                    allow = java.util.Objects.equals(BlockStorage.getLocationInfo(b.getLocation(), "owner"), p.getUniqueId().toString());
+                    allow = Objects.equals(BlockStorage.getLocationInfo(b.getLocation(), "owner"), p.getUniqueId().toString());
                 if (allow) {
                     BlockMenu inv = BlockStorage.getInventory(b);
                     for (int slot = 0; slot < size; slot++) {
@@ -79,7 +93,7 @@ public class SlimefunChest extends io.github.thebusybiscuit.slimefun4.api.items.
         };
     }
 
-    int[] getSlotsArray(int size) {
+    private int[] getSlotsArray(int size) {
         if (size == 9) return new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
         else if (size == 18) return new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17};
         else if (size == 27)
@@ -90,6 +104,7 @@ public class SlimefunChest extends io.github.thebusybiscuit.slimefun4.api.items.
             return new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44};
         else if (size == 54)
             return new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53};
-        else return new int[0];
+        else
+            return new int[0];
     }
 }

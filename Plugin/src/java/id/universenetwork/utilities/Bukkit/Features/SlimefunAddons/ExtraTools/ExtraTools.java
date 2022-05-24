@@ -1,21 +1,29 @@
 package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools;
 
-import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Implementation.Machines.*;
+import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Implementations.Machines.CobblestoneGenerator;
+import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Implementations.Machines.ConcreteFactory;
+import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Implementations.Machines.ElectricComposter;
+import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Implementations.Machines.GoldTransmuter;
+import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Implementations.Machines.Pulverizer;
+import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Implementations.Machines.Vaporizer;
+import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Implementations.Tool.Hammer;
 import id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SfAddon;
+import id.universenetwork.utilities.Bukkit.UNUtilities;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
-
-import static id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Lists.ETItems.*;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.createKey;
 
 public class ExtraTools extends SfAddon {
     private int researchId = 4100;
 
     @Override
     public void Load() {
-        new id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.ExtraTools.Implementation.Tools.Hammer().register(this);
-        new Research(createKey("HAMMER"), ++researchId, "Hammer", 3).addItems(HAMMER).register();
+        new Hammer().register(this);
+        new Research(UNUtilities.createKey("HAMMER"),
+                ++researchId, "Hammer", 3)
+                .addItems(ETItems.HAMMER).register();
         new GoldTransmuter().register(this);
-        new Research(createKey("GOLD_TRANSMUTER"), ++researchId, "Gold Transmuter", 12).addItems(GOLD_TRANSMUTER).register();
+        new Research(UNUtilities.createKey("GOLD_TRANSMUTER"),
+                ++researchId, "Gold Transmuter", 12)
+                .addItems(ETItems.GOLD_TRANSMUTER).register();
         new ElectricComposter(ElectricComposter.Tier.ONE) {
             @Override
             public int getEnergyConsumption() {
@@ -27,7 +35,9 @@ public class ExtraTools extends SfAddon {
                 return 1;
             }
         }.register(this);
-        new Research(createKey("ELECTRIC_COMPOSTER"), ++researchId, "Electric Composter", 18).addItems(ELECTRIC_COMPOSTER).register();
+        new Research(UNUtilities.createKey("ELECTRIC_COMPOSTER"),
+                ++researchId, "Electric Composter", 18)
+                .addItems(ETItems.ELECTRIC_COMPOSTER).register();
         new ElectricComposter(ElectricComposter.Tier.TWO) {
             @Override
             public int getEnergyConsumption() {
@@ -39,14 +49,24 @@ public class ExtraTools extends SfAddon {
                 return 4;
             }
         }.register(this);
-        new Research(createKey("ELECTRIC_COMPOSTER_2"), ++researchId, "Electric Composter II", 18).addItems(ELECTRIC_COMPOSTER_2).register();
+        new Research(UNUtilities.createKey("ELECTRIC_COMPOSTER_2"),
+                ++researchId, "Electric Composter II", 18)
+                .addItems(ETItems.ELECTRIC_COMPOSTER_2).register();
         new CobblestoneGenerator().register(this);
-        new Research(createKey("COBBLESTONE_GENERATOR"), ++researchId, "Cobblestone Generator", 40).addItems(COBBLESTONE_GENERATOR).register();
+        new Research(UNUtilities.createKey("COBBLESTONE_GENERATOR"),
+                ++researchId, "Cobblestone Generator", 40)
+                .addItems(ETItems.COBBLESTONE_GENERATOR).register();
         new Vaporizer().register(this);
-        new Research(createKey("VAPORIZER"), ++researchId, "Vaporizer", 18).addItems(VAPORIZER).register();
+        new Research(UNUtilities.createKey("VAPORIZER"),
+                ++researchId, "Vaporizer", 18)
+                .addItems(ETItems.VAPORIZER).register();
         new ConcreteFactory().register(this);
-        new Research(createKey("CONCRETE_FACTORY"), ++researchId, "Concrete Factory", 12).addItems(CONCRETE_FACTORY).register();
+        new Research(UNUtilities.createKey("CONCRETE_FACTORY"),
+                ++researchId, "Concrete Factory", 12)
+                .addItems(ETItems.CONCRETE_FACTORY).register();
         new Pulverizer().register(this);
-        new Research(createKey("PULVERIZER"), ++researchId, "Pulverizer", 18).addItems(PULVERIZER).register();
+        new Research(UNUtilities.createKey("PULVERIZER"),
+                ++researchId, "Pulverizer", 18)
+                .addItems(ETItems.PULVERIZER).register();
     }
 }

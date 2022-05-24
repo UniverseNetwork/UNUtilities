@@ -1,9 +1,14 @@
 package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons.SlimefunOreChunks;
 
+import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World.Environment;
+import org.bukkit.block.Biome;
+import org.bukkit.inventory.ItemStack;
 
-public class OreResource implements io.github.thebusybiscuit.slimefun4.api.geo.GEOResource {
+import java.util.concurrent.ThreadLocalRandom;
+
+public class OreResource implements GEOResource {
     final NamespacedKey key;
     final OreChunk oreChunk;
 
@@ -18,10 +23,10 @@ public class OreResource implements io.github.thebusybiscuit.slimefun4.api.geo.G
     }
 
     @Override
-    public int getDefaultSupply(Environment environment, org.bukkit.block.Biome biome) {
+    public int getDefaultSupply(Environment environment, Biome biome) {
         if (environment == Environment.NORMAL) {
             int amplifier = oreChunk.getAmplifier();
-            return java.util.concurrent.ThreadLocalRandom.current().nextInt(amplifier * 2, 18 + amplifier * 4);
+            return ThreadLocalRandom.current().nextInt(amplifier * 2, 18 + amplifier * 4);
         }
         return 0;
     }
@@ -37,7 +42,7 @@ public class OreResource implements io.github.thebusybiscuit.slimefun4.api.geo.G
     }
 
     @Override
-    public org.bukkit.inventory.ItemStack getItem() {
+    public ItemStack getItem() {
         return oreChunk.getItem();
     }
 

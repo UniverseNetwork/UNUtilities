@@ -8,10 +8,10 @@ enum ArmorSet {
     GOLD(Material.GOLDEN_HELMET, Material.GOLDEN_CHESTPLATE, Material.GOLDEN_LEGGINGS, Material.GOLDEN_BOOTS),
     DIAMOND(Material.DIAMOND_HELMET, Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS);
 
-    final Material helmet;
-    final Material chestplate;
-    final Material leggings;
-    final Material boots;
+    private final Material helmet;
+    private final Material chestplate;
+    private final Material leggings;
+    private final Material boots;
 
     ArmorSet(Material helmet, Material chestplate, Material leggings, Material boots) {
         this.helmet = helmet;
