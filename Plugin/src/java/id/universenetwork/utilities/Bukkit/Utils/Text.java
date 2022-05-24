@@ -10,26 +10,26 @@ import org.bukkit.entity.Player;
 
 @UtilityClass
 public class Text {
-    final static int CENTER_PX = 154;
+    private final int CENTER_PX = 154;
 
     /**
      * Send a message to {@link CommandSender} with prefix and tranlated color codes
      */
-    public static void send(CommandSender Sender, String Text) {
+    public void send(CommandSender Sender, String Text) {
         Sender.sendMessage(translateColor(Text));
     }
 
     /**
      * Send a message to {@link Player} with prefix and tranlated color codes
      */
-    public static void send(Player Player, String Text) {
+    public void send(Player Player, String Text) {
         Player.sendMessage(translateColor(Text));
     }
 
     /**
      * Send a center-aligned message to {@link Player} with a translated prefix and color codes
      */
-    public static void sendCentered(Player Player, String Text) {
+    public void sendCentered(Player Player, String Text) {
         if (Text == null || Text.equals("")) {
             Player.sendMessage("");
             return;
@@ -64,7 +64,7 @@ public class Text {
     /**
      * Send a center-aligned message to {@link CommandSender} with a translated prefix and color codes
      */
-    public static void sendCentered(org.bukkit.command.CommandSender Sender, String Text) {
+    public void sendCentered(org.bukkit.command.CommandSender Sender, String Text) {
         if (Text == null || Text.equals("")) {
             Sender.sendMessage("");
             return;
@@ -99,7 +99,7 @@ public class Text {
     /**
      * Translate color codes to actual color using Bukkit API and replace %p% with prefix
      */
-    public static String translateColor(String txt) {
+    public String translateColor(String txt) {
         return StringUtils.replace(ChatColor.translateAlternateColorCodes('&', txt), "%p%", UNUtilities.prefix);
     }
 }

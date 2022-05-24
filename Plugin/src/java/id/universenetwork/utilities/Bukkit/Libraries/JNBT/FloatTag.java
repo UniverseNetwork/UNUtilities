@@ -33,7 +33,7 @@ package id.universenetwork.utilities.Bukkit.Libraries.JNBT;
  */
 
 /**
- * The <code>TAG_Float</code> tag.
+ * The {@code TAG_Float} tag.
  *
  * @author Graham Edgecombe
  */
@@ -41,7 +41,7 @@ public final class FloatTag extends Tag {
     /**
      * The value.
      */
-    final float value;
+    private final float value;
 
     /**
      * Creates the tag.
@@ -63,7 +63,7 @@ public final class FloatTag extends Tag {
     public String toString() {
         String name = getName();
         String append = "";
-        if (name != null && !name.equals("")) append = "(\"" + this.getName() + "\")";
+        if (name != null && !name.equals("")) append = "(\"" + getName() + "\")";
         return "TAG_Float" + append + ": " + value;
     }
 }

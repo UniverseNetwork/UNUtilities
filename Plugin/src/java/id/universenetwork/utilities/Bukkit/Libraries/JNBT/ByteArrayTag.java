@@ -33,7 +33,7 @@ package id.universenetwork.utilities.Bukkit.Libraries.JNBT;
  */
 
 /**
- * The <code>TAG_Byte_Array</code> tag.
+ * The {@code TAG_Byte_Array} tag.
  *
  * @author Graham Edgecombe
  */
@@ -41,7 +41,7 @@ public final class ByteArrayTag extends Tag {
     /**
      * The value.
      */
-    final byte[] value;
+    private final byte[] value;
 
     /**
      * Creates the tag.

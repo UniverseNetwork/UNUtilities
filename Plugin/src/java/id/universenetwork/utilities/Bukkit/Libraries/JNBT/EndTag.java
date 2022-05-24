@@ -33,7 +33,7 @@ package id.universenetwork.utilities.Bukkit.Libraries.JNBT;
  */
 
 /**
- * The <code>TAG_End</code> tag.
+ * The {@code TAG_End} tag.
  *
  * @author Graham Edgecombe
  */

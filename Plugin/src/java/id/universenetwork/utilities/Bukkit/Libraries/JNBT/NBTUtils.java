@@ -32,28 +32,24 @@ package id.universenetwork.utilities.Bukkit.Libraries.JNBT;
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+import lombok.experimental.UtilityClass;
+
 /**
  * A class which contains NBT-related utility methods.
  *
  * @author Graham Edgecombe
  */
-public final class NBTUtils {
-    /**
-     * Default private constructor.
-     */
-    NBTUtils() {
-    }
-
+@UtilityClass
+public class NBTUtils {
     /**
      * Gets the type name of a tag.
      *
      * @param clazz The tag class.
      * @return The type name.
      */
-    public static String getTypeName(Class<? extends Tag> clazz) {
-        if (clazz.equals(ByteArrayTag.class)) {
-            return "TAG_Byte_Array";
-        } else if (clazz.equals(ByteTag.class)) return "TAG_Byte";
+    public String getTypeName(Class<? extends Tag> clazz) {
+        if (clazz.equals(ByteArrayTag.class)) return "TAG_Byte_Array";
+        else if (clazz.equals(ByteTag.class)) return "TAG_Byte";
         else if (clazz.equals(CompoundTag.class)) return "TAG_Compound";
         else if (clazz.equals(DoubleTag.class)) return "TAG_Double";
         else if (clazz.equals(EndTag.class)) return "TAG_End";
@@ -73,7 +69,7 @@ public final class NBTUtils {
      * @return The type code.
      * @throws IllegalArgumentException if the tag class is invalid.
      */
-    public static int getTypeCode(Class<? extends Tag> clazz) {
+    public int getTypeCode(Class<? extends Tag> clazz) {
         if (clazz.equals(ByteArrayTag.class)) return NBTConstants.TYPE_BYTE_ARRAY;
         else if (clazz.equals(ByteTag.class)) return NBTConstants.TYPE_BYTE;
         else if (clazz.equals(CompoundTag.class)) return NBTConstants.TYPE_COMPOUND;
@@ -95,7 +91,7 @@ public final class NBTUtils {
      * @return The class.
      * @throws IllegalArgumentException if the tag type is invalid.
      */
-    public static Class<? extends Tag> getTypeClass(int type) {
+    public Class<? extends Tag> getTypeClass(int type) {
         switch (type) {
             case NBTConstants.TYPE_END:
                 return EndTag.class;

@@ -11,17 +11,17 @@ import cloud.commandframework.minecraft.extras.MinecraftExceptionHandler;
 import cloud.commandframework.minecraft.extras.MinecraftHelp;
 import cloud.commandframework.paper.PaperCommandManager;
 import id.universenetwork.utilities.Bukkit.Templates.Command;
+import id.universenetwork.utilities.Bukkit.UNUtilities;
 import id.universenetwork.utilities.Bukkit.Utils.Logger;
 import id.universenetwork.utilities.Bukkit.Utils.Text;
 import lombok.Getter;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.command.CommandSender;
 
 import java.util.function.Function;
-
-import static id.universenetwork.utilities.Bukkit.UNUtilities.*;
-import static net.kyori.adventure.text.Component.text;
-import static net.kyori.adventure.text.format.TextColor.color;
+import java.util.logging.Level;
 
 public final class Commands {
     @Getter
@@ -36,17 +36,17 @@ public final class Commands {
         Logger.info("&eInitializing Command Manager...");
         Function<CommandTree<CommandSender>, CommandExecutionCoordinator<CommandSender>> executionCoordinatorFunction = CommandExecutionCoordinator.simpleCoordinator();
         Function<CommandSender, CommandSender> mapperFunction = Function.identity();
-        manager = new PaperCommandManager<>(plugin, executionCoordinatorFunction, mapperFunction, mapperFunction);
+        manager = new PaperCommandManager<>(UNUtilities.plugin, executionCoordinatorFunction, mapperFunction, mapperFunction);
         Function<ParserParameters, CommandMeta> commandMetaFunction = p -> CommandMeta.simple().with(CommandMeta.DESCRIPTION, p.get(StandardParameters.DESCRIPTION, "No description")).build();
         annotationParser = new AnnotationParser<>(manager, CommandSender.class, commandMetaFunction);
-        BukkitAudiences bukkitAudiences = BukkitAudiences.create(plugin);
+        BukkitAudiences bukkitAudiences = BukkitAudiences.create(UNUtilities.plugin);
         minecraftHelp = new MinecraftHelp<>("/uu help", bukkitAudiences::sender, manager);
         if (manager.queryCapability(CloudBukkitCapabilities.BRIGADIER)) manager.registerBrigadier();
         if (manager.queryCapability(CloudBukkitCapabilities.ASYNCHRONOUS_COMPLETION))
             manager.registerAsynchronousCompletions();
-        new MinecraftExceptionHandler<CommandSender>().withNoPermissionHandler().withDecorator(component -> text().append(text(Text.translateColor(cfg.getString("Settings.no-perm")))).build()).apply(manager, bukkitAudiences::sender);
-        new MinecraftExceptionHandler<CommandSender>().withInvalidSyntaxHandler().withInvalidSenderHandler().withNoPermissionHandler().withArgumentParsingHandler().withCommandExecutionHandler().withDecorator(component -> text().append(text(prefix)).append(component).build()).apply(manager, bukkitAudiences::sender);
-        minecraftHelp.setHelpColors(MinecraftHelp.HelpColors.of(color(5592405), color(16777045), color(11184810), color(5635925), color(5592405)));
+        new MinecraftExceptionHandler<CommandSender>().withNoPermissionHandler().withDecorator(component -> Component.text().append(Component.text(Text.translateColor(UNUtilities.cfg.getString("Settings.no-perm")))).build()).apply(manager, bukkitAudiences::sender);
+        new MinecraftExceptionHandler<CommandSender>().withInvalidSyntaxHandler().withInvalidSenderHandler().withNoPermissionHandler().withArgumentParsingHandler().withCommandExecutionHandler().withDecorator(component -> Component.text().append(Component.text(UNUtilities.prefix)).append(component).build()).apply(manager, bukkitAudiences::sender);
+        minecraftHelp.setHelpColors(MinecraftHelp.HelpColors.of(TextColor.color(5592405), TextColor.color(16777045), TextColor.color(11184810), TextColor.color(5635925), TextColor.color(5592405)));
         Logger.info("&aCommand Manager has been initialized!");
     }
 
@@ -54,7 +54,7 @@ public final class Commands {
         try {
             annotationParser.parse(cmd);
         } catch (Exception e) {
-            Logger.log(java.util.logging.Level.SEVERE, "Failed to register command class: " + cmd.getClass().getName(), e);
+            Logger.log(Level.SEVERE, "Failed to register command class: " + cmd.getClass().getName(), e);
         }
     }
 }

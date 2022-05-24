@@ -15,22 +15,30 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.inventory.*;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.inventory.InventoryMoveItemEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Main extends Feature implements Listener {
-    final Map<Player, ItemStack> openshulkers = new HashMap<>();
+    private final Map<Player, ItemStack> openshulkers = new HashMap<>();
     final Map<Player, Boolean> fromhand = new HashMap<>();
-    final Map<UUID, Inventory> openinventories = new HashMap<>();
-    final Map<Player, Inventory> opencontainer = new HashMap<>();
-    final Map<Player, Long> pvp_timer = new HashMap<>();
-    String name;
+    private final Map<UUID, Inventory> openinventories = new HashMap<>();
+    private final Map<Player, Inventory> opencontainer = new HashMap<>();
+    private final Map<Player, Long> pvp_timer = new HashMap<>();
+    private String name;
 
     @EventHandler
     public void onConfigReload(ReloadConfigEvent e) {
@@ -142,7 +150,7 @@ public class Main extends Feature implements Listener {
     }
 
     // Deals with multiple people opening the same shulker
-    boolean checkIfOpen(ItemStack shulker) {
+    private boolean checkIfOpen(ItemStack shulker) {
         for (ItemStack i : openshulkers.values()) if (i.equals(shulker)) return true;
         return false;
     }
@@ -203,7 +211,7 @@ public class Main extends Feature implements Listener {
     /*
      * Saves the shulker data in the itemmeta
      */
-    boolean saveShulker(Player p, String t) {
+    private boolean saveShulker(Player p, String t) {
         try {
             if (openshulkers.containsKey(p))
                 if (t.equals(name) || (openshulkers.get(p).hasItemMeta()
@@ -229,7 +237,7 @@ public class Main extends Feature implements Listener {
         return false;
     }
 
-    void updateAllInventories(ItemStack item) {
+    private void updateAllInventories(ItemStack item) {
         for (Player p : openshulkers.keySet())
             if (openshulkers.get(p).equals(item)) {
                 BlockStateMeta meta = (BlockStateMeta) item.getItemMeta();
@@ -242,7 +250,7 @@ public class Main extends Feature implements Listener {
     /*
      * Opens the shulker inventory with the contents of the shulker
      */
-    boolean openInventoryIfShulker(ItemStack i, Player p) {
+    private boolean openInventoryIfShulker(ItemStack i, Player p) {
         if (p.hasPermission("unutilities.pocketshulker.use") && i != null)
             if (i.getAmount() == 1 && i.getType().toString().contains("SHULKER")) {
                 if (getPvpTimer(p)) {
@@ -273,12 +281,12 @@ public class Main extends Feature implements Listener {
         return false;
     }
 
-    boolean getPvpTimer(Player player) {
+    private boolean getPvpTimer(Player player) {
         if (pvp_timer.containsKey(player)) return System.currentTimeMillis() - pvp_timer.get(player) < 7000;
         return false;
     }
 
-    void setPvpTimer(Player p) {
+    private void setPvpTimer(Player p) {
         if (UNUtilities.cfg.getBoolean(configPath + "disable-in-combat"))
             pvp_timer.put(p, System.currentTimeMillis());
     }

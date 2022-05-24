@@ -4,8 +4,12 @@ import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events;
 import id.universenetwork.utilities.Bukkit.Templates.Feature;
 import id.universenetwork.utilities.Bukkit.UNUtilities;
 import id.universenetwork.utilities.Bukkit.Utils.Text;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends Feature implements Listener {
     @Override
@@ -13,9 +17,9 @@ public class Main extends Feature implements Listener {
         Events.registerListeners(this);
     }
 
-    @org.bukkit.event.EventHandler
+    @EventHandler
     public void onBlockPlace(BlockPlaceEvent e) {
-        java.util.List<String> f = new java.util.ArrayList<>();
+        List<String> f = new ArrayList<>();
         for (String s : UNUtilities.cfg.getStringList(configPath + "blocks")) f.add(s.toUpperCase());
         if (UNUtilities.cfg.getBoolean(configPath + "enabled")
                 && !e.getPlayer().hasPermission("unutilities.redstone")

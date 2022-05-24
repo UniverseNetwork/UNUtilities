@@ -5,22 +5,22 @@ import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Core.YamlBuilde
 import id.universenetwork.utilities.Bukkit.Manager.API;
 import id.universenetwork.utilities.Bukkit.Manager.Commands;
 import id.universenetwork.utilities.Bukkit.Manager.Features;
+import id.universenetwork.utilities.Bukkit.Utils.Logger;
+import id.universenetwork.utilities.Bukkit.Utils.Text;
 import id.universenetwork.utilities.Bukkit.Utils.TookTimer;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.HumanEntity;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static id.universenetwork.utilities.Bukkit.Utils.Logger.info;
-import static id.universenetwork.utilities.Bukkit.Utils.Text.translateColor;
-
 /**
  * UNUtilities - Bukkit
  */
-public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
+public final class UNUtilities extends JavaPlugin {
     public static UNUtilities plugin;
     public static YamlBuilder cfg;
     public static YamlBuilder data;
@@ -40,8 +40,8 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
-        prefix = translateColor(cfg.getString("Settings.prefix"));
-        info("&aConfig & Data Manager has been initialized! &bTook " + t.get() + "ms");
+        prefix = Text.translateColor(cfg.getString("Settings.prefix"));
+        Logger.info("&aConfig & Data Manager has been initialized! &bTook " + t.get() + "ms");
     }
 
     @Override
@@ -60,7 +60,7 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
                 "§a             _  _ ____ ____    ___  ____ ____ _  _    ____ _  _ ____ ___  _    ____ ___\n" +
                 "§a             |__| |__| [__     |__] |___ |___ |\\ |    |___ |\\ | |__| |__] |    |___ |  \\ \n" +
                 "§a             |  | |  | ___]    |__] |___ |___ | \\|    |___ | \\| |  | |__] |___ |___ |__/\n");
-        info("&bTook " + t.get() + "ms to &aenable&b!");
+        Logger.info("&bTook " + t.get() + "ms to &aenable&b!");
     }
 
     @Override
@@ -76,7 +76,7 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
                 "§c           _  _ ____ ____    ___  ____ ____ _  _    ___  _ ____ ____ ___  _    ____ ___\n" +
                 "§c           |__| |__| [__     |__] |___ |___ |\\ |    |  \\ | [__  |__| |__] |    |___ |  \\\n" +
                 "§c           |  | |  | ___]    |__] |___ |___ | \\|    |__/ | ___] |  | |__] |___ |___ |__/\n");
-        info("&bTook " + t.get() + "ms to &cdisable&b!");
+        Logger.info("&bTook " + t.get() + "ms to &cdisable&b!");
     }
 
     /**
@@ -91,12 +91,12 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
      */
     public static void reloadCfg() {
         TookTimer t = new TookTimer();
-        info("&eReloading Configuration & Data...");
+        Logger.info("&eReloading Configuration & Data...");
         cfg.reload();
         data.reload();
         Bukkit.getPluginManager().callEvent(new ReloadConfigEvent());
-        prefix = translateColor(cfg.getString("Settings.prefix"));
-        info("&aConfiguration & Data has been reloaded! &bTook " + t.get() + "ms");
+        prefix = Text.translateColor(cfg.getString("Settings.prefix"));
+        Logger.info("&aConfiguration & Data has been reloaded! &bTook " + t.get() + "ms");
     }
 
     public static List<String> getOnlinePlayers(String partialName) {

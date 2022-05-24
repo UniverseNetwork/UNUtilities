@@ -1,20 +1,19 @@
 package id.universenetwork.utilities.Bukkit.Manager;
 
 import id.universenetwork.utilities.Bukkit.Templates.Feature;
+import id.universenetwork.utilities.Bukkit.UNUtilities;
 import id.universenetwork.utilities.Bukkit.Utils.Logger;
 import id.universenetwork.utilities.Bukkit.Utils.TookTimer;
 import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.logging.Level;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.cfg;
-
 public class Features {
     public static void init() {
         int a = 0;
         Logger.info("&eLoading Features...");
         TookTimer t = new TookTimer();
-        ConfigurationSection s = cfg.getConfigurationSection("Features");
+        ConfigurationSection s = UNUtilities.cfg.getConfigurationSection("Features");
         for (String k : s.getKeys(false))
             try {
                 Class<?> c = Class.forName("id.universenetwork.utilities.Bukkit.Features." + k + ".Main");

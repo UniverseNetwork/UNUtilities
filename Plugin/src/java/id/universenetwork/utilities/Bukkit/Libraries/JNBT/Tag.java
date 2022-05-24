@@ -38,7 +38,6 @@ package id.universenetwork.utilities.Bukkit.Libraries.JNBT;
  * @author Graham Edgecombe
  */
 public abstract class Tag {
-
     /**
      * The name of this tag.
      */

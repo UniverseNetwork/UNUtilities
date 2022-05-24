@@ -15,8 +15,7 @@ public class Main extends Feature implements Listener {
 
     @org.bukkit.event.EventHandler
     public void onEntityPlace(EntityPlaceEvent e) {
-        if (e.getEntityType() == EntityType.ARMOR_STAND
-                && UNUtilities.cfg.getBoolean(configPath + "enabled"))
+        if (e.getEntityType() == EntityType.ARMOR_STAND && UNUtilities.cfg.getBoolean(configPath + "enabled"))
             ((org.bukkit.entity.ArmorStand) e.getEntity()).setArms(true);
     }
 }

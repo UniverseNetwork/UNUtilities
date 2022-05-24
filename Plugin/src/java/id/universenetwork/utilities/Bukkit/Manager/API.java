@@ -2,21 +2,20 @@ package id.universenetwork.utilities.Bukkit.Manager;
 
 import com.xxmicloxx.NoteBlockAPI.NoteBlockAPI;
 import dev._2lstudios.hamsterapi.HamsterAPI;
-
-import static id.universenetwork.utilities.Bukkit.Utils.Logger.info;
+import id.universenetwork.utilities.Bukkit.Utils.Logger;
 
 public class API {
     public static void init() {
-        info("&eInitializing API...");
+        Logger.info("&eInitializing API...");
         new HamsterAPI().onEnable();
         new NoteBlockAPI().onEnable();
-        info("&aAll APIs has been initialized!");
+        Logger.info("&aAll APIs has been initialized!");
     }
 
     public static void declare() {
-        info("&eDeclaring API...");
+        Logger.info("&eDeclaring API...");
         new HamsterAPI().onDisable();
         new NoteBlockAPI().onDisable();
-        info("&cAll APIs has been declared!");
+        Logger.info("&cAll APIs has been declared!");
     }
 }

@@ -33,7 +33,7 @@ package id.universenetwork.utilities.Bukkit.Libraries.JNBT;
  */
 
 /**
- * The <code>TAG_String</code> tag.
+ * The {@code TAG_String} tag.
  *
  * @author Graham Edgecombe
  */
@@ -41,7 +41,7 @@ public final class StringTag extends Tag {
     /**
      * The value.
      */
-    final String value;
+    private final String value;
 
     /**
      * Creates the tag.
@@ -63,7 +63,7 @@ public final class StringTag extends Tag {
     public String toString() {
         String name = getName();
         String append = "";
-        if (name != null && !name.equals("")) append = "(\"" + this.getName() + "\")";
+        if (name != null && !name.equals("")) append = "(\"" + getName() + "\")";
         return "TAG_String" + append + ": " + value;
     }
 }

@@ -45,7 +45,7 @@ import java.util.zip.GZIPInputStream;
 /**
  * <p>This class reads <strong>NBT</strong>, or
  * <strong>Named Binary Tag</strong> streams, and produces an object graph of
- * subclasses of the <code>Tag</code> object.</p>
+ * subclasses of the {@code Tag} object.</p>
  *
  * <p>The NBT format was created by Markus Persson, and the specification may
  * be found at <a href="http://www.minecraft.net/docs/NBT.txt">
@@ -57,10 +57,10 @@ public final class NBTInputStream implements Closeable {
     /**
      * The data input stream.
      */
-    final DataInputStream is;
+    private final DataInputStream is;
 
     /**
-     * Creates a new <code>NBTInputStream</code>, which will source its data
+     * Creates a new {@code NBTInputStream}, which will source its data
      * from the specified input stream.
      *
      * @param is The input stream.
@@ -87,7 +87,7 @@ public final class NBTInputStream implements Closeable {
      * @return The tag that was read.
      * @throws IOException if an I/O error occurs.
      */
-    Tag readTag(int depth) throws IOException {
+    private Tag readTag(int depth) throws IOException {
         int type = is.readByte() & 0xFF;
         String name;
         if (type != NBTConstants.TYPE_END) {

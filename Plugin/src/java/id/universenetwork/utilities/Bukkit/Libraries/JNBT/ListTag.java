@@ -35,7 +35,7 @@ package id.universenetwork.utilities.Bukkit.Libraries.JNBT;
 import java.util.List;
 
 /**
- * The <code>TAG_List</code> tag.
+ * The {@code TAG_List} tag.
  *
  * @author Graham Edgecombe
  */
@@ -43,12 +43,12 @@ public final class ListTag extends Tag {
     /**
      * The type.
      */
-    final Class<? extends Tag> type;
+    private final Class<? extends Tag> type;
 
     /**
      * The value.
      */
-    final List<Tag> value;
+    private final List<Tag> value;
 
     /**
      * Creates the tag.
@@ -81,10 +81,12 @@ public final class ListTag extends Tag {
     public String toString() {
         String name = getName();
         String append = "";
-        if (name != null && !name.equals("")) append = "(\"" + this.getName() + "\")";
+        if (name != null && !name.equals("")) append = "(\"" + getName() + "\")";
         StringBuilder bldr = new StringBuilder();
-        bldr.append("TAG_List").append(append).append(": ").append(value.size()).append(" entries of type ").append(NBTUtils.getTypeName(type)).append("\r\n{\r\n");
-        for (Tag t : value) bldr.append("   ").append(t.toString().replace("\r\n", "\r\n   ")).append("\r\n");
+        bldr.append("TAG_List").append(append).append(": ").append(value.size())
+                .append(" entries of type ").append(NBTUtils.getTypeName(type)).append("\r\n{\r\n");
+        for (Tag t : value)
+            bldr.append("   ").append(t.toString().replace("\r\n", "\r\n   ")).append("\r\n");
         bldr.append("}");
         return bldr.toString();
     }
