@@ -7,6 +7,9 @@ import dev._2lstudios.hamsterapi.listeners.PlayerQuitListener;
 import dev._2lstudios.hamsterapi.messengers.BungeeMessenger;
 import dev._2lstudios.hamsterapi.utils.BufferIO;
 import dev._2lstudios.hamsterapi.utils.Reflection;
+import id.universenetwork.utilities.Bukkit.UNUtilities;
+import id.universenetwork.utilities.Bukkit.Utils.Logger;
+import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
@@ -16,19 +19,14 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.Properties;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static id.universenetwork.utilities.Bukkit.Utils.Logger.info;
-import static org.bukkit.Bukkit.getOnlinePlayers;
-import static org.bukkit.Bukkit.getServer;
-
 public class HamsterAPI {
-    static HamsterAPI instance;
-    Reflection reflection;
-    BufferIO bufferIO;
-    BungeeMessenger bungeeMessenger;
-    HamsterPlayerManager hamsterPlayerManager;
+    private static HamsterAPI instance;
+    private Reflection reflection;
+    private BufferIO bufferIO;
+    private BungeeMessenger bungeeMessenger;
+    private HamsterPlayerManager hamsterPlayerManager;
 
-    static synchronized void setInstance(HamsterAPI hamsterAPI) {
+    private static synchronized void setInstance(HamsterAPI hamsterAPI) {
         HamsterAPI.instance = hamsterAPI;
     }
 
@@ -36,13 +34,13 @@ public class HamsterAPI {
         return instance;
     }
 
-    static String getVersion(Server server) {
+    private static String getVersion(Server server) {
         String packageName = server.getClass().getPackage().getName();
         return packageName.substring(packageName.lastIndexOf('.') + 1);
     }
 
-    void initialize() {
-        Server server = getServer();
+    private void initialize() {
+        Server server = Bukkit.getServer();
         Properties properties = getProperties();
         String bukkitVersion = getVersion(server).replaceAll("[^0-9]", "");
         int compressionThreshold = (int) properties.getOrDefault("network_compression_threshold", 256);
@@ -53,7 +51,7 @@ public class HamsterAPI {
         bungeeMessenger = new BungeeMessenger();
     }
 
-    Properties getProperties() {
+    private Properties getProperties() {
         File propertiesFile = new File("./server.properties");
         Properties properties = new Properties();
         try (InputStream inputStream = Files.newInputStream(propertiesFile.toPath())) {
@@ -65,28 +63,28 @@ public class HamsterAPI {
     }
 
     public void onEnable() {
-        Server server = getServer();
+        Server server = Bukkit.getServer();
         PluginManager pluginManager = server.getPluginManager();
         initialize();
-        server.getMessenger().registerOutgoingPluginChannel(plugin, "BungeeCord");
-        pluginManager.registerEvents(new PlayerJoinListener(this), plugin);
-        pluginManager.registerEvents(new PlayerQuitListener(hamsterPlayerManager), plugin);
-        for (Player player : getOnlinePlayers()) {
+        server.getMessenger().registerOutgoingPluginChannel(UNUtilities.plugin, "BungeeCord");
+        pluginManager.registerEvents(new PlayerJoinListener(this), UNUtilities.plugin);
+        pluginManager.registerEvents(new PlayerQuitListener(hamsterPlayerManager), UNUtilities.plugin);
+        for (Player player : Bukkit.getOnlinePlayers()) {
             HamsterPlayer hamsterPlayer = hamsterPlayerManager.add(player);
             hamsterPlayer.tryInject();
         }
-        info("&bSuccessfully initialized &eHamsterAPI");
+        Logger.info("&bSuccessfully initialized &eHamsterAPI");
     }
 
     public void onDisable() {
-        for (Player player : getOnlinePlayers())
+        for (Player player : Bukkit.getOnlinePlayers())
             try {
                 HamsterPlayer hamsterPlayer = hamsterPlayerManager.get(player);
                 if (hamsterPlayer != null) hamsterPlayer.uninject();
                 hamsterPlayerManager.remove(player);
             } catch (NullPointerException ignore) {
             }
-        info("&cSuccessfully declared &eHamsterAPI");
+        Logger.info("&cSuccessfully declared &eHamsterAPI");
     }
 
     public BufferIO getBufferIO() {

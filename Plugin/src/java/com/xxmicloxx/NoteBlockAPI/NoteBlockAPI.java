@@ -1,6 +1,9 @@
 package com.xxmicloxx.NoteBlockAPI;
 
 import com.xxmicloxx.NoteBlockAPI.songplayer.SongPlayer;
+import id.universenetwork.utilities.Bukkit.UNUtilities;
+import id.universenetwork.utilities.Bukkit.Utils.Logger;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -10,11 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static id.universenetwork.utilities.Bukkit.Utils.Logger.info;
-import static org.bukkit.Bukkit.getScheduler;
-import static org.bukkit.Bukkit.getServer;
 
 /**
  * Main class; contains methods for playing and adjusting songs for players
@@ -90,12 +88,7 @@ public class NoteBlockAPI {
      * @return volume (byte)
      */
     public static byte getPlayerVolume(UUID uuid) {
-        Byte byteObj = API.playerVolume.get(uuid);
-        if (byteObj == null) {
-            byteObj = 100;
-            API.playerVolume.put(uuid, byteObj);
-        }
-        return byteObj;
+        return API.playerVolume.computeIfAbsent(uuid, k -> (byte) 100);
     }
 
     public static ArrayList<SongPlayer> getSongPlayersByPlayer(Player player) {
@@ -116,24 +109,24 @@ public class NoteBlockAPI {
 
     public void onEnable() {
         API = this;
-        for (Plugin pl : getServer().getPluginManager().getPlugins())
+        for (Plugin pl : Bukkit.getServer().getPluginManager().getPlugins())
             if (pl.getDescription().getDepend().contains("NoteBlockAPI") || pl.getDescription().getSoftDepend().contains("NoteBlockAPI"))
                 dependentPlugins.put(pl, false);
-        info("&bSuccessfully initialized &eNoteBlockAPI");
+        Logger.info("&bSuccessfully initialized &eNoteBlockAPI");
     }
 
     public void onDisable() {
         disabling = true;
-        getScheduler().cancelTasks(plugin);
-        info("&cSuccessfully declared &eNoteBlockAPI");
+        Bukkit.getScheduler().cancelTasks(UNUtilities.plugin);
+        Logger.info("&cSuccessfully declared &eNoteBlockAPI");
     }
 
     public BukkitTask doSync(Runnable runnable) {
-        return getServer().getScheduler().runTask(plugin, runnable);
+        return Bukkit.getServer().getScheduler().runTask(UNUtilities.plugin, runnable);
     }
 
     public BukkitTask doAsync(Runnable runnable) {
-        return getServer().getScheduler().runTaskAsynchronously(plugin, runnable);
+        return Bukkit.getServer().getScheduler().runTaskAsynchronously(UNUtilities.plugin, runnable);
     }
 
     public boolean isDisabling() {
