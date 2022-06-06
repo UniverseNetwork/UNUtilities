@@ -27,7 +27,7 @@ public final class UNUtilities extends JavaPlugin {
     public static YamlBuilder cfg;
     public static YamlBuilder data;
     public static String prefix;
-    public static final String commit = "b56a83c";
+    public static final String commit = "46e2f2d";
     private int u;
 
     /**
@@ -56,7 +56,7 @@ public final class UNUtilities extends JavaPlugin {
         Commands.init();
         Commands.register(new MainCommand());
         Features.init();
-        Bukkit.getLogger().info("§b __    __  §e.__   __.  §9__    __  .___________. __   __       __  .___________. __   _______     _______.\n" +
+        Bukkit.getLogger().info("\n§b __    __  §e.__   __.  §9__    __  .___________. __   __       __  .___________. __   _______     _______.\n" +
                 "§b|  |  |  | §e|  \\ |  | §9|  |  |  | |           ||  | |  |     |  | |           ||  | |   ____|   /       |\n" +
                 "§b|  |  |  | §e|   \\|  | §9|  |  |  | `---|  |----`|  | |  |     |  | `---|  |----`|  | |  |__     |   (----`\n" +
                 "§b|  |  |  | §e|  . `  | §9|  |  |  |     |  |     |  | |  |     |  |     |  |     |  | |   __|     \\   \\    \n" +
@@ -73,7 +73,7 @@ public final class UNUtilities extends JavaPlugin {
     public void onDisable() {
         TookTimer t = new TookTimer();
         API.declare();
-        System.out.println("§b __    __  §e.__   __.  §9__    __  .___________. __   __       __  .___________. __   _______     _______.\n" +
+        Bukkit.getLogger().info("\n§b __    __  §e.__   __.  §9__    __  .___________. __   __       __  .___________. __   _______     _______.\n" +
                 "§b|  |  |  | §e|  \\ |  | §9|  |  |  | |           ||  | |  |     |  | |           ||  | |   ____|   /       |\n" +
                 "§b|  |  |  | §e|   \\|  | §9|  |  |  | `---|  |----`|  | |  |     |  | `---|  |----`|  | |  |__     |   (----`\n" +
                 "§b|  |  |  | §e|  . `  | §9|  |  |  |     |  |     |  | |  |     |  |     |  |     |  | |   __|     \\   \\    \n" +
