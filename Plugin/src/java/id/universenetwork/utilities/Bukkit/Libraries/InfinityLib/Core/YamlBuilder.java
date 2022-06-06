@@ -21,9 +21,9 @@ import java.util.*;
  * @author ARVIN3108 ID
  */
 public class YamlBuilder extends YamlConfiguration {
-    final YamlConfiguration defaults = new YamlConfiguration();
-    final Map<String, String> comments = new HashMap<>();
-    final File file;
+    private final YamlConfiguration defaults = new YamlConfiguration();
+    private final Map<String, String> comments = new HashMap<>();
+    private final File file;
 
     public YamlBuilder(String Name) {
         file = new File(UNUtilities.plugin.getDataFolder(), Name);
@@ -114,7 +114,7 @@ public class YamlBuilder extends YamlConfiguration {
         }
     }
 
-    void loadDefaults(String name) {
+    private void loadDefaults(String name) {
         InputStream stream = UNUtilities.plugin.getResource(name);
         if (stream != null) try {
             defaults.loadFromString(readDefaults(stream));
@@ -124,7 +124,7 @@ public class YamlBuilder extends YamlConfiguration {
         reload();
     }
 
-    String readDefaults(@NotNull InputStream inputStream) throws IOException {
+    private String readDefaults(@NotNull InputStream inputStream) throws IOException {
         BufferedReader input = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
         StringBuilder yamlBuilder = new StringBuilder();
         StringBuilder commentBuilder = new StringBuilder("\n");

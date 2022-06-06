@@ -5,15 +5,17 @@ import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Core.YamlBuilde
 import id.universenetwork.utilities.Bukkit.Manager.API;
 import id.universenetwork.utilities.Bukkit.Manager.Commands;
 import id.universenetwork.utilities.Bukkit.Manager.Features;
+import id.universenetwork.utilities.Bukkit.Manager.UpdateChecker;
 import id.universenetwork.utilities.Bukkit.Utils.Logger;
 import id.universenetwork.utilities.Bukkit.Utils.Text;
-import id.universenetwork.utilities.Bukkit.Utils.TookTimer;
+import id.universenetwork.utilities.Universal.Utils.TookTimer;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,23 +27,26 @@ public final class UNUtilities extends JavaPlugin {
     public static YamlBuilder cfg;
     public static YamlBuilder data;
     public static String prefix;
+    public static final String commit = "b56a83c";
+    private int u;
 
     /**
-     * Initialize config & data before plugin is enabled
+     * Initialize config, data, and checking for updates before plugin is enabled
      */
     @Override
     public void onLoad() {
+        TookTimer t = new TookTimer();
         plugin = this;
         getLogger().info("§eInitializing Config & Data Manager...");
-        TookTimer t = new TookTimer();
         try {
             cfg = new YamlBuilder("config.yml");
             data = new YamlBuilder("data.yml");
+            prefix = Text.translateColor(cfg.getString("Settings.prefix"));
+            Logger.info("&aConfig & Data Manager has been initialized! &b");
         } catch (RuntimeException e) {
-            e.printStackTrace();
+            Logger.log(Level.SEVERE, "Failed to initialize Config & Data Manager!", e);
         }
-        prefix = Text.translateColor(cfg.getString("Settings.prefix"));
-        Logger.info("&aConfig & Data Manager has been initialized! &bTook " + t.get() + "ms");
+        Logger.info("&bTook " + t.get() + "ms to &aload&b!");
     }
 
     @Override
@@ -51,7 +56,7 @@ public final class UNUtilities extends JavaPlugin {
         Commands.init();
         Commands.register(new MainCommand());
         Features.init();
-        System.out.println("§b __    __  §e.__   __.  §9__    __  .___________. __   __       __  .___________. __   _______     _______.\n" +
+        Bukkit.getLogger().info("§b __    __  §e.__   __.  §9__    __  .___________. __   __       __  .___________. __   _______     _______.\n" +
                 "§b|  |  |  | §e|  \\ |  | §9|  |  |  | |           ||  | |  |     |  | |           ||  | |   ____|   /       |\n" +
                 "§b|  |  |  | §e|   \\|  | §9|  |  |  | `---|  |----`|  | |  |     |  | `---|  |----`|  | |  |__     |   (----`\n" +
                 "§b|  |  |  | §e|  . `  | §9|  |  |  |     |  |     |  | |  |     |  |     |  |     |  | |   __|     \\   \\    \n" +
@@ -61,6 +66,7 @@ public final class UNUtilities extends JavaPlugin {
                 "§a             |__| |__| [__     |__] |___ |___ |\\ |    |___ |\\ | |__| |__] |    |___ |  \\ \n" +
                 "§a             |  | |  | ___]    |__] |___ |___ | \\|    |___ | \\| |  | |__] |___ |___ |__/\n");
         Logger.info("&bTook " + t.get() + "ms to &aenable&b!");
+        UpdateChecker.init();
     }
 
     @Override

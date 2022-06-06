@@ -15,6 +15,7 @@ import id.universenetwork.utilities.Bukkit.UNUtilities;
 import id.universenetwork.utilities.Bukkit.Utils.Logger;
 import id.universenetwork.utilities.Bukkit.Utils.Text;
 import lombok.Getter;
+import lombok.SneakyThrows;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -31,7 +32,7 @@ public final class Commands {
     @Getter
     static MinecraftHelp minecraftHelp;
 
-    @lombok.SneakyThrows
+    @SneakyThrows
     public static void init() {
         Logger.info("&eInitializing Command Manager...");
         Function<CommandTree<CommandSender>, CommandExecutionCoordinator<CommandSender>> executionCoordinatorFunction = CommandExecutionCoordinator.simpleCoordinator();
@@ -54,7 +55,7 @@ public final class Commands {
         try {
             annotationParser.parse(cmd);
         } catch (Exception e) {
-            Logger.log(Level.SEVERE, "Failed to register command class: " + cmd.getClass().getName(), e);
+            Logger.log(Level.SEVERE, "Failed to register command class: &e" + cmd.getClass().getSimpleName(), e);
         }
     }
 }

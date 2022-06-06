@@ -1,28 +1,35 @@
 Settings:
   # Plugin prefix
   # You can use %p% to use this prefix
-  prefix: "&bU&eN&9Utilities &8&l>"
+  prefix: '&bU&eN&9Utilities &8&l>'
+
+  # Message when using update command
+  update-msg:
+    checking: '%p% &eMemeriksa update...'
+    no-update: '%p% &aPlugin ini sudah menggunakan versi terbaru!'
+    update-found: '%p% &eUpdate ditemukan! &6Segera laporkan hal ini kepada &bARVIN&a3108 &cI&fD &6untuk mengupdatenya.'
+    error: '%p% &cTidak dapat terhubung ke situs pembaruan, apakah sedang down?'
 
   # Message if player don't have permission to use command
-  no-perm: 'Unknown command. Type "/help" for help.'
+  no-perm: Unknown command. Type "/help" for help.
 
   # Message if configuration is reloaded
-  reload: "%p% &aKonfigurasi berhasil dimuat ulang!"
+  reload: '%p% &aKonfigurasi berhasil dimuat ulang!'
 
   # Message if command can only be executed by player
-  player-only: "%p% &cCommand ini hanya dapat dijalankan oleh player!"
+  player-only: '%p% &cCommand ini hanya dapat dijalankan oleh player!'
 
   # Message if player is not found
-  player-not-found: "%p% &cPlayer tidak ditemukan!"
+  player-not-found: '%p% &cPlayer tidak ditemukan!'
 
   # Message if someone can only check one player at a time
-  check-only-one-player: "%p% &cKamu hanya dapat memeriksa satu player!"
+  check-only-one-player: '%p% &cKamu hanya dapat memeriksa satu player!'
 
   # Message if someone forgot to add specified player
-  no-player-specified: "%p% &cMohon masukkan player yang ingin ditarget!"
+  no-player-specified: '%p% &cMohon masukkan player yang ingin ditarget!'
 
   # Message if someone too many arguments specified for command
-  too-many-args: "%p% &cKamu terlalu banyak mengisi argumen!"
+  too-many-args: '%p% &cKamu terlalu banyak mengisi argumen!'
 
 Features:
 
@@ -34,7 +41,7 @@ Features:
     enabled: true
 
     # Message if player don't have permission to place block
-    msg: "&bUniv&eerse &cSecurity &8&l> &cKamu tidak bisa menggunakan &4Redstone &cdisini!"
+    msg: '&bUniv&eerse &cSecurity &8&l> &cKamu tidak bisa menggunakan &4Redstone &cdisini!'
 
     # List of blocks that players can't place if they don't have permission "unutilities.redstone"
     # If you don't know what the block id's name is, see https://purpurmc.org/javadoc/org/bukkit/Material.html
@@ -131,15 +138,15 @@ Features:
     enabled: false
 
     # Available variables are $jobsCount, $queuedBlocks, $maxQueuedBlocks, $timeLeft, $placingSpeed, $percentage
-    titleFormat: "ETA: $timeLeft seconds, Speed: $placingSpeed block/sec, $percentage %"
+    titleFormat: 'ETA: $timeLeft seconds, Speed: $placingSpeed block/sec, $percentage %'
 
     # Color that the progress bar should be
     # Color options are PINK,BLUE,RED,GREEN,YELLOW,PURPLE,WHITE
-    barColor: "BLUE"
+    barColor: BLUE
 
   ## ShopGUI+ SilkSpawners Connector Features
   ShopGUI+SilkSpawnersConnector:
-    
+
     # Enable ShopGUI+ SilkSpawners Connector Features?
     # !!! -> You need ShopGUI+ and SilkSpawners to use this features
     # !!! -> You must restart the server after change this settings
@@ -173,10 +180,10 @@ Features:
         # Enable PrivateStorage Addon?
         # Default: true
         enabled: true
-      
+
       ## DyedBackpacks Addon Settings
       DyedBackpacks:
-        
+
         # Enable DyedBackpacks Addon?
         # Default: true
         enabled: true
@@ -353,7 +360,7 @@ Features:
     enabled: true
 
     # List of blacklisted inventory name
-    blacklistedinventories: [ "&4&lMineXChange", "test inventory" ]
+    blacklistedinventories: [ '&4&lMineXChange', 'test inventory' ]
 
     # False will prevent users from opening shulkerboxes by clicking the air
     canopeninair: true
@@ -380,7 +387,7 @@ Features:
     disable-in-combat-message: '%p% &cKamu tidak dapat membuka Shulker Box dalam pertempuran!'
 
     # Name of Shulker Inventory Menu
-    defaultname: "&5Shulker Box"
+    defaultname: '&5Shulker Box'
 
     # Shift click to open applies to both ingame and in inventory
     shiftclicktoopen: false
@@ -517,16 +524,16 @@ Features:
     Messages:
 
       # Message for when you do /limitpillagers without the arg
-      Usage: "%p% &cUsage: /limitpillagers count/remove"
+      Usage: '%p% &cUsage: /limitpillagers count/remove'
 
       # Message for the count command showing how many Pillagers are alive on your server
-      Count: "%p% &7There is %count% Pillager(s) on the server!"
+      Count: '%p% &7There is %count% Pillager(s) on the server!'
 
       # Message for the remove command when you remove all Pillagers from the server
-      Remove: "%p% &aRemoved %amount% Pillager(s) from the server!"
+      Remove: '%p% &aRemoved %amount% Pillager(s) from the server!'
 
       # Message if this feature is disabled
-      Disabled: "%p% &cFitur ini dinonaktifkan"
+      Disabled: '%p% &cFitur ini dinonaktifkan'
 
   ## ViaLegacy Features
   # !!! -> You must restart the server after change all settings below

@@ -3,7 +3,7 @@ package id.universenetwork.utilities.Bukkit.Manager;
 import id.universenetwork.utilities.Bukkit.Templates.Feature;
 import id.universenetwork.utilities.Bukkit.UNUtilities;
 import id.universenetwork.utilities.Bukkit.Utils.Logger;
-import id.universenetwork.utilities.Bukkit.Utils.TookTimer;
+import id.universenetwork.utilities.Universal.Utils.TookTimer;
 import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.logging.Level;
@@ -23,7 +23,7 @@ public class Features {
                 }
             } catch (Exception e) {
                 if (e instanceof ClassNotFoundException) continue;
-                Logger.log(Level.SEVERE, "Failed to register feature class:", e);
+                Logger.log(Level.SEVERE, "Failed to register feature class!", e);
             }
         Logger.info("&bTook " + t.get() + "ms &ato load &b" + a + " &aFeatures!");
     }

@@ -4,10 +4,13 @@ import id.universenetwork.utilities.Bukkit.Annotations.Dependency;
 import id.universenetwork.utilities.Bukkit.Templates.Feature;
 import id.universenetwork.utilities.Bukkit.UNUtilities;
 import id.universenetwork.utilities.Bukkit.Utils.Logger;
-import id.universenetwork.utilities.Bukkit.Utils.TookTimer;
+import id.universenetwork.utilities.Universal.Utils.TookTimer;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
+
+import java.util.Arrays;
+import java.util.logging.Level;
 
 public class Main extends Feature {
     @Override
@@ -46,7 +49,7 @@ public class Main extends Feature {
                         }
                     } catch (Exception e) {
                         if (e instanceof ClassNotFoundException) continue;
-                        Logger.log(java.util.logging.Level.SEVERE, "Failed to register Slimefun addon class:", e);
+                        Logger.log(Level.SEVERE, "Failed to register Slimefun addon class!", e);
                     }
                 Logger.info("&bTook " + t.get() + "ms &ato register all enabled addons to Slimefun!");
             } else Logger.severe("&eSlimefun not found. &cYou need Slimefun to use Slimefun Addons Features!");
@@ -54,7 +57,7 @@ public class Main extends Feature {
     }
 
     public String convertArraysToString(String[] v) {
-        String s = StringUtils.remove(StringUtils.remove(java.util.Arrays.toString(v), "["), "]");
+        String s = StringUtils.remove(StringUtils.remove(Arrays.toString(v), "["), "]");
         if (v.length == 2) return StringUtils.replace(s, ",", " and");
         if (v.length > 2) {
             int i = 0;

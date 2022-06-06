@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Utils;
+package id.universenetwork.utilities.Universal.Utils;
 
 public class TookTimer {
     private final long s;
