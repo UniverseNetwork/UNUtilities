@@ -7,9 +7,7 @@ description: ${description}
 website: ${url}
 commit:
 
-
 softdepend:
-  - ShopGUIPlus
   - SilkSpawners
   - Slimefun
   - ProtocolLib
@@ -22,12 +20,10 @@ softdepend:
   - ViaVersion
   - Citizens
 
-
 provides:
   - ZeroTickFarmBlocker
   - Hat
   - ChangeSlots
-  - ShopGUIPlusSilkSpawnersBridge
   - ExtraGear
   - PrivateStorage
   - DyedBackpacks
@@ -70,7 +66,6 @@ provides:
   - ViaPotions
   - Skream
   - ExoticGarden
-
 
 permissions:
   unutilities.*:
