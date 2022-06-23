@@ -1,8 +1,10 @@
 package id.universenetwork.utilities.Bukkit.Features.AntiZeroTickFarm;
 
 import id.universenetwork.utilities.Bukkit.Templates.Feature;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.Ageable;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockPistonExtendEvent;
@@ -26,13 +28,13 @@ public class Main extends Feature {
 
     private void breakPlantsBeside(Block block, BlockFace direction) {
         for (Block b : getNearbyBlocks(block, direction))
-            if (b.getType() == org.bukkit.Material.CACTUS) b.breakNaturally();
+            if (b.getType() == Material.CACTUS) b.breakNaturally();
     }
 
     private void breakPlantsAbove(List<Block> blockList) {
         for (Block block : blockList) {
             Block target = block.getRelative(BlockFace.UP);
-            if (target.getBlockData() instanceof org.bukkit.block.data.Ageable) target.breakNaturally();
+            if (target.getBlockData() instanceof Ageable) target.breakNaturally();
         }
     }
 
