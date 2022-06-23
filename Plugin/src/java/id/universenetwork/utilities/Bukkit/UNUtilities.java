@@ -27,7 +27,7 @@ public final class UNUtilities extends JavaPlugin {
     public static YamlBuilder cfg;
     public static YamlBuilder data;
     public static String prefix;
-    public static final String commit = "46e2f2d";
+    public static final String commit = "0686cb8";
     private int u;
 
     /**
