@@ -93,7 +93,7 @@ public class ExtraHeads extends SfAddon {
 
     private void registerHead(String name, EntityType type, String texture) {
         try {
-            double chance = UNUtilities.cfg.getOrSetDefault(configPath + "chances." + type.toString(), 5.0);
+            double chance = UNUtilities.cfg.getOrSetDefault(cfgPath + "chances." + type.toString(), 5.0);
             SlimefunItemStack item = new SlimefunItemStack(type + "_HEAD", texture, "&r" + name);
             new MobHead(itemGroup, item, recipeType, new CustomItemStack(item, "&rKill 1 " + ChatUtils.humanize(type.name()), "&7Chance: &e" + chance + "%")).register(this, () -> mobs.put(type, item));
         } catch (Exception x) {

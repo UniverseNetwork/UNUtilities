@@ -6,21 +6,15 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPistonRetractEvent;
 
 import java.util.List;
 
-public class Main extends Feature implements Listener {
-    @Override
-    public void Load() {
-        id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this);
-    }
-
+public class Main extends Feature {
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
     public void onPistonOut(BlockPistonExtendEvent e) {
-        if (UNUtilities.cfg.getBoolean(configPath + "enabled")) {
+        if (UNUtilities.cfg.getBoolean(cfgPath + "enabled")) {
             breakPlantsBeside(e.getBlock(), e.getDirection());
             breakPlantsAbove(e.getBlocks());
         }
@@ -28,23 +22,22 @@ public class Main extends Feature implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
     public void onPistonIn(BlockPistonRetractEvent e) {
-        if (UNUtilities.cfg.getBoolean(configPath + "enabled")) breakPlantsAbove(e.getBlocks());
+        if (UNUtilities.cfg.getBoolean(cfgPath + "enabled")) breakPlantsAbove(e.getBlocks());
     }
 
-    void breakPlantsBeside(Block block, BlockFace direction) {
+    private void breakPlantsBeside(Block block, BlockFace direction) {
         for (Block b : getNearbyBlocks(block, direction))
             if (b.getType() == org.bukkit.Material.CACTUS) b.breakNaturally();
     }
 
-    void breakPlantsAbove(List<Block> blockList) {
+    private void breakPlantsAbove(List<Block> blockList) {
         for (Block block : blockList) {
             Block target = block.getRelative(BlockFace.UP);
             if (target.getBlockData() instanceof org.bukkit.block.data.Ageable) target.breakNaturally();
         }
-
     }
 
-    List<Block> getNearbyBlocks(Block block, BlockFace direction) {
+    private List<Block> getNearbyBlocks(Block block, BlockFace direction) {
         List<Block> blocks = new java.util.ArrayList();
         blocks.add(block.getRelative(direction).getRelative(direction));
         switch (direction) {

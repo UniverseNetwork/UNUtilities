@@ -15,42 +15,31 @@
 </div>
 
 # Features
-
 ## Bukkit
-
 - Block Blocker
 - Armor Stand Arms Adder
-- Address Whitelister (Fork of [PreventPortBypass](http://spigotmc.org/resources/54934))
 - Anti Zero Tick Farm (Fork of [Zero Tick Farm Blocker](http://spigotmc.org/resources/72737))
 - Hat Command (Fork of [Hat](http://spigotmc.org/resources/33980))
 - Max Player Changer Command (Fork of [ChangeSlots](http://spigotmc.org/resources/49648))
-- ShopGUI+ SilkSpawners Connector (Fork of [ShopGUI+ bridge for SilkSpawners](http://spigotmc.org/resources/73949))
 - Slimefun Addons ([See below for more info](#slimefun))
-- Villager Optimization (Fork of [Villager Optimizer Plus](http://spigotmc.org/resources/73933) & some patches
-  from [TwinkleStar03](http://github.com/star12465/Anti-Villager-Lag))
+- Villager Optimization (Fork of [Villager Optimizer Plus](http://spigotmc.org/resources/73933) & some patches from [TwinkleStar03](http://github.com/star12465/Anti-Villager-Lag))
 - Skript Addons ([See below for more info](#skript))
 - Anti Book Exploit (Fork of [BookExploitFix](http://spigotmc.org/resources/5897))
 - Pocket Shulker (Fork of [Shulker Backpacks](http://spigotmc.org/resources/67466))
-- Entity Tracker Fixer (Fork of [EntityTrackerFixer](http://spigotmc.org/resources/70902) & some patches
-  from [cascaseno](http://github.com/cascaseno/EntityTrackerFixer))
-- ViaLegacy (Fork of [ViaRewind Legacy Support](http://spigotmc.org/resources/52924)
-  & [ViaPotions](http://github.com/2lstudios-mc/ViaPotions/releases))
+- Entity Tracker Fixer (Fork of [EntityTrackerFixer](http://spigotmc.org/resources/70902) & some patches from [cascaseno](http://github.com/cascaseno/EntityTrackerFixer))
+- ViaLegacy (Fork of [ViaRewind Legacy Support](http://spigotmc.org/resources/52924) & [ViaPotions](http://github.com/2lstudios-mc/ViaPotions/releases))
 
 ## Bungee
-
 - Max Player Changer Command (Fork of [ChangeSlots](http://spigotmc.org/resources/49648))
 - Staff List
 - Whitelister (Inspired by [BungeeWhiteList](http://spigotmc.org/resources/8824))
 
 # API Included
-
 - [NoteBlockAPI](http://ci.haprosgames.com/job/NoteBlockAPI-2.0/lastSuccessfulBuild)
 - [HamsterAPI](http://spigotmc.org/resources/78831)
 
 # Third Party Addons Included
-
 ## [Slimefun](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/Slimefun4/master)
-
 - [ExtraGear](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/ExtraGear/master)
 - [PrivateStorage](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/PrivateStorage/master)
 - [DyedBackpacks](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/DyedBackpacks/master)
@@ -77,7 +66,6 @@
 - [ExoticGarden](http://thebusybiscuit.github.io/builds/TheBusyBiscuit/ExoticGarden/master)
 
 ## [Skript](http://github.com/SkriptLang/Skript/releases)
-
 - [SkriptPlaceholders](http://github.com/APickledWalrus/skript-placeholders/releases) (Require [PlaceholderAPI](http://spigotmc.org/resources/6245) or [MVdWPlaceholderAPI](http://spigotmc.org/resources/11182))
 - [SkWhitelist](http://github.com/tim740/skWhitelist/releases)
 - [BungeeAddon](http://github.com/Pikachu920/BungeeAddon/releases)

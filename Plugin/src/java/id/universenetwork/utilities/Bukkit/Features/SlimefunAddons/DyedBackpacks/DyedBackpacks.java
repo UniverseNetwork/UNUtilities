@@ -23,17 +23,17 @@ public class DyedBackpacks extends SfAddon {
     public void Load() {
         Research research = new Research(UNUtilities.createKey("dyed_backpacks"), 17200, "Dyed Backpacks", 24);
         ItemGroup itemGroup = new ItemGroup(UNUtilities.createKey("dyed_backpacks"), new CustomItemStack(PlayerHead.getItemStack(PlayerSkin.fromHashCode(BackpackColor.RED.getTexture())), "&4Dyed Backpacks"), 2);
-        if (UNUtilities.cfg.getBoolean(configPath + "backpacks.small"))
+        if (UNUtilities.cfg.getBoolean(cfgPath + "backpacks.small"))
             createBackpacks(itemGroup, research, SlimefunItems.BACKPACK_SMALL, 9);
-        if (UNUtilities.cfg.getBoolean(configPath + "backpacks.normal"))
+        if (UNUtilities.cfg.getBoolean(cfgPath + "backpacks.normal"))
             createBackpacks(itemGroup, research, SlimefunItems.BACKPACK_MEDIUM, 18);
-        if (UNUtilities.cfg.getBoolean(configPath + "backpacks.large"))
+        if (UNUtilities.cfg.getBoolean(cfgPath + "backpacks.large"))
             createBackpacks(itemGroup, research, SlimefunItems.BACKPACK_LARGE, 27);
-        if (UNUtilities.cfg.getBoolean(configPath + "backpacks.woven"))
+        if (UNUtilities.cfg.getBoolean(cfgPath + "backpacks.woven"))
             createBackpacks(itemGroup, research, SlimefunItems.WOVEN_BACKPACK, 36);
-        if (UNUtilities.cfg.getBoolean(configPath + "backpacks.gilded"))
+        if (UNUtilities.cfg.getBoolean(cfgPath + "backpacks.gilded"))
             createBackpacks(itemGroup, research, SlimefunItems.GILDED_BACKPACK, 45);
-        if (UNUtilities.cfg.getBoolean(configPath + "backpacks.radiant"))
+        if (UNUtilities.cfg.getBoolean(cfgPath + "backpacks.radiant"))
             createBackpacks(itemGroup, research, SlimefunItems.RADIANT_BACKPACK, 54);
         research.register();
     }

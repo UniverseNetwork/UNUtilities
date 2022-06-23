@@ -5,7 +5,7 @@ import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class SfAddon implements SlimefunAddon {
-    public final String configPath = "Features.SlimefunAddons.Addons." + getClass().getSimpleName() + ".";
+    public final String cfgPath = "Features.SlimefunAddons.Addons." + getClass().getSimpleName() + ".";
 
     @Override
     public JavaPlugin getJavaPlugin() {

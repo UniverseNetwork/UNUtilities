@@ -20,10 +20,6 @@ import java.util.logging.Level;
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Events implements Listener {
-    private static final Listener
-    LISTENER =new
-
-    Events();
 
     /**
      * Calls the given event
@@ -49,6 +45,6 @@ public class Events implements Listener {
      * Registers the given handler to the given event
      */
     public static <T extends Event> void addHandler(Class<T> eventClass, EventPriority priority, boolean ignoreCancelled, Consumer<T> handler) {
-        Bukkit.getPluginManager().registerEvent(eventClass, LISTENER, priority, (listener, event) -> handler.accept((T) event), UNUtilities.plugin, ignoreCancelled);
+        Bukkit.getPluginManager().registerEvent(eventClass, new Events(), priority, (listener, event) -> handler.accept((T) event), UNUtilities.plugin, ignoreCancelled);
     }
 }

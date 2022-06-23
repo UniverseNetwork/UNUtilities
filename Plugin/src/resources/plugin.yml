@@ -9,7 +9,6 @@ commit:
 
 
 softdepend:
-  - AsyncWorldEdit
   - ShopGUIPlus
   - SilkSpawners
   - Slimefun
@@ -25,12 +24,9 @@ softdepend:
 
 
 provides:
-  - PreventPortBypass
   - ZeroTickFarmBlocker
   - Hat
   - ChangeSlots
-  - AsyncWorldEditBossBar
-  - ActionBarAPI
   - ShopGUIPlusSilkSpawnersBridge
   - ExtraGear
   - PrivateStorage
@@ -81,7 +77,7 @@ permissions:
     default: op
     description: Grant all permissions of this plugin
     children:
-      - unutilities.redstone
+      - unutilities.blockblocker
       - unutilities.command.*
 
   unutilities.command.*:
@@ -89,20 +85,25 @@ permissions:
     description: Grant all permissions of plugin commands
     children:
       - unutilities.command.reload
+      - unutilities.command.checkupdate
       - unutilities.command.hat
       - unutilities.command.changeslots
       - unutilities.command.filter
-      - unutilities.command.limitpillagers
+      - unutilities.command.pillagerslimiter
       - avlp.vanilla
       - avlp.check
 
-  unutilities.redstone:
+  unutilities.blockblocker:
     default: op
-    description: Permission to bypass Anti Redstone Features
+    description: Permission to bypass Block Blocker feature
 
   unutilities.command.reload:
     default: op
     description: Permission to use reload command
+
+  unutilities.command.checkupdate:
+    default: op
+    description: Permission to use check update command
 
   unutilities.command.hat:
     default: op
@@ -116,6 +117,6 @@ permissions:
     default: op
     description: Permission to use Anti Book Exploit Filter Command
 
-  unutilities.command.limitpillagers:
+  unutilities.command.pillagerslimiter:
     default: op
-    description: Permission to use /limitpillagers
+    description: Permission to use /pillagerslimiter

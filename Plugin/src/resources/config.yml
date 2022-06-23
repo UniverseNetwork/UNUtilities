@@ -43,7 +43,7 @@ Features:
     # Message if player don't have permission to place block
     msg: '&bUniv&eerse &cSecurity &8&l> &cKamu tidak bisa menggunakan &4Redstone &cdisini!'
 
-    # List of blocks that players can't place if they don't have permission "unutilities.redstone"
+    # List of blocks that players can't place if they don't have permission "unutilities.blockblocker"
     # If you don't know what the block id's name is, see https://purpurmc.org/javadoc/org/bukkit/Material.html
     blocks:
       - REDSTONE_WIRE
@@ -59,25 +59,6 @@ Features:
     # Enable Armor Stand Arms Adder Features?
     # Default: true
     enabled: true
-
-  ## Address Whitelister Features
-  AddressWhitelister:
-
-    # Enable Address Whitelister Features?
-    # !!! -> You need BungeeCord to use this features
-    # Default: false
-    enabled: false
-
-    # !!! -> IT MUST BE THE SAME AS IN THE BUNGEECORD config.yml UNDER 'host: '
-    # !!! -> Please change your BungeeCord Address to your origin server address (e.g from your v- or rootserver). Example: 12.34.56.78
-    # You can whitelist multiple bungeecord servers by splitting them with a ";"
-    # Example: 33.44.55.66;1.23.45.56;5.6.77.88
-    # Default: 0.0.0.0
-    address: 0.0.0.0
-
-    # The message if a player doesn't join over the whitelisted address
-    # You can use %enter% to go to a new line
-    kickMessage: '&cHarap menggunakan ip &buniv&eerse&amc.id &cuntuk bergabung'
 
   ## Anti Zero Tick Farm Features
   AntiZeroTickFarm:
@@ -128,30 +109,6 @@ Features:
 
     # Message if an error has occurred
     errorMessage: '%p% &cTerjadi kesalahan, silakan periksa console!'
-
-  ## AsyncWorldEdit BossBar Display Features
-  AsyncWorldEditBossBarDisplay:
-
-    # Enable AsyncWorldEdit BossBar Display Features?
-    # !!! -> You need AsyncWorldEdit to use this features
-    # Default: false
-    enabled: false
-
-    # Available variables are $jobsCount, $queuedBlocks, $maxQueuedBlocks, $timeLeft, $placingSpeed, $percentage
-    titleFormat: 'ETA: $timeLeft seconds, Speed: $placingSpeed block/sec, $percentage %'
-
-    # Color that the progress bar should be
-    # Color options are PINK,BLUE,RED,GREEN,YELLOW,PURPLE,WHITE
-    barColor: BLUE
-
-  ## ShopGUI+ SilkSpawners Connector Features
-  ShopGUI+SilkSpawnersConnector:
-
-    # Enable ShopGUI+ SilkSpawners Connector Features?
-    # !!! -> You need ShopGUI+ and SilkSpawners to use this features
-    # !!! -> You must restart the server after change this settings
-    # Default: false
-    enabled: false
 
   ## Slimefun Addons Features
   SlimefunAddons:
@@ -355,7 +312,6 @@ Features:
   PocketShulker:
 
     # Enable Pocket Shulker Features?
-    # !!! -> You must restart the server after change this settings
     # Default: true
     enabled: true
 
@@ -523,14 +479,14 @@ Features:
     ## Command Messages
     Messages:
 
-      # Message for when you do /limitpillagers without the arg
-      Usage: '%p% &cUsage: /limitpillagers count/remove'
+      # Message for when you do /pillagerslimiter without the arg
+      Usage: '%p% &cPenggunaan: /pillagerslimiter count/remove'
 
       # Message for the count command showing how many Pillagers are alive on your server
-      Count: '%p% &7There is %count% Pillager(s) on the server!'
+      Count: '%p% &7Ada %amount% Pillager di server!'
 
       # Message for the remove command when you remove all Pillagers from the server
-      Remove: '%p% &aRemoved %amount% Pillager(s) from the server!'
+      Remove: '%p% &aMenghapus %amount% Pillager dari server!'
 
       # Message if this feature is disabled
       Disabled: '%p% &cFitur ini dinonaktifkan'

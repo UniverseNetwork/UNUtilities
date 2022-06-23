@@ -2,7 +2,6 @@ package id.universenetwork.utilities.Bukkit.Features.SlimefunAddons;
 
 import id.universenetwork.utilities.Bukkit.Annotations.Dependency;
 import id.universenetwork.utilities.Bukkit.Templates.Feature;
-import id.universenetwork.utilities.Bukkit.UNUtilities;
 import id.universenetwork.utilities.Bukkit.Utils.Logger;
 import id.universenetwork.utilities.Universal.Utils.TookTimer;
 import org.apache.commons.lang.StringUtils;
@@ -15,12 +14,12 @@ import java.util.logging.Level;
 public class Main extends Feature {
     @Override
     public void Load() {
-        if (UNUtilities.cfg.getBoolean(configPath + "enabled")) {
+        if (cfgSection.getBoolean("enabled")) {
             Logger.info("&eSlimefun Addons feature is enabled on config.yml. Searching Slimefun...");
             if (Bukkit.getPluginManager().isPluginEnabled("Slimefun")) {
                 Logger.info("&aSlimefun found, &eregistring enabled addons...");
                 TookTimer t = new TookTimer();
-                ConfigurationSection s = UNUtilities.cfg.getConfigurationSection(configPath + "Addons");
+                ConfigurationSection s = cfgSection.getConfigurationSection("Addons");
                 for (String k : s.getKeys(false))
                     if (s.getBoolean(k + ".enabled")) try {
                         Class<?> c = Class.forName("id.universenetwork.utilities.Bukkit.Features.SlimefunAddons." + k + "." + k);
