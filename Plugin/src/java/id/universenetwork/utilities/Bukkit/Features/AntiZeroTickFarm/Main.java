@@ -1,7 +1,6 @@
 package id.universenetwork.utilities.Bukkit.Features.AntiZeroTickFarm;
 
 import id.universenetwork.utilities.Bukkit.Templates.Feature;
-import id.universenetwork.utilities.Bukkit.UNUtilities;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
@@ -14,7 +13,7 @@ import java.util.List;
 public class Main extends Feature {
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
     public void onPistonOut(BlockPistonExtendEvent e) {
-        if (UNUtilities.cfg.getBoolean(cfgPath + "enabled")) {
+        if (cfgSection.getBoolean("enabled")) {
             breakPlantsBeside(e.getBlock(), e.getDirection());
             breakPlantsAbove(e.getBlocks());
         }
@@ -22,7 +21,7 @@ public class Main extends Feature {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
     public void onPistonIn(BlockPistonRetractEvent e) {
-        if (UNUtilities.cfg.getBoolean(cfgPath + "enabled")) breakPlantsAbove(e.getBlocks());
+        if (cfgSection.getBoolean("enabled")) breakPlantsAbove(e.getBlocks());
     }
 
     private void breakPlantsBeside(Block block, BlockFace direction) {
