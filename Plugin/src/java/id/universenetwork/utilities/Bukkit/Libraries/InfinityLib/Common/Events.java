@@ -20,7 +20,6 @@ import java.util.logging.Level;
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Events implements Listener {
-
     /**
      * Calls the given event
      */
