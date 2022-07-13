@@ -19,7 +19,7 @@ import java.util.UUID;
 
 import static dev._2lstudios.hamsterapi.enums.HamsterHandler.HAMSTER_CHANNEL;
 import static dev._2lstudios.hamsterapi.enums.HamsterHandler.HAMSTER_DECODER;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+import static id.universenetwork.utilities.bukkit.UNUtilities.prefix;
 import static org.bukkit.Bukkit.getLogger;
 import static org.bukkit.Bukkit.getServer;
 

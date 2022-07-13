@@ -1,11 +1,11 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptPlaceholders;
 
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Addons;
+import id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.Addons;
 
 import static ch.njol.skript.Skript.classExists;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+import static id.universenetwork.utilities.bukkit.UNUtilities.prefix;
 
-@id.universenetwork.utilities.Bukkit.Annotations.AddonName("SkriptPlaceholders")
+@id.universenetwork.utilities.bukkit.annotations.AddonName("SkriptPlaceholders")
 public class SkriptPlaceholders extends Addons {
     public static final boolean hasMVdW = classExists("be.maximvdw.placeholderapi.PlaceholderAPI");
     public static final boolean hasPAPI = classExists("me.clip.placeholderapi.expansion.PlaceholderExpansion");

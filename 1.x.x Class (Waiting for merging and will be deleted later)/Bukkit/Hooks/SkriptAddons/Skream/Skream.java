@@ -1,7 +1,7 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Skream;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.Skream;
 
-@id.universenetwork.utilities.Bukkit.Annotations.AddonName("Skream")
-public class Skream extends id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Addons {
+@id.universenetwork.utilities.bukkit.annotations.AddonName("Skream")
+public class Skream extends id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.Addons {
     @Override
     public void Load() {
         try {
@@ -9,6 +9,6 @@ public class Skream extends id.universenetwork.utilities.Bukkit.Hooks.SkriptAddo
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
-        System.out.println(id.universenetwork.utilities.Bukkit.UNUtilities.prefix + " §bSuccessfully Registered §6Skream §bAddon");
+        System.out.println(id.universenetwork.utilities.bukkit.UNUtilities.prefix + " §bSuccessfully Registered §6Skream §bAddon");
     }
 }

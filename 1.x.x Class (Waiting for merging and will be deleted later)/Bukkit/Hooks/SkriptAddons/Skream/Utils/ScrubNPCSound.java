@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Skream.Utils;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.Skream.Utils;
 
 public class ScrubNPCSound {
     public static String getSound(String exprs) {

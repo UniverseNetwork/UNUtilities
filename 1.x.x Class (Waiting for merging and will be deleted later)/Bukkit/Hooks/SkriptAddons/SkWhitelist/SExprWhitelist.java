@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkWhitelist;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkWhitelist;
 
 import ch.njol.skript.classes.Changer.ChangeMode;
 import org.bukkit.Bukkit;

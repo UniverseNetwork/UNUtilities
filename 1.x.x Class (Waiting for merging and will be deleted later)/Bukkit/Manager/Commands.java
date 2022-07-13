@@ -1,6 +1,6 @@
-package id.universenetwork.utilities.Bukkit.Manager;
+package id.universenetwork.utilities.bukkit.manager;
 
-import id.universenetwork.utilities.Bukkit.Commands.*;
+import id.universenetwork.utilities.bukkit.Commands.*;
 import id.universenetwork.utilities.Universal.Enums.Settings;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandMap;
@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.Manager.Config.VOEnabled;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+import static id.universenetwork.utilities.bukkit.manager.Config.VOEnabled;
+import static id.universenetwork.utilities.bukkit.UNUtilities.prefix;
 
 public abstract class Commands extends org.bukkit.command.Command {
     final String Permission;

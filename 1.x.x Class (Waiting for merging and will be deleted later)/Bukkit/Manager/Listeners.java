@@ -1,10 +1,10 @@
-package id.universenetwork.utilities.Bukkit.Manager;
+package id.universenetwork.utilities.bukkit.manager;
 
-import id.universenetwork.utilities.Bukkit.Enums.PocketShulker;
-import id.universenetwork.utilities.Bukkit.Listeners.*;
+import id.universenetwork.utilities.bukkit.Enums.PocketShulker;
+import id.universenetwork.utilities.bukkit.Listeners.*;
 
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+import static id.universenetwork.utilities.bukkit.libraries.InfinityLib.Common.Events.registerListeners;
+import static id.universenetwork.utilities.bukkit.UNUtilities.prefix;
 
 public final class Listeners {
     public static void register() {

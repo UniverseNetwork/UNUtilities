@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.NMS.v1_16_R3;
+package id.universenetwork.utilities.bukkit.NMS.v1_16_R3;
 
 import net.minecraft.server.v1_16_R3.ChunkProviderServer;
 import net.minecraft.server.v1_16_R3.Entity;
@@ -8,7 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Set;
 
-import static id.universenetwork.utilities.Bukkit.Utils.ReflectionUtils.getPrivateMethod;
+import static id.universenetwork.utilities.bukkit.utils.ReflectionUtils.getPrivateMethod;
 
 public final class NMSEntityTracker {
     static Method addEntityMethod;

@@ -1,11 +1,9 @@
-name: UNUtilities
+name: ${parent.artifactId}
 version: ${version}
-main: id.universenetwork.utilities.Bukkit.UNUtilities
+main: ${parent.groupId}.bukkit.${parent.artifactId}
 api-version: 1.16
 author: ARVIN3108 ID
 description: ${description}
-website: ${url}
-commit:
 
 softdepend:
   - SilkSpawners

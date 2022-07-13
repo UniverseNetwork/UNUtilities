@@ -1,16 +1,16 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.BungeeAddon.Skript;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.BungeeAddon.Skript;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.TriggerItem;
 import ch.njol.util.Kleenean;
 import com.google.common.io.ByteStreams;
-import id.universenetwork.utilities.Bukkit.UNUtilities;
+import id.universenetwork.utilities.bukkit.UNUtilities;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 import java.lang.reflect.Field;
 
-import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.BungeeAddon.BungeeAddon.CHANNEL;
+import static id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.BungeeAddon.BungeeAddon.CHANNEL;
 import static org.bukkit.Bukkit.*;
 
 public class EffGrabServers extends ch.njol.skript.lang.Effect implements org.bukkit.plugin.messaging.PluginMessageListener {

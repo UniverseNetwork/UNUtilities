@@ -1,10 +1,10 @@
-package id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Injector;
+package id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Injector;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
 
-import static id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Reflection.ReflectionAPI.getFieldAccessible;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+import static id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Reflection.ReflectionAPI.getFieldAccessible;
+import static id.universenetwork.utilities.bukkit.UNUtilities.prefix;
 import static java.util.logging.Level.SEVERE;
 import static org.bukkit.Bukkit.getLogger;
 

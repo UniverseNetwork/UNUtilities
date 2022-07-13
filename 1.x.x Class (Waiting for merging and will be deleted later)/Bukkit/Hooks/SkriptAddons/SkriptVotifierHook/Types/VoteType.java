@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptVotifierHook.Types;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptVotifierHook.Types;
 
 import ch.njol.skript.classes.Parser;
 import ch.njol.skript.lang.ParseContext;

@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptVotifierHook;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptVotifierHook;
 
 import java.util.function.Function;
 

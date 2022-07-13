@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.Conditions;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.Conditions;
 
 import ch.njol.skript.lang.Expression;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
@@ -34,6 +34,6 @@ public class CondHasResearch extends ch.njol.skript.lang.Condition {
     public boolean check(Event e) {
         if (player.getSingle(e) == null || i.getSingle(e) == null) return isNegated();
         java.util.Optional<PlayerProfile> profile = PlayerProfile.find(player.getSingle(e));
-        return profile.map(playerProfile -> playerProfile.hasUnlocked(id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.SlimefunHook.getResearch(i.getSingle(e))) != isNegated()).orElseGet(this::isNegated);
+        return profile.map(playerProfile -> playerProfile.hasUnlocked(id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.SlimefunHook.getResearch(i.getSingle(e))) != isNegated()).orElseGet(this::isNegated);
     }
 }

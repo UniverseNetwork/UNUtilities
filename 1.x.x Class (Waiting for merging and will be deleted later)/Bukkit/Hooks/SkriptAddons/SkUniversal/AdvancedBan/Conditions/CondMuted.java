@@ -1,7 +1,7 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkUniversal.AdvancedBan.Conditions;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkUniversal.AdvancedBan.Conditions;
 
 import ch.njol.skript.lang.Expression;
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkUniversal.AdvancedBan.AdvancedBanHook;
+import id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkUniversal.AdvancedBan.AdvancedBanHook;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Event;
 

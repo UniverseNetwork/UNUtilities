@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Utils;
+package id.universenetwork.utilities.bukkit.utils;
 
 import lombok.var;
 import org.jetbrains.annotations.NotNull;

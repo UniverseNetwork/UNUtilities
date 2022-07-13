@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.NMS.v1_16_R2.EntityTick;
+package id.universenetwork.utilities.bukkit.NMS.v1_16_R2.EntityTick;
 
 import net.minecraft.server.v1_16_R2.Entity;
 import net.minecraft.server.v1_16_R2.EntityInsentient;
@@ -9,7 +9,7 @@ import org.bukkit.event.world.ChunkLoadEvent;
 
 import java.util.Set;
 
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
+import static id.universenetwork.utilities.bukkit.libraries.InfinityLib.Common.Events.registerListeners;
 
 public class EntityTickManager implements org.bukkit.event.Listener {
     static EntityTickManager instance;

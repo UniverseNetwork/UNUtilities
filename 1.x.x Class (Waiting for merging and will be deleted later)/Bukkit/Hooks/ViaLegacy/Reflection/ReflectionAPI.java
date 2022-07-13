@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Reflection;
+package id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Reflection;
 
 import sun.reflect.ReflectionFactory;
 

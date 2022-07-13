@@ -1,10 +1,10 @@
-package id.universenetwork.utilities.Bukkit.Utils;
+package id.universenetwork.utilities.bukkit.utils;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.bukkit.UNUtilities.plugin;
 
 public class ConfigurationUtil {
     public static YamlConfiguration getConfig(String path) {

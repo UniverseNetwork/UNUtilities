@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.NMS.v1_16_R1.EntityTick;
+package id.universenetwork.utilities.bukkit.NMS.v1_16_R1.EntityTick;
 
 import net.minecraft.server.v1_16_R1.Entity;
 import net.minecraft.server.v1_16_R1.EntityInsentient;
@@ -9,7 +9,7 @@ import org.bukkit.event.world.ChunkLoadEvent;
 
 import java.util.Set;
 
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
+import static id.universenetwork.utilities.bukkit.libraries.InfinityLib.Common.Events.registerListeners;
 
 public class EntityTickManager implements org.bukkit.event.Listener {
     static EntityTickManager instance;
@@ -22,10 +22,8 @@ public class EntityTickManager implements org.bukkit.event.Listener {
         if (entity == null) return;
         if (!entity.valid) return;
         entity.activatedTick = -2147483648L;
-        if (entity instanceof EntityInsentient) {
-            //System.out.println("disable tick for insentient entity currently aware is = " + ((EntityInsentient)entity).aware + " should be true");
-            ((EntityInsentient) entity).aware = false;
-        }
+        //System.out.println("disable tick for insentient entity currently aware is = " + ((EntityInsentient)entity).aware + " should be true");
+        if (entity instanceof EntityInsentient) ((EntityInsentient) entity).aware = false;
     }
 
     public void enableTicking(Set<Entity> entities) {

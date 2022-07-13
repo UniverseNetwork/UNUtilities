@@ -1,8 +1,8 @@
-package id.universenetwork.utilities.Bukkit.Manager;
+package id.universenetwork.utilities.bukkit.manager;
 
-import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Core.YamlBuilder;
+import id.universenetwork.utilities.bukkit.libraries.InfinityLib.Core.YamlBuilder;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+import static id.universenetwork.utilities.bukkit.UNUtilities.prefix;
 
 public class Data {
     static YamlBuilder data;

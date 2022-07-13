@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.QuarSK.Utils;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.QuarSK.Utils;
 
 /**
  * Created by ARTHUR on 21/07/2017.

@@ -1,17 +1,17 @@
-package id.universenetwork.utilities.Bukkit.Manager;
+package id.universenetwork.utilities.bukkit.manager;
 
-import id.universenetwork.utilities.Bukkit.Enums.*;
-import id.universenetwork.utilities.Bukkit.Events.UNUtilitiesReloadConfigEvent;
-import id.universenetwork.utilities.Bukkit.Handlers.BookExploitHandler;
-import id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Core.YamlBuilder;
-import id.universenetwork.utilities.Bukkit.NMS.ETF;
+import id.universenetwork.utilities.bukkit.Enums.*;
+import id.universenetwork.utilities.bukkit.events.UNUtilitiesReloadConfigEvent;
+import id.universenetwork.utilities.bukkit.Handlers.BookExploitHandler;
+import id.universenetwork.utilities.bukkit.libraries.InfinityLib.Core.YamlBuilder;
+import id.universenetwork.utilities.bukkit.NMS.ETF;
 import id.universenetwork.utilities.Universal.Enums.Settings;
 
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
-import static id.universenetwork.utilities.Bukkit.Utils.Color.Translate;
+import static id.universenetwork.utilities.bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.bukkit.UNUtilities.prefix;
+import static id.universenetwork.utilities.bukkit.utils.Color.Translate;
 import static org.bukkit.Bukkit.getLogger;
 import static org.bukkit.Bukkit.getPluginManager;
 

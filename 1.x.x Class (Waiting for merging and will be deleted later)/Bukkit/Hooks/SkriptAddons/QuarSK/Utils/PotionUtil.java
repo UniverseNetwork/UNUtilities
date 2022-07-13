@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.QuarSK.Utils;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.QuarSK.Utils;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.meta.PotionMeta;

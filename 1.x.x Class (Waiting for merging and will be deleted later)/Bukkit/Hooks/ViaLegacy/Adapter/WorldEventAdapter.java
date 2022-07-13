@@ -1,11 +1,11 @@
-package id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Adapter;
+package id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Adapter;
 
 import com.comphenix.protocol.events.PacketContainer;
-import id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Utils.SplashTranslator;
+import id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Utils.SplashTranslator;
 
 public class WorldEventAdapter extends com.comphenix.protocol.events.PacketAdapter {
     public WorldEventAdapter() {
-        super(id.universenetwork.utilities.Bukkit.UNUtilities.plugin, com.comphenix.protocol.PacketType.Play.Server.WORLD_EVENT);
+        super(id.universenetwork.utilities.bukkit.UNUtilities.plugin, com.comphenix.protocol.PacketType.Play.Server.WORLD_EVENT);
     }
 
     @Override
@@ -21,7 +21,7 @@ public class WorldEventAdapter extends com.comphenix.protocol.events.PacketAdapt
             if (version <= 210) editedIntegers.write(0, 2002);
             for (final SplashTranslator translator : SplashTranslator.values())
                 if (editedIntegers.read(1) == translator.getRGB())
-                    for (final id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Utils.TranslationData data : translator.getDatas())
+                    for (final id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Utils.TranslationData data : translator.getDatas())
                         if (data.getLowestVersion() <= version && data.getHighestVersion() >= version)
                             editedIntegers.write(1, data.getRemap());
             try {

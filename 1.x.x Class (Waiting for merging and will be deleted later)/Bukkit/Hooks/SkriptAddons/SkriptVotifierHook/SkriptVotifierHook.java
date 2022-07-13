@@ -1,10 +1,10 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptVotifierHook;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptVotifierHook;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+import static id.universenetwork.utilities.bukkit.UNUtilities.prefix;
 import static org.bukkit.Bukkit.getServer;
 
-@id.universenetwork.utilities.Bukkit.Annotations.AddonName("SkriptVotifierHook")
-public class SkriptVotifierHook extends id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Addons implements org.bukkit.event.Listener {
+@id.universenetwork.utilities.bukkit.annotations.AddonName("SkriptVotifierHook")
+public class SkriptVotifierHook extends id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.Addons implements org.bukkit.event.Listener {
     @Override
     public void Load() {
         if (getServer().getPluginManager().isPluginEnabled("Votifier")) {
@@ -13,7 +13,7 @@ public class SkriptVotifierHook extends id.universenetwork.utilities.Bukkit.Hook
             } catch (java.io.IOException e) {
                 e.printStackTrace();
             }
-            id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this);
+            id.universenetwork.utilities.bukkit.libraries.InfinityLib.Common.Events.registerListeners(this);
             System.out.println(prefix + " §aVotifier found. §bSuccessfully Registered §6SkriptVotifierHook §bAddon");
         } else
             getServer().getLogger().warning(prefix + " §eVotifier not found. §cYou need Votifier to use §6SkriptVotifierHook §cAddon");
@@ -24,6 +24,6 @@ public class SkriptVotifierHook extends id.universenetwork.utilities.Bukkit.Hook
         com.vexsoftware.votifier.model.Vote v = e.getVote();
         org.bukkit.entity.Player p = getServer().getPlayerExact(v.getUsername());
         if (p != null)
-            getServer().getPluginManager().callEvent(new id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptVotifierHook.Events.OnlinePlayerVoteEvent(p, v));
+            getServer().getPluginManager().callEvent(new id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptVotifierHook.Events.OnlinePlayerVoteEvent(p, v));
     }
 }

@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Skream.Elements.Effects;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.Skream.Elements.Effects;
 
 import ch.njol.skript.lang.Expression;
 import org.bukkit.NamespacedKey;

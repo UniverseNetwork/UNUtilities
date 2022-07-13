@@ -1,7 +1,7 @@
-package id.universenetwork.utilities.Bukkit.Commands;
+package id.universenetwork.utilities.bukkit.Commands;
 
-import id.universenetwork.utilities.Bukkit.Enums.MaxPlayerChangerCommand;
-import id.universenetwork.utilities.Bukkit.Manager.Config;
+import id.universenetwork.utilities.bukkit.Enums.MaxPlayerChangerCommand;
+import id.universenetwork.utilities.bukkit.manager.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
@@ -9,10 +9,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.Manager.Config.MPCCMessage;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.bukkit.manager.Config.MPCCMessage;
+import static id.universenetwork.utilities.bukkit.UNUtilities.plugin;
 
-public class SetSlots extends id.universenetwork.utilities.Bukkit.Manager.Commands {
+public class SetSlots extends id.universenetwork.utilities.bukkit.manager.Commands {
     Field maxPlayersField;
 
     public SetSlots() {
@@ -30,7 +30,7 @@ public class SetSlots extends id.universenetwork.utilities.Bukkit.Manager.Comman
                     sender.sendMessage(MPCCMessage(MaxPlayerChangerCommand.NONUMMSG));
                 } catch (ReflectiveOperationException e) {
                     sender.sendMessage(MPCCMessage(MaxPlayerChangerCommand.ERRMSG));
-                    Bukkit.getLogger().log(java.util.logging.Level.SEVERE, id.universenetwork.utilities.Bukkit.UNUtilities.prefix + " §cAn error occurred while updating max players", e);
+                    Bukkit.getLogger().log(java.util.logging.Level.SEVERE, id.universenetwork.utilities.bukkit.UNUtilities.prefix + " §cAn error occurred while updating max players", e);
                 }
             } else sender.sendMessage(MPCCMessage(MaxPlayerChangerCommand.NOARGMSG));
         } else sender.sendMessage(MPCCMessage(MaxPlayerChangerCommand.DISABLEDMSG));

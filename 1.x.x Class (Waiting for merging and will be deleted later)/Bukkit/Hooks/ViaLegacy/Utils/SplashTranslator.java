@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Utils;
+package id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Utils;
 
 public enum SplashTranslator {
     NIGHT_VISION(2039713, new TranslationData(8356774, 0, 106), new TranslationData(5, 107, 210)),

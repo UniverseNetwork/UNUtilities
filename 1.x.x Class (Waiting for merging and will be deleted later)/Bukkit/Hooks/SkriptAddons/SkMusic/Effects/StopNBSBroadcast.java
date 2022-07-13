@@ -1,9 +1,9 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkMusic.Effects;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkMusic.Effects;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
-import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkMusic.SkMusic.songPlayers;
+import static id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkMusic.SkMusic.songPlayers;
 
 public class StopNBSBroadcast extends ch.njol.skript.lang.Effect {
     @Override

@@ -1,12 +1,12 @@
-package id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Listeners;
+package id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Listeners;
 
 import com.comphenix.protocol.events.PacketContainer;
-import id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Utils.PotionTranslator;
+import id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Utils.PotionTranslator;
 import org.bukkit.entity.ThrownPotion;
 
 public class PotionListener extends com.comphenix.protocol.events.PacketAdapter {
     public PotionListener() {
-        super(id.universenetwork.utilities.Bukkit.UNUtilities.plugin, com.comphenix.protocol.PacketType.Play.Server.SPAWN_ENTITY);
+        super(id.universenetwork.utilities.bukkit.UNUtilities.plugin, com.comphenix.protocol.PacketType.Play.Server.SPAWN_ENTITY);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class PotionListener extends com.comphenix.protocol.events.PacketAdapter 
             for (final org.bukkit.potion.PotionEffect eff : ((ThrownPotion) entity).getEffects())
                 for (final PotionTranslator translator : PotionTranslator.values())
                     if (eff.getType().equals(translator.getPotionEffectType()))
-                        for (id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Utils.TranslationData data : translator.getDatas())
+                        for (id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Utils.TranslationData data : translator.getDatas())
                             if (data.getLowestVersion() <= v && data.getHighestVersion() >= v)
                                 edit.getIntegers().write(7, data.getRemap());
             try {

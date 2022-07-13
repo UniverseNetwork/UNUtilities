@@ -1,7 +1,7 @@
 package id.universenetwork.utilities.Universal.Utils;
 
 import com.google.gson.JsonParser;
-import id.universenetwork.utilities.Bukkit.Utils.Logger;
+import id.universenetwork.utilities.bukkit.utils.Logger;
 import lombok.experimental.UtilityClass;
 
 import java.io.BufferedReader;

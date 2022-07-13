@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Utils;
+package id.universenetwork.utilities.bukkit.utils;
 
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.Sets;

@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Utils;
+package id.universenetwork.utilities.bukkit.utils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

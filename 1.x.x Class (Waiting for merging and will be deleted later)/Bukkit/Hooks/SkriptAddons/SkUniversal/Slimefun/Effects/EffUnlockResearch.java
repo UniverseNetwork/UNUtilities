@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.Effects;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.Effects;
 
 import ch.njol.skript.lang.Expression;
 import org.bukkit.entity.Player;
@@ -31,7 +31,7 @@ public class EffUnlockResearch extends ch.njol.skript.lang.Effect {
     @Override
     protected void execute(Event e) {
         if (ID.getSingle(e) == null || player.getSingle(e) == null) return;
-        io.github.thebusybiscuit.slimefun4.api.researches.Research research = id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.SlimefunHook.getResearch(ID.getSingle(e));
+        io.github.thebusybiscuit.slimefun4.api.researches.Research research = id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.SlimefunHook.getResearch(ID.getSingle(e));
         if (research != null) research.unlock(player.getSingle(e), true);
     }
 }

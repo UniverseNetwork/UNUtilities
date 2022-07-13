@@ -1,12 +1,12 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.BungeeAddon.Skript;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.BungeeAddon.Skript;
 
 import ch.njol.skript.lang.Expression;
 import org.bukkit.entity.Player;
 
-import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.BungeeAddon.BungeeAddon.CHANNEL;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.BungeeAddon.BungeeAddon.CHANNEL;
+import static id.universenetwork.utilities.bukkit.UNUtilities.plugin;
 
-public class EffSend extends id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.BungeeAddon.AsyncEffect {
+public class EffSend extends id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.BungeeAddon.AsyncEffect {
     static {
         ch.njol.skript.Skript.registerEffect(EffSend.class, "(send|move) %players% to [server] %string%");
     }

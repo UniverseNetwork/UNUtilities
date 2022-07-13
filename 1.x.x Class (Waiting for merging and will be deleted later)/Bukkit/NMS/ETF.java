@@ -1,11 +1,11 @@
-package id.universenetwork.utilities.Bukkit.NMS;
+package id.universenetwork.utilities.bukkit.NMS;
 
 import org.bukkit.scheduler.BukkitTask;
 
-import static id.universenetwork.utilities.Bukkit.Enums.EntityTrackerFixer.ENABLED;
-import static id.universenetwork.utilities.Bukkit.Manager.Config.ETFBoolean;
-import static id.universenetwork.utilities.Bukkit.Manager.Config.set;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+import static id.universenetwork.utilities.bukkit.Enums.EntityTrackerFixer.ENABLED;
+import static id.universenetwork.utilities.bukkit.manager.Config.ETFBoolean;
+import static id.universenetwork.utilities.bukkit.manager.Config.set;
+import static id.universenetwork.utilities.bukkit.UNUtilities.prefix;
 import static org.bukkit.Bukkit.getLogger;
 import static org.bukkit.Bukkit.getServer;
 

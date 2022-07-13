@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.NMS.v1_16_R2.Tasks;
+package id.universenetwork.utilities.bukkit.NMS.v1_16_R2.Tasks;
 
 import net.minecraft.server.v1_16_R2.ChunkProviderServer;
 import net.minecraft.server.v1_16_R2.Entity;
@@ -12,10 +12,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashSet;
 import java.util.Set;
 
-import static id.universenetwork.utilities.Bukkit.Enums.EntityTrackerFixer.*;
-import static id.universenetwork.utilities.Bukkit.Manager.Config.*;
-import static id.universenetwork.utilities.Bukkit.NMS.v1_16_R2.EntityTick.EntityTickManager.getInstance;
-import static id.universenetwork.utilities.Bukkit.NMS.v1_16_R2.NMSEntityTracker.trackEntities;
+import static id.universenetwork.utilities.bukkit.Enums.EntityTrackerFixer.*;
+import static id.universenetwork.utilities.bukkit.manager.Config.*;
+import static id.universenetwork.utilities.bukkit.NMS.v1_16_R2.EntityTick.EntityTickManager.getInstance;
+import static id.universenetwork.utilities.bukkit.NMS.v1_16_R2.NMSEntityTracker.trackEntities;
 import static org.bukkit.Bukkit.getWorld;
 import static org.bukkit.Bukkit.getWorlds;
 

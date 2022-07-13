@@ -2,7 +2,7 @@ package id.universenetwork.utilities.Bungee.Utils;
 
 import net.md_5.bungee.api.plugin.Listener;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+import static id.universenetwork.utilities.bukkit.UNUtilities.prefix;
 import static id.universenetwork.utilities.Bungee.UNUtilities.plugin;
 
 public class Event {

@@ -1,8 +1,8 @@
 package com.xxmicloxx.NoteBlockAPI;
 
 import com.xxmicloxx.NoteBlockAPI.songplayer.SongPlayer;
-import id.universenetwork.utilities.Bukkit.UNUtilities;
-import id.universenetwork.utilities.Bukkit.Utils.Logger;
+import id.universenetwork.utilities.bukkit.UNUtilities;
+import id.universenetwork.utilities.bukkit.utils.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;

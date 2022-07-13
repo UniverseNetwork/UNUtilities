@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Injector;
+package id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Injector;
 
 public class NMSReflection {
     static int protocolVersion = -1;

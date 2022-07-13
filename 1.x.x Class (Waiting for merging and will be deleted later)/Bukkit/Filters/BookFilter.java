@@ -1,6 +1,6 @@
-package id.universenetwork.utilities.Bukkit.Filters;
+package id.universenetwork.utilities.bukkit.Filters;
 
-import id.universenetwork.utilities.Bukkit.Handlers.BookExploitHandler;
+import id.universenetwork.utilities.bukkit.Handlers.BookExploitHandler;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import org.bukkit.entity.Player;
@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import static id.universenetwork.utilities.Bukkit.Filters.FilterAction.CREATE;
-import static id.universenetwork.utilities.Bukkit.Handlers.BookExploitHandler.limitLoggingString;
+import static id.universenetwork.utilities.bukkit.Filters.FilterAction.CREATE;
+import static id.universenetwork.utilities.bukkit.Handlers.BookExploitHandler.limitLoggingString;
 import static java.util.logging.Level.WARNING;
 import static org.bukkit.Bukkit.getLogger;
 import static org.bukkit.Material.WRITABLE_BOOK;

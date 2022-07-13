@@ -1,6 +1,6 @@
-package id.universenetwork.utilities.Bukkit.Commands;
+package id.universenetwork.utilities.bukkit.Commands;
 
-import id.universenetwork.utilities.Bukkit.Manager.Commands;
+import id.universenetwork.utilities.bukkit.manager.Commands;
 import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
 import it.unimi.dsi.fastutil.longs.LongSet;
 import org.bukkit.Chunk;
@@ -14,11 +14,11 @@ import org.bukkit.persistence.PersistentDataContainer;
 import java.awt.*;
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.Enums.VillagerOptimization.DISABLEDMSG;
-import static id.universenetwork.utilities.Bukkit.Manager.Config.VOString;
-import static id.universenetwork.utilities.Bukkit.Tasks.NormalActivityTask.activateVillager;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.*;
-import static id.universenetwork.utilities.Bukkit.Utils.Color.sendTranslated;
+import static id.universenetwork.utilities.bukkit.Enums.VillagerOptimization.DISABLEDMSG;
+import static id.universenetwork.utilities.bukkit.manager.Config.VOString;
+import static id.universenetwork.utilities.bukkit.Tasks.NormalActivityTask.activateVillager;
+import static id.universenetwork.utilities.bukkit.UNUtilities.*;
+import static id.universenetwork.utilities.bukkit.utils.Color.sendTranslated;
 import static java.util.Collections.emptyList;
 import static org.bukkit.ChatColor.*;
 import static org.bukkit.persistence.PersistentDataType.LONG_ARRAY;

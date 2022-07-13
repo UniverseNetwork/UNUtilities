@@ -5,8 +5,8 @@ import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import org.bukkit.entity.Player;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+import static id.universenetwork.utilities.bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.bukkit.UNUtilities.prefix;
 import static org.bukkit.Bukkit.getLogger;
 
 public class BungeeMessenger {

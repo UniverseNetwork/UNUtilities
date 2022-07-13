@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Skream.Elements.Expressions;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.Skream.Elements.Expressions;
 
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
@@ -35,6 +35,6 @@ public class ExprRandomIdea extends ch.njol.skript.lang.util.SimpleExpression<St
     @Override
     @Nullable
     protected String[] get(Event event) {
-        return new String[]{id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Skream.Utils.ServerIdeas.getRandom()};
+        return new String[]{id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.Skream.Utils.ServerIdeas.getRandom()};
     }
 }

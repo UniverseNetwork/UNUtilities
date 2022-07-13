@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Skream.Elements.Effects;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.Skream.Elements.Effects;
 
 import ch.njol.skript.doc.*;
 import ch.njol.skript.entity.EntityData;
@@ -48,7 +48,7 @@ public class EffSpawnNPC extends ch.njol.skript.lang.Effect {
         EntityType t = toBukkitEntityType(type.getSingle(event));
         net.citizensnpcs.api.npc.NPC npc = reg.createNPC(t, name.getSingle(event));
         npc.spawn(loc.getSingle(event));
-        id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Skream.Elements.Expressions.ExprLastNPC.lastNPCCreated = npc;
+        id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.Skream.Elements.Expressions.ExprLastNPC.lastNPCCreated = npc;
     }
 
     static org.bukkit.entity.EntityType toBukkitEntityType(EntityData e) {

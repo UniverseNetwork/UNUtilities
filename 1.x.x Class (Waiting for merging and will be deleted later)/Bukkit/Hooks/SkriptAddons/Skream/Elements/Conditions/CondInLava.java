@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Skream.Elements.Conditions;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.Skream.Elements.Conditions;
 
 import org.bukkit.entity.Entity;
 

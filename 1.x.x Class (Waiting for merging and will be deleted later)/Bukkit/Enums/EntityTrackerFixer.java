@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Enums;
+package id.universenetwork.utilities.bukkit.Enums;
 
 public enum EntityTrackerFixer {
     // Entity Tracker Fixer Variable Settings

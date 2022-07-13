@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Listeners;
+package id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Particle;
@@ -9,7 +9,7 @@ public class AreaEffectCloudListener implements org.bukkit.event.Listener {
     final ArrayList<org.bukkit.entity.AreaEffectCloud> effectClouds = new ArrayList<>();
 
     public AreaEffectCloudListener() {
-        Bukkit.getScheduler().runTaskTimer(id.universenetwork.utilities.Bukkit.UNUtilities.plugin, () -> {
+        Bukkit.getScheduler().runTaskTimer(id.universenetwork.utilities.bukkit.UNUtilities.plugin, () -> {
             java.util.Set<org.bukkit.entity.Player> players = Bukkit.getOnlinePlayers().stream().filter(p -> com.viaversion.viaversion.api.Via.getAPI().getPlayerVersion(p) <= 54).collect(java.util.stream.Collectors.toSet());
             effectClouds.removeIf(e -> !e.isValid());
             effectClouds.forEach(cloud -> {

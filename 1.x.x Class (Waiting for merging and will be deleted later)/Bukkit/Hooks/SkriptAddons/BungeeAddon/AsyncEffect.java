@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.BungeeAddon;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.BungeeAddon;
 
 import ch.njol.skript.lang.TriggerItem;
 

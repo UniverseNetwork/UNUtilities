@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkMusic.Conditions;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkMusic.Conditions;
 
 import ch.njol.skript.lang.Expression;
 import org.bukkit.event.Event;

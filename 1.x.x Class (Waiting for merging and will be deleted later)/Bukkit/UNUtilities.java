@@ -1,8 +1,8 @@
-package id.universenetwork.utilities.Bukkit;
+package id.universenetwork.utilities.bukkit;
 
-import id.universenetwork.utilities.Bukkit.Enums.MaxPlayerChangerCommand;
-import id.universenetwork.utilities.Bukkit.Enums.VillagerOptimization;
-import id.universenetwork.utilities.Bukkit.Manager.*;
+import id.universenetwork.utilities.bukkit.Enums.MaxPlayerChangerCommand;
+import id.universenetwork.utilities.bukkit.Enums.VillagerOptimization;
+import id.universenetwork.utilities.bukkit.manager.*;
 import org.bukkit.NamespacedKey;
 import org.bukkit.scheduler.BukkitTask;
 import org.jetbrains.annotations.NotNull;
@@ -64,8 +64,8 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
         // Plugin startup logic
         Data.setup();
         Proxy.setup();
-        new id.universenetwork.utilities.Bukkit.Handlers.BookExploitHandler();
-        id.universenetwork.utilities.Bukkit.NMS.ETF.setup();
+        new id.universenetwork.utilities.bukkit.Handlers.BookExploitHandler();
+        id.universenetwork.utilities.bukkit.NMS.ETF.setup();
         API.ActionBarAPISetup();
         API.NoteBlockAPISetup("enabling");
         API.HamsterAPISetup("enabling");
@@ -76,10 +76,10 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
         Hooks.SlimefunAddons();
         Hooks.SkriptAddons();
         Hooks.ViaLegacy();
-        if (Config.VOEnabled() && new id.universenetwork.utilities.Bukkit.Tasks.CompatibilityCheckTask().passedCheck()) {
+        if (Config.VOEnabled() && new id.universenetwork.utilities.bukkit.Tasks.CompatibilityCheckTask().passedCheck()) {
             maxChunks = Config.VOLong(VillagerOptimization.VCPP);
             if (task != null) task.cancel();
-            task = getServer().getScheduler().runTaskTimer(this, new id.universenetwork.utilities.Bukkit.Tasks.MainTask(), 0L, Config.VOLong(VillagerOptimization.TPAS) <= 0 ? 600 : Config.VOLong(VillagerOptimization.TPAS));
+            task = getServer().getScheduler().runTaskTimer(this, new id.universenetwork.utilities.bukkit.Tasks.MainTask(), 0L, Config.VOLong(VillagerOptimization.TPAS) <= 0 ? 600 : Config.VOLong(VillagerOptimization.TPAS));
             loadAAVLP();
         }
         System.out.println("\n\n\n" +
@@ -96,7 +96,7 @@ public final class UNUtilities extends org.bukkit.plugin.java.JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        getServer().getPluginManager().callEvent(new id.universenetwork.utilities.Bukkit.Events.UNUtilitiesDisableEvent());
+        getServer().getPluginManager().callEvent(new id.universenetwork.utilities.bukkit.events.UNUtilitiesDisableEvent());
         API.NoteBlockAPISetup("disabling");
         API.HamsterAPISetup("disabling");
         if (Config.MPCCBoolean(MaxPlayerChangerCommand.SOR) && Config.MPCCBoolean(MaxPlayerChangerCommand.ENABLED))

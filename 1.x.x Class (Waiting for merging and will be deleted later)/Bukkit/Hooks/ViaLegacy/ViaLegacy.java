@@ -1,15 +1,15 @@
-package id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy;
+package id.universenetwork.utilities.bukkit.Hooks.ViaLegacy;
 
-import id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Adapter.WorldEventAdapter;
-import id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Injector.BoundingBoxFixer;
-import id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Listeners.*;
-import id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.VersionInfo.VersionInformer;
-import id.universenetwork.utilities.Bukkit.UNUtilities;
+import id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Adapter.WorldEventAdapter;
+import id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Injector.BoundingBoxFixer;
+import id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Listeners.*;
+import id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.VersionInfo.VersionInformer;
+import id.universenetwork.utilities.bukkit.UNUtilities;
 import org.bukkit.Bukkit;
 
-import static id.universenetwork.utilities.Bukkit.Enums.ViaLegacy.*;
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
-import static id.universenetwork.utilities.Bukkit.Manager.Config.VLBoolean;
+import static id.universenetwork.utilities.bukkit.Enums.ViaLegacy.*;
+import static id.universenetwork.utilities.bukkit.libraries.InfinityLib.Common.Events.registerListeners;
+import static id.universenetwork.utilities.bukkit.manager.Config.VLBoolean;
 
 public class ViaLegacy {
     public ViaLegacy() {
@@ -31,14 +31,12 @@ public class ViaLegacy {
                 if (serverProtocol > 54 && VLBoolean(AREA_EFFECT_CLOUD_PARTICLES))
                     registerListeners(new AreaEffectCloudListener());
                 if (VLBoolean(VERSIONINFO_ACTIVE)) new VersionInformer();
-                if (VLBoolean(POTION_FIX)) {
-                    if (Bukkit.getPluginManager().isPluginEnabled("ProtocolLib")) {
-                        final com.comphenix.protocol.ProtocolManager pm = com.comphenix.protocol.ProtocolLibrary.getProtocolManager();
-                        pm.addPacketListener(new PotionListener());
-                        pm.addPacketListener(new WorldEventAdapter());
-                    } else
-                        Bukkit.getLogger().severe(UNUtilities.prefix + " §eProtocolLib not found. §cViaLegacy could not be fix potion!");
-                }
+                if (VLBoolean(POTION_FIX)) if (Bukkit.getPluginManager().isPluginEnabled("ProtocolLib")) {
+                    com.comphenix.protocol.ProtocolManager pm = com.comphenix.protocol.ProtocolLibrary.getProtocolManager();
+                    pm.addPacketListener(new PotionListener());
+                    pm.addPacketListener(new WorldEventAdapter());
+                } else
+                    Bukkit.getLogger().severe(UNUtilities.prefix + " §eProtocolLib not found. §cViaLegacy could not be fix potion!");
             }
         }.runTaskTimer(UNUtilities.plugin, 1L, 1L);
         System.out.println(UNUtilities.prefix + " §aViaVersion found. §bViaLegacy features has been enabled");

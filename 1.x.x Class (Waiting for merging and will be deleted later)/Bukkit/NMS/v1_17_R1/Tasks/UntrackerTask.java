@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.NMS.v1_17_R1.Tasks;
+package id.universenetwork.utilities.bukkit.NMS.v1_17_R1.Tasks;
 
 import net.minecraft.server.level.ChunkProviderServer;
 import net.minecraft.server.level.EntityPlayer;
@@ -17,11 +17,11 @@ import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Set;
 
-import static id.universenetwork.utilities.Bukkit.Enums.EntityTrackerFixer.*;
-import static id.universenetwork.utilities.Bukkit.Manager.Config.*;
-import static id.universenetwork.utilities.Bukkit.NMS.v1_17_R1.EntityTick.EntityTickManager.getInstance;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
-import static id.universenetwork.utilities.Bukkit.Utils.ReflectionUtils.getClassPrivateField;
+import static id.universenetwork.utilities.bukkit.Enums.EntityTrackerFixer.*;
+import static id.universenetwork.utilities.bukkit.manager.Config.*;
+import static id.universenetwork.utilities.bukkit.NMS.v1_17_R1.EntityTick.EntityTickManager.getInstance;
+import static id.universenetwork.utilities.bukkit.UNUtilities.prefix;
+import static id.universenetwork.utilities.bukkit.utils.ReflectionUtils.getClassPrivateField;
 import static net.minecraft.server.MinecraftServer.getServer;
 import static org.bukkit.Bukkit.*;
 

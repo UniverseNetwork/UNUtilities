@@ -1,6 +1,6 @@
-package id.universenetwork.utilities.Bukkit.Tasks;
+package id.universenetwork.utilities.bukkit.Tasks;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.bukkit.UNUtilities.plugin;
 import static org.bukkit.Bukkit.getScheduler;
 
 public class MainTask implements Runnable {

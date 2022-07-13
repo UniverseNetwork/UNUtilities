@@ -1,11 +1,11 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkMusic.Expressions;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkMusic.Expressions;
 
 import ch.njol.skript.lang.Expression;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
-import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkMusic.SkMusic.songPlayers;
+import static id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkMusic.SkMusic.songPlayers;
 
 public class GetFadeInDuration extends ch.njol.skript.lang.util.SimpleExpression<Integer> {
     Expression<Player> player;

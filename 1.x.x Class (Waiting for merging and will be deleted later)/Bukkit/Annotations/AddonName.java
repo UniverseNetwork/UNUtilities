@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Annotations;
+package id.universenetwork.utilities.bukkit.annotations;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

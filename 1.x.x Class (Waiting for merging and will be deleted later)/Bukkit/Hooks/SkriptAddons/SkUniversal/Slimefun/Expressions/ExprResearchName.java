@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.Expressions;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.Expressions;
 
 import ch.njol.skript.lang.Expression;
 import org.bukkit.entity.Player;
@@ -43,6 +43,6 @@ public class ExprResearchName extends ch.njol.skript.lang.util.SimpleExpression<
     @Nullable
     protected String[] get(Event e) {
         if (ID.getSingle(e) == null || player.getSingle(e) == null) return null;
-        return new String[]{id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.SlimefunHook.getResearch(ID.getSingle(e)).getName(player.getSingle(e))};
+        return new String[]{id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.SlimefunHook.getResearch(ID.getSingle(e)).getName(player.getSingle(e))};
     }
 }

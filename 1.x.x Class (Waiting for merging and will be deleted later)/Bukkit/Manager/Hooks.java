@@ -1,17 +1,17 @@
-package id.universenetwork.utilities.Bukkit.Manager;
+package id.universenetwork.utilities.bukkit.manager;
 
-import id.universenetwork.utilities.Bukkit.Enums.AsyncWorldEditBossBarDisplay;
-import id.universenetwork.utilities.Bukkit.Enums.ShopGUIPlusSilkSpawnersConnector;
-import id.universenetwork.utilities.Bukkit.Enums.ViaLegacy;
-import id.universenetwork.utilities.Bukkit.Hooks.ShopGUIPlusSilkSpawnersConnector.Connector;
-import id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons.SFInstance;
-import id.universenetwork.utilities.Bukkit.UNUtilities;
+import id.universenetwork.utilities.bukkit.Enums.AsyncWorldEditBossBarDisplay;
+import id.universenetwork.utilities.bukkit.Enums.ShopGUIPlusSilkSpawnersConnector;
+import id.universenetwork.utilities.bukkit.Enums.ViaLegacy;
+import id.universenetwork.utilities.bukkit.Hooks.ShopGUIPlusSilkSpawnersConnector.Connector;
+import id.universenetwork.utilities.bukkit.Hooks.SlimefunAddons.SFInstance;
+import id.universenetwork.utilities.bukkit.UNUtilities;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 
-import static id.universenetwork.utilities.Bukkit.Hooks.AsyncWorldEditBossBarDisplay.hooks;
-import static id.universenetwork.utilities.Bukkit.Hooks.AsyncWorldEditBossBarDisplay.unhooks;
-import static id.universenetwork.utilities.Bukkit.Manager.Config.*;
+import static id.universenetwork.utilities.bukkit.Hooks.AsyncWorldEditBossBarDisplay.hooks;
+import static id.universenetwork.utilities.bukkit.Hooks.AsyncWorldEditBossBarDisplay.unhooks;
+import static id.universenetwork.utilities.bukkit.manager.Config.*;
 
 public class Hooks {
     public static void AsyncWorldEditBossBarDisplay(String Mode) {
@@ -61,7 +61,7 @@ public class Hooks {
         if (SFABoolean()) {
             System.out.println(UNUtilities.prefix + " §6Slimefun Addons Features is enabled on config.yml. Searching Slimefun...");
             if (Bukkit.getPluginManager().isPluginEnabled("Slimefun")) {
-                ConfigurationSection a = config.getConfigurationSection(id.universenetwork.utilities.Bukkit.Enums.SlimefunAddons.ADDONS.getConfigPath());
+                ConfigurationSection a = config.getConfigurationSection(id.universenetwork.utilities.bukkit.Enums.SlimefunAddons.ADDONS.getConfigPath());
                 for (String s : a.getKeys(false))
                     if (a.getBoolean(s + ".enabled")) try {
                         Class<?> c = Class.forName("id.universenetwork.utilities.Bukkit.Hooks.SlimefunAddons." + s + "." + s);
@@ -81,7 +81,7 @@ public class Hooks {
         if (SABoolean()) {
             System.out.println(UNUtilities.prefix + " §6Skript Addons Features is enabled on config.yml. Searching Skript...");
             if (Bukkit.getPluginManager().isPluginEnabled("Skript"))
-                id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Addons.setup();
+                id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.Addons.setup();
             else
                 Bukkit.getLogger().severe(UNUtilities.prefix + " §6Skript not found. §cYou need Skript to use Skript Addons Features");
         }
@@ -91,7 +91,7 @@ public class Hooks {
         if (VLBoolean(ViaLegacy.ENABLED)) {
             System.out.println(UNUtilities.prefix + " §6ViaLegacy Features is enabled on config.yml. Searching ViaVersion...");
             if (Bukkit.getPluginManager().isPluginEnabled("ViaVersion"))
-                new id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.ViaLegacy();
+                new id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.ViaLegacy();
             else
                 Bukkit.getLogger().severe(UNUtilities.prefix + " §6ViaVersion not found. §cYou need ViaVersion to use ViaLegacy Features");
         }

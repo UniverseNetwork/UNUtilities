@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Utils;
+package id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Utils;
 
 public class TranslationData {
     final int remap, lowestVersion, highestVersion;

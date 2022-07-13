@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.Effects;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.Effects;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Expression;
@@ -35,7 +35,7 @@ public class EffAddResearch extends ch.njol.skript.lang.Effect {
     @Override
     protected void execute(Event e) {
         if (i.getSingle(e) == null || item.getSingle(e) == null) return;
-        io.github.thebusybiscuit.slimefun4.api.researches.Research research = id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.SlimefunHook.getResearch(i.getSingle(e));
+        io.github.thebusybiscuit.slimefun4.api.researches.Research research = id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.SlimefunHook.getResearch(i.getSingle(e));
         if (research != null) {
             research.addItems(io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem.getById(item.getSingle(e)));
             research.register();

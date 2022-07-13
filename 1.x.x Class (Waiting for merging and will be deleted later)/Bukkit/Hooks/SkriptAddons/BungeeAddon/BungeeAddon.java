@@ -1,7 +1,7 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.BungeeAddon;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.BungeeAddon;
 
-@id.universenetwork.utilities.Bukkit.Annotations.AddonName("BungeeAddon")
-public class BungeeAddon extends id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Addons {
+@id.universenetwork.utilities.bukkit.annotations.AddonName("BungeeAddon")
+public class BungeeAddon extends id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.Addons {
     public static final String CHANNEL = "BungeeCord";
 
     @Override
@@ -11,6 +11,6 @@ public class BungeeAddon extends id.universenetwork.utilities.Bukkit.Hooks.Skrip
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
-        System.out.println(id.universenetwork.utilities.Bukkit.UNUtilities.prefix + " §bSuccessfully Registered §6BungeeAddon §bAddon");
+        System.out.println(id.universenetwork.utilities.bukkit.UNUtilities.prefix + " §bSuccessfully Registered §6BungeeAddon §bAddon");
     }
 }

@@ -1,8 +1,8 @@
-package id.universenetwork.utilities.Bukkit.Tasks;
+package id.universenetwork.utilities.bukkit.Tasks;
 
 import java.lang.reflect.InvocationTargetException;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+import static id.universenetwork.utilities.bukkit.UNUtilities.prefix;
 import static org.bukkit.Bukkit.getLogger;
 import static org.bukkit.Bukkit.getServer;
 

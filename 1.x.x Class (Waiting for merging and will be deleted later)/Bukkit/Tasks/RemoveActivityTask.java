@@ -1,10 +1,10 @@
-package id.universenetwork.utilities.Bukkit.Tasks;
+package id.universenetwork.utilities.bukkit.Tasks;
 
 import org.bukkit.World;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Villager;
 
-import static id.universenetwork.utilities.Bukkit.Utils.ActivityUtils.*;
+import static id.universenetwork.utilities.bukkit.utils.ActivityUtils.*;
 import static org.bukkit.Bukkit.getWorlds;
 
 public class RemoveActivityTask implements Runnable {

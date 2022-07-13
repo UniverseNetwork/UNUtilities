@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.Expressions;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.Expressions;
 
 import ch.njol.skript.lang.Expression;
 import org.bukkit.event.Event;
@@ -40,6 +40,6 @@ public class ExprResearchCost extends ch.njol.skript.lang.util.SimpleExpression<
     @Nullable
     protected Number[] get(Event e) {
         if (ID.getSingle(e) == null) return null;
-        return new Number[]{id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.SlimefunHook.getResearch(ID.getSingle(e)).getCost()};
+        return new Number[]{id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.SlimefunHook.getResearch(ID.getSingle(e)).getCost()};
     }
 }

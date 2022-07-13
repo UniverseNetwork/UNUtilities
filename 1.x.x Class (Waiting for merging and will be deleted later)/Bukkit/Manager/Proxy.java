@@ -1,7 +1,7 @@
-package id.universenetwork.utilities.Bukkit.Manager;
+package id.universenetwork.utilities.bukkit.manager;
 
-import static id.universenetwork.utilities.Bukkit.Enums.AddressWhitelister.ADDRESS;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+import static id.universenetwork.utilities.bukkit.Enums.AddressWhitelister.ADDRESS;
+import static id.universenetwork.utilities.bukkit.UNUtilities.prefix;
 
 public class Proxy {
     static String bungeeAddress;

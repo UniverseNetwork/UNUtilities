@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.Effects;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.Effects;
 
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.Skript;
@@ -47,6 +47,6 @@ public class EffCreateCategory extends ch.njol.skript.lang.Effect {
     @Override
     protected void execute(Event e) {
         if (i.getSingle(e) == null || item.getSingle(e) == null || level.getSingle(e) == null) return;
-        new ItemGroup(new NamespacedKey(Skript.getInstance(), i.getSingle(e).toLowerCase()), item.getSingle(e), level.getSingle(e)).register(id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.SlimefunHook.ADDON);
+        new ItemGroup(new NamespacedKey(Skript.getInstance(), i.getSingle(e).toLowerCase()), item.getSingle(e), level.getSingle(e)).register(id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkUniversal.Slimefun.SlimefunHook.ADDON);
     }
 }

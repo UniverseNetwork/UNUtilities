@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.Placeholders;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptPlaceholders.Placeholders;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;

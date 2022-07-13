@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Skream.Elements.Types;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.Skream.Elements.Types;
 
 import ch.njol.skript.lang.ParseContext;
 import org.bukkit.scoreboard.Team;

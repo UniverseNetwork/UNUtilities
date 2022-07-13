@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.NMS;
+package id.universenetwork.utilities.bukkit.NMS;
 
 import org.bukkit.scheduler.BukkitTask;
 

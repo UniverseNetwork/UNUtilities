@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptVotifierHook.Events;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptVotifierHook.Events;
 
 import com.vexsoftware.votifier.model.VotifierEvent;
 
@@ -7,6 +7,6 @@ public class VoteReceivedEvent {
 
     static {
         ch.njol.skript.Skript.registerEvent("On Votifier Vote", ch.njol.skript.lang.util.SimpleEvent.class, VotifierEvent.class, PATTERNS);
-        ch.njol.skript.registrations.EventValues.registerEventValue(VotifierEvent.class, com.vexsoftware.votifier.model.Vote.class, new id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptVotifierHook.GoGetter<>(VotifierEvent::getVote), 0);
+        ch.njol.skript.registrations.EventValues.registerEventValue(VotifierEvent.class, com.vexsoftware.votifier.model.Vote.class, new id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptVotifierHook.GoGetter<>(VotifierEvent::getVote), 0);
     }
 }

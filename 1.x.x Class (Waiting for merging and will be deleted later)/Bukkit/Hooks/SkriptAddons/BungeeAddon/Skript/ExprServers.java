@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.BungeeAddon.Skript;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.BungeeAddon.Skript;
 
 import org.bukkit.event.Event;
 

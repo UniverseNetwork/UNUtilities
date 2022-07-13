@@ -1,13 +1,13 @@
-package id.universenetwork.utilities.Bukkit.Commands;
+package id.universenetwork.utilities.bukkit.Commands;
 
-import id.universenetwork.utilities.Bukkit.Manager.Config;
+import id.universenetwork.utilities.bukkit.manager.Config;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import static id.universenetwork.utilities.Bukkit.Enums.HatCommand.*;
+import static id.universenetwork.utilities.bukkit.Enums.HatCommand.*;
 
-public class Hat extends id.universenetwork.utilities.Bukkit.Manager.Commands {
+public class Hat extends id.universenetwork.utilities.bukkit.manager.Commands {
     public Hat() {
         super("Hat", "Hat Command Features", "unutilities.command.hat", true);
     }

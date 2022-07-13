@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Filters;
+package id.universenetwork.utilities.bukkit.Filters;
 
 public enum FilterAction {
     // Represents the creation of a book, either via ingame mechanics or creative inventory actions

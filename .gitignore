@@ -101,6 +101,7 @@ pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
+/*.jar
 
 release.properties
 dependency-reduced-pom.xml
@@ -111,4 +112,3 @@ buildNumber.properties
 
 # Common working directory
 run/
-/*.jar

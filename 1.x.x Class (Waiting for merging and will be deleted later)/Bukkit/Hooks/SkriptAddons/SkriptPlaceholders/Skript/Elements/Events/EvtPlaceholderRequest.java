@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.Skript.Elements.Events;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptPlaceholders.Skript.Elements.Events;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Literal;
@@ -7,9 +7,9 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.log.ErrorQuality;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.Placeholders.MVdWPlaceholderAPI.MVdWPlaceholderAPIListener;
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.Placeholders.PlaceholderAPI.PlaceholderAPIListener;
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.Placeholders.PlaceholderEvent;
+import id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptPlaceholders.Placeholders.MVdWPlaceholderAPI.MVdWPlaceholderAPIListener;
+import id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptPlaceholders.Placeholders.PlaceholderAPI.PlaceholderAPIListener;
+import id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptPlaceholders.Placeholders.PlaceholderEvent;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders.hasMVdW;
-import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders.hasPAPI;
+import static id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders.hasMVdW;
+import static id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders.hasPAPI;
 
 public class EvtPlaceholderRequest extends SkriptEvent {
     static {

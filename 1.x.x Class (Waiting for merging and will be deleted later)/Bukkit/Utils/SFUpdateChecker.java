@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Utils;
+package id.universenetwork.utilities.bukkit.utils;
 
 import java.io.IOException;
 import java.net.URL;

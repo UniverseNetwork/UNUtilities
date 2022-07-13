@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Skream.Elements.Events;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.Skream.Elements.Events;
 
 import ch.njol.skript.lang.util.SimpleEvent;
 import net.citizensnpcs.api.event.NPCCreateEvent;

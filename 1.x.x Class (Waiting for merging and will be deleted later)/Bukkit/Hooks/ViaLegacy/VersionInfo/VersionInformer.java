@@ -1,11 +1,11 @@
-package id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.VersionInfo;
+package id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.VersionInfo;
 
-import id.universenetwork.utilities.Bukkit.Manager.Config;
-import id.universenetwork.utilities.Bukkit.Utils.Color;
+import id.universenetwork.utilities.bukkit.manager.Config;
+import id.universenetwork.utilities.bukkit.utils.Color;
 import org.bukkit.Bukkit;
 
 import static com.viaversion.viaversion.api.Via.getAPI;
-import static id.universenetwork.utilities.Bukkit.Enums.ViaLegacy.*;
+import static id.universenetwork.utilities.bukkit.Enums.ViaLegacy.*;
 
 public class VersionInformer implements org.bukkit.event.Listener {
     final String message;
@@ -16,10 +16,10 @@ public class VersionInformer implements org.bukkit.event.Listener {
         maxVersion = Config.VLInt(VERSIONINFO_MAX_VERSION);
         String interval = Config.VLString(VERSIONINFO_INTERVAL);
         if (interval.equalsIgnoreCase("JOIN"))
-            id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners(this);
+            id.universenetwork.utilities.bukkit.libraries.InfinityLib.Common.Events.registerListeners(this);
         else {
             long ticks = Long.parseLong(interval);
-            Bukkit.getScheduler().runTaskTimer(id.universenetwork.utilities.Bukkit.UNUtilities.plugin, () -> Bukkit.getOnlinePlayers().forEach(player -> {
+            Bukkit.getScheduler().runTaskTimer(id.universenetwork.utilities.bukkit.UNUtilities.plugin, () -> Bukkit.getOnlinePlayers().forEach(player -> {
                 int version = getAPI().getPlayerVersion(player);
                 if (version > maxVersion) return;
                 player.sendMessage(message);

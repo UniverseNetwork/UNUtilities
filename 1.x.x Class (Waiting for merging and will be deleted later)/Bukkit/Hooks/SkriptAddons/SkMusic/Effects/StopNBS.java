@@ -1,10 +1,10 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkMusic.Effects;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkMusic.Effects;
 
 import ch.njol.skript.lang.Expression;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
-import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkMusic.SkMusic.songPlayers;
+import static id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkMusic.SkMusic.songPlayers;
 
 public class StopNBS extends ch.njol.skript.lang.Effect {
     Expression<Player> player;

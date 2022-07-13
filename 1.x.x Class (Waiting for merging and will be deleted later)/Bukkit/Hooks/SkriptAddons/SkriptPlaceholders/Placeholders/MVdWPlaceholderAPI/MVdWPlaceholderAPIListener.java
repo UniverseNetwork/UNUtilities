@@ -1,10 +1,10 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.Placeholders.MVdWPlaceholderAPI;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptPlaceholders.Placeholders.MVdWPlaceholderAPI;
 
 import be.maximvdw.placeholderapi.PlaceholderAPI;
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.Placeholders.PlaceholderEvent;
+import id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptPlaceholders.Placeholders.PlaceholderEvent;
 import org.bukkit.Bukkit;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.plugin;
+import static id.universenetwork.utilities.bukkit.UNUtilities.plugin;
 
 public class MVdWPlaceholderAPIListener {
     final String placeholder;

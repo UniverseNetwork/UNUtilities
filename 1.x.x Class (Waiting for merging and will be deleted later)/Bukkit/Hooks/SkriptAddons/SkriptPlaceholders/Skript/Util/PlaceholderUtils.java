@@ -1,12 +1,12 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.Skript.Util;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptPlaceholders.Skript.Util;
 
-import id.universenetwork.utilities.Bukkit.Utils.Color;
+import id.universenetwork.utilities.bukkit.utils.Color;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.Nullable;
 
-import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders.hasMVdW;
-import static id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders.hasPAPI;
+import static id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders.hasMVdW;
+import static id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptPlaceholders.SkriptPlaceholders.hasPAPI;
 
 public class PlaceholderUtils {
     @Nullable

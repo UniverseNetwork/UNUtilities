@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptVotifierHook.Expressions;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptVotifierHook.Expressions;
 
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import com.vexsoftware.votifier.model.Vote;

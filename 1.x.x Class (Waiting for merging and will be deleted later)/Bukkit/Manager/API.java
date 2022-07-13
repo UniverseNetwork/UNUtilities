@@ -1,10 +1,10 @@
-package id.universenetwork.utilities.Bukkit.Manager;
+package id.universenetwork.utilities.bukkit.manager;
 
 import com.xxmicloxx.NoteBlockAPI.NoteBlockAPI;
 import dev._2lstudios.hamsterapi.HamsterAPI;
 import org.bukkit.Bukkit;
 
-import static id.universenetwork.utilities.Bukkit.UNUtilities.prefix;
+import static id.universenetwork.utilities.bukkit.UNUtilities.prefix;
 
 public class API {
     public static String nmsver;

@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Skream.Elements.Expressions;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.Skream.Elements.Expressions;
 
 import ch.njol.skript.doc.*;
 import org.bukkit.event.Event;

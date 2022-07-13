@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Listeners;
+package id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Listeners;
 
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -8,8 +8,8 @@ import org.bukkit.event.Listener;
 import java.lang.reflect.Method;
 
 import static com.viaversion.viaversion.api.Via.getAPI;
-import static id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Injector.NMSReflection.*;
-import static id.universenetwork.utilities.Bukkit.Libraries.InfinityLib.Common.Events.registerListeners;
+import static id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Injector.NMSReflection.*;
+import static id.universenetwork.utilities.bukkit.libraries.InfinityLib.Common.Events.registerListeners;
 import static org.bukkit.event.EventPriority.MONITOR;
 
 public class SoundListener implements Listener {

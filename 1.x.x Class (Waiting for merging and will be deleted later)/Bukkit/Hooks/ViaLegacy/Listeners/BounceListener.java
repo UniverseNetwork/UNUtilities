@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.ViaLegacy.Listeners;
+package id.universenetwork.utilities.bukkit.Hooks.ViaLegacy.Listeners;
 
 public class BounceListener implements org.bukkit.event.Listener {
     @org.bukkit.event.EventHandler

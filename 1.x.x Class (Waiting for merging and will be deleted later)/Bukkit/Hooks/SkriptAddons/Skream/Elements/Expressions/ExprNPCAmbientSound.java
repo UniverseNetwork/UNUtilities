@@ -1,4 +1,4 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Skream.Elements.Expressions;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.Skream.Elements.Expressions;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.Changer;
@@ -55,7 +55,7 @@ public class ExprNPCAmbientSound extends ch.njol.skript.lang.util.SimpleExpressi
         if (ID != null) for (Integer ids : ID.getAll(event)) {
             NPC npc = CitizensAPI.getNPCRegistry().getById(ids);
             if (mode == Changer.ChangeMode.SET) {
-                String sound = id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.Skream.Utils.ScrubNPCSound.getSound((String) delta[0]);
+                String sound = id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.Skream.Utils.ScrubNPCSound.getSound((String) delta[0]);
                 npc.data().setPersistent(NPC.AMBIENT_SOUND_METADATA, sound);
             }
         }

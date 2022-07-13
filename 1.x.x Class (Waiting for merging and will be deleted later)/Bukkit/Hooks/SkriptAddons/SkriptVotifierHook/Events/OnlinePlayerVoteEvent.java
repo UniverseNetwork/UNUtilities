@@ -1,8 +1,8 @@
-package id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptVotifierHook.Events;
+package id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptVotifierHook.Events;
 
 import ch.njol.skript.Skript;
 import com.vexsoftware.votifier.model.Vote;
-import id.universenetwork.utilities.Bukkit.Hooks.SkriptAddons.SkriptVotifierHook.GoGetter;
+import id.universenetwork.utilities.bukkit.Hooks.SkriptAddons.SkriptVotifierHook.GoGetter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 

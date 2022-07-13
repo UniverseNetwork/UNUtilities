@@ -1,16 +1,16 @@
-package id.universenetwork.utilities.Bukkit.Commands;
+package id.universenetwork.utilities.bukkit.Commands;
 
-import id.universenetwork.utilities.Bukkit.Manager.Commands;
+import id.universenetwork.utilities.bukkit.manager.Commands;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 
 import java.util.Collections;
 import java.util.List;
 
-import static id.universenetwork.utilities.Bukkit.Enums.VillagerOptimization.DISABLEDMSG;
-import static id.universenetwork.utilities.Bukkit.Manager.Config.VOString;
-import static id.universenetwork.utilities.Bukkit.UNUtilities.isInVanilla;
-import static id.universenetwork.utilities.Bukkit.Utils.Color.sendTranslated;
+import static id.universenetwork.utilities.bukkit.Enums.VillagerOptimization.DISABLEDMSG;
+import static id.universenetwork.utilities.bukkit.manager.Config.VOString;
+import static id.universenetwork.utilities.bukkit.UNUtilities.isInVanilla;
+import static id.universenetwork.utilities.bukkit.utils.Color.sendTranslated;
 import static org.bukkit.ChatColor.DARK_GREEN;
 import static org.bukkit.ChatColor.GREEN;
 

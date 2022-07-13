@@ -1,15 +1,15 @@
-package id.universenetwork.utilities.Bukkit.Commands;
+package id.universenetwork.utilities.bukkit.Commands;
 
-import id.universenetwork.utilities.Bukkit.Filters.BookFilter;
-import id.universenetwork.utilities.Bukkit.Manager.Config;
+import id.universenetwork.utilities.bukkit.Filters.BookFilter;
+import id.universenetwork.utilities.bukkit.manager.Config;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import static id.universenetwork.utilities.Bukkit.Enums.AntiBookExploit.*;
+import static id.universenetwork.utilities.bukkit.Enums.AntiBookExploit.*;
 
-public class Filter extends id.universenetwork.utilities.Bukkit.Manager.Commands {
+public class Filter extends id.universenetwork.utilities.bukkit.manager.Commands {
     final BookFilter bookFilter;
 
     public Filter(BookFilter bookFilter) {
@@ -26,7 +26,7 @@ public class Filter extends id.universenetwork.utilities.Bukkit.Manager.Commands
                 sender.sendMessage(Config.ABEMessage(NO_HOLD_WRITTEN_BOOK));
                 return;
             }
-            final ItemStack newBook = bookFilter.filterBook(b, p, id.universenetwork.utilities.Bukkit.Filters.FilterAction.COMMAND);
+            final ItemStack newBook = bookFilter.filterBook(b, p, id.universenetwork.utilities.bukkit.Filters.FilterAction.COMMAND);
             if (newBook != null) {
                 p.getInventory().addItem(newBook);
                 sender.sendMessage(Config.ABEMessage(SUCCESS));
