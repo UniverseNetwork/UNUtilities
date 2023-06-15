@@ -14,6 +14,9 @@
   </p>
 </div>
 
+<h1>⚠ WARNING - THIS PROJECT IS UNMAINTAINED</h1>
+<h3>Because I will be studying for senior high school, this project will not be continued by me except @rajaopak *(if he wants to)*. However, I will release the **SlimefunAddons** feature in a separate plugin soon.</h3>
+
 # Features
 ## Bukkit
 - Block Blocker
