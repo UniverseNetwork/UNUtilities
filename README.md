@@ -15,7 +15,7 @@
 </div>
 
 <h1>⚠ WARNING - THIS PROJECT IS UNMAINTAINED</h1>
-<h3>Because I will be studying for senior high school, this project will not be continued by me except @rajaopak *(if he wants to)*. However, I will release the **SlimefunAddons** feature in a separate plugin soon.</h3>
+<h3>Because I will be studying for senior high school, this project will not be continued by me except @rajaopak <italic>(if he wants to)</italic>. However, I will release the <bold>SlimefunAddons</bold> feature in a separate plugin soon.</h3>
 
 # Features
 ## Bukkit
